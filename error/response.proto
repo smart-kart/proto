@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package proto.v1;
+
+option go_package = "github.com/smart-kart/proto/gen/go/proto/v1;protov1";
+
+// Error represents an error response
+message Error {
+  string code = 1;
+  string message = 2;
+  map<string, string> details = 3;
+}
+
+// Response represents a generic response wrapper
+message Response {
+  bool success = 1;
+  string message = 2;
+  Error error = 3;
+}
+
+// ValidationError represents a field validation error
+message ValidationError {
+  string field = 1;
+  string message = 2;
+}
+
+// ValidationErrors represents multiple validation errors
+message ValidationErrors {
+  repeated ValidationError errors = 1;
+}
+
+// Pagination represents pagination metadata
+message Pagination {
+  int64 total = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+  int32 total_pages = 4;
+}

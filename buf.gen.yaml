@@ -1,0 +1,41 @@
+version: v2
+clean: true
+managed:
+  enabled: true
+  disable:
+    - module: buf.build/googleapis/googleapis
+    - file_option: go_package
+  override:
+    - file_option: optimize_for
+      value: SPEED
+
+plugins:
+  - remote: buf.build/protocolbuffers/go:v1.36.6
+    out: gen/go
+    opt: module=github.com/smart-kart/proto/gen/go
+
+  - remote: buf.build/grpc/go:v1.5.1
+    out: gen/go
+    opt:
+      - module=github.com/smart-kart/proto/gen/go
+      - require_unimplemented_servers=true
+
+  - remote: buf.build/grpc-ecosystem/gateway:v2.26.3
+    out: gen/go
+    opt:
+      - module=github.com/smart-kart/proto/gen/go
+      - logtostderr=true
+      - allow_delete_body=true
+
+  - remote: buf.build/grpc-ecosystem/openapiv2:v2.26.3
+    out: gen/resource
+    opt:
+      - allow_delete_body=true
+      - version=true
+      - include_package_in_tags=true
+      - openapi_naming_strategy=simple
+      - disable_default_errors=true
+      - proto3_optional_nullable=true
+      - omit_enum_default_value=true
+      - disable_service_tags=false
+      - disable_default_responses=true

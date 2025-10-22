@@ -1,0 +1,333 @@
+syntax = "proto3";
+
+package smart_kart.account.http.v3;
+
+option go_package = "github.com/smart-kart/proto/gen/go/account/http/v3;accountv3";
+
+import "google/api/annotations.proto";
+
+// AccountHTTPService provides HTTP v3 endpoints for account management
+service AccountHTTPService {
+  // CreateAccount creates a new account via HTTP
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/v3/user"
+      body: "*"
+    };
+  }
+
+  // LoginUser login a user
+  rpc LoginUser(LoginUserRequest) returns(LoginUserResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/login"
+      body: "*"
+    };
+  }
+  // LoginWithPhone login a user
+  rpc LoginWithPhone(LoginWithPhoneRequest) returns(LoginUserResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/login-with-phone"
+      body: "*"
+    };
+  }
+
+  // GoogleAuth authenticates or creates a user via Google OAuth
+  rpc GoogleAuth(GoogleAuthRequest) returns(GoogleAuthResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/google-auth"
+      body: "*"
+    };
+  }
+
+  // LinkGoogleAccount links a Google account to an existing password account
+  rpc LinkGoogleAccount(LinkGoogleAccountRequest) returns(LinkGoogleAccountResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/link-google"
+      body: "*"
+    };
+  }
+
+  // AdminLogin retrieves an account by ID via HTTP
+  rpc AdminLogin(AdminLoginRequest) returns (AdminLoginResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/login"
+      body: "*"
+    };
+  }
+
+  // ConfigAccount updates an existing account via HTTP
+  rpc ConfigUser(ConfigUserRequest) returns (ConfigUserResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/config/{user_id}"
+      body: "*"
+    };
+  }
+
+  // SendVerificationEmail sends a verification email to the user
+  rpc SendVerificationEmail(SendVerificationEmailRequest) returns (SendVerificationEmailResponse) {
+    option (google.api.http) = {
+      post: "/v3/account/send-verification-email"
+      body: "*"
+    };
+  }
+
+  // VerifyEmail verifies a user's email using the verification token
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {
+    option (google.api.http) = {
+      post: "/v3/account/verify-email"
+      body: "*"
+    };
+  }
+
+  // SendVerificationSMS sends a verification SMS to the user
+  rpc SendVerificationSMS(SendVerificationSMSRequest) returns (SendVerificationSMSResponse) {
+    option (google.api.http) = {
+      post: "/v3/account/send-verification-sms"
+      body: "*"
+    };
+  }
+
+  // VerifyPhone verifies a user's phone using the verification OTP
+  rpc VerifyPhone(VerifyPhoneRequest) returns (VerifyPhoneResponse) {
+    option (google.api.http) = {
+      post: "/v3/account/verify-phone"
+      body: "*"
+    };
+  }
+
+  // ForgetPassword sends a password reset email to the user
+  rpc ForgetPassword(ForgetPasswordRequest) returns (ForgetPasswordResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/forgot-password"
+      body: "*"
+    };
+  }
+
+  // ResetPassword verifies token and sets new password
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/reset-password"
+      body: "*"
+    };
+  }
+}
+
+// LoginWithPhoneRequest represents the HTTP v3 request to login with phone number
+// If otp is not provided, an OTP will be sent to the phone number
+// If otp is provided, it will verify the OTP and complete the login
+message LoginWithPhoneRequest {
+  string phone_number = 1 [json_name = "phone_number"]; // @gotags: validate:"required"
+  optional string otp = 2 [json_name = "otp"]; // @gotags: validate:"omitempty,len=6"
+}
+
+// ForgetPasswordRequest represents the HTTP v3 request to forget password
+message ForgetPasswordRequest {
+  string email = 1 [json_name = "email"];
+}
+
+// ForgetPasswordResponse represents the HTTP v3 response to forget password
+message ForgetPasswordResponse {
+  string message = 1 [json_name = "message"];
+}
+
+// ResetPasswordRequest represents the HTTP v3 request to reset password
+message ResetPasswordRequest {
+  string token = 1 [json_name = "token"]; // @gotags: validate:"required"
+  string new_password = 2 [json_name = "new_password"]; // @gotags: validate:"required,min=8"
+  string confirm_password = 3 [json_name = "confirm_password"]; // @gotags: validate:"required,eqfield=NewPassword"
+}
+
+// ResetPasswordResponse represents the HTTP v3 response to reset password
+message ResetPasswordResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+// Account represents an account entity in HTTP v3
+message Account {
+  string user_id = 1;
+  string user_name = 2;
+  string email = 3;
+  string status = 4;
+  AccountMetadata metadata = 5;
+  string created_at = 6;
+  string updated_at = 7;
+  optional string first_name = 8;
+  optional string last_name = 9;
+  optional string phone_number = 10;
+  optional string profile_picture_url = 11 [json_name = "profile_picture_url"];
+}
+
+// AccountMetadata contains additional account information
+message AccountMetadata {
+  string account_type = 1;
+  map<string, string> custom_fields = 2;
+}
+
+// Token represents JWT authentication tokens
+message Token {
+  string access_token = 1 [json_name = "access_token"];
+  string refresh_token = 2 [json_name = "refresh_token"];
+  string token_type = 3 [json_name = "token_type"]; // e.g., "Bearer"
+}
+
+// CreateuserRequest represents the HTTP v3 request to create an account
+message CreateUserRequest {
+  string user_name = 1 [json_name = "user_name"]; // @gotags: validate:"required"
+  string email = 2 [json_name = "email"]; // @gotags: validate:"required,email"
+  AccountMetadata metadata = 3 [json_name = "metadata"];
+  string password = 4 [json_name = "password"]; // @gotags: validate:"required,min=8"
+  string confirm_password = 5 [json_name = "confirm_password"]; // @gotags: validate:"required,eqfield=Password"
+  optional string phone_number = 6 [json_name = "phone_number"]; // @gotags: validate:"omitempty"
+  optional string first_name = 7 [json_name = "first_name"]; // @gotags: validate:"omitempty,min=2,max=50"
+  optional string last_name = 8 [json_name = "last_name"]; // @gotags: validate:"omitempty,min=2,max=50"
+}
+
+// CreateUserResponse represents the HTTP v3 response for account creation
+message CreateUserResponse {
+  Account account = 1;
+  string message = 2;
+}
+
+// LoginuserRequest represents login request
+// At least one of user_name or email must be provided
+message LoginUserRequest {
+  optional string user_name = 1 [json_name = "user_name"]; // @gotags: validate:"required_without=Email"
+  optional string email = 2 [json_name = "email"]; // @gotags: validate:"required_without=UserName,omitempty,email"
+  string password = 3 [json_name = "password"]; // @gotags: validate:"required,min=8"
+}
+
+// LoginUserResponse represents the HTTP v3 response for login
+message LoginUserResponse {
+  string message = 1;
+  optional Token token = 2;
+  optional Account account = 3;
+}
+
+// GoogleAuthRequest represents the HTTP v3 request for Google OAuth
+message GoogleAuthRequest {
+  string id_token = 1 [json_name = "id_token"]; // @gotags: validate:"required"
+  bool is_signup = 2 [json_name = "is_signup"]; // true for signup, false for signin
+}
+
+// GoogleAuthResponse represents the HTTP v3 response for Google OAuth
+message GoogleAuthResponse {
+  string message = 1;
+  optional Account account = 2;
+  optional Token token = 3;
+}
+
+// LinkGoogleAccountRequest represents the HTTP v3 request to link Google account
+message LinkGoogleAccountRequest {
+  string id_token = 1 [json_name = "id_token"]; // @gotags: validate:"required"
+  string email = 2 [json_name = "email"]; // @gotags: validate:"required,email"
+  string password = 3 [json_name = "password"]; // @gotags: validate:"required"
+}
+
+// LinkGoogleAccountResponse represents the HTTP v3 response for linking Google account
+message LinkGoogleAccountResponse {
+  string message = 1;
+  optional Account account = 2;
+  optional Token token = 3;
+}
+
+// AdminLoginRequest represents the HTTP v3 request to login admin
+message AdminLoginRequest {
+  optional string user_name = 1 [json_name = "user_name"]; // @gotags: validate:"required_without=Email"
+  optional string email = 2 [json_name = "email"]; // @gotags: validate:"required_without=UserName,omitempty,email"
+  string password = 3 [json_name = "password"]; // @gotags: validate:"required,min=8"
+}
+
+// AdminLoginResponse represents the HTTP v3 response for login admin
+message AdminLoginResponse {
+  string message = 1;
+}
+
+// ConfigUserRequest represents the HTTP v3 request to update an account
+message ConfigUserRequest {
+  string user_id = 1 [json_name = "user_id"];
+  optional string email = 2 [json_name = "email"];
+  optional string user_name = 3 [json_name = "user_name"];
+  optional string phone_number = 4 [json_name = "phone_number"];
+  optional string old_password = 5 [json_name = "old_password"];
+  optional string new_password = 6 [json_name = "new_password"];
+  optional AccountMetadata metadata = 7 [json_name = "metadata"];
+  optional string first_name = 8 [json_name = "first_name"];
+  optional string last_name = 9 [json_name = "last_name"];
+}
+
+// ConfigUserResponse represents the HTTP v3 response for updating an account
+message ConfigUserResponse {
+  string message = 1;
+}
+
+// DeleteAccountRequest represents the HTTP v3 request to delete an account
+message DeleteAccountRequest {
+  string account_id = 1;
+}
+
+// DeleteAccountResponse represents the HTTP v3 response for deleting an account
+message DeleteAccountResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// ListAccountsRequest represents the HTTP v3 request to list accounts
+message ListAccountsRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+  optional string status_filter = 3;
+  optional string user_id_filter = 4;
+}
+
+// ListAccountsResponse represents the HTTP v3 response for listing accounts
+message ListAccountsResponse {
+  repeated Account accounts = 1;
+  int32 total_count = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+// SendVerificationEmailRequest represents the HTTP v3 request to send verification email
+message SendVerificationEmailRequest {
+  string email = 1 [json_name = "email"]; // @gotags: validate:"required,email"
+}
+
+// SendVerificationEmailResponse represents the HTTP v3 response for sending verification email
+message SendVerificationEmailResponse {
+  string message = 1;
+}
+
+// VerifyEmailRequest represents the HTTP v3 request to verify email
+message VerifyEmailRequest {
+  string email = 1 [json_name = "email"]; // @gotags: validate:"required,email"
+  string otp = 2 [json_name = "otp"]; // @gotags: validate:"required,len=6"
+}
+
+// VerifyEmailResponse represents the HTTP v3 response for verifying email
+message VerifyEmailResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// SendVerificationSMSRequest represents the HTTP v3 request to send verification SMS
+message SendVerificationSMSRequest {
+  string phone_number = 1 [json_name = "phone_number"]; // @gotags: validate:"required"
+}
+
+// SendVerificationSMSResponse represents the HTTP v3 response for sending verification SMS
+message SendVerificationSMSResponse {
+  string message = 1;
+}
+
+// VerifyPhoneRequest represents the HTTP v3 request to verify phone
+message VerifyPhoneRequest {
+  string phone_number = 1 [json_name = "phone_number"]; // @gotags: validate:"required"
+  string otp = 2 [json_name = "otp"]; // @gotags: validate:"required,len=6"
+}
+
+// VerifyPhoneResponse represents the HTTP v3 response for verifying phone
+message VerifyPhoneResponse {
+  bool success = 1;
+  string message = 2;
+}

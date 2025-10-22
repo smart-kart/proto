@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package proto.v1;
+
+option go_package = "github.com/smart-kart/proto/gen/go/proto/v1;protov1";
+
+// Err represents a custom error with code, message and optional remarks
+message Err {
+  int32 code = 1;
+  string message = 2;
+  string remarks = 3;
+}
+
+// GRPCError represents a gRPC error with code, message and optional error details
+message GRPCError {
+  int32 code = 1;
+  string message = 2;
+  repeated Err details = 3;
+}
+
+// StrictErr represents a strict error structure for HTTP responses
+message StrictErr {
+  int32 code = 1;
+  string message = 2;
+  string remarks = 3;
+}
