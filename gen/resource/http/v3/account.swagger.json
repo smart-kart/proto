@@ -1,0 +1,746 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "http/v3/account.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "smart_kart.account.http.v3.AccountHTTPService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v3/account/send-verification-email": {
+      "post": {
+        "summary": "SendVerificationEmail sends a verification email to the user",
+        "operationId": "AccountHTTPService_SendVerificationEmail",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendVerificationEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/account/send-verification-sms": {
+      "post": {
+        "summary": "SendVerificationSMS sends a verification SMS to the user",
+        "operationId": "AccountHTTPService_SendVerificationSMS",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendVerificationSMSRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/account/verify-email": {
+      "post": {
+        "summary": "VerifyEmail verifies a user's email using the verification token",
+        "operationId": "AccountHTTPService_VerifyEmail",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VerifyEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/account/verify-phone": {
+      "post": {
+        "summary": "VerifyPhone verifies a user's phone using the verification OTP",
+        "operationId": "AccountHTTPService_VerifyPhone",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VerifyPhoneRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/admin/login": {
+      "post": {
+        "summary": "AdminLogin retrieves an account by ID via HTTP",
+        "operationId": "AccountHTTPService_AdminLogin",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdminLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user": {
+      "post": {
+        "summary": "CreateAccount creates a new account via HTTP",
+        "operationId": "AccountHTTPService_CreateUser",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/config/{user_id}": {
+      "post": {
+        "summary": "ConfigAccount updates an existing account via HTTP",
+        "operationId": "AccountHTTPService_ConfigUser",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfigUserBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/forgot-password": {
+      "post": {
+        "summary": "ForgetPassword sends a password reset email to the user",
+        "operationId": "AccountHTTPService_ForgetPassword",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ForgetPasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/google-auth": {
+      "post": {
+        "summary": "GoogleAuth authenticates or creates a user via Google OAuth",
+        "operationId": "AccountHTTPService_GoogleAuth",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GoogleAuthRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/link-google": {
+      "post": {
+        "summary": "LinkGoogleAccount links a Google account to an existing password account",
+        "operationId": "AccountHTTPService_LinkGoogleAccount",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LinkGoogleAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/login": {
+      "post": {
+        "summary": "LoginUser login a user",
+        "operationId": "AccountHTTPService_LoginUser",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/login-with-phone": {
+      "post": {
+        "summary": "LoginWithPhone login a user",
+        "operationId": "AccountHTTPService_LoginWithPhone",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginWithPhoneRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/reset-password": {
+      "post": {
+        "summary": "ResetPassword verifies token and sets new password",
+        "operationId": "AccountHTTPService_ResetPassword",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Account": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/AccountMetadata"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "lastName": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "phoneNumber": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "profile_picture_url": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "title": "Account represents an account entity in HTTP v3"
+    },
+    "AccountMetadata": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "type": "string"
+        },
+        "customFields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "AccountMetadata contains additional account information"
+    },
+    "AdminLoginRequest": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"required_without=Email\""
+        },
+        "email": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"required_without=UserName,omitempty,email\""
+        },
+        "password": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=8\""
+        }
+      },
+      "title": "AdminLoginRequest represents the HTTP v3 request to login admin"
+    },
+    "AdminLoginResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AdminLoginResponse represents the HTTP v3 response for login admin"
+    },
+    "ConfigUserBody": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "user_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "phone_number": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "old_password": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "new_password": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "metadata": {
+          "$ref": "#/definitions/AccountMetadata",
+          "x-nullable": true
+        },
+        "first_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "last_name": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "title": "ConfigUserRequest represents the HTTP v3 request to update an account"
+    },
+    "ConfigUserResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ConfigUserResponse represents the HTTP v3 response for updating an account"
+    },
+    "CreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "email": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,email\""
+        },
+        "metadata": {
+          "$ref": "#/definitions/AccountMetadata"
+        },
+        "password": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=8\""
+        },
+        "confirm_password": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,eqfield=Password\""
+        },
+        "phone_number": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"omitempty\""
+        },
+        "first_name": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"omitempty,min=2,max=50\""
+        },
+        "last_name": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"omitempty,min=2,max=50\""
+        }
+      },
+      "title": "CreateuserRequest represents the HTTP v3 request to create an account"
+    },
+    "CreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "CreateUserResponse represents the HTTP v3 response for account creation"
+    },
+    "ForgetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "ForgetPasswordRequest represents the HTTP v3 request to forget password"
+    },
+    "ForgetPasswordResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ForgetPasswordResponse represents the HTTP v3 response to forget password"
+    },
+    "GoogleAuthRequest": {
+      "type": "object",
+      "properties": {
+        "id_token": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "is_signup": {
+          "type": "boolean",
+          "title": "true for signup, false for signin"
+        }
+      },
+      "title": "GoogleAuthRequest represents the HTTP v3 request for Google OAuth"
+    },
+    "GoogleAuthResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "#/definitions/Account",
+          "x-nullable": true
+        },
+        "token": {
+          "$ref": "#/definitions/Token",
+          "x-nullable": true
+        }
+      },
+      "title": "GoogleAuthResponse represents the HTTP v3 response for Google OAuth"
+    },
+    "LinkGoogleAccountRequest": {
+      "type": "object",
+      "properties": {
+        "id_token": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "email": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,email\""
+        },
+        "password": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        }
+      },
+      "title": "LinkGoogleAccountRequest represents the HTTP v3 request to link Google account"
+    },
+    "LinkGoogleAccountResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "#/definitions/Account",
+          "x-nullable": true
+        },
+        "token": {
+          "$ref": "#/definitions/Token",
+          "x-nullable": true
+        }
+      },
+      "title": "LinkGoogleAccountResponse represents the HTTP v3 response for linking Google account"
+    },
+    "LoginUserRequest": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"required_without=Email\""
+        },
+        "email": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"required_without=UserName,omitempty,email\""
+        },
+        "password": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=8\""
+        }
+      },
+      "title": "LoginuserRequest represents login request\nAt least one of user_name or email must be provided"
+    },
+    "LoginUserResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "token": {
+          "$ref": "#/definitions/Token",
+          "x-nullable": true
+        },
+        "account": {
+          "$ref": "#/definitions/Account",
+          "x-nullable": true
+        }
+      },
+      "title": "LoginUserResponse represents the HTTP v3 response for login"
+    },
+    "LoginWithPhoneRequest": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "otp": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"omitempty,len=6\""
+        }
+      },
+      "title": "LoginWithPhoneRequest represents the HTTP v3 request to login with phone number\nIf otp is not provided, an OTP will be sent to the phone number\nIf otp is provided, it will verify the OTP and complete the login"
+    },
+    "ResetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "new_password": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=8\""
+        },
+        "confirm_password": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,eqfield=NewPassword\""
+        }
+      },
+      "title": "ResetPasswordRequest represents the HTTP v3 request to reset password"
+    },
+    "ResetPasswordResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ResetPasswordResponse represents the HTTP v3 response to reset password"
+    },
+    "SendVerificationEmailRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,email\""
+        }
+      },
+      "title": "SendVerificationEmailRequest represents the HTTP v3 request to send verification email"
+    },
+    "SendVerificationEmailResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "SendVerificationEmailResponse represents the HTTP v3 response for sending verification email"
+    },
+    "SendVerificationSMSRequest": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        }
+      },
+      "title": "SendVerificationSMSRequest represents the HTTP v3 request to send verification SMS"
+    },
+    "SendVerificationSMSResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "SendVerificationSMSResponse represents the HTTP v3 response for sending verification SMS"
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "token_type": {
+          "type": "string",
+          "title": "e.g., \"Bearer\""
+        }
+      },
+      "title": "Token represents JWT authentication tokens"
+    },
+    "VerifyEmailRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,email\""
+        },
+        "otp": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,len=6\""
+        }
+      },
+      "title": "VerifyEmailRequest represents the HTTP v3 request to verify email"
+    },
+    "VerifyEmailResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "VerifyEmailResponse represents the HTTP v3 response for verifying email"
+    },
+    "VerifyPhoneRequest": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "otp": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,len=6\""
+        }
+      },
+      "title": "VerifyPhoneRequest represents the HTTP v3 request to verify phone"
+    },
+    "VerifyPhoneResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "VerifyPhoneResponse represents the HTTP v3 response for verifying phone"
+    }
+  }
+}
