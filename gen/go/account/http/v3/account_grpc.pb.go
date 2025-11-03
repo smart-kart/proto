@@ -32,6 +32,10 @@ const (
 	AccountHTTPService_VerifyPhone_FullMethodName           = "/smart_kart.account.http.v3.AccountHTTPService/VerifyPhone"
 	AccountHTTPService_ForgetPassword_FullMethodName        = "/smart_kart.account.http.v3.AccountHTTPService/ForgetPassword"
 	AccountHTTPService_ResetPassword_FullMethodName         = "/smart_kart.account.http.v3.AccountHTTPService/ResetPassword"
+	AccountHTTPService_GetUser_FullMethodName               = "/smart_kart.account.http.v3.AccountHTTPService/GetUser"
+	AccountHTTPService_Logout_FullMethodName                = "/smart_kart.account.http.v3.AccountHTTPService/Logout"
+	AccountHTTPService_RefreshToken_FullMethodName          = "/smart_kart.account.http.v3.AccountHTTPService/RefreshToken"
+	AccountHTTPService_RefreshTokenSilent_FullMethodName    = "/smart_kart.account.http.v3.AccountHTTPService/RefreshTokenSilent"
 )
 
 // AccountHTTPServiceClient is the client API for AccountHTTPService service.
@@ -66,6 +70,14 @@ type AccountHTTPServiceClient interface {
 	ForgetPassword(ctx context.Context, in *ForgetPasswordRequest, opts ...grpc.CallOption) (*ForgetPasswordResponse, error)
 	// ResetPassword verifies token and sets new password
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
+	// GetUser retrieves a user's profile information
+	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
+	// Logout revokes the user's refresh token
+	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
+	// RefreshToken generates a new access token from a refresh token
+	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
+	// RefreshTokenSilent refreshes access token using httpOnly cookie
+	RefreshTokenSilent(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*RefreshTokenSilentResponse, error)
 }
 
 type accountHTTPServiceClient struct {
@@ -206,6 +218,46 @@ func (c *accountHTTPServiceClient) ResetPassword(ctx context.Context, in *ResetP
 	return out, nil
 }
 
+func (c *accountHTTPServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_GetUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LogoutResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_Logout_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RefreshTokenResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_RefreshToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) RefreshTokenSilent(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*RefreshTokenSilentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RefreshTokenSilentResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_RefreshTokenSilent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountHTTPServiceServer is the server API for AccountHTTPService service.
 // All implementations must embed UnimplementedAccountHTTPServiceServer
 // for forward compatibility.
@@ -238,6 +290,14 @@ type AccountHTTPServiceServer interface {
 	ForgetPassword(context.Context, *ForgetPasswordRequest) (*ForgetPasswordResponse, error)
 	// ResetPassword verifies token and sets new password
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
+	// GetUser retrieves a user's profile information
+	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
+	// Logout revokes the user's refresh token
+	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
+	// RefreshToken generates a new access token from a refresh token
+	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
+	// RefreshTokenSilent refreshes access token using httpOnly cookie
+	RefreshTokenSilent(context.Context, *EmptyRequest) (*RefreshTokenSilentResponse, error)
 	mustEmbedUnimplementedAccountHTTPServiceServer()
 }
 
@@ -286,6 +346,18 @@ func (UnimplementedAccountHTTPServiceServer) ForgetPassword(context.Context, *Fo
 }
 func (UnimplementedAccountHTTPServiceServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) Logout(context.Context, *LogoutRequest) (*LogoutResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) RefreshTokenSilent(context.Context, *EmptyRequest) (*RefreshTokenSilentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshTokenSilent not implemented")
 }
 func (UnimplementedAccountHTTPServiceServer) mustEmbedUnimplementedAccountHTTPServiceServer() {}
 func (UnimplementedAccountHTTPServiceServer) testEmbeddedByValue()                            {}
@@ -542,6 +614,78 @@ func _AccountHTTPService_ResetPassword_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountHTTPService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).GetUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_GetUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).GetUser(ctx, req.(*GetUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogoutRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).Logout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_Logout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).Logout(ctx, req.(*LogoutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).RefreshToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_RefreshToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).RefreshToken(ctx, req.(*RefreshTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_RefreshTokenSilent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).RefreshTokenSilent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_RefreshTokenSilent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).RefreshTokenSilent(ctx, req.(*EmptyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccountHTTPService_ServiceDesc is the grpc.ServiceDesc for AccountHTTPService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -600,6 +744,22 @@ var AccountHTTPService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResetPassword",
 			Handler:    _AccountHTTPService_ResetPassword_Handler,
+		},
+		{
+			MethodName: "GetUser",
+			Handler:    _AccountHTTPService_GetUser_Handler,
+		},
+		{
+			MethodName: "Logout",
+			Handler:    _AccountHTTPService_Logout_Handler,
+		},
+		{
+			MethodName: "RefreshToken",
+			Handler:    _AccountHTTPService_RefreshToken_Handler,
+		},
+		{
+			MethodName: "RefreshTokenSilent",
+			Handler:    _AccountHTTPService_RefreshTokenSilent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

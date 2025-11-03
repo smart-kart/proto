@@ -262,6 +262,66 @@
         ]
       }
     },
+    "/v3/user/logout": {
+      "post": {
+        "summary": "Logout revokes the user's refresh token",
+        "operationId": "AccountHTTPService_Logout",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogoutRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/refresh-silent": {
+      "post": {
+        "summary": "RefreshTokenSilent refreshes access token using httpOnly cookie",
+        "operationId": "AccountHTTPService_RefreshTokenSilent",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmptyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/refresh-token": {
+      "post": {
+        "summary": "RefreshToken generates a new access token from a refresh token",
+        "operationId": "AccountHTTPService_RefreshToken",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RefreshTokenRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
     "/v3/user/reset-password": {
       "post": {
         "summary": "ResetPassword verifies token and sets new password",
@@ -275,6 +335,25 @@
             "schema": {
               "$ref": "#/definitions/ResetPasswordRequest"
             }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/{user_id}": {
+      "get": {
+        "summary": "GetUser retrieves a user's profile information",
+        "operationId": "AccountHTTPService_GetUser",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "user_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -323,6 +402,15 @@
         "profile_picture_url": {
           "type": "string",
           "x-nullable": true
+        },
+        "email_verified": {
+          "type": "boolean"
+        },
+        "phone_verified": {
+          "type": "boolean"
+        },
+        "is_oauth_only": {
+          "type": "boolean"
         }
       },
       "title": "Account represents an account entity in HTTP v3"
@@ -414,6 +502,10 @@
       "properties": {
         "message": {
           "type": "string"
+        },
+        "account": {
+          "$ref": "#/definitions/Account",
+          "x-nullable": true
         }
       },
       "title": "ConfigUserResponse represents the HTTP v3 response for updating an account"
@@ -470,6 +562,10 @@
       },
       "title": "CreateUserResponse represents the HTTP v3 response for account creation"
     },
+    "EmptyRequest": {
+      "type": "object",
+      "title": "Empty request for endpoints that don't need parameters"
+    },
     "ForgetPasswordRequest": {
       "type": "object",
       "properties": {
@@ -487,6 +583,18 @@
         }
       },
       "title": "ForgetPasswordResponse represents the HTTP v3 response to forget password"
+    },
+    "GetUserResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "GetUserResponse represents the HTTP v3 response for getting user information"
     },
     "GoogleAuthRequest": {
       "type": "object",
@@ -605,6 +713,68 @@
         }
       },
       "title": "LoginWithPhoneRequest represents the HTTP v3 request to login with phone number\nIf otp is not provided, an OTP will be sent to the phone number\nIf otp is provided, it will verify the OTP and complete the login"
+    },
+    "LogoutRequest": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "refresh_token": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "title": "LogoutRequest represents the HTTP v3 request to logout"
+    },
+    "LogoutResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "LogoutResponse represents the HTTP v3 response for logout"
+    },
+    "RefreshTokenRequest": {
+      "type": "object",
+      "properties": {
+        "refresh_token": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        }
+      },
+      "title": "RefreshTokenRequest represents the HTTP v3 request to refresh access token"
+    },
+    "RefreshTokenResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "$ref": "#/definitions/Token"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "RefreshTokenResponse represents the HTTP v3 response for refreshing token"
+    },
+    "RefreshTokenSilentResponse": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string",
+          "title": "Only access token in response body"
+        },
+        "message": {
+          "type": "string",
+          "title": "Refresh token is in httpOnly cookie (not in response body)"
+        }
+      },
+      "title": "Response for silent refresh (cookie-based)"
     },
     "ResetPasswordRequest": {
       "type": "object",

@@ -110,6 +110,37 @@ service AccountHTTPService {
       body: "*"
     };
   }
+
+  // GetUser retrieves a user's profile information
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {
+      get: "/v3/user/{user_id}"
+    };
+  }
+
+  // Logout revokes the user's refresh token
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/logout"
+      body: "*"
+    };
+  }
+
+  // RefreshToken generates a new access token from a refresh token
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/refresh-token"
+      body: "*"
+    };
+  }
+
+  // RefreshTokenSilent refreshes access token using httpOnly cookie
+  rpc RefreshTokenSilent(EmptyRequest) returns (RefreshTokenSilentResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/refresh-silent"
+      body: "*"
+    };
+  }
 }
 
 // LoginWithPhoneRequest represents the HTTP v3 request to login with phone number
@@ -156,6 +187,9 @@ message Account {
   optional string last_name = 9;
   optional string phone_number = 10;
   optional string profile_picture_url = 11 [json_name = "profile_picture_url"];
+  bool email_verified = 12 [json_name = "email_verified"];
+  bool phone_verified = 13 [json_name = "phone_verified"];
+  bool is_oauth_only = 14 [json_name = "is_oauth_only"];
 }
 
 // AccountMetadata contains additional account information
@@ -259,6 +293,7 @@ message ConfigUserRequest {
 // ConfigUserResponse represents the HTTP v3 response for updating an account
 message ConfigUserResponse {
   string message = 1;
+  optional Account account = 2;
 }
 
 // DeleteAccountRequest represents the HTTP v3 request to delete an account
@@ -330,4 +365,48 @@ message VerifyPhoneRequest {
 message VerifyPhoneResponse {
   bool success = 1;
   string message = 2;
+}
+
+// GetUserRequest represents the HTTP v3 request to get user information
+message GetUserRequest {
+  string user_id = 1 [json_name = "user_id"]; // @gotags: validate:"required"
+}
+
+// GetUserResponse represents the HTTP v3 response for getting user information
+message GetUserResponse {
+  Account account = 1;
+  string message = 2;
+}
+
+// LogoutRequest represents the HTTP v3 request to logout
+message LogoutRequest {
+  optional string user_id = 1 [json_name = "user_id"];
+  optional string refresh_token = 2 [json_name = "refresh_token"];
+}
+
+// LogoutResponse represents the HTTP v3 response for logout
+message LogoutResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// RefreshTokenRequest represents the HTTP v3 request to refresh access token
+message RefreshTokenRequest {
+  string refresh_token = 1 [json_name = "refresh_token"]; // @gotags: validate:"required"
+}
+
+// RefreshTokenResponse represents the HTTP v3 response for refreshing token
+message RefreshTokenResponse {
+  Token token = 1;
+  string message = 2;
+}
+
+// Empty request for endpoints that don't need parameters
+message EmptyRequest {}
+
+// Response for silent refresh (cookie-based)
+message RefreshTokenSilentResponse {
+  string access_token = 1;  // Only access token in response body
+  string message = 2;
+  // Refresh token is in httpOnly cookie (not in response body)
 }

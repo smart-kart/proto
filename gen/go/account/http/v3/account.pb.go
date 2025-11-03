@@ -295,6 +295,9 @@ type Account struct {
 	LastName          *string                `protobuf:"bytes,9,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
 	PhoneNumber       *string                `protobuf:"bytes,10,opt,name=phone_number,json=phoneNumber,proto3,oneof" json:"phone_number,omitempty"`
 	ProfilePictureUrl *string                `protobuf:"bytes,11,opt,name=profile_picture_url,proto3,oneof" json:"profile_picture_url,omitempty"`
+	EmailVerified     bool                   `protobuf:"varint,12,opt,name=email_verified,proto3" json:"email_verified,omitempty"`
+	PhoneVerified     bool                   `protobuf:"varint,13,opt,name=phone_verified,proto3" json:"phone_verified,omitempty"`
+	IsOauthOnly       bool                   `protobuf:"varint,14,opt,name=is_oauth_only,proto3" json:"is_oauth_only,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -404,6 +407,27 @@ func (x *Account) GetProfilePictureUrl() string {
 		return *x.ProfilePictureUrl
 	}
 	return ""
+}
+
+func (x *Account) GetEmailVerified() bool {
+	if x != nil {
+		return x.EmailVerified
+	}
+	return false
+}
+
+func (x *Account) GetPhoneVerified() bool {
+	if x != nil {
+		return x.PhoneVerified
+	}
+	return false
+}
+
+func (x *Account) GetIsOauthOnly() bool {
+	if x != nil {
+		return x.IsOauthOnly
+	}
+	return false
 }
 
 // AccountMetadata contains additional account information
@@ -1252,6 +1276,7 @@ func (x *ConfigUserRequest) GetLastName() string {
 type ConfigUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Account       *Account               `protobuf:"bytes,2,opt,name=account,proto3,oneof" json:"account,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1291,6 +1316,13 @@ func (x *ConfigUserResponse) GetMessage() string {
 		return x.Message
 	}
 	return ""
+}
+
+func (x *ConfigUserResponse) GetAccount() *Account {
+	if x != nil {
+		return x.Account
+	}
+	return nil
 }
 
 // DeleteAccountRequest represents the HTTP v3 request to delete an account
@@ -1921,6 +1953,398 @@ func (x *VerifyPhoneResponse) GetMessage() string {
 	return ""
 }
 
+// GetUserRequest represents the HTTP v3 request to get user information
+type GetUserRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,proto3" json:"user_id,omitempty" validate:"required"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserRequest) Reset() {
+	*x = GetUserRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserRequest) ProtoMessage() {}
+
+func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
+func (*GetUserRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *GetUserRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+// GetUserResponse represents the HTTP v3 response for getting user information
+type GetUserResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Account       *Account               `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserResponse) Reset() {
+	*x = GetUserResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserResponse) ProtoMessage() {}
+
+func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
+func (*GetUserResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *GetUserResponse) GetAccount() *Account {
+	if x != nil {
+		return x.Account
+	}
+	return nil
+}
+
+func (x *GetUserResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// LogoutRequest represents the HTTP v3 request to logout
+type LogoutRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *string                `protobuf:"bytes,1,opt,name=user_id,proto3,oneof" json:"user_id,omitempty"`
+	RefreshToken  *string                `protobuf:"bytes,2,opt,name=refresh_token,proto3,oneof" json:"refresh_token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LogoutRequest) Reset() {
+	*x = LogoutRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LogoutRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LogoutRequest) ProtoMessage() {}
+
+func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LogoutRequest.ProtoReflect.Descriptor instead.
+func (*LogoutRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *LogoutRequest) GetUserId() string {
+	if x != nil && x.UserId != nil {
+		return *x.UserId
+	}
+	return ""
+}
+
+func (x *LogoutRequest) GetRefreshToken() string {
+	if x != nil && x.RefreshToken != nil {
+		return *x.RefreshToken
+	}
+	return ""
+}
+
+// LogoutResponse represents the HTTP v3 response for logout
+type LogoutResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LogoutResponse) Reset() {
+	*x = LogoutResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LogoutResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LogoutResponse) ProtoMessage() {}
+
+func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LogoutResponse.ProtoReflect.Descriptor instead.
+func (*LogoutResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *LogoutResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *LogoutResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// RefreshTokenRequest represents the HTTP v3 request to refresh access token
+type RefreshTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,proto3" json:"refresh_token,omitempty" validate:"required"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshTokenRequest) Reset() {
+	*x = RefreshTokenRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshTokenRequest) ProtoMessage() {}
+
+func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
+func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *RefreshTokenRequest) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+// RefreshTokenResponse represents the HTTP v3 response for refreshing token
+type RefreshTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         *Token                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshTokenResponse) Reset() {
+	*x = RefreshTokenResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshTokenResponse) ProtoMessage() {}
+
+func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
+func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *RefreshTokenResponse) GetToken() *Token {
+	if x != nil {
+		return x.Token
+	}
+	return nil
+}
+
+func (x *RefreshTokenResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// Empty request for endpoints that don't need parameters
+type EmptyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EmptyRequest) Reset() {
+	*x = EmptyRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EmptyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EmptyRequest) ProtoMessage() {}
+
+func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EmptyRequest.ProtoReflect.Descriptor instead.
+func (*EmptyRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{38}
+}
+
+// Response for silent refresh (cookie-based)
+type RefreshTokenSilentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"` // Only access token in response body
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`                            // Refresh token is in httpOnly cookie (not in response body)
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshTokenSilentResponse) Reset() {
+	*x = RefreshTokenSilentResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshTokenSilentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshTokenSilentResponse) ProtoMessage() {}
+
+func (x *RefreshTokenSilentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshTokenSilentResponse.ProtoReflect.Descriptor instead.
+func (*RefreshTokenSilentResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *RefreshTokenSilentResponse) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *RefreshTokenSilentResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_http_v3_account_proto protoreflect.FileDescriptor
 
 const file_http_v3_account_proto_rawDesc = "" +
@@ -1940,7 +2364,7 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\x10confirm_password\x18\x03 \x01(\tR\x10confirm_password\"K\n" +
 	"\x15ResetPasswordResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xdf\x03\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xd5\x04\n" +
 	"\aAccount\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tuser_name\x18\x02 \x01(\tR\buserName\x12\x14\n" +
@@ -1956,7 +2380,10 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\tlast_name\x18\t \x01(\tH\x01R\blastName\x88\x01\x01\x12&\n" +
 	"\fphone_number\x18\n" +
 	" \x01(\tH\x02R\vphoneNumber\x88\x01\x01\x125\n" +
-	"\x13profile_picture_url\x18\v \x01(\tH\x03R\x13profile_picture_url\x88\x01\x01B\r\n" +
+	"\x13profile_picture_url\x18\v \x01(\tH\x03R\x13profile_picture_url\x88\x01\x01\x12&\n" +
+	"\x0eemail_verified\x18\f \x01(\bR\x0eemail_verified\x12&\n" +
+	"\x0ephone_verified\x18\r \x01(\bR\x0ephone_verified\x12$\n" +
+	"\ris_oauth_only\x18\x0e \x01(\bR\ris_oauth_onlyB\r\n" +
 	"\v_first_nameB\f\n" +
 	"\n" +
 	"_last_nameB\x0f\n" +
@@ -2057,9 +2484,12 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\t_metadataB\r\n" +
 	"\v_first_nameB\f\n" +
 	"\n" +
-	"_last_name\".\n" +
+	"_last_name\"~\n" +
 	"\x12ConfigUserResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"5\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12B\n" +
+	"\aaccount\x18\x02 \x01(\v2#.smart_kart.account.http.v3.AccountH\x00R\aaccount\x88\x01\x01B\n" +
+	"\n" +
+	"\b_account\"5\n" +
 	"\x14DeleteAccountRequest\x12\x1d\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tR\taccountId\"K\n" +
@@ -2098,7 +2528,30 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\x03otp\x18\x02 \x01(\tR\x03otp\"I\n" +
 	"\x13VerifyPhoneResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xe5\x0f\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"*\n" +
+	"\x0eGetUserRequest\x12\x18\n" +
+	"\auser_id\x18\x01 \x01(\tR\auser_id\"j\n" +
+	"\x0fGetUserResponse\x12=\n" +
+	"\aaccount\x18\x01 \x01(\v2#.smart_kart.account.http.v3.AccountR\aaccount\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"w\n" +
+	"\rLogoutRequest\x12\x1d\n" +
+	"\auser_id\x18\x01 \x01(\tH\x00R\auser_id\x88\x01\x01\x12)\n" +
+	"\rrefresh_token\x18\x02 \x01(\tH\x01R\rrefresh_token\x88\x01\x01B\n" +
+	"\n" +
+	"\b_user_idB\x10\n" +
+	"\x0e_refresh_token\"D\n" +
+	"\x0eLogoutResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\";\n" +
+	"\x13RefreshTokenRequest\x12$\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\rrefresh_token\"i\n" +
+	"\x14RefreshTokenResponse\x127\n" +
+	"\x05token\x18\x01 \x01(\v2!.smart_kart.account.http.v3.TokenR\x05token\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\x0e\n" +
+	"\fEmptyRequest\"Y\n" +
+	"\x1aRefreshTokenSilentResponse\x12!\n" +
+	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\x96\x14\n" +
 	"\x12AccountHTTPService\x12\x80\x01\n" +
 	"\n" +
 	"CreateUser\x12-.smart_kart.account.http.v3.CreateUserRequest\x1a..smart_kart.account.http.v3.CreateUserResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/v3/user\x12\x83\x01\n" +
@@ -2116,7 +2569,11 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\x13SendVerificationSMS\x126.smart_kart.account.http.v3.SendVerificationSMSRequest\x1a7.smart_kart.account.http.v3.SendVerificationSMSResponse\",\x82\xd3\xe4\x93\x02&:\x01*\"!/v3/account/send-verification-sms\x12\x93\x01\n" +
 	"\vVerifyPhone\x12..smart_kart.account.http.v3.VerifyPhoneRequest\x1a/.smart_kart.account.http.v3.VerifyPhoneResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/account/verify-phone\x12\x9c\x01\n" +
 	"\x0eForgetPassword\x121.smart_kart.account.http.v3.ForgetPasswordRequest\x1a2.smart_kart.account.http.v3.ForgetPasswordResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/user/forgot-password\x12\x98\x01\n" +
-	"\rResetPassword\x120.smart_kart.account.http.v3.ResetPasswordRequest\x1a1.smart_kart.account.http.v3.ResetPasswordResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/reset-passwordB\xf3\x01\n" +
+	"\rResetPassword\x120.smart_kart.account.http.v3.ResetPasswordRequest\x1a1.smart_kart.account.http.v3.ResetPasswordResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/reset-password\x12~\n" +
+	"\aGetUser\x12*.smart_kart.account.http.v3.GetUserRequest\x1a+.smart_kart.account.http.v3.GetUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v3/user/{user_id}\x12{\n" +
+	"\x06Logout\x12).smart_kart.account.http.v3.LogoutRequest\x1a*.smart_kart.account.http.v3.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v3/user/logout\x12\x94\x01\n" +
+	"\fRefreshToken\x12/.smart_kart.account.http.v3.RefreshTokenRequest\x1a0.smart_kart.account.http.v3.RefreshTokenResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v3/user/refresh-token\x12\x9a\x01\n" +
+	"\x12RefreshTokenSilent\x12(.smart_kart.account.http.v3.EmptyRequest\x1a6.smart_kart.account.http.v3.RefreshTokenSilentResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/refresh-silentB\xf3\x01\n" +
 	"\x1ecom.smart_kart.account.http.v3B\fAccountProtoP\x01Z<github.com/smart-kart/proto/gen/go/account/http/v3;accountv3\xa2\x02\x03SAH\xaa\x02\x19SmartKart.Account.Http.V3\xca\x02\x19SmartKart\\Account\\Http\\V3\xe2\x02%SmartKart\\Account\\Http\\V3\\GPBMetadata\xea\x02\x1cSmartKart::Account::Http::V3b\x06proto3"
 
 var (
@@ -2131,7 +2588,7 @@ func file_http_v3_account_proto_rawDescGZIP() []byte {
 	return file_http_v3_account_proto_rawDescData
 }
 
-var file_http_v3_account_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_http_v3_account_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_http_v3_account_proto_goTypes = []any{
 	(*LoginWithPhoneRequest)(nil),         // 0: smart_kart.account.http.v3.LoginWithPhoneRequest
 	(*ForgetPasswordRequest)(nil),         // 1: smart_kart.account.http.v3.ForgetPasswordRequest
@@ -2165,11 +2622,19 @@ var file_http_v3_account_proto_goTypes = []any{
 	(*SendVerificationSMSResponse)(nil),   // 29: smart_kart.account.http.v3.SendVerificationSMSResponse
 	(*VerifyPhoneRequest)(nil),            // 30: smart_kart.account.http.v3.VerifyPhoneRequest
 	(*VerifyPhoneResponse)(nil),           // 31: smart_kart.account.http.v3.VerifyPhoneResponse
-	nil,                                   // 32: smart_kart.account.http.v3.AccountMetadata.CustomFieldsEntry
+	(*GetUserRequest)(nil),                // 32: smart_kart.account.http.v3.GetUserRequest
+	(*GetUserResponse)(nil),               // 33: smart_kart.account.http.v3.GetUserResponse
+	(*LogoutRequest)(nil),                 // 34: smart_kart.account.http.v3.LogoutRequest
+	(*LogoutResponse)(nil),                // 35: smart_kart.account.http.v3.LogoutResponse
+	(*RefreshTokenRequest)(nil),           // 36: smart_kart.account.http.v3.RefreshTokenRequest
+	(*RefreshTokenResponse)(nil),          // 37: smart_kart.account.http.v3.RefreshTokenResponse
+	(*EmptyRequest)(nil),                  // 38: smart_kart.account.http.v3.EmptyRequest
+	(*RefreshTokenSilentResponse)(nil),    // 39: smart_kart.account.http.v3.RefreshTokenSilentResponse
+	nil,                                   // 40: smart_kart.account.http.v3.AccountMetadata.CustomFieldsEntry
 }
 var file_http_v3_account_proto_depIdxs = []int32{
 	6,  // 0: smart_kart.account.http.v3.Account.metadata:type_name -> smart_kart.account.http.v3.AccountMetadata
-	32, // 1: smart_kart.account.http.v3.AccountMetadata.custom_fields:type_name -> smart_kart.account.http.v3.AccountMetadata.CustomFieldsEntry
+	40, // 1: smart_kart.account.http.v3.AccountMetadata.custom_fields:type_name -> smart_kart.account.http.v3.AccountMetadata.CustomFieldsEntry
 	6,  // 2: smart_kart.account.http.v3.CreateUserRequest.metadata:type_name -> smart_kart.account.http.v3.AccountMetadata
 	5,  // 3: smart_kart.account.http.v3.CreateUserResponse.account:type_name -> smart_kart.account.http.v3.Account
 	7,  // 4: smart_kart.account.http.v3.LoginUserResponse.token:type_name -> smart_kart.account.http.v3.Token
@@ -2179,38 +2644,49 @@ var file_http_v3_account_proto_depIdxs = []int32{
 	5,  // 8: smart_kart.account.http.v3.LinkGoogleAccountResponse.account:type_name -> smart_kart.account.http.v3.Account
 	7,  // 9: smart_kart.account.http.v3.LinkGoogleAccountResponse.token:type_name -> smart_kart.account.http.v3.Token
 	6,  // 10: smart_kart.account.http.v3.ConfigUserRequest.metadata:type_name -> smart_kart.account.http.v3.AccountMetadata
-	5,  // 11: smart_kart.account.http.v3.ListAccountsResponse.accounts:type_name -> smart_kart.account.http.v3.Account
-	8,  // 12: smart_kart.account.http.v3.AccountHTTPService.CreateUser:input_type -> smart_kart.account.http.v3.CreateUserRequest
-	10, // 13: smart_kart.account.http.v3.AccountHTTPService.LoginUser:input_type -> smart_kart.account.http.v3.LoginUserRequest
-	0,  // 14: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:input_type -> smart_kart.account.http.v3.LoginWithPhoneRequest
-	12, // 15: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:input_type -> smart_kart.account.http.v3.GoogleAuthRequest
-	14, // 16: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:input_type -> smart_kart.account.http.v3.LinkGoogleAccountRequest
-	16, // 17: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:input_type -> smart_kart.account.http.v3.AdminLoginRequest
-	18, // 18: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:input_type -> smart_kart.account.http.v3.ConfigUserRequest
-	24, // 19: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:input_type -> smart_kart.account.http.v3.SendVerificationEmailRequest
-	26, // 20: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:input_type -> smart_kart.account.http.v3.VerifyEmailRequest
-	28, // 21: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:input_type -> smart_kart.account.http.v3.SendVerificationSMSRequest
-	30, // 22: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:input_type -> smart_kart.account.http.v3.VerifyPhoneRequest
-	1,  // 23: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:input_type -> smart_kart.account.http.v3.ForgetPasswordRequest
-	3,  // 24: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:input_type -> smart_kart.account.http.v3.ResetPasswordRequest
-	9,  // 25: smart_kart.account.http.v3.AccountHTTPService.CreateUser:output_type -> smart_kart.account.http.v3.CreateUserResponse
-	11, // 26: smart_kart.account.http.v3.AccountHTTPService.LoginUser:output_type -> smart_kart.account.http.v3.LoginUserResponse
-	11, // 27: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:output_type -> smart_kart.account.http.v3.LoginUserResponse
-	13, // 28: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:output_type -> smart_kart.account.http.v3.GoogleAuthResponse
-	15, // 29: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:output_type -> smart_kart.account.http.v3.LinkGoogleAccountResponse
-	17, // 30: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:output_type -> smart_kart.account.http.v3.AdminLoginResponse
-	19, // 31: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:output_type -> smart_kart.account.http.v3.ConfigUserResponse
-	25, // 32: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:output_type -> smart_kart.account.http.v3.SendVerificationEmailResponse
-	27, // 33: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:output_type -> smart_kart.account.http.v3.VerifyEmailResponse
-	29, // 34: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:output_type -> smart_kart.account.http.v3.SendVerificationSMSResponse
-	31, // 35: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:output_type -> smart_kart.account.http.v3.VerifyPhoneResponse
-	2,  // 36: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:output_type -> smart_kart.account.http.v3.ForgetPasswordResponse
-	4,  // 37: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:output_type -> smart_kart.account.http.v3.ResetPasswordResponse
-	25, // [25:38] is the sub-list for method output_type
-	12, // [12:25] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	5,  // 11: smart_kart.account.http.v3.ConfigUserResponse.account:type_name -> smart_kart.account.http.v3.Account
+	5,  // 12: smart_kart.account.http.v3.ListAccountsResponse.accounts:type_name -> smart_kart.account.http.v3.Account
+	5,  // 13: smart_kart.account.http.v3.GetUserResponse.account:type_name -> smart_kart.account.http.v3.Account
+	7,  // 14: smart_kart.account.http.v3.RefreshTokenResponse.token:type_name -> smart_kart.account.http.v3.Token
+	8,  // 15: smart_kart.account.http.v3.AccountHTTPService.CreateUser:input_type -> smart_kart.account.http.v3.CreateUserRequest
+	10, // 16: smart_kart.account.http.v3.AccountHTTPService.LoginUser:input_type -> smart_kart.account.http.v3.LoginUserRequest
+	0,  // 17: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:input_type -> smart_kart.account.http.v3.LoginWithPhoneRequest
+	12, // 18: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:input_type -> smart_kart.account.http.v3.GoogleAuthRequest
+	14, // 19: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:input_type -> smart_kart.account.http.v3.LinkGoogleAccountRequest
+	16, // 20: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:input_type -> smart_kart.account.http.v3.AdminLoginRequest
+	18, // 21: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:input_type -> smart_kart.account.http.v3.ConfigUserRequest
+	24, // 22: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:input_type -> smart_kart.account.http.v3.SendVerificationEmailRequest
+	26, // 23: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:input_type -> smart_kart.account.http.v3.VerifyEmailRequest
+	28, // 24: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:input_type -> smart_kart.account.http.v3.SendVerificationSMSRequest
+	30, // 25: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:input_type -> smart_kart.account.http.v3.VerifyPhoneRequest
+	1,  // 26: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:input_type -> smart_kart.account.http.v3.ForgetPasswordRequest
+	3,  // 27: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:input_type -> smart_kart.account.http.v3.ResetPasswordRequest
+	32, // 28: smart_kart.account.http.v3.AccountHTTPService.GetUser:input_type -> smart_kart.account.http.v3.GetUserRequest
+	34, // 29: smart_kart.account.http.v3.AccountHTTPService.Logout:input_type -> smart_kart.account.http.v3.LogoutRequest
+	36, // 30: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:input_type -> smart_kart.account.http.v3.RefreshTokenRequest
+	38, // 31: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:input_type -> smart_kart.account.http.v3.EmptyRequest
+	9,  // 32: smart_kart.account.http.v3.AccountHTTPService.CreateUser:output_type -> smart_kart.account.http.v3.CreateUserResponse
+	11, // 33: smart_kart.account.http.v3.AccountHTTPService.LoginUser:output_type -> smart_kart.account.http.v3.LoginUserResponse
+	11, // 34: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:output_type -> smart_kart.account.http.v3.LoginUserResponse
+	13, // 35: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:output_type -> smart_kart.account.http.v3.GoogleAuthResponse
+	15, // 36: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:output_type -> smart_kart.account.http.v3.LinkGoogleAccountResponse
+	17, // 37: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:output_type -> smart_kart.account.http.v3.AdminLoginResponse
+	19, // 38: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:output_type -> smart_kart.account.http.v3.ConfigUserResponse
+	25, // 39: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:output_type -> smart_kart.account.http.v3.SendVerificationEmailResponse
+	27, // 40: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:output_type -> smart_kart.account.http.v3.VerifyEmailResponse
+	29, // 41: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:output_type -> smart_kart.account.http.v3.SendVerificationSMSResponse
+	31, // 42: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:output_type -> smart_kart.account.http.v3.VerifyPhoneResponse
+	2,  // 43: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:output_type -> smart_kart.account.http.v3.ForgetPasswordResponse
+	4,  // 44: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:output_type -> smart_kart.account.http.v3.ResetPasswordResponse
+	33, // 45: smart_kart.account.http.v3.AccountHTTPService.GetUser:output_type -> smart_kart.account.http.v3.GetUserResponse
+	35, // 46: smart_kart.account.http.v3.AccountHTTPService.Logout:output_type -> smart_kart.account.http.v3.LogoutResponse
+	37, // 47: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:output_type -> smart_kart.account.http.v3.RefreshTokenResponse
+	39, // 48: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:output_type -> smart_kart.account.http.v3.RefreshTokenSilentResponse
+	32, // [32:49] is the sub-list for method output_type
+	15, // [15:32] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_http_v3_account_proto_init() }
@@ -2227,14 +2703,16 @@ func file_http_v3_account_proto_init() {
 	file_http_v3_account_proto_msgTypes[15].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[16].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[18].OneofWrappers = []any{}
+	file_http_v3_account_proto_msgTypes[19].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[22].OneofWrappers = []any{}
+	file_http_v3_account_proto_msgTypes[34].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_http_v3_account_proto_rawDesc), len(file_http_v3_account_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   33,
+			NumMessages:   41,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
