@@ -455,6 +455,21 @@
       "properties": {
         "message": {
           "type": "string"
+        },
+        "token": {
+          "$ref": "#/definitions/Token",
+          "x-nullable": true
+        },
+        "account": {
+          "$ref": "#/definitions/Account",
+          "x-nullable": true
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Admin permissions"
         }
       },
       "title": "AdminLoginResponse represents the HTTP v3 response for login admin"

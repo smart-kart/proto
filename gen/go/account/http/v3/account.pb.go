@@ -1122,6 +1122,9 @@ func (x *AdminLoginRequest) GetPassword() string {
 type AdminLoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Token         *Token                 `protobuf:"bytes,2,opt,name=token,proto3,oneof" json:"token,omitempty"`
+	Account       *Account               `protobuf:"bytes,3,opt,name=account,proto3,oneof" json:"account,omitempty"`
+	Permissions   []string               `protobuf:"bytes,4,rep,name=permissions,proto3" json:"permissions,omitempty"` // Admin permissions
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1161,6 +1164,27 @@ func (x *AdminLoginResponse) GetMessage() string {
 		return x.Message
 	}
 	return ""
+}
+
+func (x *AdminLoginResponse) GetToken() *Token {
+	if x != nil {
+		return x.Token
+	}
+	return nil
+}
+
+func (x *AdminLoginResponse) GetAccount() *Account {
+	if x != nil {
+		return x.Account
+	}
+	return nil
+}
+
+func (x *AdminLoginResponse) GetPermissions() []string {
+	if x != nil {
+		return x.Permissions
+	}
+	return nil
 }
 
 // ConfigUserRequest represents the HTTP v3 request to update an account
@@ -2460,9 +2484,15 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\bpassword\x18\x03 \x01(\tR\bpasswordB\f\n" +
 	"\n" +
 	"_user_nameB\b\n" +
-	"\x06_email\".\n" +
+	"\x06_email\"\xe8\x01\n" +
 	"\x12AdminLoginResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"\xf1\x03\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12<\n" +
+	"\x05token\x18\x02 \x01(\v2!.smart_kart.account.http.v3.TokenH\x00R\x05token\x88\x01\x01\x12B\n" +
+	"\aaccount\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AccountH\x01R\aaccount\x88\x01\x01\x12 \n" +
+	"\vpermissions\x18\x04 \x03(\tR\vpermissionsB\b\n" +
+	"\x06_tokenB\n" +
+	"\n" +
+	"\b_account\"\xf1\x03\n" +
 	"\x11ConfigUserRequest\x12\x18\n" +
 	"\auser_id\x18\x01 \x01(\tR\auser_id\x12\x19\n" +
 	"\x05email\x18\x02 \x01(\tH\x00R\x05email\x88\x01\x01\x12!\n" +
@@ -2643,50 +2673,52 @@ var file_http_v3_account_proto_depIdxs = []int32{
 	7,  // 7: smart_kart.account.http.v3.GoogleAuthResponse.token:type_name -> smart_kart.account.http.v3.Token
 	5,  // 8: smart_kart.account.http.v3.LinkGoogleAccountResponse.account:type_name -> smart_kart.account.http.v3.Account
 	7,  // 9: smart_kart.account.http.v3.LinkGoogleAccountResponse.token:type_name -> smart_kart.account.http.v3.Token
-	6,  // 10: smart_kart.account.http.v3.ConfigUserRequest.metadata:type_name -> smart_kart.account.http.v3.AccountMetadata
-	5,  // 11: smart_kart.account.http.v3.ConfigUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	5,  // 12: smart_kart.account.http.v3.ListAccountsResponse.accounts:type_name -> smart_kart.account.http.v3.Account
-	5,  // 13: smart_kart.account.http.v3.GetUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	7,  // 14: smart_kart.account.http.v3.RefreshTokenResponse.token:type_name -> smart_kart.account.http.v3.Token
-	8,  // 15: smart_kart.account.http.v3.AccountHTTPService.CreateUser:input_type -> smart_kart.account.http.v3.CreateUserRequest
-	10, // 16: smart_kart.account.http.v3.AccountHTTPService.LoginUser:input_type -> smart_kart.account.http.v3.LoginUserRequest
-	0,  // 17: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:input_type -> smart_kart.account.http.v3.LoginWithPhoneRequest
-	12, // 18: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:input_type -> smart_kart.account.http.v3.GoogleAuthRequest
-	14, // 19: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:input_type -> smart_kart.account.http.v3.LinkGoogleAccountRequest
-	16, // 20: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:input_type -> smart_kart.account.http.v3.AdminLoginRequest
-	18, // 21: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:input_type -> smart_kart.account.http.v3.ConfigUserRequest
-	24, // 22: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:input_type -> smart_kart.account.http.v3.SendVerificationEmailRequest
-	26, // 23: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:input_type -> smart_kart.account.http.v3.VerifyEmailRequest
-	28, // 24: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:input_type -> smart_kart.account.http.v3.SendVerificationSMSRequest
-	30, // 25: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:input_type -> smart_kart.account.http.v3.VerifyPhoneRequest
-	1,  // 26: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:input_type -> smart_kart.account.http.v3.ForgetPasswordRequest
-	3,  // 27: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:input_type -> smart_kart.account.http.v3.ResetPasswordRequest
-	32, // 28: smart_kart.account.http.v3.AccountHTTPService.GetUser:input_type -> smart_kart.account.http.v3.GetUserRequest
-	34, // 29: smart_kart.account.http.v3.AccountHTTPService.Logout:input_type -> smart_kart.account.http.v3.LogoutRequest
-	36, // 30: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:input_type -> smart_kart.account.http.v3.RefreshTokenRequest
-	38, // 31: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:input_type -> smart_kart.account.http.v3.EmptyRequest
-	9,  // 32: smart_kart.account.http.v3.AccountHTTPService.CreateUser:output_type -> smart_kart.account.http.v3.CreateUserResponse
-	11, // 33: smart_kart.account.http.v3.AccountHTTPService.LoginUser:output_type -> smart_kart.account.http.v3.LoginUserResponse
-	11, // 34: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:output_type -> smart_kart.account.http.v3.LoginUserResponse
-	13, // 35: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:output_type -> smart_kart.account.http.v3.GoogleAuthResponse
-	15, // 36: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:output_type -> smart_kart.account.http.v3.LinkGoogleAccountResponse
-	17, // 37: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:output_type -> smart_kart.account.http.v3.AdminLoginResponse
-	19, // 38: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:output_type -> smart_kart.account.http.v3.ConfigUserResponse
-	25, // 39: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:output_type -> smart_kart.account.http.v3.SendVerificationEmailResponse
-	27, // 40: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:output_type -> smart_kart.account.http.v3.VerifyEmailResponse
-	29, // 41: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:output_type -> smart_kart.account.http.v3.SendVerificationSMSResponse
-	31, // 42: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:output_type -> smart_kart.account.http.v3.VerifyPhoneResponse
-	2,  // 43: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:output_type -> smart_kart.account.http.v3.ForgetPasswordResponse
-	4,  // 44: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:output_type -> smart_kart.account.http.v3.ResetPasswordResponse
-	33, // 45: smart_kart.account.http.v3.AccountHTTPService.GetUser:output_type -> smart_kart.account.http.v3.GetUserResponse
-	35, // 46: smart_kart.account.http.v3.AccountHTTPService.Logout:output_type -> smart_kart.account.http.v3.LogoutResponse
-	37, // 47: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:output_type -> smart_kart.account.http.v3.RefreshTokenResponse
-	39, // 48: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:output_type -> smart_kart.account.http.v3.RefreshTokenSilentResponse
-	32, // [32:49] is the sub-list for method output_type
-	15, // [15:32] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	7,  // 10: smart_kart.account.http.v3.AdminLoginResponse.token:type_name -> smart_kart.account.http.v3.Token
+	5,  // 11: smart_kart.account.http.v3.AdminLoginResponse.account:type_name -> smart_kart.account.http.v3.Account
+	6,  // 12: smart_kart.account.http.v3.ConfigUserRequest.metadata:type_name -> smart_kart.account.http.v3.AccountMetadata
+	5,  // 13: smart_kart.account.http.v3.ConfigUserResponse.account:type_name -> smart_kart.account.http.v3.Account
+	5,  // 14: smart_kart.account.http.v3.ListAccountsResponse.accounts:type_name -> smart_kart.account.http.v3.Account
+	5,  // 15: smart_kart.account.http.v3.GetUserResponse.account:type_name -> smart_kart.account.http.v3.Account
+	7,  // 16: smart_kart.account.http.v3.RefreshTokenResponse.token:type_name -> smart_kart.account.http.v3.Token
+	8,  // 17: smart_kart.account.http.v3.AccountHTTPService.CreateUser:input_type -> smart_kart.account.http.v3.CreateUserRequest
+	10, // 18: smart_kart.account.http.v3.AccountHTTPService.LoginUser:input_type -> smart_kart.account.http.v3.LoginUserRequest
+	0,  // 19: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:input_type -> smart_kart.account.http.v3.LoginWithPhoneRequest
+	12, // 20: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:input_type -> smart_kart.account.http.v3.GoogleAuthRequest
+	14, // 21: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:input_type -> smart_kart.account.http.v3.LinkGoogleAccountRequest
+	16, // 22: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:input_type -> smart_kart.account.http.v3.AdminLoginRequest
+	18, // 23: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:input_type -> smart_kart.account.http.v3.ConfigUserRequest
+	24, // 24: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:input_type -> smart_kart.account.http.v3.SendVerificationEmailRequest
+	26, // 25: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:input_type -> smart_kart.account.http.v3.VerifyEmailRequest
+	28, // 26: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:input_type -> smart_kart.account.http.v3.SendVerificationSMSRequest
+	30, // 27: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:input_type -> smart_kart.account.http.v3.VerifyPhoneRequest
+	1,  // 28: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:input_type -> smart_kart.account.http.v3.ForgetPasswordRequest
+	3,  // 29: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:input_type -> smart_kart.account.http.v3.ResetPasswordRequest
+	32, // 30: smart_kart.account.http.v3.AccountHTTPService.GetUser:input_type -> smart_kart.account.http.v3.GetUserRequest
+	34, // 31: smart_kart.account.http.v3.AccountHTTPService.Logout:input_type -> smart_kart.account.http.v3.LogoutRequest
+	36, // 32: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:input_type -> smart_kart.account.http.v3.RefreshTokenRequest
+	38, // 33: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:input_type -> smart_kart.account.http.v3.EmptyRequest
+	9,  // 34: smart_kart.account.http.v3.AccountHTTPService.CreateUser:output_type -> smart_kart.account.http.v3.CreateUserResponse
+	11, // 35: smart_kart.account.http.v3.AccountHTTPService.LoginUser:output_type -> smart_kart.account.http.v3.LoginUserResponse
+	11, // 36: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:output_type -> smart_kart.account.http.v3.LoginUserResponse
+	13, // 37: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:output_type -> smart_kart.account.http.v3.GoogleAuthResponse
+	15, // 38: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:output_type -> smart_kart.account.http.v3.LinkGoogleAccountResponse
+	17, // 39: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:output_type -> smart_kart.account.http.v3.AdminLoginResponse
+	19, // 40: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:output_type -> smart_kart.account.http.v3.ConfigUserResponse
+	25, // 41: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:output_type -> smart_kart.account.http.v3.SendVerificationEmailResponse
+	27, // 42: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:output_type -> smart_kart.account.http.v3.VerifyEmailResponse
+	29, // 43: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:output_type -> smart_kart.account.http.v3.SendVerificationSMSResponse
+	31, // 44: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:output_type -> smart_kart.account.http.v3.VerifyPhoneResponse
+	2,  // 45: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:output_type -> smart_kart.account.http.v3.ForgetPasswordResponse
+	4,  // 46: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:output_type -> smart_kart.account.http.v3.ResetPasswordResponse
+	33, // 47: smart_kart.account.http.v3.AccountHTTPService.GetUser:output_type -> smart_kart.account.http.v3.GetUserResponse
+	35, // 48: smart_kart.account.http.v3.AccountHTTPService.Logout:output_type -> smart_kart.account.http.v3.LogoutResponse
+	37, // 49: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:output_type -> smart_kart.account.http.v3.RefreshTokenResponse
+	39, // 50: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:output_type -> smart_kart.account.http.v3.RefreshTokenSilentResponse
+	34, // [34:51] is the sub-list for method output_type
+	17, // [17:34] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_http_v3_account_proto_init() }
@@ -2702,6 +2734,7 @@ func file_http_v3_account_proto_init() {
 	file_http_v3_account_proto_msgTypes[13].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[15].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[16].OneofWrappers = []any{}
+	file_http_v3_account_proto_msgTypes[17].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[18].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[19].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[22].OneofWrappers = []any{}

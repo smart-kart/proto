@@ -1,0 +1,1141 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "http/v3/products.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "smart_kart.products.http.v3.ProductsHTTPService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v3/categories": {
+      "get": {
+        "operationId": "ProductsHTTPService_ListCategories",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "parent_category_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "post": {
+        "summary": "Category operations",
+        "operationId": "ProductsHTTPService_CreateCategory",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCategoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/categories/{category_id}": {
+      "get": {
+        "operationId": "ProductsHTTPService_GetCategory",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "category_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "delete": {
+        "operationId": "ProductsHTTPService_DeleteCategory",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "category_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "put": {
+        "operationId": "ProductsHTTPService_UpdateCategory",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "category_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateCategoryBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/inventory/bulk": {
+      "post": {
+        "operationId": "ProductsHTTPService_BulkUpdateInventory",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BulkUpdateInventoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/inventory/check": {
+      "post": {
+        "operationId": "ProductsHTTPService_CheckStock",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CheckStockRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/inventory/release": {
+      "post": {
+        "operationId": "ProductsHTTPService_ReleaseStock",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReleaseStockRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/inventory/reserve": {
+      "post": {
+        "operationId": "ProductsHTTPService_ReserveStock",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReserveStockRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/inventory/{product_id}": {
+      "get": {
+        "operationId": "ProductsHTTPService_GetInventory",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "put": {
+        "summary": "Inventory operations",
+        "operationId": "ProductsHTTPService_UpdateInventory",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInventoryBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products": {
+      "get": {
+        "operationId": "ProductsHTTPService_ListProducts",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "category_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "price_min",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "price_max",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "post": {
+        "summary": "Product operations",
+        "operationId": "ProductsHTTPService_CreateProduct",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateProductRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/search": {
+      "get": {
+        "operationId": "ProductsHTTPService_SearchProducts",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "query",
+            "description": "@gotags: validate:\"required,min=2\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/sku/{sku}": {
+      "get": {
+        "operationId": "ProductsHTTPService_GetProductBySKU",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "sku",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/{product_id}": {
+      "get": {
+        "operationId": "ProductsHTTPService_GetProduct",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "delete": {
+        "operationId": "ProductsHTTPService_DeleteProduct",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "put": {
+        "operationId": "ProductsHTTPService_UpdateProduct",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateProductBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/{product_id}/status": {
+      "patch": {
+        "operationId": "ProductsHTTPService_UpdateProductStatus",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateProductStatusBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "BulkUpdateInventoryRequest": {
+      "type": "object",
+      "properties": {
+        "updates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/InventoryUpdate"
+          },
+          "title": "@gotags: validate:\"required,dive\""
+        }
+      }
+    },
+    "BulkUpdateInventoryResponse": {
+      "type": "object",
+      "properties": {
+        "inventories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Inventory"
+          }
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "parent_category_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "image_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string",
+          "title": "active, inactive"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "subcategories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Category"
+          },
+          "title": "For tree structure"
+        }
+      }
+    },
+    "CheckStockRequest": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/StockCheck"
+          },
+          "title": "@gotags: validate:\"required,dive\""
+        }
+      }
+    },
+    "CheckStockResponse": {
+      "type": "object",
+      "properties": {
+        "all_available": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/StockAvailability"
+          }
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=100\""
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "parent_category_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "image_url": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "CreateCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateProductRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=3,max=200\""
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "title": "@gotags: validate:\"required,gt=0\""
+        },
+        "sku": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=3,max=50\""
+        },
+        "category_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "image_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "brand": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "weight": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "dimensions": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "title": "@gotags: validate:\"required\""
+    },
+    "CreateProductResponse": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteProductResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "GetCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "GetInventoryResponse": {
+      "type": "object",
+      "properties": {
+        "inventory": {
+          "$ref": "#/definitions/Inventory"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "GetProductBySKUResponse": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "GetProductResponse": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Inventory": {
+      "type": "object",
+      "properties": {
+        "inventory_id": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "reserved_quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "available_quantity": {
+          "type": "integer",
+          "format": "int32",
+          "title": "quantity - reserved_quantity"
+        },
+        "reorder_level": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "reorder_quantity": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "warehouse_location": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "last_restocked_at": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "InventoryUpdate": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@gotags: validate:\"required,gte=0\""
+        }
+      }
+    },
+    "ListCategoriesResponse": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Category"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/v3.Pagination"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "ListProductsResponse": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Product"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/v3.Pagination"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "image_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "brand": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "weight": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "dimensions": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string",
+          "title": "active, inactive, discontinued"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ReleaseStockRequest": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/StockCheck"
+          },
+          "title": "@gotags: validate:\"required,dive\""
+        },
+        "reservation_id": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        }
+      }
+    },
+    "ReleaseStockResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "ReserveStockRequest": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/StockCheck"
+          },
+          "title": "@gotags: validate:\"required,dive\""
+        },
+        "reservation_id": {
+          "type": "string",
+          "description": "Order ID or cart ID",
+          "title": "@gotags: validate:\"required\""
+        }
+      }
+    },
+    "ReserveStockResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "reservation_id": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "SearchProductsResponse": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Product"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/v3.Pagination"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "StockAvailability": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "requested_quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "available_quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "StockCheck": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@gotags: validate:\"required,gt=0\""
+        }
+      }
+    },
+    "UpdateCategoryBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "parent_category_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "image_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "UpdateCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateInventoryBody": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@gotags: validate:\"required,gte=0\""
+        },
+        "reorder_level": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "reorder_quantity": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "warehouse_location": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "UpdateInventoryResponse": {
+      "type": "object",
+      "properties": {
+        "inventory": {
+          "$ref": "#/definitions/Inventory"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateProductBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "category_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "image_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "brand": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "weight": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "dimensions": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "UpdateProductResponse": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateProductStatusBody": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,oneof=active inactive discontinued\""
+        }
+      }
+    },
+    "UpdateProductStatusResponse": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "v3.Pagination": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_pages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

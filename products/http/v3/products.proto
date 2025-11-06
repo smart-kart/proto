@@ -1,0 +1,464 @@
+syntax = "proto3";
+
+package smart_kart.products.http.v3;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/smart-kart/proto/gen/go/products/http/v3;productsv3";
+
+// ProductsHTTPService provides comprehensive product management operations
+service ProductsHTTPService {
+  // Product operations
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
+    option (google.api.http) = {
+      post: "/v3/products"
+      body: "*"
+    };
+  }
+
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse) {
+    option (google.api.http) = {
+      get: "/v3/products/{product_id}"
+    };
+  }
+
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {
+    option (google.api.http) = {
+      put: "/v3/products/{product_id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {
+    option (google.api.http) = {
+      delete: "/v3/products/{product_id}"
+    };
+  }
+
+  rpc ListProducts(ListProductsRequest) returns (ListProductsResponse) {
+    option (google.api.http) = {
+      get: "/v3/products"
+    };
+  }
+
+  rpc SearchProducts(SearchProductsRequest) returns (SearchProductsResponse) {
+    option (google.api.http) = {
+      get: "/v3/products/search"
+    };
+  }
+
+  rpc UpdateProductStatus(UpdateProductStatusRequest) returns (UpdateProductStatusResponse) {
+    option (google.api.http) = {
+      patch: "/v3/products/{product_id}/status"
+      body: "*"
+    };
+  }
+
+  rpc GetProductBySKU(GetProductBySKURequest) returns (GetProductBySKUResponse) {
+    option (google.api.http) = {
+      get: "/v3/products/sku/{sku}"
+    };
+  }
+
+  // Category operations
+  rpc CreateCategory(CreateCategoryRequest) returns (CreateCategoryResponse) {
+    option (google.api.http) = {
+      post: "/v3/categories"
+      body: "*"
+    };
+  }
+
+  rpc GetCategory(GetCategoryRequest) returns (GetCategoryResponse) {
+    option (google.api.http) = {
+      get: "/v3/categories/{category_id}"
+    };
+  }
+
+  rpc UpdateCategory(UpdateCategoryRequest) returns (UpdateCategoryResponse) {
+    option (google.api.http) = {
+      put: "/v3/categories/{category_id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteCategory(DeleteCategoryRequest) returns (DeleteCategoryResponse) {
+    option (google.api.http) = {
+      delete: "/v3/categories/{category_id}"
+    };
+  }
+
+  rpc ListCategories(ListCategoriesRequest) returns (ListCategoriesResponse) {
+    option (google.api.http) = {
+      get: "/v3/categories"
+    };
+  }
+
+  // Inventory operations
+  rpc UpdateInventory(UpdateInventoryRequest) returns (UpdateInventoryResponse) {
+    option (google.api.http) = {
+      put: "/v3/inventory/{product_id}"
+      body: "*"
+    };
+  }
+
+  rpc GetInventory(GetInventoryRequest) returns (GetInventoryResponse) {
+    option (google.api.http) = {
+      get: "/v3/inventory/{product_id}"
+    };
+  }
+
+  rpc BulkUpdateInventory(BulkUpdateInventoryRequest) returns (BulkUpdateInventoryResponse) {
+    option (google.api.http) = {
+      post: "/v3/inventory/bulk"
+      body: "*"
+    };
+  }
+
+  rpc CheckStock(CheckStockRequest) returns (CheckStockResponse) {
+    option (google.api.http) = {
+      post: "/v3/inventory/check"
+      body: "*"
+    };
+  }
+
+  rpc ReserveStock(ReserveStockRequest) returns (ReserveStockResponse) {
+    option (google.api.http) = {
+      post: "/v3/inventory/reserve"
+      body: "*"
+    };
+  }
+
+  rpc ReleaseStock(ReleaseStockRequest) returns (ReleaseStockResponse) {
+    option (google.api.http) = {
+      post: "/v3/inventory/release"
+      body: "*"
+    };
+  }
+}
+
+// ============================================================================
+// Common Messages
+// ============================================================================
+
+message Pagination {
+  int64 total = 1 [json_name = "total"];
+  int32 page = 2 [json_name = "page"];
+  int32 page_size = 3 [json_name = "page_size"];
+  int32 total_pages = 4 [json_name = "total_pages"];
+}
+
+// ============================================================================
+// Product Messages
+// ============================================================================
+
+message Product {
+  string product_id = 1 [json_name = "product_id"];
+  string name = 2 [json_name = "name"];
+  optional string description = 3 [json_name = "description"];
+  double price = 4 [json_name = "price"];
+  string sku = 5 [json_name = "sku"];
+  optional string category_id = 6 [json_name = "category_id"];
+  optional string image_url = 7 [json_name = "image_url"];
+  optional string brand = 8 [json_name = "brand"];
+  optional double weight = 9 [json_name = "weight"];
+  optional string dimensions = 10 [json_name = "dimensions"];
+  string status = 11 [json_name = "status"]; // active, inactive, discontinued
+  google.protobuf.Timestamp created_at = 12 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 13 [json_name = "updated_at"];
+}
+
+// @gotags: validate:"required"
+message CreateProductRequest {
+  // @gotags: validate:"required,min=3,max=200"
+  string name = 1 [json_name = "name"];
+  optional string description = 2 [json_name = "description"];
+  // @gotags: validate:"required,gt=0"
+  double price = 3 [json_name = "price"];
+  // @gotags: validate:"required,min=3,max=50"
+  string sku = 4 [json_name = "sku"];
+  optional string category_id = 5 [json_name = "category_id"];
+  optional string image_url = 6 [json_name = "image_url"];
+  optional string brand = 7 [json_name = "brand"];
+  optional double weight = 8 [json_name = "weight"];
+  optional string dimensions = 9 [json_name = "dimensions"];
+}
+
+message CreateProductResponse {
+  Product product = 1 [json_name = "product"];
+  string message = 2 [json_name = "message"];
+}
+
+message GetProductRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+}
+
+message GetProductResponse {
+  Product product = 1 [json_name = "product"];
+  string message = 2 [json_name = "message"];
+}
+
+message UpdateProductRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  optional string name = 2 [json_name = "name"];
+  optional string description = 3 [json_name = "description"];
+  optional double price = 4 [json_name = "price"];
+  optional string category_id = 5 [json_name = "category_id"];
+  optional string image_url = 6 [json_name = "image_url"];
+  optional string brand = 7 [json_name = "brand"];
+  optional double weight = 8 [json_name = "weight"];
+  optional string dimensions = 9 [json_name = "dimensions"];
+}
+
+message UpdateProductResponse {
+  Product product = 1 [json_name = "product"];
+  string message = 2 [json_name = "message"];
+}
+
+message DeleteProductRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+}
+
+message DeleteProductResponse {
+  string message = 1 [json_name = "message"];
+}
+
+message ListProductsRequest {
+  optional string category_id = 1 [json_name = "category_id"];
+  optional string status = 2 [json_name = "status"];
+  optional double price_min = 3 [json_name = "price_min"];
+  optional double price_max = 4 [json_name = "price_max"];
+  int32 page = 5 [json_name = "page"];
+  int32 page_size = 6 [json_name = "page_size"];
+}
+
+message ListProductsResponse {
+  repeated Product products = 1 [json_name = "products"];
+  Pagination pagination = 2 [json_name = "pagination"];
+  string message = 3 [json_name = "message"];
+}
+
+message SearchProductsRequest {
+  // @gotags: validate:"required,min=2"
+  string query = 1 [json_name = "query"];
+  optional string category_id = 2 [json_name = "category_id"];
+  int32 page = 3 [json_name = "page"];
+  int32 page_size = 4 [json_name = "page_size"];
+}
+
+message SearchProductsResponse {
+  repeated Product products = 1 [json_name = "products"];
+  Pagination pagination = 2 [json_name = "pagination"];
+  string message = 3 [json_name = "errors"];
+}
+
+message UpdateProductStatusRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // @gotags: validate:"required,oneof=active inactive discontinued"
+  string status = 2 [json_name = "status"];
+}
+
+message UpdateProductStatusResponse {
+  Product product = 1 [json_name = "product"];
+  string message = 2 [json_name = "errors"];
+}
+
+message GetProductBySKURequest {
+  // @gotags: validate:"required"
+  string sku = 1 [json_name = "sku"];
+}
+
+message GetProductBySKUResponse {
+  Product product = 1 [json_name = "product"];
+  string message = 2 [json_name = "errors"];
+}
+
+// ============================================================================
+// Category Messages
+// ============================================================================
+
+message Category {
+  string category_id = 1 [json_name = "category_id"];
+  string name = 2 [json_name = "name"];
+  optional string description = 3 [json_name = "description"];
+  optional string parent_category_id = 4 [json_name = "parent_category_id"];
+  optional string image_url = 5 [json_name = "image_url"];
+  string status = 6 [json_name = "status"]; // active, inactive
+  google.protobuf.Timestamp created_at = 7 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 8 [json_name = "updated_at"];
+  repeated Category subcategories = 9 [json_name = "subcategories"]; // For tree structure
+}
+
+message CreateCategoryRequest {
+  // @gotags: validate:"required,min=2,max=100"
+  string name = 1 [json_name = "name"];
+  optional string description = 2 [json_name = "description"];
+  optional string parent_category_id = 3 [json_name = "parent_category_id"];
+  optional string image_url = 4 [json_name = "image_url"];
+}
+
+message CreateCategoryResponse {
+  Category category = 1 [json_name = "category"];
+  string message = 2 [json_name = "errors"];
+}
+
+message GetCategoryRequest {
+  // @gotags: validate:"required"
+  string category_id = 1 [json_name = "category_id"];
+}
+
+message GetCategoryResponse {
+  Category category = 1 [json_name = "category"];
+  string message = 2 [json_name = "errors"];
+}
+
+message UpdateCategoryRequest {
+  // @gotags: validate:"required"
+  string category_id = 1 [json_name = "category_id"];
+  optional string name = 2 [json_name = "name"];
+  optional string description = 3 [json_name = "description"];
+  optional string parent_category_id = 4 [json_name = "parent_category_id"];
+  optional string image_url = 5 [json_name = "image_url"];
+  optional string status = 6 [json_name = "status"];
+}
+
+message UpdateCategoryResponse {
+  Category category = 1 [json_name = "category"];
+  string message = 2 [json_name = "errors"];
+}
+
+message DeleteCategoryRequest {
+  // @gotags: validate:"required"
+  string category_id = 1 [json_name = "category_id"];
+}
+
+message DeleteCategoryResponse {
+  string message = 1 [json_name = "message"];
+}
+
+message ListCategoriesRequest {
+  optional string parent_category_id = 1 [json_name = "parent_category_id"];
+  optional string status = 2 [json_name = "status"];
+  int32 page = 3 [json_name = "page"];
+  int32 page_size = 4 [json_name = "page_size"];
+}
+
+message ListCategoriesResponse {
+  repeated Category categories = 1 [json_name = "categories"];
+  Pagination pagination = 2 [json_name = "pagination"];
+  string message = 3 [json_name = "errors"];
+}
+
+// ============================================================================
+// Inventory Messages
+// ============================================================================
+
+message Inventory {
+  string inventory_id = 1 [json_name = "inventory_id"];
+  string product_id = 2 [json_name = "product_id"];
+  int32 quantity = 3 [json_name = "quantity"];
+  int32 reserved_quantity = 4 [json_name = "reserved_quantity"];
+  int32 available_quantity = 5 [json_name = "available_quantity"]; // quantity - reserved_quantity
+  optional int32 reorder_level = 6 [json_name = "reorder_level"];
+  optional int32 reorder_quantity = 7 [json_name = "reorder_quantity"];
+  optional string warehouse_location = 8 [json_name = "warehouse_location"];
+  optional google.protobuf.Timestamp last_restocked_at = 9 [json_name = "last_restocked_at"];
+  google.protobuf.Timestamp created_at = 10 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 11 [json_name = "updated_at"];
+}
+
+message UpdateInventoryRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // @gotags: validate:"required,gte=0"
+  int32 quantity = 2 [json_name = "quantity"];
+  optional int32 reorder_level = 3 [json_name = "reorder_level"];
+  optional int32 reorder_quantity = 4 [json_name = "reorder_quantity"];
+  optional string warehouse_location = 5 [json_name = "warehouse_location"];
+}
+
+message UpdateInventoryResponse {
+  Inventory inventory = 1 [json_name = "inventory"];
+  string message = 2 [json_name = "errors"];
+}
+
+message GetInventoryRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+}
+
+message GetInventoryResponse {
+  Inventory inventory = 1 [json_name = "inventory"];
+  string message = 2 [json_name = "errors"];
+}
+
+message InventoryUpdate {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // @gotags: validate:"required,gte=0"
+  int32 quantity = 2 [json_name = "quantity"];
+}
+
+message BulkUpdateInventoryRequest {
+  // @gotags: validate:"required,dive"
+  repeated InventoryUpdate updates = 1 [json_name = "updates"];
+}
+
+message BulkUpdateInventoryResponse {
+  repeated Inventory inventories = 1 [json_name = "inventories"];
+  string message = 2 [json_name = "errors"];
+}
+
+message StockCheck {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // @gotags: validate:"required,gt=0"
+  int32 quantity = 2 [json_name = "quantity"];
+}
+
+message CheckStockRequest {
+  // @gotags: validate:"required,dive"
+  repeated StockCheck items = 1 [json_name = "items"];
+}
+
+message StockAvailability {
+  string product_id = 1 [json_name = "product_id"];
+  bool available = 2 [json_name = "available"];
+  int32 requested_quantity = 3 [json_name = "requested_quantity"];
+  int32 available_quantity = 4 [json_name = "available_quantity"];
+}
+
+message CheckStockResponse {
+  bool all_available = 1 [json_name = "all_available"];
+  repeated StockAvailability items = 2 [json_name = "items"];
+  string message = 3 [json_name = "errors"];
+}
+
+message ReserveStockRequest {
+  // @gotags: validate:"required,dive"
+  repeated StockCheck items = 1 [json_name = "items"];
+  // @gotags: validate:"required"
+  string reservation_id = 2 [json_name = "reservation_id"]; // Order ID or cart ID
+}
+
+message ReserveStockResponse {
+  bool success = 1 [json_name = "success"];
+  string reservation_id = 2 [json_name = "reservation_id"];
+  string message = 3 [json_name = "errors"];
+}
+
+message ReleaseStockRequest {
+  // @gotags: validate:"required,dive"
+  repeated StockCheck items = 1 [json_name = "items"];
+  // @gotags: validate:"required"
+  string reservation_id = 2 [json_name = "reservation_id"];
+}
+
+message ReleaseStockResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "errors"];
+}

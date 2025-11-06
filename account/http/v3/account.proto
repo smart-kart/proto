@@ -275,6 +275,9 @@ message AdminLoginRequest {
 // AdminLoginResponse represents the HTTP v3 response for login admin
 message AdminLoginResponse {
   string message = 1;
+  optional Token token = 2;
+  optional Account account = 3;
+  repeated string permissions = 4 [json_name = "permissions"]; // Admin permissions
 }
 
 // ConfigUserRequest represents the HTTP v3 request to update an account
