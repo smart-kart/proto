@@ -668,6 +668,540 @@ func local_request_ProductsHTTPService_ReleaseStock_0(ctx context.Context, marsh
 	return msg, metadata, err
 }
 
+func request_ProductsHTTPService_UploadProductImages_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UploadProductImagesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	msg, err := client.UploadProductImages(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_UploadProductImages_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UploadProductImagesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	msg, err := server.UploadProductImages(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_GetProductImages_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetProductImagesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	msg, err := client.GetProductImages(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_GetProductImages_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetProductImagesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	msg, err := server.GetProductImages(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_ReorderProductImages_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ReorderProductImagesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	msg, err := client.ReorderProductImages(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_ReorderProductImages_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ReorderProductImagesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	msg, err := server.ReorderProductImages(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_SetPrimaryImage_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SetPrimaryImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	val, ok = pathParams["image_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "image_id")
+	}
+	protoReq.ImageId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "image_id", err)
+	}
+	msg, err := client.SetPrimaryImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_SetPrimaryImage_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SetPrimaryImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	val, ok = pathParams["image_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "image_id")
+	}
+	protoReq.ImageId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "image_id", err)
+	}
+	msg, err := server.SetPrimaryImage(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_DeleteProductImage_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteProductImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	val, ok = pathParams["image_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "image_id")
+	}
+	protoReq.ImageId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "image_id", err)
+	}
+	msg, err := client.DeleteProductImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_DeleteProductImage_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteProductImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	val, ok = pathParams["image_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "image_id")
+	}
+	protoReq.ImageId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "image_id", err)
+	}
+	msg, err := server.DeleteProductImage(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_ProductsHTTPService_ListFeaturedProducts_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
+func request_ProductsHTTPService_ListFeaturedProducts_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListFeaturedProductsRequest
+		metadata runtime.ServerMetadata
+	)
+	io.Copy(io.Discard, req.Body)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ProductsHTTPService_ListFeaturedProducts_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListFeaturedProducts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_ListFeaturedProducts_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListFeaturedProductsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ProductsHTTPService_ListFeaturedProducts_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListFeaturedProducts(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_AddFeaturedProduct_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq AddFeaturedProductRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.AddFeaturedProduct(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_AddFeaturedProduct_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq AddFeaturedProductRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.AddFeaturedProduct(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_RemoveFeaturedProduct_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq RemoveFeaturedProductRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["featured_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "featured_id")
+	}
+	protoReq.FeaturedId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "featured_id", err)
+	}
+	msg, err := client.RemoveFeaturedProduct(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_RemoveFeaturedProduct_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq RemoveFeaturedProductRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["featured_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "featured_id")
+	}
+	protoReq.FeaturedId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "featured_id", err)
+	}
+	msg, err := server.RemoveFeaturedProduct(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_ReorderFeaturedProducts_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ReorderFeaturedProductsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ReorderFeaturedProducts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_ReorderFeaturedProducts_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ReorderFeaturedProductsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ReorderFeaturedProducts(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_ProductsHTTPService_ListCarouselImages_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
+func request_ProductsHTTPService_ListCarouselImages_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListCarouselImagesRequest
+		metadata runtime.ServerMetadata
+	)
+	io.Copy(io.Discard, req.Body)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ProductsHTTPService_ListCarouselImages_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListCarouselImages(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_ListCarouselImages_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListCarouselImagesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ProductsHTTPService_ListCarouselImages_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListCarouselImages(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_CreateCarouselImage_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateCarouselImageRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.CreateCarouselImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_CreateCarouselImage_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateCarouselImageRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.CreateCarouselImage(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_UpdateCarouselImage_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateCarouselImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["carousel_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "carousel_id")
+	}
+	protoReq.CarouselId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "carousel_id", err)
+	}
+	msg, err := client.UpdateCarouselImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_UpdateCarouselImage_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateCarouselImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["carousel_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "carousel_id")
+	}
+	protoReq.CarouselId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "carousel_id", err)
+	}
+	msg, err := server.UpdateCarouselImage(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_DeleteCarouselImage_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteCarouselImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["carousel_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "carousel_id")
+	}
+	protoReq.CarouselId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "carousel_id", err)
+	}
+	msg, err := client.DeleteCarouselImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_DeleteCarouselImage_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteCarouselImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["carousel_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "carousel_id")
+	}
+	protoReq.CarouselId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "carousel_id", err)
+	}
+	msg, err := server.DeleteCarouselImage(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_ReorderCarouselImages_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ReorderCarouselImagesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ReorderCarouselImages(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_ReorderCarouselImages_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ReorderCarouselImagesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ReorderCarouselImages(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ProductsHTTPService_UploadCarouselImage_0(ctx context.Context, marshaler runtime.Marshaler, client ProductsHTTPServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UploadCarouselImageRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.UploadCarouselImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ProductsHTTPService_UploadCarouselImage_0(ctx context.Context, marshaler runtime.Marshaler, server ProductsHTTPServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UploadCarouselImageRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.UploadCarouselImage(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterProductsHTTPServiceHandlerServer registers the http handlers for service ProductsHTTPService to "mux".
 // UnaryRPC     :call ProductsHTTPServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1054,6 +1588,306 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		}
 		forward_ProductsHTTPService_ReleaseStock_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ProductsHTTPService_UploadProductImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/upload"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_UploadProductImages_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_UploadProductImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ProductsHTTPService_GetProductImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_GetProductImages_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_GetProductImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_ProductsHTTPService_ReorderProductImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/reorder"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_ReorderProductImages_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ReorderProductImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPatch, pattern_ProductsHTTPService_SetPrimaryImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/SetPrimaryImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}/primary"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_SetPrimaryImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_SetPrimaryImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_ProductsHTTPService_DeleteProductImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProductImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_DeleteProductImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_DeleteProductImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ProductsHTTPService_ListFeaturedProducts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_ListFeaturedProducts_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ListFeaturedProducts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ProductsHTTPService_AddFeaturedProduct_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AddFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_AddFeaturedProduct_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_AddFeaturedProduct_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_ProductsHTTPService_RemoveFeaturedProduct_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/RemoveFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products/{featured_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_RemoveFeaturedProduct_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_RemoveFeaturedProduct_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_ProductsHTTPService_ReorderFeaturedProducts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products/reorder"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_ReorderFeaturedProducts_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ReorderFeaturedProducts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ProductsHTTPService_ListCarouselImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_ListCarouselImages_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ListCarouselImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ProductsHTTPService_CreateCarouselImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_CreateCarouselImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_CreateCarouselImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_ProductsHTTPService_UpdateCarouselImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_UpdateCarouselImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_UpdateCarouselImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_ProductsHTTPService_DeleteCarouselImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_DeleteCarouselImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_DeleteCarouselImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_ProductsHTTPService_ReorderCarouselImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images/reorder"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_ReorderCarouselImages_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ReorderCarouselImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ProductsHTTPService_UploadCarouselImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/upload"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProductsHTTPService_UploadCarouselImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_UploadCarouselImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
 	return nil
 }
@@ -1417,49 +2251,334 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		}
 		forward_ProductsHTTPService_ReleaseStock_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ProductsHTTPService_UploadProductImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/upload"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_UploadProductImages_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_UploadProductImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ProductsHTTPService_GetProductImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_GetProductImages_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_GetProductImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_ProductsHTTPService_ReorderProductImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/reorder"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_ReorderProductImages_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ReorderProductImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPatch, pattern_ProductsHTTPService_SetPrimaryImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/SetPrimaryImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}/primary"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_SetPrimaryImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_SetPrimaryImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_ProductsHTTPService_DeleteProductImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProductImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_DeleteProductImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_DeleteProductImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ProductsHTTPService_ListFeaturedProducts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_ListFeaturedProducts_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ListFeaturedProducts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ProductsHTTPService_AddFeaturedProduct_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AddFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_AddFeaturedProduct_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_AddFeaturedProduct_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_ProductsHTTPService_RemoveFeaturedProduct_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/RemoveFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products/{featured_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_RemoveFeaturedProduct_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_RemoveFeaturedProduct_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_ProductsHTTPService_ReorderFeaturedProducts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products/reorder"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_ReorderFeaturedProducts_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ReorderFeaturedProducts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ProductsHTTPService_ListCarouselImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_ListCarouselImages_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ListCarouselImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ProductsHTTPService_CreateCarouselImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_CreateCarouselImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_CreateCarouselImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_ProductsHTTPService_UpdateCarouselImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_UpdateCarouselImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_UpdateCarouselImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_ProductsHTTPService_DeleteCarouselImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_DeleteCarouselImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_DeleteCarouselImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_ProductsHTTPService_ReorderCarouselImages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images/reorder"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_ReorderCarouselImages_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_ReorderCarouselImages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ProductsHTTPService_UploadCarouselImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/upload"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProductsHTTPService_UploadCarouselImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ProductsHTTPService_UploadCarouselImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_ProductsHTTPService_CreateProduct_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "products"}, ""))
-	pattern_ProductsHTTPService_GetProduct_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "products", "product_id"}, ""))
-	pattern_ProductsHTTPService_UpdateProduct_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "products", "product_id"}, ""))
-	pattern_ProductsHTTPService_DeleteProduct_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "products", "product_id"}, ""))
-	pattern_ProductsHTTPService_ListProducts_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "products"}, ""))
-	pattern_ProductsHTTPService_SearchProducts_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "products", "search"}, ""))
-	pattern_ProductsHTTPService_UpdateProductStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v3", "products", "product_id", "status"}, ""))
-	pattern_ProductsHTTPService_GetProductBySKU_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 2}, []string{"v3", "products", "sku"}, ""))
-	pattern_ProductsHTTPService_CreateCategory_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "categories"}, ""))
-	pattern_ProductsHTTPService_GetCategory_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "categories", "category_id"}, ""))
-	pattern_ProductsHTTPService_UpdateCategory_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "categories", "category_id"}, ""))
-	pattern_ProductsHTTPService_DeleteCategory_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "categories", "category_id"}, ""))
-	pattern_ProductsHTTPService_ListCategories_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "categories"}, ""))
-	pattern_ProductsHTTPService_UpdateInventory_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "inventory", "product_id"}, ""))
-	pattern_ProductsHTTPService_GetInventory_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "inventory", "product_id"}, ""))
-	pattern_ProductsHTTPService_BulkUpdateInventory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "inventory", "bulk"}, ""))
-	pattern_ProductsHTTPService_CheckStock_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "inventory", "check"}, ""))
-	pattern_ProductsHTTPService_ReserveStock_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "inventory", "reserve"}, ""))
-	pattern_ProductsHTTPService_ReleaseStock_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "inventory", "release"}, ""))
+	pattern_ProductsHTTPService_CreateProduct_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "products"}, ""))
+	pattern_ProductsHTTPService_GetProduct_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "products", "product_id"}, ""))
+	pattern_ProductsHTTPService_UpdateProduct_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "products", "product_id"}, ""))
+	pattern_ProductsHTTPService_DeleteProduct_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "products", "product_id"}, ""))
+	pattern_ProductsHTTPService_ListProducts_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "products"}, ""))
+	pattern_ProductsHTTPService_SearchProducts_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "products", "search"}, ""))
+	pattern_ProductsHTTPService_UpdateProductStatus_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v3", "products", "product_id", "status"}, ""))
+	pattern_ProductsHTTPService_GetProductBySKU_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 2}, []string{"v3", "products", "sku"}, ""))
+	pattern_ProductsHTTPService_CreateCategory_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "categories"}, ""))
+	pattern_ProductsHTTPService_GetCategory_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "categories", "category_id"}, ""))
+	pattern_ProductsHTTPService_UpdateCategory_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "categories", "category_id"}, ""))
+	pattern_ProductsHTTPService_DeleteCategory_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "categories", "category_id"}, ""))
+	pattern_ProductsHTTPService_ListCategories_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "categories"}, ""))
+	pattern_ProductsHTTPService_UpdateInventory_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "inventory", "product_id"}, ""))
+	pattern_ProductsHTTPService_GetInventory_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "inventory", "product_id"}, ""))
+	pattern_ProductsHTTPService_BulkUpdateInventory_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "inventory", "bulk"}, ""))
+	pattern_ProductsHTTPService_CheckStock_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "inventory", "check"}, ""))
+	pattern_ProductsHTTPService_ReserveStock_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "inventory", "reserve"}, ""))
+	pattern_ProductsHTTPService_ReleaseStock_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "inventory", "release"}, ""))
+	pattern_ProductsHTTPService_UploadProductImages_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 2, 4}, []string{"v3", "products", "product_id", "images", "upload"}, ""))
+	pattern_ProductsHTTPService_GetProductImages_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v3", "products", "product_id", "images"}, ""))
+	pattern_ProductsHTTPService_ReorderProductImages_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 2, 4}, []string{"v3", "products", "product_id", "images", "reorder"}, ""))
+	pattern_ProductsHTTPService_SetPrimaryImage_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v3", "products", "product_id", "images", "image_id", "primary"}, ""))
+	pattern_ProductsHTTPService_DeleteProductImage_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v3", "products", "product_id", "images", "image_id"}, ""))
+	pattern_ProductsHTTPService_ListFeaturedProducts_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "featured-products"}, ""))
+	pattern_ProductsHTTPService_AddFeaturedProduct_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "featured-products"}, ""))
+	pattern_ProductsHTTPService_RemoveFeaturedProduct_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "featured-products", "featured_id"}, ""))
+	pattern_ProductsHTTPService_ReorderFeaturedProducts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "featured-products", "reorder"}, ""))
+	pattern_ProductsHTTPService_ListCarouselImages_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "carousel-images"}, ""))
+	pattern_ProductsHTTPService_CreateCarouselImage_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "carousel-images"}, ""))
+	pattern_ProductsHTTPService_UpdateCarouselImage_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "carousel-images", "carousel_id"}, ""))
+	pattern_ProductsHTTPService_DeleteCarouselImage_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "carousel-images", "carousel_id"}, ""))
+	pattern_ProductsHTTPService_ReorderCarouselImages_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "carousel-images", "reorder"}, ""))
+	pattern_ProductsHTTPService_UploadCarouselImage_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "carousel-images", "upload"}, ""))
 )
 
 var (
-	forward_ProductsHTTPService_CreateProduct_0       = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_GetProduct_0          = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_UpdateProduct_0       = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_DeleteProduct_0       = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_ListProducts_0        = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_SearchProducts_0      = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_UpdateProductStatus_0 = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_GetProductBySKU_0     = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_CreateCategory_0      = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_GetCategory_0         = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_UpdateCategory_0      = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_DeleteCategory_0      = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_ListCategories_0      = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_UpdateInventory_0     = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_GetInventory_0        = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_BulkUpdateInventory_0 = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_CheckStock_0          = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_ReserveStock_0        = runtime.ForwardResponseMessage
-	forward_ProductsHTTPService_ReleaseStock_0        = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_CreateProduct_0           = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_GetProduct_0              = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_UpdateProduct_0           = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_DeleteProduct_0           = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ListProducts_0            = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_SearchProducts_0          = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_UpdateProductStatus_0     = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_GetProductBySKU_0         = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_CreateCategory_0          = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_GetCategory_0             = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_UpdateCategory_0          = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_DeleteCategory_0          = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ListCategories_0          = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_UpdateInventory_0         = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_GetInventory_0            = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_BulkUpdateInventory_0     = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_CheckStock_0              = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ReserveStock_0            = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ReleaseStock_0            = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_UploadProductImages_0     = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_GetProductImages_0        = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ReorderProductImages_0    = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_SetPrimaryImage_0         = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_DeleteProductImage_0      = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ListFeaturedProducts_0    = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_AddFeaturedProduct_0      = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_RemoveFeaturedProduct_0   = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ReorderFeaturedProducts_0 = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ListCarouselImages_0      = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_CreateCarouselImage_0     = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_UpdateCarouselImage_0     = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_DeleteCarouselImage_0     = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_ReorderCarouselImages_0   = runtime.ForwardResponseMessage
+	forward_ProductsHTTPService_UploadCarouselImage_0     = runtime.ForwardResponseMessage
 )

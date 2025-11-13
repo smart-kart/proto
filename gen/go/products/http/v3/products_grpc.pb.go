@@ -19,25 +19,40 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProductsHTTPService_CreateProduct_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/CreateProduct"
-	ProductsHTTPService_GetProduct_FullMethodName          = "/smart_kart.products.http.v3.ProductsHTTPService/GetProduct"
-	ProductsHTTPService_UpdateProduct_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateProduct"
-	ProductsHTTPService_DeleteProduct_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProduct"
-	ProductsHTTPService_ListProducts_FullMethodName        = "/smart_kart.products.http.v3.ProductsHTTPService/ListProducts"
-	ProductsHTTPService_SearchProducts_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/SearchProducts"
-	ProductsHTTPService_UpdateProductStatus_FullMethodName = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateProductStatus"
-	ProductsHTTPService_GetProductBySKU_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/GetProductBySKU"
-	ProductsHTTPService_CreateCategory_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/CreateCategory"
-	ProductsHTTPService_GetCategory_FullMethodName         = "/smart_kart.products.http.v3.ProductsHTTPService/GetCategory"
-	ProductsHTTPService_UpdateCategory_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCategory"
-	ProductsHTTPService_DeleteCategory_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCategory"
-	ProductsHTTPService_ListCategories_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/ListCategories"
-	ProductsHTTPService_UpdateInventory_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateInventory"
-	ProductsHTTPService_GetInventory_FullMethodName        = "/smart_kart.products.http.v3.ProductsHTTPService/GetInventory"
-	ProductsHTTPService_BulkUpdateInventory_FullMethodName = "/smart_kart.products.http.v3.ProductsHTTPService/BulkUpdateInventory"
-	ProductsHTTPService_CheckStock_FullMethodName          = "/smart_kart.products.http.v3.ProductsHTTPService/CheckStock"
-	ProductsHTTPService_ReserveStock_FullMethodName        = "/smart_kart.products.http.v3.ProductsHTTPService/ReserveStock"
-	ProductsHTTPService_ReleaseStock_FullMethodName        = "/smart_kart.products.http.v3.ProductsHTTPService/ReleaseStock"
+	ProductsHTTPService_CreateProduct_FullMethodName           = "/smart_kart.products.http.v3.ProductsHTTPService/CreateProduct"
+	ProductsHTTPService_GetProduct_FullMethodName              = "/smart_kart.products.http.v3.ProductsHTTPService/GetProduct"
+	ProductsHTTPService_UpdateProduct_FullMethodName           = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateProduct"
+	ProductsHTTPService_DeleteProduct_FullMethodName           = "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProduct"
+	ProductsHTTPService_ListProducts_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/ListProducts"
+	ProductsHTTPService_SearchProducts_FullMethodName          = "/smart_kart.products.http.v3.ProductsHTTPService/SearchProducts"
+	ProductsHTTPService_UpdateProductStatus_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateProductStatus"
+	ProductsHTTPService_GetProductBySKU_FullMethodName         = "/smart_kart.products.http.v3.ProductsHTTPService/GetProductBySKU"
+	ProductsHTTPService_CreateCategory_FullMethodName          = "/smart_kart.products.http.v3.ProductsHTTPService/CreateCategory"
+	ProductsHTTPService_GetCategory_FullMethodName             = "/smart_kart.products.http.v3.ProductsHTTPService/GetCategory"
+	ProductsHTTPService_UpdateCategory_FullMethodName          = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCategory"
+	ProductsHTTPService_DeleteCategory_FullMethodName          = "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCategory"
+	ProductsHTTPService_ListCategories_FullMethodName          = "/smart_kart.products.http.v3.ProductsHTTPService/ListCategories"
+	ProductsHTTPService_UpdateInventory_FullMethodName         = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateInventory"
+	ProductsHTTPService_GetInventory_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/GetInventory"
+	ProductsHTTPService_BulkUpdateInventory_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/BulkUpdateInventory"
+	ProductsHTTPService_CheckStock_FullMethodName              = "/smart_kart.products.http.v3.ProductsHTTPService/CheckStock"
+	ProductsHTTPService_ReserveStock_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/ReserveStock"
+	ProductsHTTPService_ReleaseStock_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/ReleaseStock"
+	ProductsHTTPService_UploadProductImages_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/UploadProductImages"
+	ProductsHTTPService_GetProductImages_FullMethodName        = "/smart_kart.products.http.v3.ProductsHTTPService/GetProductImages"
+	ProductsHTTPService_ReorderProductImages_FullMethodName    = "/smart_kart.products.http.v3.ProductsHTTPService/ReorderProductImages"
+	ProductsHTTPService_SetPrimaryImage_FullMethodName         = "/smart_kart.products.http.v3.ProductsHTTPService/SetPrimaryImage"
+	ProductsHTTPService_DeleteProductImage_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProductImage"
+	ProductsHTTPService_ListFeaturedProducts_FullMethodName    = "/smart_kart.products.http.v3.ProductsHTTPService/ListFeaturedProducts"
+	ProductsHTTPService_AddFeaturedProduct_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/AddFeaturedProduct"
+	ProductsHTTPService_RemoveFeaturedProduct_FullMethodName   = "/smart_kart.products.http.v3.ProductsHTTPService/RemoveFeaturedProduct"
+	ProductsHTTPService_ReorderFeaturedProducts_FullMethodName = "/smart_kart.products.http.v3.ProductsHTTPService/ReorderFeaturedProducts"
+	ProductsHTTPService_ListCarouselImages_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/ListCarouselImages"
+	ProductsHTTPService_CreateCarouselImage_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/CreateCarouselImage"
+	ProductsHTTPService_UpdateCarouselImage_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCarouselImage"
+	ProductsHTTPService_DeleteCarouselImage_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCarouselImage"
+	ProductsHTTPService_ReorderCarouselImages_FullMethodName   = "/smart_kart.products.http.v3.ProductsHTTPService/ReorderCarouselImages"
+	ProductsHTTPService_UploadCarouselImage_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/UploadCarouselImage"
 )
 
 // ProductsHTTPServiceClient is the client API for ProductsHTTPService service.
@@ -68,6 +83,24 @@ type ProductsHTTPServiceClient interface {
 	CheckStock(ctx context.Context, in *CheckStockRequest, opts ...grpc.CallOption) (*CheckStockResponse, error)
 	ReserveStock(ctx context.Context, in *ReserveStockRequest, opts ...grpc.CallOption) (*ReserveStockResponse, error)
 	ReleaseStock(ctx context.Context, in *ReleaseStockRequest, opts ...grpc.CallOption) (*ReleaseStockResponse, error)
+	// Product Image operations
+	UploadProductImages(ctx context.Context, in *UploadProductImagesRequest, opts ...grpc.CallOption) (*UploadProductImagesResponse, error)
+	GetProductImages(ctx context.Context, in *GetProductImagesRequest, opts ...grpc.CallOption) (*GetProductImagesResponse, error)
+	ReorderProductImages(ctx context.Context, in *ReorderProductImagesRequest, opts ...grpc.CallOption) (*ReorderProductImagesResponse, error)
+	SetPrimaryImage(ctx context.Context, in *SetPrimaryImageRequest, opts ...grpc.CallOption) (*SetPrimaryImageResponse, error)
+	DeleteProductImage(ctx context.Context, in *DeleteProductImageRequest, opts ...grpc.CallOption) (*DeleteProductImageResponse, error)
+	// Featured Product operations
+	ListFeaturedProducts(ctx context.Context, in *ListFeaturedProductsRequest, opts ...grpc.CallOption) (*ListFeaturedProductsResponse, error)
+	AddFeaturedProduct(ctx context.Context, in *AddFeaturedProductRequest, opts ...grpc.CallOption) (*AddFeaturedProductResponse, error)
+	RemoveFeaturedProduct(ctx context.Context, in *RemoveFeaturedProductRequest, opts ...grpc.CallOption) (*RemoveFeaturedProductResponse, error)
+	ReorderFeaturedProducts(ctx context.Context, in *ReorderFeaturedProductsRequest, opts ...grpc.CallOption) (*ReorderFeaturedProductsResponse, error)
+	// Carousel Image operations
+	ListCarouselImages(ctx context.Context, in *ListCarouselImagesRequest, opts ...grpc.CallOption) (*ListCarouselImagesResponse, error)
+	CreateCarouselImage(ctx context.Context, in *CreateCarouselImageRequest, opts ...grpc.CallOption) (*CreateCarouselImageResponse, error)
+	UpdateCarouselImage(ctx context.Context, in *UpdateCarouselImageRequest, opts ...grpc.CallOption) (*UpdateCarouselImageResponse, error)
+	DeleteCarouselImage(ctx context.Context, in *DeleteCarouselImageRequest, opts ...grpc.CallOption) (*DeleteCarouselImageResponse, error)
+	ReorderCarouselImages(ctx context.Context, in *ReorderCarouselImagesRequest, opts ...grpc.CallOption) (*ReorderCarouselImagesResponse, error)
+	UploadCarouselImage(ctx context.Context, in *UploadCarouselImageRequest, opts ...grpc.CallOption) (*UploadCarouselImageResponse, error)
 }
 
 type productsHTTPServiceClient struct {
@@ -268,6 +301,156 @@ func (c *productsHTTPServiceClient) ReleaseStock(ctx context.Context, in *Releas
 	return out, nil
 }
 
+func (c *productsHTTPServiceClient) UploadProductImages(ctx context.Context, in *UploadProductImagesRequest, opts ...grpc.CallOption) (*UploadProductImagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UploadProductImagesResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_UploadProductImages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) GetProductImages(ctx context.Context, in *GetProductImagesRequest, opts ...grpc.CallOption) (*GetProductImagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProductImagesResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_GetProductImages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) ReorderProductImages(ctx context.Context, in *ReorderProductImagesRequest, opts ...grpc.CallOption) (*ReorderProductImagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReorderProductImagesResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_ReorderProductImages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) SetPrimaryImage(ctx context.Context, in *SetPrimaryImageRequest, opts ...grpc.CallOption) (*SetPrimaryImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetPrimaryImageResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_SetPrimaryImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) DeleteProductImage(ctx context.Context, in *DeleteProductImageRequest, opts ...grpc.CallOption) (*DeleteProductImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteProductImageResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_DeleteProductImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) ListFeaturedProducts(ctx context.Context, in *ListFeaturedProductsRequest, opts ...grpc.CallOption) (*ListFeaturedProductsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListFeaturedProductsResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_ListFeaturedProducts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AddFeaturedProduct(ctx context.Context, in *AddFeaturedProductRequest, opts ...grpc.CallOption) (*AddFeaturedProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddFeaturedProductResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AddFeaturedProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) RemoveFeaturedProduct(ctx context.Context, in *RemoveFeaturedProductRequest, opts ...grpc.CallOption) (*RemoveFeaturedProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveFeaturedProductResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_RemoveFeaturedProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) ReorderFeaturedProducts(ctx context.Context, in *ReorderFeaturedProductsRequest, opts ...grpc.CallOption) (*ReorderFeaturedProductsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReorderFeaturedProductsResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_ReorderFeaturedProducts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) ListCarouselImages(ctx context.Context, in *ListCarouselImagesRequest, opts ...grpc.CallOption) (*ListCarouselImagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListCarouselImagesResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_ListCarouselImages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) CreateCarouselImage(ctx context.Context, in *CreateCarouselImageRequest, opts ...grpc.CallOption) (*CreateCarouselImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateCarouselImageResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_CreateCarouselImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) UpdateCarouselImage(ctx context.Context, in *UpdateCarouselImageRequest, opts ...grpc.CallOption) (*UpdateCarouselImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateCarouselImageResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_UpdateCarouselImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) DeleteCarouselImage(ctx context.Context, in *DeleteCarouselImageRequest, opts ...grpc.CallOption) (*DeleteCarouselImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteCarouselImageResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_DeleteCarouselImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) ReorderCarouselImages(ctx context.Context, in *ReorderCarouselImagesRequest, opts ...grpc.CallOption) (*ReorderCarouselImagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReorderCarouselImagesResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_ReorderCarouselImages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) UploadCarouselImage(ctx context.Context, in *UploadCarouselImageRequest, opts ...grpc.CallOption) (*UploadCarouselImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UploadCarouselImageResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_UploadCarouselImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductsHTTPServiceServer is the server API for ProductsHTTPService service.
 // All implementations must embed UnimplementedProductsHTTPServiceServer
 // for forward compatibility.
@@ -296,6 +479,24 @@ type ProductsHTTPServiceServer interface {
 	CheckStock(context.Context, *CheckStockRequest) (*CheckStockResponse, error)
 	ReserveStock(context.Context, *ReserveStockRequest) (*ReserveStockResponse, error)
 	ReleaseStock(context.Context, *ReleaseStockRequest) (*ReleaseStockResponse, error)
+	// Product Image operations
+	UploadProductImages(context.Context, *UploadProductImagesRequest) (*UploadProductImagesResponse, error)
+	GetProductImages(context.Context, *GetProductImagesRequest) (*GetProductImagesResponse, error)
+	ReorderProductImages(context.Context, *ReorderProductImagesRequest) (*ReorderProductImagesResponse, error)
+	SetPrimaryImage(context.Context, *SetPrimaryImageRequest) (*SetPrimaryImageResponse, error)
+	DeleteProductImage(context.Context, *DeleteProductImageRequest) (*DeleteProductImageResponse, error)
+	// Featured Product operations
+	ListFeaturedProducts(context.Context, *ListFeaturedProductsRequest) (*ListFeaturedProductsResponse, error)
+	AddFeaturedProduct(context.Context, *AddFeaturedProductRequest) (*AddFeaturedProductResponse, error)
+	RemoveFeaturedProduct(context.Context, *RemoveFeaturedProductRequest) (*RemoveFeaturedProductResponse, error)
+	ReorderFeaturedProducts(context.Context, *ReorderFeaturedProductsRequest) (*ReorderFeaturedProductsResponse, error)
+	// Carousel Image operations
+	ListCarouselImages(context.Context, *ListCarouselImagesRequest) (*ListCarouselImagesResponse, error)
+	CreateCarouselImage(context.Context, *CreateCarouselImageRequest) (*CreateCarouselImageResponse, error)
+	UpdateCarouselImage(context.Context, *UpdateCarouselImageRequest) (*UpdateCarouselImageResponse, error)
+	DeleteCarouselImage(context.Context, *DeleteCarouselImageRequest) (*DeleteCarouselImageResponse, error)
+	ReorderCarouselImages(context.Context, *ReorderCarouselImagesRequest) (*ReorderCarouselImagesResponse, error)
+	UploadCarouselImage(context.Context, *UploadCarouselImageRequest) (*UploadCarouselImageResponse, error)
 	mustEmbedUnimplementedProductsHTTPServiceServer()
 }
 
@@ -362,6 +563,51 @@ func (UnimplementedProductsHTTPServiceServer) ReserveStock(context.Context, *Res
 }
 func (UnimplementedProductsHTTPServiceServer) ReleaseStock(context.Context, *ReleaseStockRequest) (*ReleaseStockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReleaseStock not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) UploadProductImages(context.Context, *UploadProductImagesRequest) (*UploadProductImagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadProductImages not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) GetProductImages(context.Context, *GetProductImagesRequest) (*GetProductImagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductImages not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) ReorderProductImages(context.Context, *ReorderProductImagesRequest) (*ReorderProductImagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReorderProductImages not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) SetPrimaryImage(context.Context, *SetPrimaryImageRequest) (*SetPrimaryImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetPrimaryImage not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) DeleteProductImage(context.Context, *DeleteProductImageRequest) (*DeleteProductImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProductImage not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) ListFeaturedProducts(context.Context, *ListFeaturedProductsRequest) (*ListFeaturedProductsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFeaturedProducts not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AddFeaturedProduct(context.Context, *AddFeaturedProductRequest) (*AddFeaturedProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFeaturedProduct not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) RemoveFeaturedProduct(context.Context, *RemoveFeaturedProductRequest) (*RemoveFeaturedProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFeaturedProduct not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) ReorderFeaturedProducts(context.Context, *ReorderFeaturedProductsRequest) (*ReorderFeaturedProductsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReorderFeaturedProducts not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) ListCarouselImages(context.Context, *ListCarouselImagesRequest) (*ListCarouselImagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCarouselImages not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) CreateCarouselImage(context.Context, *CreateCarouselImageRequest) (*CreateCarouselImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCarouselImage not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) UpdateCarouselImage(context.Context, *UpdateCarouselImageRequest) (*UpdateCarouselImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCarouselImage not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) DeleteCarouselImage(context.Context, *DeleteCarouselImageRequest) (*DeleteCarouselImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCarouselImage not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) ReorderCarouselImages(context.Context, *ReorderCarouselImagesRequest) (*ReorderCarouselImagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReorderCarouselImages not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) UploadCarouselImage(context.Context, *UploadCarouselImageRequest) (*UploadCarouselImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadCarouselImage not implemented")
 }
 func (UnimplementedProductsHTTPServiceServer) mustEmbedUnimplementedProductsHTTPServiceServer() {}
 func (UnimplementedProductsHTTPServiceServer) testEmbeddedByValue()                             {}
@@ -726,6 +972,276 @@ func _ProductsHTTPService_ReleaseStock_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProductsHTTPService_UploadProductImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadProductImagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).UploadProductImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_UploadProductImages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).UploadProductImages(ctx, req.(*UploadProductImagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_GetProductImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProductImagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).GetProductImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_GetProductImages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).GetProductImages(ctx, req.(*GetProductImagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_ReorderProductImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReorderProductImagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).ReorderProductImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_ReorderProductImages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).ReorderProductImages(ctx, req.(*ReorderProductImagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_SetPrimaryImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetPrimaryImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).SetPrimaryImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_SetPrimaryImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).SetPrimaryImage(ctx, req.(*SetPrimaryImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_DeleteProductImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteProductImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).DeleteProductImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_DeleteProductImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).DeleteProductImage(ctx, req.(*DeleteProductImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_ListFeaturedProducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFeaturedProductsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).ListFeaturedProducts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_ListFeaturedProducts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).ListFeaturedProducts(ctx, req.(*ListFeaturedProductsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AddFeaturedProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddFeaturedProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AddFeaturedProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AddFeaturedProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AddFeaturedProduct(ctx, req.(*AddFeaturedProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_RemoveFeaturedProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveFeaturedProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).RemoveFeaturedProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_RemoveFeaturedProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).RemoveFeaturedProduct(ctx, req.(*RemoveFeaturedProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_ReorderFeaturedProducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReorderFeaturedProductsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).ReorderFeaturedProducts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_ReorderFeaturedProducts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).ReorderFeaturedProducts(ctx, req.(*ReorderFeaturedProductsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_ListCarouselImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCarouselImagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).ListCarouselImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_ListCarouselImages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).ListCarouselImages(ctx, req.(*ListCarouselImagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_CreateCarouselImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCarouselImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).CreateCarouselImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_CreateCarouselImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).CreateCarouselImage(ctx, req.(*CreateCarouselImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_UpdateCarouselImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCarouselImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).UpdateCarouselImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_UpdateCarouselImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).UpdateCarouselImage(ctx, req.(*UpdateCarouselImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_DeleteCarouselImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCarouselImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).DeleteCarouselImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_DeleteCarouselImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).DeleteCarouselImage(ctx, req.(*DeleteCarouselImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_ReorderCarouselImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReorderCarouselImagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).ReorderCarouselImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_ReorderCarouselImages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).ReorderCarouselImages(ctx, req.(*ReorderCarouselImagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_UploadCarouselImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadCarouselImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).UploadCarouselImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_UploadCarouselImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).UploadCarouselImage(ctx, req.(*UploadCarouselImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProductsHTTPService_ServiceDesc is the grpc.ServiceDesc for ProductsHTTPService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -808,6 +1324,66 @@ var ProductsHTTPService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReleaseStock",
 			Handler:    _ProductsHTTPService_ReleaseStock_Handler,
+		},
+		{
+			MethodName: "UploadProductImages",
+			Handler:    _ProductsHTTPService_UploadProductImages_Handler,
+		},
+		{
+			MethodName: "GetProductImages",
+			Handler:    _ProductsHTTPService_GetProductImages_Handler,
+		},
+		{
+			MethodName: "ReorderProductImages",
+			Handler:    _ProductsHTTPService_ReorderProductImages_Handler,
+		},
+		{
+			MethodName: "SetPrimaryImage",
+			Handler:    _ProductsHTTPService_SetPrimaryImage_Handler,
+		},
+		{
+			MethodName: "DeleteProductImage",
+			Handler:    _ProductsHTTPService_DeleteProductImage_Handler,
+		},
+		{
+			MethodName: "ListFeaturedProducts",
+			Handler:    _ProductsHTTPService_ListFeaturedProducts_Handler,
+		},
+		{
+			MethodName: "AddFeaturedProduct",
+			Handler:    _ProductsHTTPService_AddFeaturedProduct_Handler,
+		},
+		{
+			MethodName: "RemoveFeaturedProduct",
+			Handler:    _ProductsHTTPService_RemoveFeaturedProduct_Handler,
+		},
+		{
+			MethodName: "ReorderFeaturedProducts",
+			Handler:    _ProductsHTTPService_ReorderFeaturedProducts_Handler,
+		},
+		{
+			MethodName: "ListCarouselImages",
+			Handler:    _ProductsHTTPService_ListCarouselImages_Handler,
+		},
+		{
+			MethodName: "CreateCarouselImage",
+			Handler:    _ProductsHTTPService_CreateCarouselImage_Handler,
+		},
+		{
+			MethodName: "UpdateCarouselImage",
+			Handler:    _ProductsHTTPService_UpdateCarouselImage_Handler,
+		},
+		{
+			MethodName: "DeleteCarouselImage",
+			Handler:    _ProductsHTTPService_DeleteCarouselImage_Handler,
+		},
+		{
+			MethodName: "ReorderCarouselImages",
+			Handler:    _ProductsHTTPService_ReorderCarouselImages_Handler,
+		},
+		{
+			MethodName: "UploadCarouselImage",
+			Handler:    _ProductsHTTPService_UploadCarouselImage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

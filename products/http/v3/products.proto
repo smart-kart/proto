@@ -135,6 +135,108 @@ service ProductsHTTPService {
       body: "*"
     };
   }
+
+  // Product Image operations
+  rpc UploadProductImages(UploadProductImagesRequest) returns (UploadProductImagesResponse) {
+    option (google.api.http) = {
+      post: "/v3/products/{product_id}/images/upload"
+      body: "*"
+    };
+  }
+
+  rpc GetProductImages(GetProductImagesRequest) returns (GetProductImagesResponse) {
+    option (google.api.http) = {
+      get: "/v3/products/{product_id}/images"
+    };
+  }
+
+  rpc ReorderProductImages(ReorderProductImagesRequest) returns (ReorderProductImagesResponse) {
+    option (google.api.http) = {
+      put: "/v3/products/{product_id}/images/reorder"
+      body: "*"
+    };
+  }
+
+  rpc SetPrimaryImage(SetPrimaryImageRequest) returns (SetPrimaryImageResponse) {
+    option (google.api.http) = {
+      patch: "/v3/products/{product_id}/images/{image_id}/primary"
+      body: "*"
+    };
+  }
+
+  rpc DeleteProductImage(DeleteProductImageRequest) returns (DeleteProductImageResponse) {
+    option (google.api.http) = {
+      delete: "/v3/products/{product_id}/images/{image_id}"
+    };
+  }
+
+  // Featured Product operations
+  rpc ListFeaturedProducts(ListFeaturedProductsRequest) returns (ListFeaturedProductsResponse) {
+    option (google.api.http) = {
+      get: "/v3/featured-products"
+    };
+  }
+
+  rpc AddFeaturedProduct(AddFeaturedProductRequest) returns (AddFeaturedProductResponse) {
+    option (google.api.http) = {
+      post: "/v3/featured-products"
+      body: "*"
+    };
+  }
+
+  rpc RemoveFeaturedProduct(RemoveFeaturedProductRequest) returns (RemoveFeaturedProductResponse) {
+    option (google.api.http) = {
+      delete: "/v3/featured-products/{featured_id}"
+    };
+  }
+
+  rpc ReorderFeaturedProducts(ReorderFeaturedProductsRequest) returns (ReorderFeaturedProductsResponse) {
+    option (google.api.http) = {
+      put: "/v3/featured-products/reorder"
+      body: "*"
+    };
+  }
+
+  // Carousel Image operations
+  rpc ListCarouselImages(ListCarouselImagesRequest) returns (ListCarouselImagesResponse) {
+    option (google.api.http) = {
+      get: "/v3/carousel-images"
+    };
+  }
+
+  rpc CreateCarouselImage(CreateCarouselImageRequest) returns (CreateCarouselImageResponse) {
+    option (google.api.http) = {
+      post: "/v3/carousel-images"
+      body: "*"
+    };
+  }
+
+  rpc UpdateCarouselImage(UpdateCarouselImageRequest) returns (UpdateCarouselImageResponse) {
+    option (google.api.http) = {
+      put: "/v3/carousel-images/{carousel_id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteCarouselImage(DeleteCarouselImageRequest) returns (DeleteCarouselImageResponse) {
+    option (google.api.http) = {
+      delete: "/v3/carousel-images/{carousel_id}"
+    };
+  }
+
+  rpc ReorderCarouselImages(ReorderCarouselImagesRequest) returns (ReorderCarouselImagesResponse) {
+    option (google.api.http) = {
+      put: "/v3/carousel-images/reorder"
+      body: "*"
+    };
+  }
+
+  rpc UploadCarouselImage(UploadCarouselImageRequest) returns (UploadCarouselImageResponse) {
+    option (google.api.http) = {
+      post: "/v3/carousel-images/upload"
+      body: "*"
+    };
+  }
 }
 
 // ============================================================================
@@ -152,6 +254,21 @@ message Pagination {
 // Product Messages
 // ============================================================================
 
+message ProductImage {
+  string image_id = 1 [json_name = "image_id"];
+  string product_id = 2 [json_name = "product_id"];
+  string image_url = 3 [json_name = "image_url"];
+  int32 display_order = 4 [json_name = "display_order"];
+  bool is_primary = 5 [json_name = "is_primary"];
+  optional string alt_text = 6 [json_name = "alt_text"];
+  optional int64 file_size = 7 [json_name = "file_size"];
+  optional string mime_type = 8 [json_name = "mime_type"];
+  optional int32 width = 9 [json_name = "width"];
+  optional int32 height = 10 [json_name = "height"];
+  google.protobuf.Timestamp created_at = 11 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 12 [json_name = "updated_at"];
+}
+
 message Product {
   string product_id = 1 [json_name = "product_id"];
   string name = 2 [json_name = "name"];
@@ -166,6 +283,7 @@ message Product {
   string status = 11 [json_name = "status"]; // active, inactive, discontinued
   google.protobuf.Timestamp created_at = 12 [json_name = "created_at"];
   google.protobuf.Timestamp updated_at = 13 [json_name = "updated_at"];
+  repeated ProductImage images = 14 [json_name = "images"];
 }
 
 // @gotags: validate:"required"
@@ -461,4 +579,241 @@ message ReleaseStockRequest {
 message ReleaseStockResponse {
   bool success = 1 [json_name = "success"];
   string message = 2 [json_name = "errors"];
+}
+
+// ============================================================================
+// Product Image Messages
+// ============================================================================
+
+message UploadProductImagesRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // Note: Actual file upload is handled via multipart/form-data in HTTP handler
+  // This message is used for additional metadata if needed
+}
+
+message UploadProductImagesResponse {
+  repeated ProductImage images = 1 [json_name = "images"];
+  string message = 2 [json_name = "message"];
+}
+
+message GetProductImagesRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+}
+
+message GetProductImagesResponse {
+  repeated ProductImage images = 1 [json_name = "images"];
+  string message = 2 [json_name = "message"];
+}
+
+message ImageOrder {
+  // @gotags: validate:"required"
+  string image_id = 1 [json_name = "image_id"];
+  // @gotags: validate:"required,gte=0"
+  int32 display_order = 2 [json_name = "display_order"];
+}
+
+message ReorderProductImagesRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // @gotags: validate:"required,dive"
+  repeated ImageOrder orders = 2 [json_name = "orders"];
+}
+
+message ReorderProductImagesResponse {
+  repeated ProductImage images = 1 [json_name = "images"];
+  string message = 2 [json_name = "message"];
+}
+
+message SetPrimaryImageRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // @gotags: validate:"required"
+  string image_id = 2 [json_name = "image_id"];
+}
+
+message SetPrimaryImageResponse {
+  ProductImage image = 1 [json_name = "image"];
+  string message = 2 [json_name = "message"];
+}
+
+message DeleteProductImageRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // @gotags: validate:"required"
+  string image_id = 2 [json_name = "image_id"];
+}
+
+message DeleteProductImageResponse {
+  string message = 1 [json_name = "message"];
+}
+
+// ============================================================================
+// Featured Product Messages
+// ============================================================================
+
+message FeaturedProduct {
+  string featured_id = 1 [json_name = "featured_id"];
+  string product_id = 2 [json_name = "product_id"];
+  int32 display_order = 3 [json_name = "display_order"];
+  bool is_active = 4 [json_name = "is_active"];
+  string section = 5 [json_name = "section"]; // 'hero', 'trending', 'new_arrivals'
+  optional string title = 6 [json_name = "title"];
+  optional string subtitle = 7 [json_name = "subtitle"];
+  google.protobuf.Timestamp created_at = 8 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 9 [json_name = "updated_at"];
+  optional Product product = 10 [json_name = "product"];
+}
+
+message ListFeaturedProductsRequest {
+  // @gotags: validate:"required,oneof=hero trending new_arrivals featured"
+  string section = 1 [json_name = "section"];
+  optional bool is_active = 2 [json_name = "is_active"];
+}
+
+message ListFeaturedProductsResponse {
+  repeated FeaturedProduct featured_products = 1 [json_name = "featured_products"];
+  string message = 2 [json_name = "message"];
+}
+
+message AddFeaturedProductRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // @gotags: validate:"required,oneof=hero trending new_arrivals featured"
+  string section = 2 [json_name = "section"];
+  optional int32 display_order = 3 [json_name = "display_order"];
+  optional string title = 4 [json_name = "title"];
+  optional string subtitle = 5 [json_name = "subtitle"];
+}
+
+message AddFeaturedProductResponse {
+  FeaturedProduct featured_product = 1 [json_name = "featured_product"];
+  string message = 2 [json_name = "message"];
+}
+
+message RemoveFeaturedProductRequest {
+  // @gotags: validate:"required"
+  string featured_id = 1 [json_name = "featured_id"];
+}
+
+message RemoveFeaturedProductResponse {
+  string message = 1 [json_name = "message"];
+}
+
+message ReorderFeaturedProductsRequest {
+  // @gotags: validate:"required"
+  string section = 1 [json_name = "section"];
+  // @gotags: validate:"required,dive"
+  repeated FeaturedOrder orders = 2 [json_name = "orders"];
+}
+
+message FeaturedOrder {
+  string featured_id = 1 [json_name = "featured_id"];
+  int32 display_order = 2 [json_name = "display_order"];
+}
+
+message ReorderFeaturedProductsResponse {
+  repeated FeaturedProduct featured_products = 1 [json_name = "featured_products"];
+  string message = 2 [json_name = "message"];
+}
+
+// ============================================================================
+// Carousel Image Messages
+// ============================================================================
+
+message CarouselImage {
+  string carousel_id = 1 [json_name = "carousel_id"];
+  string image_url = 2 [json_name = "image_url"];
+  optional string title = 3 [json_name = "title"];
+  optional string subtitle = 4 [json_name = "subtitle"];
+  optional string cta_text = 5 [json_name = "cta_text"];
+  optional string cta_link = 6 [json_name = "cta_link"];
+  int32 display_order = 7 [json_name = "display_order"];
+  bool is_active = 8 [json_name = "is_active"];
+  string section = 9 [json_name = "section"];
+  google.protobuf.Timestamp created_at = 10 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 11 [json_name = "updated_at"];
+}
+
+message ListCarouselImagesRequest {
+  // @gotags: validate:"required"
+  string section = 1 [json_name = "section"];
+}
+
+message ListCarouselImagesResponse {
+  repeated CarouselImage carousel_images = 1 [json_name = "carousel_images"];
+  string message = 2 [json_name = "message"];
+}
+
+message CreateCarouselImageRequest {
+  // @gotags: validate:"required"
+  string image_url = 1 [json_name = "image_url"];
+  optional string title = 2 [json_name = "title"];
+  optional string subtitle = 3 [json_name = "subtitle"];
+  optional string cta_text = 4 [json_name = "cta_text"];
+  optional string cta_link = 5 [json_name = "cta_link"];
+  optional int32 display_order = 6 [json_name = "display_order"];
+  // @gotags: validate:"required"
+  string section = 7 [json_name = "section"];
+}
+
+message CreateCarouselImageResponse {
+  CarouselImage carousel_image = 1 [json_name = "carousel_image"];
+  string message = 2 [json_name = "message"];
+}
+
+message UpdateCarouselImageRequest {
+  // @gotags: validate:"required"
+  string carousel_id = 1 [json_name = "carousel_id"];
+  string image_url = 2 [json_name = "image_url"];
+  optional string title = 3 [json_name = "title"];
+  optional string subtitle = 4 [json_name = "subtitle"];
+  optional string cta_text = 5 [json_name = "cta_text"];
+  optional string cta_link = 6 [json_name = "cta_link"];
+  int32 display_order = 7 [json_name = "display_order"];
+  bool is_active = 8 [json_name = "is_active"];
+}
+
+message UpdateCarouselImageResponse {
+  CarouselImage carousel_image = 1 [json_name = "carousel_image"];
+  string message = 2 [json_name = "message"];
+}
+
+message DeleteCarouselImageRequest {
+  // @gotags: validate:"required"
+  string carousel_id = 1 [json_name = "carousel_id"];
+}
+
+message DeleteCarouselImageResponse {
+  string message = 1 [json_name = "message"];
+}
+
+message ReorderCarouselImagesRequest {
+  // @gotags: validate:"required"
+  string section = 1 [json_name = "section"];
+  // @gotags: validate:"required,dive"
+  repeated CarouselOrder orders = 2 [json_name = "orders"];
+}
+
+message CarouselOrder {
+  string carousel_id = 1 [json_name = "carousel_id"];
+  int32 display_order = 2 [json_name = "display_order"];
+}
+
+message ReorderCarouselImagesResponse {
+  repeated CarouselImage carousel_images = 1 [json_name = "carousel_images"];
+  string message = 2 [json_name = "message"];
+}
+
+message UploadCarouselImageRequest {
+  // Note: Actual file upload is handled via multipart/form-data in HTTP handler
+  // This message is used for the gRPC endpoint definition only
+  // The custom HTTP handler bypasses this and handles multipart directly
+  optional string section = 1 [json_name = "section"];
+}
+
+message UploadCarouselImageResponse {
+  CarouselImage carousel_image = 1 [json_name = "carousel_image"];
+  string message = 2 [json_name = "message"];
 }

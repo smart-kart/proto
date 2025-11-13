@@ -16,6 +16,122 @@
     "application/json"
   ],
   "paths": {
+    "/v3/carousel-images": {
+      "get": {
+        "summary": "Carousel Image operations",
+        "operationId": "ProductsHTTPService_ListCarouselImages",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "section",
+            "description": "@gotags: validate:\"required\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "post": {
+        "operationId": "ProductsHTTPService_CreateCarouselImage",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCarouselImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/carousel-images/reorder": {
+      "put": {
+        "operationId": "ProductsHTTPService_ReorderCarouselImages",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReorderCarouselImagesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/carousel-images/upload": {
+      "post": {
+        "operationId": "ProductsHTTPService_UploadCarouselImage",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UploadCarouselImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/carousel-images/{carousel_id}": {
+      "delete": {
+        "operationId": "ProductsHTTPService_DeleteCarouselImage",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "carousel_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "put": {
+        "operationId": "ProductsHTTPService_UpdateCarouselImage",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "carousel_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateCarouselImageBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
     "/v3/categories": {
       "get": {
         "operationId": "ProductsHTTPService_ListCategories",
@@ -122,6 +238,85 @@
             "schema": {
               "$ref": "#/definitions/UpdateCategoryBody"
             }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/featured-products": {
+      "get": {
+        "summary": "Featured Product operations",
+        "operationId": "ProductsHTTPService_ListFeaturedProducts",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "section",
+            "description": "@gotags: validate:\"required,oneof=hero trending new_arrivals featured\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "is_active",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "post": {
+        "operationId": "ProductsHTTPService_AddFeaturedProduct",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddFeaturedProductRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/featured-products/reorder": {
+      "put": {
+        "operationId": "ProductsHTTPService_ReorderFeaturedProducts",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReorderFeaturedProductsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/featured-products/{featured_id}": {
+      "delete": {
+        "operationId": "ProductsHTTPService_RemoveFeaturedProduct",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "featured_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -431,6 +626,135 @@
         ]
       }
     },
+    "/v3/products/{product_id}/images": {
+      "get": {
+        "operationId": "ProductsHTTPService_GetProductImages",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/{product_id}/images/reorder": {
+      "put": {
+        "operationId": "ProductsHTTPService_ReorderProductImages",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReorderProductImagesBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/{product_id}/images/upload": {
+      "post": {
+        "summary": "Product Image operations",
+        "operationId": "ProductsHTTPService_UploadProductImages",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"\n\nNote: Actual file upload is handled via multipart/form-data in HTTP handler\n This message is used for additional metadata if needed",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UploadProductImagesBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/{product_id}/images/{image_id}": {
+      "delete": {
+        "operationId": "ProductsHTTPService_DeleteProductImage",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/{product_id}/images/{image_id}/primary": {
+      "patch": {
+        "operationId": "ProductsHTTPService_SetPrimaryImage",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SetPrimaryImageBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
     "/v3/products/{product_id}/status": {
       "patch": {
         "operationId": "ProductsHTTPService_UpdateProductStatus",
@@ -459,6 +783,43 @@
     }
   },
   "definitions": {
+    "AddFeaturedProductRequest": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "section": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,oneof=hero trending new_arrivals featured\""
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "subtitle": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "AddFeaturedProductResponse": {
+      "type": "object",
+      "properties": {
+        "featured_product": {
+          "$ref": "#/definitions/FeaturedProduct"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "BulkUpdateInventoryRequest": {
       "type": "object",
       "properties": {
@@ -484,6 +845,63 @@
         },
         "errors": {
           "type": "string"
+        }
+      }
+    },
+    "CarouselImage": {
+      "type": "object",
+      "properties": {
+        "carousel_id": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "subtitle": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "cta_text": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "cta_link": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_active": {
+          "type": "boolean"
+        },
+        "section": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "CarouselOrder": {
+      "type": "object",
+      "properties": {
+        "carousel_id": {
+          "type": "string"
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -557,6 +975,51 @@
           }
         },
         "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateCarouselImageRequest": {
+      "type": "object",
+      "properties": {
+        "image_url": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "subtitle": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "cta_text": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "cta_link": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "section": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        }
+      }
+    },
+    "CreateCarouselImageResponse": {
+      "type": "object",
+      "properties": {
+        "carousel_image": {
+          "$ref": "#/definitions/CarouselImage"
+        },
+        "message": {
           "type": "string"
         }
       }
@@ -648,7 +1111,23 @@
         }
       }
     },
+    "DeleteCarouselImageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "DeleteCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteProductImageResponse": {
       "type": "object",
       "properties": {
         "message": {
@@ -661,6 +1140,60 @@
       "properties": {
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "FeaturedOrder": {
+      "type": "object",
+      "properties": {
+        "featured_id": {
+          "type": "string"
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "FeaturedProduct": {
+      "type": "object",
+      "properties": {
+        "featured_id": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_active": {
+          "type": "boolean"
+        },
+        "section": {
+          "type": "string",
+          "title": "'hero', 'trending', 'new_arrivals'"
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "subtitle": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "product": {
+          "$ref": "#/definitions/Product",
+          "x-nullable": true
         }
       }
     },
@@ -697,6 +1230,21 @@
         }
       }
     },
+    "GetProductImagesResponse": {
+      "type": "object",
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ProductImage"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "GetProductResponse": {
       "type": "object",
       "properties": {
@@ -705,6 +1253,20 @@
         },
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "ImageOrder": {
+      "type": "object",
+      "properties": {
+        "image_id": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@gotags: validate:\"required,gte=0\""
         }
       }
     },
@@ -773,6 +1335,21 @@
         }
       }
     },
+    "ListCarouselImagesResponse": {
+      "type": "object",
+      "properties": {
+        "carousel_images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/CarouselImage"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "ListCategoriesResponse": {
       "type": "object",
       "properties": {
@@ -787,6 +1364,21 @@
           "$ref": "#/definitions/v3.Pagination"
         },
         "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "ListFeaturedProductsResponse": {
+      "type": "object",
+      "properties": {
+        "featured_products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/FeaturedProduct"
+          }
+        },
+        "message": {
           "type": "string"
         }
       }
@@ -861,6 +1453,65 @@
         "updated_at": {
           "type": "string",
           "format": "date-time"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ProductImage"
+          }
+        }
+      }
+    },
+    "ProductImage": {
+      "type": "object",
+      "properties": {
+        "image_id": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_primary": {
+          "type": "boolean"
+        },
+        "alt_text": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "file_size": {
+          "type": "string",
+          "format": "int64",
+          "x-nullable": true
+        },
+        "mime_type": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -888,6 +1539,106 @@
           "type": "boolean"
         },
         "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "RemoveFeaturedProductResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ReorderCarouselImagesRequest": {
+      "type": "object",
+      "properties": {
+        "section": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/CarouselOrder"
+          },
+          "title": "@gotags: validate:\"required,dive\""
+        }
+      }
+    },
+    "ReorderCarouselImagesResponse": {
+      "type": "object",
+      "properties": {
+        "carousel_images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/CarouselImage"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ReorderFeaturedProductsRequest": {
+      "type": "object",
+      "properties": {
+        "section": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/FeaturedOrder"
+          },
+          "title": "@gotags: validate:\"required,dive\""
+        }
+      }
+    },
+    "ReorderFeaturedProductsResponse": {
+      "type": "object",
+      "properties": {
+        "featured_products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/FeaturedProduct"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ReorderProductImagesBody": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ImageOrder"
+          },
+          "title": "@gotags: validate:\"required,dive\""
+        }
+      }
+    },
+    "ReorderProductImagesResponse": {
+      "type": "object",
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ProductImage"
+          }
+        },
+        "message": {
           "type": "string"
         }
       }
@@ -942,6 +1693,20 @@
         }
       }
     },
+    "SetPrimaryImageBody": {
+      "type": "object"
+    },
+    "SetPrimaryImageResponse": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/ProductImage"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "StockAvailability": {
       "type": "object",
       "properties": {
@@ -972,6 +1737,48 @@
           "type": "integer",
           "format": "int32",
           "title": "@gotags: validate:\"required,gt=0\""
+        }
+      }
+    },
+    "UpdateCarouselImageBody": {
+      "type": "object",
+      "properties": {
+        "image_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "subtitle": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "cta_text": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "cta_link": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateCarouselImageResponse": {
+      "type": "object",
+      "properties": {
+        "carousel_image": {
+          "$ref": "#/definitions/CarouselImage"
+        },
+        "message": {
+          "type": "string"
         }
       }
     },
@@ -1112,6 +1919,45 @@
           "$ref": "#/definitions/Product"
         },
         "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "UploadCarouselImageRequest": {
+      "type": "object",
+      "properties": {
+        "section": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Note: Actual file upload is handled via multipart/form-data in HTTP handler\nThis message is used for the gRPC endpoint definition only\nThe custom HTTP handler bypasses this and handles multipart directly"
+        }
+      }
+    },
+    "UploadCarouselImageResponse": {
+      "type": "object",
+      "properties": {
+        "carousel_image": {
+          "$ref": "#/definitions/CarouselImage"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "UploadProductImagesBody": {
+      "type": "object"
+    },
+    "UploadProductImagesResponse": {
+      "type": "object",
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ProductImage"
+          }
+        },
+        "message": {
           "type": "string"
         }
       }
