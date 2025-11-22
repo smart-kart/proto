@@ -19,7 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AccountHTTPService_CreateUser_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/CreateUser"
+	AccountHTTPService_InitiateRegistration_FullMethodName  = "/smart_kart.account.http.v3.AccountHTTPService/InitiateRegistration"
+	AccountHTTPService_VerifyRegistrationOTP_FullMethodName = "/smart_kart.account.http.v3.AccountHTTPService/VerifyRegistrationOTP"
+	AccountHTTPService_CompleteRegistration_FullMethodName  = "/smart_kart.account.http.v3.AccountHTTPService/CompleteRegistration"
 	AccountHTTPService_LoginUser_FullMethodName             = "/smart_kart.account.http.v3.AccountHTTPService/LoginUser"
 	AccountHTTPService_LoginWithPhone_FullMethodName        = "/smart_kart.account.http.v3.AccountHTTPService/LoginWithPhone"
 	AccountHTTPService_GoogleAuth_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/GoogleAuth"
@@ -36,6 +38,12 @@ const (
 	AccountHTTPService_Logout_FullMethodName                = "/smart_kart.account.http.v3.AccountHTTPService/Logout"
 	AccountHTTPService_RefreshToken_FullMethodName          = "/smart_kart.account.http.v3.AccountHTTPService/RefreshToken"
 	AccountHTTPService_RefreshTokenSilent_FullMethodName    = "/smart_kart.account.http.v3.AccountHTTPService/RefreshTokenSilent"
+	AccountHTTPService_AddAddress_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/AddAddress"
+	AccountHTTPService_GetAddress_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/GetAddress"
+	AccountHTTPService_ListAddresses_FullMethodName         = "/smart_kart.account.http.v3.AccountHTTPService/ListAddresses"
+	AccountHTTPService_UpdateAddress_FullMethodName         = "/smart_kart.account.http.v3.AccountHTTPService/UpdateAddress"
+	AccountHTTPService_DeleteAddress_FullMethodName         = "/smart_kart.account.http.v3.AccountHTTPService/DeleteAddress"
+	AccountHTTPService_SetDefaultAddress_FullMethodName     = "/smart_kart.account.http.v3.AccountHTTPService/SetDefaultAddress"
 )
 
 // AccountHTTPServiceClient is the client API for AccountHTTPService service.
@@ -44,11 +52,15 @@ const (
 //
 // AccountHTTPService provides HTTP v3 endpoints for account management
 type AccountHTTPServiceClient interface {
-	// CreateAccount creates a new account via HTTP
-	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
-	// LoginUser login a user
+	// InitiateRegistration - Step 1: User enters email or phone, receives OTP
+	InitiateRegistration(ctx context.Context, in *InitiateRegistrationRequest, opts ...grpc.CallOption) (*InitiateRegistrationResponse, error)
+	// VerifyRegistrationOTP - Step 2: User verifies OTP sent to email/phone
+	VerifyRegistrationOTP(ctx context.Context, in *VerifyRegistrationOTPRequest, opts ...grpc.CallOption) (*VerifyRegistrationOTPResponse, error)
+	// CompleteRegistration - Step 3: User provides name & password, account created & auto-login
+	CompleteRegistration(ctx context.Context, in *CompleteRegistrationRequest, opts ...grpc.CallOption) (*CompleteRegistrationResponse, error)
+	// LoginUser login a user (accepts email OR phone + password)
 	LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
-	// LoginWithPhone login a user
+	// LoginWithPhone login a user (OTP-based login)
 	LoginWithPhone(ctx context.Context, in *LoginWithPhoneRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
 	// GoogleAuth authenticates or creates a user via Google OAuth
 	GoogleAuth(ctx context.Context, in *GoogleAuthRequest, opts ...grpc.CallOption) (*GoogleAuthResponse, error)
@@ -78,6 +90,18 @@ type AccountHTTPServiceClient interface {
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	// RefreshTokenSilent refreshes access token using httpOnly cookie
 	RefreshTokenSilent(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*RefreshTokenSilentResponse, error)
+	// AddAddress adds a new shipping/billing address for the user
+	AddAddress(ctx context.Context, in *AddAddressRequest, opts ...grpc.CallOption) (*AddAddressResponse, error)
+	// GetAddress retrieves a specific address by ID
+	GetAddress(ctx context.Context, in *GetAddressRequest, opts ...grpc.CallOption) (*GetAddressResponse, error)
+	// ListAddresses retrieves all addresses for the authenticated user
+	ListAddresses(ctx context.Context, in *ListAddressesRequest, opts ...grpc.CallOption) (*ListAddressesResponse, error)
+	// UpdateAddress updates an existing address
+	UpdateAddress(ctx context.Context, in *UpdateAddressRequest, opts ...grpc.CallOption) (*UpdateAddressResponse, error)
+	// DeleteAddress deletes an address
+	DeleteAddress(ctx context.Context, in *DeleteAddressRequest, opts ...grpc.CallOption) (*DeleteAddressResponse, error)
+	// SetDefaultAddress sets an address as the default for shipping/billing
+	SetDefaultAddress(ctx context.Context, in *SetDefaultAddressRequest, opts ...grpc.CallOption) (*SetDefaultAddressResponse, error)
 }
 
 type accountHTTPServiceClient struct {
@@ -88,10 +112,30 @@ func NewAccountHTTPServiceClient(cc grpc.ClientConnInterface) AccountHTTPService
 	return &accountHTTPServiceClient{cc}
 }
 
-func (c *accountHTTPServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
+func (c *accountHTTPServiceClient) InitiateRegistration(ctx context.Context, in *InitiateRegistrationRequest, opts ...grpc.CallOption) (*InitiateRegistrationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateUserResponse)
-	err := c.cc.Invoke(ctx, AccountHTTPService_CreateUser_FullMethodName, in, out, cOpts...)
+	out := new(InitiateRegistrationResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_InitiateRegistration_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) VerifyRegistrationOTP(ctx context.Context, in *VerifyRegistrationOTPRequest, opts ...grpc.CallOption) (*VerifyRegistrationOTPResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VerifyRegistrationOTPResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_VerifyRegistrationOTP_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) CompleteRegistration(ctx context.Context, in *CompleteRegistrationRequest, opts ...grpc.CallOption) (*CompleteRegistrationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompleteRegistrationResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_CompleteRegistration_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -258,17 +302,81 @@ func (c *accountHTTPServiceClient) RefreshTokenSilent(ctx context.Context, in *E
 	return out, nil
 }
 
+func (c *accountHTTPServiceClient) AddAddress(ctx context.Context, in *AddAddressRequest, opts ...grpc.CallOption) (*AddAddressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddAddressResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_AddAddress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) GetAddress(ctx context.Context, in *GetAddressRequest, opts ...grpc.CallOption) (*GetAddressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAddressResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_GetAddress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) ListAddresses(ctx context.Context, in *ListAddressesRequest, opts ...grpc.CallOption) (*ListAddressesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAddressesResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_ListAddresses_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) UpdateAddress(ctx context.Context, in *UpdateAddressRequest, opts ...grpc.CallOption) (*UpdateAddressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateAddressResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_UpdateAddress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) DeleteAddress(ctx context.Context, in *DeleteAddressRequest, opts ...grpc.CallOption) (*DeleteAddressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteAddressResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_DeleteAddress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountHTTPServiceClient) SetDefaultAddress(ctx context.Context, in *SetDefaultAddressRequest, opts ...grpc.CallOption) (*SetDefaultAddressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetDefaultAddressResponse)
+	err := c.cc.Invoke(ctx, AccountHTTPService_SetDefaultAddress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountHTTPServiceServer is the server API for AccountHTTPService service.
 // All implementations must embed UnimplementedAccountHTTPServiceServer
 // for forward compatibility.
 //
 // AccountHTTPService provides HTTP v3 endpoints for account management
 type AccountHTTPServiceServer interface {
-	// CreateAccount creates a new account via HTTP
-	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
-	// LoginUser login a user
+	// InitiateRegistration - Step 1: User enters email or phone, receives OTP
+	InitiateRegistration(context.Context, *InitiateRegistrationRequest) (*InitiateRegistrationResponse, error)
+	// VerifyRegistrationOTP - Step 2: User verifies OTP sent to email/phone
+	VerifyRegistrationOTP(context.Context, *VerifyRegistrationOTPRequest) (*VerifyRegistrationOTPResponse, error)
+	// CompleteRegistration - Step 3: User provides name & password, account created & auto-login
+	CompleteRegistration(context.Context, *CompleteRegistrationRequest) (*CompleteRegistrationResponse, error)
+	// LoginUser login a user (accepts email OR phone + password)
 	LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error)
-	// LoginWithPhone login a user
+	// LoginWithPhone login a user (OTP-based login)
 	LoginWithPhone(context.Context, *LoginWithPhoneRequest) (*LoginUserResponse, error)
 	// GoogleAuth authenticates or creates a user via Google OAuth
 	GoogleAuth(context.Context, *GoogleAuthRequest) (*GoogleAuthResponse, error)
@@ -298,6 +406,18 @@ type AccountHTTPServiceServer interface {
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	// RefreshTokenSilent refreshes access token using httpOnly cookie
 	RefreshTokenSilent(context.Context, *EmptyRequest) (*RefreshTokenSilentResponse, error)
+	// AddAddress adds a new shipping/billing address for the user
+	AddAddress(context.Context, *AddAddressRequest) (*AddAddressResponse, error)
+	// GetAddress retrieves a specific address by ID
+	GetAddress(context.Context, *GetAddressRequest) (*GetAddressResponse, error)
+	// ListAddresses retrieves all addresses for the authenticated user
+	ListAddresses(context.Context, *ListAddressesRequest) (*ListAddressesResponse, error)
+	// UpdateAddress updates an existing address
+	UpdateAddress(context.Context, *UpdateAddressRequest) (*UpdateAddressResponse, error)
+	// DeleteAddress deletes an address
+	DeleteAddress(context.Context, *DeleteAddressRequest) (*DeleteAddressResponse, error)
+	// SetDefaultAddress sets an address as the default for shipping/billing
+	SetDefaultAddress(context.Context, *SetDefaultAddressRequest) (*SetDefaultAddressResponse, error)
 	mustEmbedUnimplementedAccountHTTPServiceServer()
 }
 
@@ -308,8 +428,14 @@ type AccountHTTPServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAccountHTTPServiceServer struct{}
 
-func (UnimplementedAccountHTTPServiceServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+func (UnimplementedAccountHTTPServiceServer) InitiateRegistration(context.Context, *InitiateRegistrationRequest) (*InitiateRegistrationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitiateRegistration not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) VerifyRegistrationOTP(context.Context, *VerifyRegistrationOTPRequest) (*VerifyRegistrationOTPResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyRegistrationOTP not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) CompleteRegistration(context.Context, *CompleteRegistrationRequest) (*CompleteRegistrationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CompleteRegistration not implemented")
 }
 func (UnimplementedAccountHTTPServiceServer) LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
@@ -359,6 +485,24 @@ func (UnimplementedAccountHTTPServiceServer) RefreshToken(context.Context, *Refr
 func (UnimplementedAccountHTTPServiceServer) RefreshTokenSilent(context.Context, *EmptyRequest) (*RefreshTokenSilentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshTokenSilent not implemented")
 }
+func (UnimplementedAccountHTTPServiceServer) AddAddress(context.Context, *AddAddressRequest) (*AddAddressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddAddress not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) GetAddress(context.Context, *GetAddressRequest) (*GetAddressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAddress not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) ListAddresses(context.Context, *ListAddressesRequest) (*ListAddressesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAddresses not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) UpdateAddress(context.Context, *UpdateAddressRequest) (*UpdateAddressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAddress not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) DeleteAddress(context.Context, *DeleteAddressRequest) (*DeleteAddressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAddress not implemented")
+}
+func (UnimplementedAccountHTTPServiceServer) SetDefaultAddress(context.Context, *SetDefaultAddressRequest) (*SetDefaultAddressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultAddress not implemented")
+}
 func (UnimplementedAccountHTTPServiceServer) mustEmbedUnimplementedAccountHTTPServiceServer() {}
 func (UnimplementedAccountHTTPServiceServer) testEmbeddedByValue()                            {}
 
@@ -380,20 +524,56 @@ func RegisterAccountHTTPServiceServer(s grpc.ServiceRegistrar, srv AccountHTTPSe
 	s.RegisterService(&AccountHTTPService_ServiceDesc, srv)
 }
 
-func _AccountHTTPService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateUserRequest)
+func _AccountHTTPService_InitiateRegistration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitiateRegistrationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AccountHTTPServiceServer).CreateUser(ctx, in)
+		return srv.(AccountHTTPServiceServer).InitiateRegistration(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AccountHTTPService_CreateUser_FullMethodName,
+		FullMethod: AccountHTTPService_InitiateRegistration_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AccountHTTPServiceServer).CreateUser(ctx, req.(*CreateUserRequest))
+		return srv.(AccountHTTPServiceServer).InitiateRegistration(ctx, req.(*InitiateRegistrationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_VerifyRegistrationOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyRegistrationOTPRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).VerifyRegistrationOTP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_VerifyRegistrationOTP_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).VerifyRegistrationOTP(ctx, req.(*VerifyRegistrationOTPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_CompleteRegistration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompleteRegistrationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).CompleteRegistration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_CompleteRegistration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).CompleteRegistration(ctx, req.(*CompleteRegistrationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -686,6 +866,114 @@ func _AccountHTTPService_RefreshTokenSilent_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountHTTPService_AddAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).AddAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_AddAddress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).AddAddress(ctx, req.(*AddAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_GetAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).GetAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_GetAddress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).GetAddress(ctx, req.(*GetAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_ListAddresses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAddressesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).ListAddresses(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_ListAddresses_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).ListAddresses(ctx, req.(*ListAddressesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_UpdateAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).UpdateAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_UpdateAddress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).UpdateAddress(ctx, req.(*UpdateAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_DeleteAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).DeleteAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_DeleteAddress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).DeleteAddress(ctx, req.(*DeleteAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountHTTPService_SetDefaultAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetDefaultAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountHTTPServiceServer).SetDefaultAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountHTTPService_SetDefaultAddress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountHTTPServiceServer).SetDefaultAddress(ctx, req.(*SetDefaultAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccountHTTPService_ServiceDesc is the grpc.ServiceDesc for AccountHTTPService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -694,8 +982,16 @@ var AccountHTTPService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AccountHTTPServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateUser",
-			Handler:    _AccountHTTPService_CreateUser_Handler,
+			MethodName: "InitiateRegistration",
+			Handler:    _AccountHTTPService_InitiateRegistration_Handler,
+		},
+		{
+			MethodName: "VerifyRegistrationOTP",
+			Handler:    _AccountHTTPService_VerifyRegistrationOTP_Handler,
+		},
+		{
+			MethodName: "CompleteRegistration",
+			Handler:    _AccountHTTPService_CompleteRegistration_Handler,
 		},
 		{
 			MethodName: "LoginUser",
@@ -760,6 +1056,30 @@ var AccountHTTPService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RefreshTokenSilent",
 			Handler:    _AccountHTTPService_RefreshTokenSilent_Handler,
+		},
+		{
+			MethodName: "AddAddress",
+			Handler:    _AccountHTTPService_AddAddress_Handler,
+		},
+		{
+			MethodName: "GetAddress",
+			Handler:    _AccountHTTPService_GetAddress_Handler,
+		},
+		{
+			MethodName: "ListAddresses",
+			Handler:    _AccountHTTPService_ListAddresses_Handler,
+		},
+		{
+			MethodName: "UpdateAddress",
+			Handler:    _AccountHTTPService_UpdateAddress_Handler,
+		},
+		{
+			MethodName: "DeleteAddress",
+			Handler:    _AccountHTTPService_DeleteAddress_Handler,
+		},
+		{
+			MethodName: "SetDefaultAddress",
+			Handler:    _AccountHTTPService_SetDefaultAddress_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

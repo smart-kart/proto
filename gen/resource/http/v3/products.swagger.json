@@ -1070,6 +1070,7 @@
         "price": {
           "type": "number",
           "format": "double",
+          "description": "selling_price",
           "title": "@gotags: validate:\"required,gt=0\""
         },
         "sku": {
@@ -1096,6 +1097,30 @@
         "dimensions": {
           "type": "string",
           "x-nullable": true
+        },
+        "mrp": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "description": "Maximum Retail Price",
+          "title": "Pricing fields"
+        },
+        "cost_price": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "Procurement cost"
+        },
+        "hsn_code": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Tax classification"
+        },
+        "tax_rate": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "GST percentage"
         }
       },
       "title": "@gotags: validate:\"required\""
@@ -1416,7 +1441,8 @@
         },
         "price": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "title": "selling_price - what customer pays"
         },
         "sku": {
           "type": "string"
@@ -1460,6 +1486,39 @@
             "type": "object",
             "$ref": "#/definitions/ProductImage"
           }
+        },
+        "is_in_stock": {
+          "type": "boolean"
+        },
+        "mrp": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "description": "Maximum Retail Price (original price)",
+          "title": "Pricing fields"
+        },
+        "cost_price": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "Procurement cost"
+        },
+        "hsn_code": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Tax classification code"
+        },
+        "tax_rate": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "GST percentage (0, 5, 12, 18, 28)"
+        },
+        "discount_percentage": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "Calculated: (mrp - price) / mrp * 100"
         }
       }
     },
@@ -1867,7 +1926,8 @@
         "price": {
           "type": "number",
           "format": "double",
-          "x-nullable": true
+          "x-nullable": true,
+          "title": "selling_price"
         },
         "category_id": {
           "type": "string",
@@ -1889,6 +1949,30 @@
         "dimensions": {
           "type": "string",
           "x-nullable": true
+        },
+        "mrp": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "description": "Maximum Retail Price",
+          "title": "Pricing fields"
+        },
+        "cost_price": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "Procurement cost"
+        },
+        "hsn_code": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Tax classification"
+        },
+        "tax_rate": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "GST percentage"
         }
       }
     },

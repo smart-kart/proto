@@ -224,23 +224,30 @@ func (x *ProductImage) GetUpdatedAt() *timestamppb.Timestamp {
 }
 
 type Product struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProductId     string                 `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Description   *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	Price         float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
-	Sku           string                 `protobuf:"bytes,5,opt,name=sku,proto3" json:"sku,omitempty"`
-	CategoryId    *string                `protobuf:"bytes,6,opt,name=category_id,proto3,oneof" json:"category_id,omitempty"`
-	ImageUrl      *string                `protobuf:"bytes,7,opt,name=image_url,proto3,oneof" json:"image_url,omitempty"`
-	Brand         *string                `protobuf:"bytes,8,opt,name=brand,proto3,oneof" json:"brand,omitempty"`
-	Weight        *float64               `protobuf:"fixed64,9,opt,name=weight,proto3,oneof" json:"weight,omitempty"`
-	Dimensions    *string                `protobuf:"bytes,10,opt,name=dimensions,proto3,oneof" json:"dimensions,omitempty"`
-	Status        string                 `protobuf:"bytes,11,opt,name=status,proto3" json:"status,omitempty"` // active, inactive, discontinued
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created_at,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated_at,proto3" json:"updated_at,omitempty"`
-	Images        []*ProductImage        `protobuf:"bytes,14,rep,name=images,proto3" json:"images,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	ProductId   string                 `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty"`
+	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Price       float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"` // selling_price - what customer pays
+	Sku         string                 `protobuf:"bytes,5,opt,name=sku,proto3" json:"sku,omitempty"`
+	CategoryId  *string                `protobuf:"bytes,6,opt,name=category_id,proto3,oneof" json:"category_id,omitempty"`
+	ImageUrl    *string                `protobuf:"bytes,7,opt,name=image_url,proto3,oneof" json:"image_url,omitempty"`
+	Brand       *string                `protobuf:"bytes,8,opt,name=brand,proto3,oneof" json:"brand,omitempty"`
+	Weight      *float64               `protobuf:"fixed64,9,opt,name=weight,proto3,oneof" json:"weight,omitempty"`
+	Dimensions  *string                `protobuf:"bytes,10,opt,name=dimensions,proto3,oneof" json:"dimensions,omitempty"`
+	Status      string                 `protobuf:"bytes,11,opt,name=status,proto3" json:"status,omitempty"` // active, inactive, discontinued
+	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created_at,proto3" json:"created_at,omitempty"`
+	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated_at,proto3" json:"updated_at,omitempty"`
+	Images      []*ProductImage        `protobuf:"bytes,14,rep,name=images,proto3" json:"images,omitempty"`
+	IsInStock   bool                   `protobuf:"varint,15,opt,name=is_in_stock,proto3" json:"is_in_stock,omitempty"`
+	// Pricing fields
+	Mrp                *float64 `protobuf:"fixed64,16,opt,name=mrp,proto3,oneof" json:"mrp,omitempty"`                                 // Maximum Retail Price (original price)
+	CostPrice          *float64 `protobuf:"fixed64,17,opt,name=cost_price,proto3,oneof" json:"cost_price,omitempty"`                   // Procurement cost
+	HsnCode            *string  `protobuf:"bytes,18,opt,name=hsn_code,proto3,oneof" json:"hsn_code,omitempty"`                         // Tax classification code
+	TaxRate            *float64 `protobuf:"fixed64,19,opt,name=tax_rate,proto3,oneof" json:"tax_rate,omitempty"`                       // GST percentage (0, 5, 12, 18, 28)
+	DiscountPercentage *float64 `protobuf:"fixed64,20,opt,name=discount_percentage,proto3,oneof" json:"discount_percentage,omitempty"` // Calculated: (mrp - price) / mrp * 100
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *Product) Reset() {
@@ -371,6 +378,48 @@ func (x *Product) GetImages() []*ProductImage {
 	return nil
 }
 
+func (x *Product) GetIsInStock() bool {
+	if x != nil {
+		return x.IsInStock
+	}
+	return false
+}
+
+func (x *Product) GetMrp() float64 {
+	if x != nil && x.Mrp != nil {
+		return *x.Mrp
+	}
+	return 0
+}
+
+func (x *Product) GetCostPrice() float64 {
+	if x != nil && x.CostPrice != nil {
+		return *x.CostPrice
+	}
+	return 0
+}
+
+func (x *Product) GetHsnCode() string {
+	if x != nil && x.HsnCode != nil {
+		return *x.HsnCode
+	}
+	return ""
+}
+
+func (x *Product) GetTaxRate() float64 {
+	if x != nil && x.TaxRate != nil {
+		return *x.TaxRate
+	}
+	return 0
+}
+
+func (x *Product) GetDiscountPercentage() float64 {
+	if x != nil && x.DiscountPercentage != nil {
+		return *x.DiscountPercentage
+	}
+	return 0
+}
+
 // @gotags: validate:"required"
 type CreateProductRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -378,14 +427,19 @@ type CreateProductRequest struct {
 	Name        string  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" validate:"required,min=3,max=200"`
 	Description *string `protobuf:"bytes,2,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	 
-	Price float64 `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty" validate:"required,gt=0"`
+	Price float64 `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty" validate:"required,gt=0"` // selling_price
 	 
-	Sku           string   `protobuf:"bytes,4,opt,name=sku,proto3" json:"sku,omitempty" validate:"required,min=3,max=50"`
-	CategoryId    *string  `protobuf:"bytes,5,opt,name=category_id,proto3,oneof" json:"category_id,omitempty"`
-	ImageUrl      *string  `protobuf:"bytes,6,opt,name=image_url,proto3,oneof" json:"image_url,omitempty"`
-	Brand         *string  `protobuf:"bytes,7,opt,name=brand,proto3,oneof" json:"brand,omitempty"`
-	Weight        *float64 `protobuf:"fixed64,8,opt,name=weight,proto3,oneof" json:"weight,omitempty"`
-	Dimensions    *string  `protobuf:"bytes,9,opt,name=dimensions,proto3,oneof" json:"dimensions,omitempty"`
+	Sku        string   `protobuf:"bytes,4,opt,name=sku,proto3" json:"sku,omitempty" validate:"required,min=3,max=50"`
+	CategoryId *string  `protobuf:"bytes,5,opt,name=category_id,proto3,oneof" json:"category_id,omitempty"`
+	ImageUrl   *string  `protobuf:"bytes,6,opt,name=image_url,proto3,oneof" json:"image_url,omitempty"`
+	Brand      *string  `protobuf:"bytes,7,opt,name=brand,proto3,oneof" json:"brand,omitempty"`
+	Weight     *float64 `protobuf:"fixed64,8,opt,name=weight,proto3,oneof" json:"weight,omitempty"`
+	Dimensions *string  `protobuf:"bytes,9,opt,name=dimensions,proto3,oneof" json:"dimensions,omitempty"`
+	// Pricing fields
+	Mrp           *float64 `protobuf:"fixed64,10,opt,name=mrp,proto3,oneof" json:"mrp,omitempty"`               // Maximum Retail Price
+	CostPrice     *float64 `protobuf:"fixed64,11,opt,name=cost_price,proto3,oneof" json:"cost_price,omitempty"` // Procurement cost
+	HsnCode       *string  `protobuf:"bytes,12,opt,name=hsn_code,proto3,oneof" json:"hsn_code,omitempty"`       // Tax classification
+	TaxRate       *float64 `protobuf:"fixed64,13,opt,name=tax_rate,proto3,oneof" json:"tax_rate,omitempty"`     // GST percentage
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -481,6 +535,34 @@ func (x *CreateProductRequest) GetDimensions() string {
 		return *x.Dimensions
 	}
 	return ""
+}
+
+func (x *CreateProductRequest) GetMrp() float64 {
+	if x != nil && x.Mrp != nil {
+		return *x.Mrp
+	}
+	return 0
+}
+
+func (x *CreateProductRequest) GetCostPrice() float64 {
+	if x != nil && x.CostPrice != nil {
+		return *x.CostPrice
+	}
+	return 0
+}
+
+func (x *CreateProductRequest) GetHsnCode() string {
+	if x != nil && x.HsnCode != nil {
+		return *x.HsnCode
+	}
+	return ""
+}
+
+func (x *CreateProductRequest) GetTaxRate() float64 {
+	if x != nil && x.TaxRate != nil {
+		return *x.TaxRate
+	}
+	return 0
 }
 
 type CreateProductResponse struct {
@@ -635,15 +717,20 @@ func (x *GetProductResponse) GetMessage() string {
 type UpdateProductRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	 
-	ProductId     string   `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"`
-	Name          *string  `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	Description   *string  `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	Price         *float64 `protobuf:"fixed64,4,opt,name=price,proto3,oneof" json:"price,omitempty"`
-	CategoryId    *string  `protobuf:"bytes,5,opt,name=category_id,proto3,oneof" json:"category_id,omitempty"`
-	ImageUrl      *string  `protobuf:"bytes,6,opt,name=image_url,proto3,oneof" json:"image_url,omitempty"`
-	Brand         *string  `protobuf:"bytes,7,opt,name=brand,proto3,oneof" json:"brand,omitempty"`
-	Weight        *float64 `protobuf:"fixed64,8,opt,name=weight,proto3,oneof" json:"weight,omitempty"`
-	Dimensions    *string  `protobuf:"bytes,9,opt,name=dimensions,proto3,oneof" json:"dimensions,omitempty"`
+	ProductId   string   `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"`
+	Name        *string  `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Description *string  `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Price       *float64 `protobuf:"fixed64,4,opt,name=price,proto3,oneof" json:"price,omitempty"` // selling_price
+	CategoryId  *string  `protobuf:"bytes,5,opt,name=category_id,proto3,oneof" json:"category_id,omitempty"`
+	ImageUrl    *string  `protobuf:"bytes,6,opt,name=image_url,proto3,oneof" json:"image_url,omitempty"`
+	Brand       *string  `protobuf:"bytes,7,opt,name=brand,proto3,oneof" json:"brand,omitempty"`
+	Weight      *float64 `protobuf:"fixed64,8,opt,name=weight,proto3,oneof" json:"weight,omitempty"`
+	Dimensions  *string  `protobuf:"bytes,9,opt,name=dimensions,proto3,oneof" json:"dimensions,omitempty"`
+	// Pricing fields
+	Mrp           *float64 `protobuf:"fixed64,10,opt,name=mrp,proto3,oneof" json:"mrp,omitempty"`               // Maximum Retail Price
+	CostPrice     *float64 `protobuf:"fixed64,11,opt,name=cost_price,proto3,oneof" json:"cost_price,omitempty"` // Procurement cost
+	HsnCode       *string  `protobuf:"bytes,12,opt,name=hsn_code,proto3,oneof" json:"hsn_code,omitempty"`       // Tax classification
+	TaxRate       *float64 `protobuf:"fixed64,13,opt,name=tax_rate,proto3,oneof" json:"tax_rate,omitempty"`     // GST percentage
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -739,6 +826,34 @@ func (x *UpdateProductRequest) GetDimensions() string {
 		return *x.Dimensions
 	}
 	return ""
+}
+
+func (x *UpdateProductRequest) GetMrp() float64 {
+	if x != nil && x.Mrp != nil {
+		return *x.Mrp
+	}
+	return 0
+}
+
+func (x *UpdateProductRequest) GetCostPrice() float64 {
+	if x != nil && x.CostPrice != nil {
+		return *x.CostPrice
+	}
+	return 0
+}
+
+func (x *UpdateProductRequest) GetHsnCode() string {
+	if x != nil && x.HsnCode != nil {
+		return *x.HsnCode
+	}
+	return ""
+}
+
+func (x *UpdateProductRequest) GetTaxRate() float64 {
+	if x != nil && x.TaxRate != nil {
+		return *x.TaxRate
+	}
+	return 0
 }
 
 type UpdateProductResponse struct {
@@ -5048,7 +5163,7 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\n" +
 	"_mime_typeB\b\n" +
 	"\x06_widthB\t\n" +
-	"\a_height\"\xd8\x04\n" +
+	"\a_height\"\xf8\x06\n" +
 	"\aProduct\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
@@ -5072,14 +5187,28 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"updated_at\x12A\n" +
-	"\x06images\x18\x0e \x03(\v2).smart_kart.products.http.v3.ProductImageR\x06imagesB\x0e\n" +
+	"\x06images\x18\x0e \x03(\v2).smart_kart.products.http.v3.ProductImageR\x06images\x12 \n" +
+	"\vis_in_stock\x18\x0f \x01(\bR\vis_in_stock\x12\x15\n" +
+	"\x03mrp\x18\x10 \x01(\x01H\x06R\x03mrp\x88\x01\x01\x12#\n" +
+	"\n" +
+	"cost_price\x18\x11 \x01(\x01H\aR\n" +
+	"cost_price\x88\x01\x01\x12\x1f\n" +
+	"\bhsn_code\x18\x12 \x01(\tH\bR\bhsn_code\x88\x01\x01\x12\x1f\n" +
+	"\btax_rate\x18\x13 \x01(\x01H\tR\btax_rate\x88\x01\x01\x125\n" +
+	"\x13discount_percentage\x18\x14 \x01(\x01H\n" +
+	"R\x13discount_percentage\x88\x01\x01B\x0e\n" +
 	"\f_descriptionB\x0e\n" +
 	"\f_category_idB\f\n" +
 	"\n" +
 	"_image_urlB\b\n" +
 	"\x06_brandB\t\n" +
 	"\a_weightB\r\n" +
-	"\v_dimensions\"\xf2\x02\n" +
+	"\v_dimensionsB\x06\n" +
+	"\x04_mrpB\r\n" +
+	"\v_cost_priceB\v\n" +
+	"\t_hsn_codeB\v\n" +
+	"\t_tax_rateB\x16\n" +
+	"\x14_discount_percentage\"\xa1\x04\n" +
 	"\x14CreateProductRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12%\n" +
 	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01\x12\x14\n" +
@@ -5091,14 +5220,25 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x06weight\x18\b \x01(\x01H\x04R\x06weight\x88\x01\x01\x12#\n" +
 	"\n" +
 	"dimensions\x18\t \x01(\tH\x05R\n" +
-	"dimensions\x88\x01\x01B\x0e\n" +
+	"dimensions\x88\x01\x01\x12\x15\n" +
+	"\x03mrp\x18\n" +
+	" \x01(\x01H\x06R\x03mrp\x88\x01\x01\x12#\n" +
+	"\n" +
+	"cost_price\x18\v \x01(\x01H\aR\n" +
+	"cost_price\x88\x01\x01\x12\x1f\n" +
+	"\bhsn_code\x18\f \x01(\tH\bR\bhsn_code\x88\x01\x01\x12\x1f\n" +
+	"\btax_rate\x18\r \x01(\x01H\tR\btax_rate\x88\x01\x01B\x0e\n" +
 	"\f_descriptionB\x0e\n" +
 	"\f_category_idB\f\n" +
 	"\n" +
 	"_image_urlB\b\n" +
 	"\x06_brandB\t\n" +
 	"\a_weightB\r\n" +
-	"\v_dimensions\"q\n" +
+	"\v_dimensionsB\x06\n" +
+	"\x04_mrpB\r\n" +
+	"\v_cost_priceB\v\n" +
+	"\t_hsn_codeB\v\n" +
+	"\t_tax_rate\"q\n" +
 	"\x15CreateProductResponse\x12>\n" +
 	"\aproduct\x18\x01 \x01(\v2$.smart_kart.products.http.v3.ProductR\aproduct\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"3\n" +
@@ -5108,7 +5248,7 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"product_id\"n\n" +
 	"\x12GetProductResponse\x12>\n" +
 	"\aproduct\x18\x01 \x01(\v2$.smart_kart.products.http.v3.ProductR\aproduct\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x9d\x03\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xcc\x04\n" +
 	"\x14UpdateProductRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
@@ -5122,7 +5262,15 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x06weight\x18\b \x01(\x01H\x06R\x06weight\x88\x01\x01\x12#\n" +
 	"\n" +
 	"dimensions\x18\t \x01(\tH\aR\n" +
-	"dimensions\x88\x01\x01B\a\n" +
+	"dimensions\x88\x01\x01\x12\x15\n" +
+	"\x03mrp\x18\n" +
+	" \x01(\x01H\bR\x03mrp\x88\x01\x01\x12#\n" +
+	"\n" +
+	"cost_price\x18\v \x01(\x01H\tR\n" +
+	"cost_price\x88\x01\x01\x12\x1f\n" +
+	"\bhsn_code\x18\f \x01(\tH\n" +
+	"R\bhsn_code\x88\x01\x01\x12\x1f\n" +
+	"\btax_rate\x18\r \x01(\x01H\vR\btax_rate\x88\x01\x01B\a\n" +
 	"\x05_nameB\x0e\n" +
 	"\f_descriptionB\b\n" +
 	"\x06_priceB\x0e\n" +
@@ -5131,7 +5279,11 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"_image_urlB\b\n" +
 	"\x06_brandB\t\n" +
 	"\a_weightB\r\n" +
-	"\v_dimensions\"q\n" +
+	"\v_dimensionsB\x06\n" +
+	"\x04_mrpB\r\n" +
+	"\v_cost_priceB\v\n" +
+	"\t_hsn_codeB\v\n" +
+	"\t_tax_rate\"q\n" +
 	"\x15UpdateProductResponse\x12>\n" +
 	"\aproduct\x18\x01 \x01(\v2$.smart_kart.products.http.v3.ProductR\aproduct\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"6\n" +

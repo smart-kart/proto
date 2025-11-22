@@ -273,7 +273,7 @@ message Product {
   string product_id = 1 [json_name = "product_id"];
   string name = 2 [json_name = "name"];
   optional string description = 3 [json_name = "description"];
-  double price = 4 [json_name = "price"];
+  double price = 4 [json_name = "price"]; // selling_price - what customer pays
   string sku = 5 [json_name = "sku"];
   optional string category_id = 6 [json_name = "category_id"];
   optional string image_url = 7 [json_name = "image_url"];
@@ -284,6 +284,13 @@ message Product {
   google.protobuf.Timestamp created_at = 12 [json_name = "created_at"];
   google.protobuf.Timestamp updated_at = 13 [json_name = "updated_at"];
   repeated ProductImage images = 14 [json_name = "images"];
+  bool is_in_stock = 15 [json_name = "is_in_stock"];
+  // Pricing fields
+  optional double mrp = 16 [json_name = "mrp"]; // Maximum Retail Price (original price)
+  optional double cost_price = 17 [json_name = "cost_price"]; // Procurement cost
+  optional string hsn_code = 18 [json_name = "hsn_code"]; // Tax classification code
+  optional double tax_rate = 19 [json_name = "tax_rate"]; // GST percentage (0, 5, 12, 18, 28)
+  optional double discount_percentage = 20 [json_name = "discount_percentage"]; // Calculated: (mrp - price) / mrp * 100
 }
 
 // @gotags: validate:"required"
@@ -292,7 +299,7 @@ message CreateProductRequest {
   string name = 1 [json_name = "name"];
   optional string description = 2 [json_name = "description"];
   // @gotags: validate:"required,gt=0"
-  double price = 3 [json_name = "price"];
+  double price = 3 [json_name = "price"]; // selling_price
   // @gotags: validate:"required,min=3,max=50"
   string sku = 4 [json_name = "sku"];
   optional string category_id = 5 [json_name = "category_id"];
@@ -300,6 +307,11 @@ message CreateProductRequest {
   optional string brand = 7 [json_name = "brand"];
   optional double weight = 8 [json_name = "weight"];
   optional string dimensions = 9 [json_name = "dimensions"];
+  // Pricing fields
+  optional double mrp = 10 [json_name = "mrp"]; // Maximum Retail Price
+  optional double cost_price = 11 [json_name = "cost_price"]; // Procurement cost
+  optional string hsn_code = 12 [json_name = "hsn_code"]; // Tax classification
+  optional double tax_rate = 13 [json_name = "tax_rate"]; // GST percentage
 }
 
 message CreateProductResponse {
@@ -322,12 +334,17 @@ message UpdateProductRequest {
   string product_id = 1 [json_name = "product_id"];
   optional string name = 2 [json_name = "name"];
   optional string description = 3 [json_name = "description"];
-  optional double price = 4 [json_name = "price"];
+  optional double price = 4 [json_name = "price"]; // selling_price
   optional string category_id = 5 [json_name = "category_id"];
   optional string image_url = 6 [json_name = "image_url"];
   optional string brand = 7 [json_name = "brand"];
   optional double weight = 8 [json_name = "weight"];
   optional string dimensions = 9 [json_name = "dimensions"];
+  // Pricing fields
+  optional double mrp = 10 [json_name = "mrp"]; // Maximum Retail Price
+  optional double cost_price = 11 [json_name = "cost_price"]; // Procurement cost
+  optional string hsn_code = 12 [json_name = "hsn_code"]; // Tax classification
+  optional double tax_rate = 13 [json_name = "tax_rate"]; // GST percentage
 }
 
 message UpdateProductResponse {

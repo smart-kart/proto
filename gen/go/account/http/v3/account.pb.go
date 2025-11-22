@@ -285,19 +285,16 @@ func (x *ResetPasswordResponse) GetMessage() string {
 type Account struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	UserId            string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	UserName          string                 `protobuf:"bytes,2,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty"`
-	Email             string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	Status            string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
-	Metadata          *AccountMetadata       `protobuf:"bytes,5,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	CreatedAt         string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt         string                 `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	FirstName         *string                `protobuf:"bytes,8,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
-	LastName          *string                `protobuf:"bytes,9,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	PhoneNumber       *string                `protobuf:"bytes,10,opt,name=phone_number,json=phoneNumber,proto3,oneof" json:"phone_number,omitempty"`
-	ProfilePictureUrl *string                `protobuf:"bytes,11,opt,name=profile_picture_url,proto3,oneof" json:"profile_picture_url,omitempty"`
-	EmailVerified     bool                   `protobuf:"varint,12,opt,name=email_verified,proto3" json:"email_verified,omitempty"`
-	PhoneVerified     bool                   `protobuf:"varint,13,opt,name=phone_verified,proto3" json:"phone_verified,omitempty"`
-	IsOauthOnly       bool                   `protobuf:"varint,14,opt,name=is_oauth_only,proto3" json:"is_oauth_only,omitempty"`
+	Email             *string                `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty"`                                // Optional because user might register with phone only
+	PhoneNumber       *string                `protobuf:"bytes,3,opt,name=phone_number,json=phoneNumber,proto3,oneof" json:"phone_number,omitempty"` // Optional because user might register with email only
+	FullName          *string                `protobuf:"bytes,4,opt,name=full_name,proto3,oneof" json:"full_name,omitempty"`                        // User's full name
+	ProfilePictureUrl *string                `protobuf:"bytes,5,opt,name=profile_picture_url,proto3,oneof" json:"profile_picture_url,omitempty"`
+	Status            string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	EmailVerified     bool                   `protobuf:"varint,7,opt,name=email_verified,proto3" json:"email_verified,omitempty"`
+	PhoneVerified     bool                   `protobuf:"varint,8,opt,name=phone_verified,proto3" json:"phone_verified,omitempty"`
+	IsOauthOnly       bool                   `protobuf:"varint,9,opt,name=is_oauth_only,proto3" json:"is_oauth_only,omitempty"`
+	CreatedAt         string                 `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt         string                 `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -339,58 +336,9 @@ func (x *Account) GetUserId() string {
 	return ""
 }
 
-func (x *Account) GetUserName() string {
-	if x != nil {
-		return x.UserName
-	}
-	return ""
-}
-
 func (x *Account) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *Account) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *Account) GetMetadata() *AccountMetadata {
-	if x != nil {
-		return x.Metadata
-	}
-	return nil
-}
-
-func (x *Account) GetCreatedAt() string {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return ""
-}
-
-func (x *Account) GetUpdatedAt() string {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return ""
-}
-
-func (x *Account) GetFirstName() string {
-	if x != nil && x.FirstName != nil {
-		return *x.FirstName
-	}
-	return ""
-}
-
-func (x *Account) GetLastName() string {
-	if x != nil && x.LastName != nil {
-		return *x.LastName
+	if x != nil && x.Email != nil {
+		return *x.Email
 	}
 	return ""
 }
@@ -402,9 +350,23 @@ func (x *Account) GetPhoneNumber() string {
 	return ""
 }
 
+func (x *Account) GetFullName() string {
+	if x != nil && x.FullName != nil {
+		return *x.FullName
+	}
+	return ""
+}
+
 func (x *Account) GetProfilePictureUrl() string {
 	if x != nil && x.ProfilePictureUrl != nil {
 		return *x.ProfilePictureUrl
+	}
+	return ""
+}
+
+func (x *Account) GetStatus() string {
+	if x != nil {
+		return x.Status
 	}
 	return ""
 }
@@ -430,57 +392,18 @@ func (x *Account) GetIsOauthOnly() bool {
 	return false
 }
 
-// AccountMetadata contains additional account information
-type AccountMetadata struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountType   string                 `protobuf:"bytes,1,opt,name=account_type,json=accountType,proto3" json:"account_type,omitempty"`
-	CustomFields  map[string]string      `protobuf:"bytes,2,rep,name=custom_fields,json=customFields,proto3" json:"custom_fields,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AccountMetadata) Reset() {
-	*x = AccountMetadata{}
-	mi := &file_http_v3_account_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AccountMetadata) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AccountMetadata) ProtoMessage() {}
-
-func (x *AccountMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[6]
+func (x *Account) GetCreatedAt() string {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AccountMetadata.ProtoReflect.Descriptor instead.
-func (*AccountMetadata) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *AccountMetadata) GetAccountType() string {
-	if x != nil {
-		return x.AccountType
+		return x.CreatedAt
 	}
 	return ""
 }
 
-func (x *AccountMetadata) GetCustomFields() map[string]string {
+func (x *Account) GetUpdatedAt() string {
 	if x != nil {
-		return x.CustomFields
+		return x.UpdatedAt
 	}
-	return nil
+	return ""
 }
 
 // Token represents JWT authentication tokens
@@ -495,7 +418,7 @@ type Token struct {
 
 func (x *Token) Reset() {
 	*x = Token{}
-	mi := &file_http_v3_account_proto_msgTypes[7]
+	mi := &file_http_v3_account_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -507,7 +430,7 @@ func (x *Token) String() string {
 func (*Token) ProtoMessage() {}
 
 func (x *Token) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[7]
+	mi := &file_http_v3_account_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -520,7 +443,7 @@ func (x *Token) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Token.ProtoReflect.Descriptor instead.
 func (*Token) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{7}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Token) GetAccessToken() string {
@@ -544,174 +467,19 @@ func (x *Token) GetTokenType() string {
 	return ""
 }
 
-// CreateuserRequest represents the HTTP v3 request to create an account
-type CreateUserRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserName        string                 `protobuf:"bytes,1,opt,name=user_name,proto3" json:"user_name,omitempty" validate:"required"`  
-	Email           string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty" validate:"required,email"`          
-	Metadata        *AccountMetadata       `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	Password        string                 `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty" validate:"required,min=8"`                  
-	ConfirmPassword string                 `protobuf:"bytes,5,opt,name=confirm_password,proto3" json:"confirm_password,omitempty" validate:"required,eqfield=Password"`  
-	PhoneNumber     *string                `protobuf:"bytes,6,opt,name=phone_number,proto3,oneof" json:"phone_number,omitempty" validate:"omitempty"`    
-	FirstName       *string                `protobuf:"bytes,7,opt,name=first_name,proto3,oneof" json:"first_name,omitempty" validate:"omitempty,min=2,max=50"`        
-	LastName        *string                `protobuf:"bytes,8,opt,name=last_name,proto3,oneof" json:"last_name,omitempty" validate:"omitempty,min=2,max=50"`          
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *CreateUserRequest) Reset() {
-	*x = CreateUserRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateUserRequest) ProtoMessage() {}
-
-func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
-func (*CreateUserRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *CreateUserRequest) GetUserName() string {
-	if x != nil {
-		return x.UserName
-	}
-	return ""
-}
-
-func (x *CreateUserRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *CreateUserRequest) GetMetadata() *AccountMetadata {
-	if x != nil {
-		return x.Metadata
-	}
-	return nil
-}
-
-func (x *CreateUserRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-func (x *CreateUserRequest) GetConfirmPassword() string {
-	if x != nil {
-		return x.ConfirmPassword
-	}
-	return ""
-}
-
-func (x *CreateUserRequest) GetPhoneNumber() string {
-	if x != nil && x.PhoneNumber != nil {
-		return *x.PhoneNumber
-	}
-	return ""
-}
-
-func (x *CreateUserRequest) GetFirstName() string {
-	if x != nil && x.FirstName != nil {
-		return *x.FirstName
-	}
-	return ""
-}
-
-func (x *CreateUserRequest) GetLastName() string {
-	if x != nil && x.LastName != nil {
-		return *x.LastName
-	}
-	return ""
-}
-
-// CreateUserResponse represents the HTTP v3 response for account creation
-type CreateUserResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Account       *Account               `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateUserResponse) Reset() {
-	*x = CreateUserResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateUserResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateUserResponse) ProtoMessage() {}
-
-func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
-func (*CreateUserResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *CreateUserResponse) GetAccount() *Account {
-	if x != nil {
-		return x.Account
-	}
-	return nil
-}
-
-func (x *CreateUserResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 // LoginuserRequest represents login request
-// At least one of user_name or email must be provided
+// email_or_phone can be email address or phone number (auto-detected)
 type LoginUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserName      *string                `protobuf:"bytes,1,opt,name=user_name,proto3,oneof" json:"user_name,omitempty" validate:"required_without=Email"`  
-	Email         *string                `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty" validate:"required_without=UserName,omitempty,email"`          
-	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty" validate:"required,min=8"`          
+	EmailOrPhone  string                 `protobuf:"bytes,1,opt,name=email_or_phone,proto3" json:"email_or_phone,omitempty" validate:"required"`  
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty" validate:"required,min=8"`              
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LoginUserRequest) Reset() {
 	*x = LoginUserRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[10]
+	mi := &file_http_v3_account_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -723,7 +491,7 @@ func (x *LoginUserRequest) String() string {
 func (*LoginUserRequest) ProtoMessage() {}
 
 func (x *LoginUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[10]
+	mi := &file_http_v3_account_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -736,19 +504,12 @@ func (x *LoginUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginUserRequest.ProtoReflect.Descriptor instead.
 func (*LoginUserRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{10}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *LoginUserRequest) GetUserName() string {
-	if x != nil && x.UserName != nil {
-		return *x.UserName
-	}
-	return ""
-}
-
-func (x *LoginUserRequest) GetEmail() string {
-	if x != nil && x.Email != nil {
-		return *x.Email
+func (x *LoginUserRequest) GetEmailOrPhone() string {
+	if x != nil {
+		return x.EmailOrPhone
 	}
 	return ""
 }
@@ -772,7 +533,7 @@ type LoginUserResponse struct {
 
 func (x *LoginUserResponse) Reset() {
 	*x = LoginUserResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[11]
+	mi := &file_http_v3_account_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -784,7 +545,7 @@ func (x *LoginUserResponse) String() string {
 func (*LoginUserResponse) ProtoMessage() {}
 
 func (x *LoginUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[11]
+	mi := &file_http_v3_account_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -797,7 +558,7 @@ func (x *LoginUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginUserResponse.ProtoReflect.Descriptor instead.
 func (*LoginUserResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{11}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *LoginUserResponse) GetMessage() string {
@@ -832,7 +593,7 @@ type GoogleAuthRequest struct {
 
 func (x *GoogleAuthRequest) Reset() {
 	*x = GoogleAuthRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[12]
+	mi := &file_http_v3_account_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -844,7 +605,7 @@ func (x *GoogleAuthRequest) String() string {
 func (*GoogleAuthRequest) ProtoMessage() {}
 
 func (x *GoogleAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[12]
+	mi := &file_http_v3_account_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -857,7 +618,7 @@ func (x *GoogleAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleAuthRequest.ProtoReflect.Descriptor instead.
 func (*GoogleAuthRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{12}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GoogleAuthRequest) GetIdToken() string {
@@ -886,7 +647,7 @@ type GoogleAuthResponse struct {
 
 func (x *GoogleAuthResponse) Reset() {
 	*x = GoogleAuthResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[13]
+	mi := &file_http_v3_account_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -898,7 +659,7 @@ func (x *GoogleAuthResponse) String() string {
 func (*GoogleAuthResponse) ProtoMessage() {}
 
 func (x *GoogleAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[13]
+	mi := &file_http_v3_account_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -911,7 +672,7 @@ func (x *GoogleAuthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleAuthResponse.ProtoReflect.Descriptor instead.
 func (*GoogleAuthResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{13}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GoogleAuthResponse) GetMessage() string {
@@ -947,7 +708,7 @@ type LinkGoogleAccountRequest struct {
 
 func (x *LinkGoogleAccountRequest) Reset() {
 	*x = LinkGoogleAccountRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[14]
+	mi := &file_http_v3_account_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -959,7 +720,7 @@ func (x *LinkGoogleAccountRequest) String() string {
 func (*LinkGoogleAccountRequest) ProtoMessage() {}
 
 func (x *LinkGoogleAccountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[14]
+	mi := &file_http_v3_account_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -972,7 +733,7 @@ func (x *LinkGoogleAccountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkGoogleAccountRequest.ProtoReflect.Descriptor instead.
 func (*LinkGoogleAccountRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{14}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *LinkGoogleAccountRequest) GetIdToken() string {
@@ -1008,7 +769,7 @@ type LinkGoogleAccountResponse struct {
 
 func (x *LinkGoogleAccountResponse) Reset() {
 	*x = LinkGoogleAccountResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[15]
+	mi := &file_http_v3_account_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1020,7 +781,7 @@ func (x *LinkGoogleAccountResponse) String() string {
 func (*LinkGoogleAccountResponse) ProtoMessage() {}
 
 func (x *LinkGoogleAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[15]
+	mi := &file_http_v3_account_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1033,7 +794,7 @@ func (x *LinkGoogleAccountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkGoogleAccountResponse.ProtoReflect.Descriptor instead.
 func (*LinkGoogleAccountResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{15}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *LinkGoogleAccountResponse) GetMessage() string {
@@ -1060,16 +821,15 @@ func (x *LinkGoogleAccountResponse) GetToken() *Token {
 // AdminLoginRequest represents the HTTP v3 request to login admin
 type AdminLoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserName      *string                `protobuf:"bytes,1,opt,name=user_name,proto3,oneof" json:"user_name,omitempty" validate:"required_without=Email"`  
-	Email         *string                `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty" validate:"required_without=UserName,omitempty,email"`          
-	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty" validate:"required,min=8"`          
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" validate:"required,email"`        
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty" validate:"required,min=8"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AdminLoginRequest) Reset() {
 	*x = AdminLoginRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[16]
+	mi := &file_http_v3_account_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1081,7 +841,7 @@ func (x *AdminLoginRequest) String() string {
 func (*AdminLoginRequest) ProtoMessage() {}
 
 func (x *AdminLoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[16]
+	mi := &file_http_v3_account_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1094,19 +854,12 @@ func (x *AdminLoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminLoginRequest.ProtoReflect.Descriptor instead.
 func (*AdminLoginRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *AdminLoginRequest) GetUserName() string {
-	if x != nil && x.UserName != nil {
-		return *x.UserName
-	}
-	return ""
+	return file_http_v3_account_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *AdminLoginRequest) GetEmail() string {
-	if x != nil && x.Email != nil {
-		return *x.Email
+	if x != nil {
+		return x.Email
 	}
 	return ""
 }
@@ -1131,7 +884,7 @@ type AdminLoginResponse struct {
 
 func (x *AdminLoginResponse) Reset() {
 	*x = AdminLoginResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[17]
+	mi := &file_http_v3_account_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1143,7 +896,7 @@ func (x *AdminLoginResponse) String() string {
 func (*AdminLoginResponse) ProtoMessage() {}
 
 func (x *AdminLoginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[17]
+	mi := &file_http_v3_account_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,7 +909,7 @@ func (x *AdminLoginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminLoginResponse.ProtoReflect.Descriptor instead.
 func (*AdminLoginResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{17}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *AdminLoginResponse) GetMessage() string {
@@ -1192,20 +945,17 @@ type ConfigUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,proto3" json:"user_id,omitempty"`
 	Email         *string                `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty"`
-	UserName      *string                `protobuf:"bytes,3,opt,name=user_name,proto3,oneof" json:"user_name,omitempty"`
-	PhoneNumber   *string                `protobuf:"bytes,4,opt,name=phone_number,proto3,oneof" json:"phone_number,omitempty"`
+	PhoneNumber   *string                `protobuf:"bytes,3,opt,name=phone_number,proto3,oneof" json:"phone_number,omitempty"`
+	FullName      *string                `protobuf:"bytes,4,opt,name=full_name,proto3,oneof" json:"full_name,omitempty"`
 	OldPassword   *string                `protobuf:"bytes,5,opt,name=old_password,proto3,oneof" json:"old_password,omitempty"`
 	NewPassword   *string                `protobuf:"bytes,6,opt,name=new_password,proto3,oneof" json:"new_password,omitempty"`
-	Metadata      *AccountMetadata       `protobuf:"bytes,7,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
-	FirstName     *string                `protobuf:"bytes,8,opt,name=first_name,proto3,oneof" json:"first_name,omitempty"`
-	LastName      *string                `protobuf:"bytes,9,opt,name=last_name,proto3,oneof" json:"last_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ConfigUserRequest) Reset() {
 	*x = ConfigUserRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[18]
+	mi := &file_http_v3_account_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1217,7 +967,7 @@ func (x *ConfigUserRequest) String() string {
 func (*ConfigUserRequest) ProtoMessage() {}
 
 func (x *ConfigUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[18]
+	mi := &file_http_v3_account_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1230,7 +980,7 @@ func (x *ConfigUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigUserRequest.ProtoReflect.Descriptor instead.
 func (*ConfigUserRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{18}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ConfigUserRequest) GetUserId() string {
@@ -1247,16 +997,16 @@ func (x *ConfigUserRequest) GetEmail() string {
 	return ""
 }
 
-func (x *ConfigUserRequest) GetUserName() string {
-	if x != nil && x.UserName != nil {
-		return *x.UserName
+func (x *ConfigUserRequest) GetPhoneNumber() string {
+	if x != nil && x.PhoneNumber != nil {
+		return *x.PhoneNumber
 	}
 	return ""
 }
 
-func (x *ConfigUserRequest) GetPhoneNumber() string {
-	if x != nil && x.PhoneNumber != nil {
-		return *x.PhoneNumber
+func (x *ConfigUserRequest) GetFullName() string {
+	if x != nil && x.FullName != nil {
+		return *x.FullName
 	}
 	return ""
 }
@@ -1275,27 +1025,6 @@ func (x *ConfigUserRequest) GetNewPassword() string {
 	return ""
 }
 
-func (x *ConfigUserRequest) GetMetadata() *AccountMetadata {
-	if x != nil {
-		return x.Metadata
-	}
-	return nil
-}
-
-func (x *ConfigUserRequest) GetFirstName() string {
-	if x != nil && x.FirstName != nil {
-		return *x.FirstName
-	}
-	return ""
-}
-
-func (x *ConfigUserRequest) GetLastName() string {
-	if x != nil && x.LastName != nil {
-		return *x.LastName
-	}
-	return ""
-}
-
 // ConfigUserResponse represents the HTTP v3 response for updating an account
 type ConfigUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1307,7 +1036,7 @@ type ConfigUserResponse struct {
 
 func (x *ConfigUserResponse) Reset() {
 	*x = ConfigUserResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[19]
+	mi := &file_http_v3_account_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1319,7 +1048,7 @@ func (x *ConfigUserResponse) String() string {
 func (*ConfigUserResponse) ProtoMessage() {}
 
 func (x *ConfigUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[19]
+	mi := &file_http_v3_account_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1332,7 +1061,7 @@ func (x *ConfigUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigUserResponse.ProtoReflect.Descriptor instead.
 func (*ConfigUserResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{19}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ConfigUserResponse) GetMessage() string {
@@ -1359,7 +1088,7 @@ type DeleteAccountRequest struct {
 
 func (x *DeleteAccountRequest) Reset() {
 	*x = DeleteAccountRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[20]
+	mi := &file_http_v3_account_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1371,7 +1100,7 @@ func (x *DeleteAccountRequest) String() string {
 func (*DeleteAccountRequest) ProtoMessage() {}
 
 func (x *DeleteAccountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[20]
+	mi := &file_http_v3_account_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1384,7 +1113,7 @@ func (x *DeleteAccountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAccountRequest.ProtoReflect.Descriptor instead.
 func (*DeleteAccountRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{20}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeleteAccountRequest) GetAccountId() string {
@@ -1405,7 +1134,7 @@ type DeleteAccountResponse struct {
 
 func (x *DeleteAccountResponse) Reset() {
 	*x = DeleteAccountResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[21]
+	mi := &file_http_v3_account_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1417,7 +1146,7 @@ func (x *DeleteAccountResponse) String() string {
 func (*DeleteAccountResponse) ProtoMessage() {}
 
 func (x *DeleteAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[21]
+	mi := &file_http_v3_account_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1430,7 +1159,7 @@ func (x *DeleteAccountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAccountResponse.ProtoReflect.Descriptor instead.
 func (*DeleteAccountResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{21}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *DeleteAccountResponse) GetSuccess() bool {
@@ -1460,7 +1189,7 @@ type ListAccountsRequest struct {
 
 func (x *ListAccountsRequest) Reset() {
 	*x = ListAccountsRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[22]
+	mi := &file_http_v3_account_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1472,7 +1201,7 @@ func (x *ListAccountsRequest) String() string {
 func (*ListAccountsRequest) ProtoMessage() {}
 
 func (x *ListAccountsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[22]
+	mi := &file_http_v3_account_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1485,7 +1214,7 @@ func (x *ListAccountsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAccountsRequest.ProtoReflect.Descriptor instead.
 func (*ListAccountsRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{22}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ListAccountsRequest) GetLimit() int32 {
@@ -1529,7 +1258,7 @@ type ListAccountsResponse struct {
 
 func (x *ListAccountsResponse) Reset() {
 	*x = ListAccountsResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[23]
+	mi := &file_http_v3_account_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1541,7 +1270,7 @@ func (x *ListAccountsResponse) String() string {
 func (*ListAccountsResponse) ProtoMessage() {}
 
 func (x *ListAccountsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[23]
+	mi := &file_http_v3_account_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1554,7 +1283,7 @@ func (x *ListAccountsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAccountsResponse.ProtoReflect.Descriptor instead.
 func (*ListAccountsResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{23}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ListAccountsResponse) GetAccounts() []*Account {
@@ -1595,7 +1324,7 @@ type SendVerificationEmailRequest struct {
 
 func (x *SendVerificationEmailRequest) Reset() {
 	*x = SendVerificationEmailRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[24]
+	mi := &file_http_v3_account_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1607,7 +1336,7 @@ func (x *SendVerificationEmailRequest) String() string {
 func (*SendVerificationEmailRequest) ProtoMessage() {}
 
 func (x *SendVerificationEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[24]
+	mi := &file_http_v3_account_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1620,7 +1349,7 @@ func (x *SendVerificationEmailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendVerificationEmailRequest.ProtoReflect.Descriptor instead.
 func (*SendVerificationEmailRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{24}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *SendVerificationEmailRequest) GetEmail() string {
@@ -1640,7 +1369,7 @@ type SendVerificationEmailResponse struct {
 
 func (x *SendVerificationEmailResponse) Reset() {
 	*x = SendVerificationEmailResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[25]
+	mi := &file_http_v3_account_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1652,7 +1381,7 @@ func (x *SendVerificationEmailResponse) String() string {
 func (*SendVerificationEmailResponse) ProtoMessage() {}
 
 func (x *SendVerificationEmailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[25]
+	mi := &file_http_v3_account_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1665,7 +1394,7 @@ func (x *SendVerificationEmailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendVerificationEmailResponse.ProtoReflect.Descriptor instead.
 func (*SendVerificationEmailResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{25}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *SendVerificationEmailResponse) GetMessage() string {
@@ -1686,7 +1415,7 @@ type VerifyEmailRequest struct {
 
 func (x *VerifyEmailRequest) Reset() {
 	*x = VerifyEmailRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[26]
+	mi := &file_http_v3_account_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1698,7 +1427,7 @@ func (x *VerifyEmailRequest) String() string {
 func (*VerifyEmailRequest) ProtoMessage() {}
 
 func (x *VerifyEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[26]
+	mi := &file_http_v3_account_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1711,7 +1440,7 @@ func (x *VerifyEmailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyEmailRequest.ProtoReflect.Descriptor instead.
 func (*VerifyEmailRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{26}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *VerifyEmailRequest) GetEmail() string {
@@ -1739,7 +1468,7 @@ type VerifyEmailResponse struct {
 
 func (x *VerifyEmailResponse) Reset() {
 	*x = VerifyEmailResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[27]
+	mi := &file_http_v3_account_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1751,7 +1480,7 @@ func (x *VerifyEmailResponse) String() string {
 func (*VerifyEmailResponse) ProtoMessage() {}
 
 func (x *VerifyEmailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[27]
+	mi := &file_http_v3_account_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1764,7 +1493,7 @@ func (x *VerifyEmailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyEmailResponse.ProtoReflect.Descriptor instead.
 func (*VerifyEmailResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{27}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *VerifyEmailResponse) GetSuccess() bool {
@@ -1791,7 +1520,7 @@ type SendVerificationSMSRequest struct {
 
 func (x *SendVerificationSMSRequest) Reset() {
 	*x = SendVerificationSMSRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[28]
+	mi := &file_http_v3_account_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1803,7 +1532,7 @@ func (x *SendVerificationSMSRequest) String() string {
 func (*SendVerificationSMSRequest) ProtoMessage() {}
 
 func (x *SendVerificationSMSRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[28]
+	mi := &file_http_v3_account_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1816,7 +1545,7 @@ func (x *SendVerificationSMSRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendVerificationSMSRequest.ProtoReflect.Descriptor instead.
 func (*SendVerificationSMSRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{28}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *SendVerificationSMSRequest) GetPhoneNumber() string {
@@ -1836,7 +1565,7 @@ type SendVerificationSMSResponse struct {
 
 func (x *SendVerificationSMSResponse) Reset() {
 	*x = SendVerificationSMSResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[29]
+	mi := &file_http_v3_account_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1848,7 +1577,7 @@ func (x *SendVerificationSMSResponse) String() string {
 func (*SendVerificationSMSResponse) ProtoMessage() {}
 
 func (x *SendVerificationSMSResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[29]
+	mi := &file_http_v3_account_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1861,7 +1590,7 @@ func (x *SendVerificationSMSResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendVerificationSMSResponse.ProtoReflect.Descriptor instead.
 func (*SendVerificationSMSResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{29}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *SendVerificationSMSResponse) GetMessage() string {
@@ -1882,7 +1611,7 @@ type VerifyPhoneRequest struct {
 
 func (x *VerifyPhoneRequest) Reset() {
 	*x = VerifyPhoneRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[30]
+	mi := &file_http_v3_account_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1894,7 +1623,7 @@ func (x *VerifyPhoneRequest) String() string {
 func (*VerifyPhoneRequest) ProtoMessage() {}
 
 func (x *VerifyPhoneRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[30]
+	mi := &file_http_v3_account_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1907,7 +1636,7 @@ func (x *VerifyPhoneRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyPhoneRequest.ProtoReflect.Descriptor instead.
 func (*VerifyPhoneRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{30}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *VerifyPhoneRequest) GetPhoneNumber() string {
@@ -1935,7 +1664,7 @@ type VerifyPhoneResponse struct {
 
 func (x *VerifyPhoneResponse) Reset() {
 	*x = VerifyPhoneResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[31]
+	mi := &file_http_v3_account_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1947,7 +1676,7 @@ func (x *VerifyPhoneResponse) String() string {
 func (*VerifyPhoneResponse) ProtoMessage() {}
 
 func (x *VerifyPhoneResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[31]
+	mi := &file_http_v3_account_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1960,7 +1689,7 @@ func (x *VerifyPhoneResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyPhoneResponse.ProtoReflect.Descriptor instead.
 func (*VerifyPhoneResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{31}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *VerifyPhoneResponse) GetSuccess() bool {
@@ -1987,7 +1716,7 @@ type GetUserRequest struct {
 
 func (x *GetUserRequest) Reset() {
 	*x = GetUserRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[32]
+	mi := &file_http_v3_account_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1999,7 +1728,7 @@ func (x *GetUserRequest) String() string {
 func (*GetUserRequest) ProtoMessage() {}
 
 func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[32]
+	mi := &file_http_v3_account_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2012,7 +1741,7 @@ func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
 func (*GetUserRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{32}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *GetUserRequest) GetUserId() string {
@@ -2033,7 +1762,7 @@ type GetUserResponse struct {
 
 func (x *GetUserResponse) Reset() {
 	*x = GetUserResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[33]
+	mi := &file_http_v3_account_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2045,7 +1774,7 @@ func (x *GetUserResponse) String() string {
 func (*GetUserResponse) ProtoMessage() {}
 
 func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[33]
+	mi := &file_http_v3_account_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2058,7 +1787,7 @@ func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
 func (*GetUserResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{33}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *GetUserResponse) GetAccount() *Account {
@@ -2086,7 +1815,7 @@ type LogoutRequest struct {
 
 func (x *LogoutRequest) Reset() {
 	*x = LogoutRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[34]
+	mi := &file_http_v3_account_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2098,7 +1827,7 @@ func (x *LogoutRequest) String() string {
 func (*LogoutRequest) ProtoMessage() {}
 
 func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[34]
+	mi := &file_http_v3_account_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2111,7 +1840,7 @@ func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutRequest.ProtoReflect.Descriptor instead.
 func (*LogoutRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{34}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *LogoutRequest) GetUserId() string {
@@ -2139,7 +1868,7 @@ type LogoutResponse struct {
 
 func (x *LogoutResponse) Reset() {
 	*x = LogoutResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[35]
+	mi := &file_http_v3_account_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2151,7 +1880,7 @@ func (x *LogoutResponse) String() string {
 func (*LogoutResponse) ProtoMessage() {}
 
 func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[35]
+	mi := &file_http_v3_account_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2164,7 +1893,7 @@ func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutResponse.ProtoReflect.Descriptor instead.
 func (*LogoutResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{35}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *LogoutResponse) GetSuccess() bool {
@@ -2191,7 +1920,7 @@ type RefreshTokenRequest struct {
 
 func (x *RefreshTokenRequest) Reset() {
 	*x = RefreshTokenRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[36]
+	mi := &file_http_v3_account_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2203,7 +1932,7 @@ func (x *RefreshTokenRequest) String() string {
 func (*RefreshTokenRequest) ProtoMessage() {}
 
 func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[36]
+	mi := &file_http_v3_account_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2216,7 +1945,7 @@ func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
 func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{36}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *RefreshTokenRequest) GetRefreshToken() string {
@@ -2237,7 +1966,7 @@ type RefreshTokenResponse struct {
 
 func (x *RefreshTokenResponse) Reset() {
 	*x = RefreshTokenResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[37]
+	mi := &file_http_v3_account_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2249,7 +1978,7 @@ func (x *RefreshTokenResponse) String() string {
 func (*RefreshTokenResponse) ProtoMessage() {}
 
 func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[37]
+	mi := &file_http_v3_account_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2262,7 +1991,7 @@ func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
 func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{37}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *RefreshTokenResponse) GetToken() *Token {
@@ -2288,7 +2017,7 @@ type EmptyRequest struct {
 
 func (x *EmptyRequest) Reset() {
 	*x = EmptyRequest{}
-	mi := &file_http_v3_account_proto_msgTypes[38]
+	mi := &file_http_v3_account_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2300,7 +2029,7 @@ func (x *EmptyRequest) String() string {
 func (*EmptyRequest) ProtoMessage() {}
 
 func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[38]
+	mi := &file_http_v3_account_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2313,7 +2042,7 @@ func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EmptyRequest.ProtoReflect.Descriptor instead.
 func (*EmptyRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{38}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{35}
 }
 
 // Response for silent refresh (cookie-based)
@@ -2327,7 +2056,7 @@ type RefreshTokenSilentResponse struct {
 
 func (x *RefreshTokenSilentResponse) Reset() {
 	*x = RefreshTokenSilentResponse{}
-	mi := &file_http_v3_account_proto_msgTypes[39]
+	mi := &file_http_v3_account_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2339,7 +2068,7 @@ func (x *RefreshTokenSilentResponse) String() string {
 func (*RefreshTokenSilentResponse) ProtoMessage() {}
 
 func (x *RefreshTokenSilentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_account_proto_msgTypes[39]
+	mi := &file_http_v3_account_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2352,7 +2081,7 @@ func (x *RefreshTokenSilentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenSilentResponse.ProtoReflect.Descriptor instead.
 func (*RefreshTokenSilentResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_account_proto_rawDescGZIP(), []int{39}
+	return file_http_v3_account_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *RefreshTokenSilentResponse) GetAccessToken() string {
@@ -2367,6 +2096,1317 @@ func (x *RefreshTokenSilentResponse) GetMessage() string {
 		return x.Message
 	}
 	return ""
+}
+
+// InitiateRegistrationRequest - Step 1: User enters email OR phone
+type InitiateRegistrationRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EmailOrPhone  string                 `protobuf:"bytes,1,opt,name=email_or_phone,proto3" json:"email_or_phone,omitempty" validate:"required"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InitiateRegistrationRequest) Reset() {
+	*x = InitiateRegistrationRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InitiateRegistrationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InitiateRegistrationRequest) ProtoMessage() {}
+
+func (x *InitiateRegistrationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InitiateRegistrationRequest.ProtoReflect.Descriptor instead.
+func (*InitiateRegistrationRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *InitiateRegistrationRequest) GetEmailOrPhone() string {
+	if x != nil {
+		return x.EmailOrPhone
+	}
+	return ""
+}
+
+// InitiateRegistrationResponse - Step 1 response with session token
+type InitiateRegistrationResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	SessionToken  string                 `protobuf:"bytes,2,opt,name=session_token,proto3" json:"session_token,omitempty"`   // Temporary token to track registration flow
+	ContactType   string                 `protobuf:"bytes,3,opt,name=contact_type,proto3" json:"contact_type,omitempty"`     // "email" or "phone"
+	MaskedContact string                 `protobuf:"bytes,4,opt,name=masked_contact,proto3" json:"masked_contact,omitempty"` // e.g., "j***@example.com" or "+91-9876***210"
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InitiateRegistrationResponse) Reset() {
+	*x = InitiateRegistrationResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InitiateRegistrationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InitiateRegistrationResponse) ProtoMessage() {}
+
+func (x *InitiateRegistrationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InitiateRegistrationResponse.ProtoReflect.Descriptor instead.
+func (*InitiateRegistrationResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *InitiateRegistrationResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *InitiateRegistrationResponse) GetSessionToken() string {
+	if x != nil {
+		return x.SessionToken
+	}
+	return ""
+}
+
+func (x *InitiateRegistrationResponse) GetContactType() string {
+	if x != nil {
+		return x.ContactType
+	}
+	return ""
+}
+
+func (x *InitiateRegistrationResponse) GetMaskedContact() string {
+	if x != nil {
+		return x.MaskedContact
+	}
+	return ""
+}
+
+// VerifyRegistrationOTPRequest - Step 2: User enters OTP
+type VerifyRegistrationOTPRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SessionToken  string                 `protobuf:"bytes,1,opt,name=session_token,proto3" json:"session_token,omitempty" validate:"required"`  
+	Otp           string                 `protobuf:"bytes,2,opt,name=otp,proto3" json:"otp,omitempty" validate:"required,len=6"`                      
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyRegistrationOTPRequest) Reset() {
+	*x = VerifyRegistrationOTPRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyRegistrationOTPRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyRegistrationOTPRequest) ProtoMessage() {}
+
+func (x *VerifyRegistrationOTPRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyRegistrationOTPRequest.ProtoReflect.Descriptor instead.
+func (*VerifyRegistrationOTPRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *VerifyRegistrationOTPRequest) GetSessionToken() string {
+	if x != nil {
+		return x.SessionToken
+	}
+	return ""
+}
+
+func (x *VerifyRegistrationOTPRequest) GetOtp() string {
+	if x != nil {
+		return x.Otp
+	}
+	return ""
+}
+
+// VerifyRegistrationOTPResponse - Step 2 response
+type VerifyRegistrationOTPResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	SessionToken  string                 `protobuf:"bytes,3,opt,name=session_token,proto3" json:"session_token,omitempty"` // Updated session token for step 3
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyRegistrationOTPResponse) Reset() {
+	*x = VerifyRegistrationOTPResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[40]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyRegistrationOTPResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyRegistrationOTPResponse) ProtoMessage() {}
+
+func (x *VerifyRegistrationOTPResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[40]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyRegistrationOTPResponse.ProtoReflect.Descriptor instead.
+func (*VerifyRegistrationOTPResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{40}
+}
+
+func (x *VerifyRegistrationOTPResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *VerifyRegistrationOTPResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *VerifyRegistrationOTPResponse) GetSessionToken() string {
+	if x != nil {
+		return x.SessionToken
+	}
+	return ""
+}
+
+// CompleteRegistrationRequest - Step 3: User provides name & password
+type CompleteRegistrationRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SessionToken  string                 `protobuf:"bytes,1,opt,name=session_token,proto3" json:"session_token,omitempty" validate:"required"`  
+	FullName      string                 `protobuf:"bytes,2,opt,name=full_name,proto3" json:"full_name,omitempty" validate:"required,min=2,max=100"`          
+	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty" validate:"required,min=8"`            
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CompleteRegistrationRequest) Reset() {
+	*x = CompleteRegistrationRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[41]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompleteRegistrationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompleteRegistrationRequest) ProtoMessage() {}
+
+func (x *CompleteRegistrationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[41]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompleteRegistrationRequest.ProtoReflect.Descriptor instead.
+func (*CompleteRegistrationRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{41}
+}
+
+func (x *CompleteRegistrationRequest) GetSessionToken() string {
+	if x != nil {
+		return x.SessionToken
+	}
+	return ""
+}
+
+func (x *CompleteRegistrationRequest) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *CompleteRegistrationRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+// CompleteRegistrationResponse - Step 3 response with auto-login tokens
+type CompleteRegistrationResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Account       *Account               `protobuf:"bytes,2,opt,name=account,proto3" json:"account,omitempty"`
+	Token         *Token                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"` // Auto-login: access & refresh tokens
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CompleteRegistrationResponse) Reset() {
+	*x = CompleteRegistrationResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompleteRegistrationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompleteRegistrationResponse) ProtoMessage() {}
+
+func (x *CompleteRegistrationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompleteRegistrationResponse.ProtoReflect.Descriptor instead.
+func (*CompleteRegistrationResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{42}
+}
+
+func (x *CompleteRegistrationResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *CompleteRegistrationResponse) GetAccount() *Account {
+	if x != nil {
+		return x.Account
+	}
+	return nil
+}
+
+func (x *CompleteRegistrationResponse) GetToken() *Token {
+	if x != nil {
+		return x.Token
+	}
+	return nil
+}
+
+// Address represents a user's shipping/billing address
+type Address struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AddressId     string                 `protobuf:"bytes,1,opt,name=address_id,proto3" json:"address_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,proto3" json:"user_id,omitempty"`
+	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,proto3" json:"full_name,omitempty"`
+	PhoneNumber   string                 `protobuf:"bytes,4,opt,name=phone_number,proto3" json:"phone_number,omitempty"`
+	AddressLine1  string                 `protobuf:"bytes,5,opt,name=address_line1,proto3" json:"address_line1,omitempty"`
+	AddressLine2  string                 `protobuf:"bytes,6,opt,name=address_line2,proto3" json:"address_line2,omitempty"`
+	Landmark      string                 `protobuf:"bytes,7,opt,name=landmark,proto3" json:"landmark,omitempty"`
+	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
+	State         string                 `protobuf:"bytes,9,opt,name=state,proto3" json:"state,omitempty"`
+	PostalCode    string                 `protobuf:"bytes,10,opt,name=postal_code,proto3" json:"postal_code,omitempty"`
+	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
+	AddressType   string                 `protobuf:"bytes,12,opt,name=address_type,proto3" json:"address_type,omitempty"` // shipping, billing, both
+	IsDefault     bool                   `protobuf:"varint,13,opt,name=is_default,proto3" json:"is_default,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,14,opt,name=created_at,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,15,opt,name=updated_at,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Address) Reset() {
+	*x = Address{}
+	mi := &file_http_v3_account_proto_msgTypes[43]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Address) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Address) ProtoMessage() {}
+
+func (x *Address) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[43]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Address.ProtoReflect.Descriptor instead.
+func (*Address) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{43}
+}
+
+func (x *Address) GetAddressId() string {
+	if x != nil {
+		return x.AddressId
+	}
+	return ""
+}
+
+func (x *Address) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *Address) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *Address) GetPhoneNumber() string {
+	if x != nil {
+		return x.PhoneNumber
+	}
+	return ""
+}
+
+func (x *Address) GetAddressLine1() string {
+	if x != nil {
+		return x.AddressLine1
+	}
+	return ""
+}
+
+func (x *Address) GetAddressLine2() string {
+	if x != nil {
+		return x.AddressLine2
+	}
+	return ""
+}
+
+func (x *Address) GetLandmark() string {
+	if x != nil {
+		return x.Landmark
+	}
+	return ""
+}
+
+func (x *Address) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *Address) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *Address) GetPostalCode() string {
+	if x != nil {
+		return x.PostalCode
+	}
+	return ""
+}
+
+func (x *Address) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *Address) GetAddressType() string {
+	if x != nil {
+		return x.AddressType
+	}
+	return ""
+}
+
+func (x *Address) GetIsDefault() bool {
+	if x != nil {
+		return x.IsDefault
+	}
+	return false
+}
+
+func (x *Address) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *Address) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
+// AddAddressRequest - Add a new address
+type AddAddressRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FullName      string                 `protobuf:"bytes,1,opt,name=full_name,proto3" json:"full_name,omitempty" validate:"required,min=2,max=200"`          
+	PhoneNumber   string                 `protobuf:"bytes,2,opt,name=phone_number,proto3" json:"phone_number,omitempty" validate:"required,e164"`    
+	AddressLine1  string                 `protobuf:"bytes,3,opt,name=address_line1,proto3" json:"address_line1,omitempty" validate:"required,min=5,max=255"`  
+	AddressLine2  string                 `protobuf:"bytes,4,opt,name=address_line2,proto3" json:"address_line2,omitempty" validate:"omitempty,max=255"`  
+	Landmark      string                 `protobuf:"bytes,5,opt,name=landmark,proto3" json:"landmark,omitempty" validate:"omitempty,max=255"`            
+	City          string                 `protobuf:"bytes,6,opt,name=city,proto3" json:"city,omitempty" validate:"required,min=2,max=100"`                    
+	State         string                 `protobuf:"bytes,7,opt,name=state,proto3" json:"state,omitempty" validate:"required,min=2,max=100"`                  
+	PostalCode    string                 `protobuf:"bytes,8,opt,name=postal_code,proto3" json:"postal_code,omitempty" validate:"required,min=4,max=20"`      
+	Country       string                 `protobuf:"bytes,9,opt,name=country,proto3" json:"country,omitempty" validate:"required,min=2,max=100"`              
+	AddressType   string                 `protobuf:"bytes,10,opt,name=address_type,proto3" json:"address_type,omitempty" validate:"required,oneof=shipping billing both"`   
+	IsDefault     bool                   `protobuf:"varint,11,opt,name=is_default,proto3" json:"is_default,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddAddressRequest) Reset() {
+	*x = AddAddressRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[44]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddAddressRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddAddressRequest) ProtoMessage() {}
+
+func (x *AddAddressRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[44]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddAddressRequest.ProtoReflect.Descriptor instead.
+func (*AddAddressRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *AddAddressRequest) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetPhoneNumber() string {
+	if x != nil {
+		return x.PhoneNumber
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetAddressLine1() string {
+	if x != nil {
+		return x.AddressLine1
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetAddressLine2() string {
+	if x != nil {
+		return x.AddressLine2
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetLandmark() string {
+	if x != nil {
+		return x.Landmark
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetPostalCode() string {
+	if x != nil {
+		return x.PostalCode
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetAddressType() string {
+	if x != nil {
+		return x.AddressType
+	}
+	return ""
+}
+
+func (x *AddAddressRequest) GetIsDefault() bool {
+	if x != nil {
+		return x.IsDefault
+	}
+	return false
+}
+
+// AddAddressResponse - Response after adding address
+type AddAddressResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Address       *Address               `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddAddressResponse) Reset() {
+	*x = AddAddressResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddAddressResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddAddressResponse) ProtoMessage() {}
+
+func (x *AddAddressResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddAddressResponse.ProtoReflect.Descriptor instead.
+func (*AddAddressResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *AddAddressResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AddAddressResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *AddAddressResponse) GetAddress() *Address {
+	if x != nil {
+		return x.Address
+	}
+	return nil
+}
+
+// GetAddressRequest - Get a specific address by ID
+type GetAddressRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AddressId     string                 `protobuf:"bytes,1,opt,name=address_id,proto3" json:"address_id,omitempty" validate:"required"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAddressRequest) Reset() {
+	*x = GetAddressRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAddressRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAddressRequest) ProtoMessage() {}
+
+func (x *GetAddressRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAddressRequest.ProtoReflect.Descriptor instead.
+func (*GetAddressRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *GetAddressRequest) GetAddressId() string {
+	if x != nil {
+		return x.AddressId
+	}
+	return ""
+}
+
+// GetAddressResponse - Response with address details
+type GetAddressResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Address       *Address               `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAddressResponse) Reset() {
+	*x = GetAddressResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAddressResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAddressResponse) ProtoMessage() {}
+
+func (x *GetAddressResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAddressResponse.ProtoReflect.Descriptor instead.
+func (*GetAddressResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *GetAddressResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetAddressResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetAddressResponse) GetAddress() *Address {
+	if x != nil {
+		return x.Address
+	}
+	return nil
+}
+
+// ListAddressesRequest - List all addresses for user
+type ListAddressesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AddressType   *string                `protobuf:"bytes,1,opt,name=address_type,proto3,oneof" json:"address_type,omitempty"` // Optional filter: shipping, billing, both
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAddressesRequest) Reset() {
+	*x = ListAddressesRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAddressesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAddressesRequest) ProtoMessage() {}
+
+func (x *ListAddressesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAddressesRequest.ProtoReflect.Descriptor instead.
+func (*ListAddressesRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *ListAddressesRequest) GetAddressType() string {
+	if x != nil && x.AddressType != nil {
+		return *x.AddressType
+	}
+	return ""
+}
+
+// ListAddressesResponse - Response with list of addresses
+type ListAddressesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Addresses     []*Address             `protobuf:"bytes,3,rep,name=addresses,proto3" json:"addresses,omitempty"`
+	TotalCount    int32                  `protobuf:"varint,4,opt,name=total_count,proto3" json:"total_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAddressesResponse) Reset() {
+	*x = ListAddressesResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[49]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAddressesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAddressesResponse) ProtoMessage() {}
+
+func (x *ListAddressesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[49]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAddressesResponse.ProtoReflect.Descriptor instead.
+func (*ListAddressesResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *ListAddressesResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *ListAddressesResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *ListAddressesResponse) GetAddresses() []*Address {
+	if x != nil {
+		return x.Addresses
+	}
+	return nil
+}
+
+func (x *ListAddressesResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
+}
+
+// UpdateAddressRequest - Update an existing address
+type UpdateAddressRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AddressId     string                 `protobuf:"bytes,1,opt,name=address_id,proto3" json:"address_id,omitempty" validate:"required"`        
+	FullName      string                 `protobuf:"bytes,2,opt,name=full_name,proto3" json:"full_name,omitempty" validate:"required,min=2,max=200"`          
+	PhoneNumber   string                 `protobuf:"bytes,3,opt,name=phone_number,proto3" json:"phone_number,omitempty" validate:"required,e164"`    
+	AddressLine1  string                 `protobuf:"bytes,4,opt,name=address_line1,proto3" json:"address_line1,omitempty" validate:"required,min=5,max=255"`  
+	AddressLine2  string                 `protobuf:"bytes,5,opt,name=address_line2,proto3" json:"address_line2,omitempty" validate:"omitempty,max=255"`  
+	Landmark      string                 `protobuf:"bytes,6,opt,name=landmark,proto3" json:"landmark,omitempty" validate:"omitempty,max=255"`            
+	City          string                 `protobuf:"bytes,7,opt,name=city,proto3" json:"city,omitempty" validate:"required,min=2,max=100"`                    
+	State         string                 `protobuf:"bytes,8,opt,name=state,proto3" json:"state,omitempty" validate:"required,min=2,max=100"`                  
+	PostalCode    string                 `protobuf:"bytes,9,opt,name=postal_code,proto3" json:"postal_code,omitempty" validate:"required,min=4,max=20"`      
+	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty" validate:"required,min=2,max=100"`             
+	AddressType   string                 `protobuf:"bytes,11,opt,name=address_type,proto3" json:"address_type,omitempty" validate:"required,oneof=shipping billing both"`   
+	IsDefault     bool                   `protobuf:"varint,12,opt,name=is_default,proto3" json:"is_default,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateAddressRequest) Reset() {
+	*x = UpdateAddressRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateAddressRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAddressRequest) ProtoMessage() {}
+
+func (x *UpdateAddressRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAddressRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAddressRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *UpdateAddressRequest) GetAddressId() string {
+	if x != nil {
+		return x.AddressId
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetPhoneNumber() string {
+	if x != nil {
+		return x.PhoneNumber
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetAddressLine1() string {
+	if x != nil {
+		return x.AddressLine1
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetAddressLine2() string {
+	if x != nil {
+		return x.AddressLine2
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetLandmark() string {
+	if x != nil {
+		return x.Landmark
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetPostalCode() string {
+	if x != nil {
+		return x.PostalCode
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetAddressType() string {
+	if x != nil {
+		return x.AddressType
+	}
+	return ""
+}
+
+func (x *UpdateAddressRequest) GetIsDefault() bool {
+	if x != nil {
+		return x.IsDefault
+	}
+	return false
+}
+
+// UpdateAddressResponse - Response after updating address
+type UpdateAddressResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Address       *Address               `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateAddressResponse) Reset() {
+	*x = UpdateAddressResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[51]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateAddressResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAddressResponse) ProtoMessage() {}
+
+func (x *UpdateAddressResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[51]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAddressResponse.ProtoReflect.Descriptor instead.
+func (*UpdateAddressResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *UpdateAddressResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *UpdateAddressResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *UpdateAddressResponse) GetAddress() *Address {
+	if x != nil {
+		return x.Address
+	}
+	return nil
+}
+
+// DeleteAddressRequest - Delete an address
+type DeleteAddressRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AddressId     string                 `protobuf:"bytes,1,opt,name=address_id,proto3" json:"address_id,omitempty" validate:"required"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteAddressRequest) Reset() {
+	*x = DeleteAddressRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteAddressRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAddressRequest) ProtoMessage() {}
+
+func (x *DeleteAddressRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAddressRequest.ProtoReflect.Descriptor instead.
+func (*DeleteAddressRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *DeleteAddressRequest) GetAddressId() string {
+	if x != nil {
+		return x.AddressId
+	}
+	return ""
+}
+
+// DeleteAddressResponse - Response after deleting address
+type DeleteAddressResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteAddressResponse) Reset() {
+	*x = DeleteAddressResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteAddressResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAddressResponse) ProtoMessage() {}
+
+func (x *DeleteAddressResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAddressResponse.ProtoReflect.Descriptor instead.
+func (*DeleteAddressResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *DeleteAddressResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *DeleteAddressResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// SetDefaultAddressRequest - Set an address as default
+type SetDefaultAddressRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AddressId     string                 `protobuf:"bytes,1,opt,name=address_id,proto3" json:"address_id,omitempty" validate:"required"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetDefaultAddressRequest) Reset() {
+	*x = SetDefaultAddressRequest{}
+	mi := &file_http_v3_account_proto_msgTypes[54]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetDefaultAddressRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetDefaultAddressRequest) ProtoMessage() {}
+
+func (x *SetDefaultAddressRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[54]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetDefaultAddressRequest.ProtoReflect.Descriptor instead.
+func (*SetDefaultAddressRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *SetDefaultAddressRequest) GetAddressId() string {
+	if x != nil {
+		return x.AddressId
+	}
+	return ""
+}
+
+// SetDefaultAddressResponse - Response after setting default
+type SetDefaultAddressResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Address       *Address               `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetDefaultAddressResponse) Reset() {
+	*x = SetDefaultAddressResponse{}
+	mi := &file_http_v3_account_proto_msgTypes[55]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetDefaultAddressResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetDefaultAddressResponse) ProtoMessage() {}
+
+func (x *SetDefaultAddressResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_account_proto_msgTypes[55]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetDefaultAddressResponse.ProtoReflect.Descriptor instead.
+func (*SetDefaultAddressResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_account_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *SetDefaultAddressResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *SetDefaultAddressResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *SetDefaultAddressResponse) GetAddress() *Address {
+	if x != nil {
+		return x.Address
+	}
+	return nil
 }
 
 var File_http_v3_account_proto protoreflect.FileDescriptor
@@ -2388,68 +3428,36 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\x10confirm_password\x18\x03 \x01(\tR\x10confirm_password\"K\n" +
 	"\x15ResetPasswordResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xd5\x04\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xcc\x03\n" +
 	"\aAccount\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
-	"\tuser_name\x18\x02 \x01(\tR\buserName\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\x12\x16\n" +
-	"\x06status\x18\x04 \x01(\tR\x06status\x12G\n" +
-	"\bmetadata\x18\x05 \x01(\v2+.smart_kart.account.http.v3.AccountMetadataR\bmetadata\x12\x1d\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\x05email\x18\x02 \x01(\tH\x00R\x05email\x88\x01\x01\x12&\n" +
+	"\fphone_number\x18\x03 \x01(\tH\x01R\vphoneNumber\x88\x01\x01\x12!\n" +
+	"\tfull_name\x18\x04 \x01(\tH\x02R\tfull_name\x88\x01\x01\x125\n" +
+	"\x13profile_picture_url\x18\x05 \x01(\tH\x03R\x13profile_picture_url\x88\x01\x01\x12\x16\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12&\n" +
+	"\x0eemail_verified\x18\a \x01(\bR\x0eemail_verified\x12&\n" +
+	"\x0ephone_verified\x18\b \x01(\bR\x0ephone_verified\x12$\n" +
+	"\ris_oauth_only\x18\t \x01(\bR\ris_oauth_only\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\n" +
+	" \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\tR\tupdatedAt\x12\"\n" +
+	"updated_at\x18\v \x01(\tR\tupdatedAtB\b\n" +
+	"\x06_emailB\x0f\n" +
+	"\r_phone_numberB\f\n" +
 	"\n" +
-	"first_name\x18\b \x01(\tH\x00R\tfirstName\x88\x01\x01\x12 \n" +
-	"\tlast_name\x18\t \x01(\tH\x01R\blastName\x88\x01\x01\x12&\n" +
-	"\fphone_number\x18\n" +
-	" \x01(\tH\x02R\vphoneNumber\x88\x01\x01\x125\n" +
-	"\x13profile_picture_url\x18\v \x01(\tH\x03R\x13profile_picture_url\x88\x01\x01\x12&\n" +
-	"\x0eemail_verified\x18\f \x01(\bR\x0eemail_verified\x12&\n" +
-	"\x0ephone_verified\x18\r \x01(\bR\x0ephone_verified\x12$\n" +
-	"\ris_oauth_only\x18\x0e \x01(\bR\ris_oauth_onlyB\r\n" +
-	"\v_first_nameB\f\n" +
-	"\n" +
-	"_last_nameB\x0f\n" +
-	"\r_phone_numberB\x16\n" +
-	"\x14_profile_picture_url\"\xd9\x01\n" +
-	"\x0fAccountMetadata\x12!\n" +
-	"\faccount_type\x18\x01 \x01(\tR\vaccountType\x12b\n" +
-	"\rcustom_fields\x18\x02 \x03(\v2=.smart_kart.account.http.v3.AccountMetadata.CustomFieldsEntryR\fcustomFields\x1a?\n" +
-	"\x11CustomFieldsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"q\n" +
+	"_full_nameB\x16\n" +
+	"\x14_profile_picture_url\"q\n" +
 	"\x05Token\x12\"\n" +
 	"\faccess_token\x18\x01 \x01(\tR\faccess_token\x12$\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\rrefresh_token\x12\x1e\n" +
 	"\n" +
 	"token_type\x18\x03 \x01(\tR\n" +
-	"token_type\"\xf7\x02\n" +
-	"\x11CreateUserRequest\x12\x1c\n" +
-	"\tuser_name\x18\x01 \x01(\tR\tuser_name\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email\x12G\n" +
-	"\bmetadata\x18\x03 \x01(\v2+.smart_kart.account.http.v3.AccountMetadataR\bmetadata\x12\x1a\n" +
-	"\bpassword\x18\x04 \x01(\tR\bpassword\x12*\n" +
-	"\x10confirm_password\x18\x05 \x01(\tR\x10confirm_password\x12'\n" +
-	"\fphone_number\x18\x06 \x01(\tH\x00R\fphone_number\x88\x01\x01\x12#\n" +
-	"\n" +
-	"first_name\x18\a \x01(\tH\x01R\n" +
-	"first_name\x88\x01\x01\x12!\n" +
-	"\tlast_name\x18\b \x01(\tH\x02R\tlast_name\x88\x01\x01B\x0f\n" +
-	"\r_phone_numberB\r\n" +
-	"\v_first_nameB\f\n" +
-	"\n" +
-	"_last_name\"m\n" +
-	"\x12CreateUserResponse\x12=\n" +
-	"\aaccount\x18\x01 \x01(\v2#.smart_kart.account.http.v3.AccountR\aaccount\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x84\x01\n" +
-	"\x10LoginUserRequest\x12!\n" +
-	"\tuser_name\x18\x01 \x01(\tH\x00R\tuser_name\x88\x01\x01\x12\x19\n" +
-	"\x05email\x18\x02 \x01(\tH\x01R\x05email\x88\x01\x01\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpasswordB\f\n" +
-	"\n" +
-	"_user_nameB\b\n" +
-	"\x06_email\"\xc5\x01\n" +
+	"token_type\"V\n" +
+	"\x10LoginUserRequest\x12&\n" +
+	"\x0eemail_or_phone\x18\x01 \x01(\tR\x0eemail_or_phone\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xc5\x01\n" +
 	"\x11LoginUserResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12<\n" +
 	"\x05token\x18\x02 \x01(\v2!.smart_kart.account.http.v3.TokenH\x00R\x05token\x88\x01\x01\x12B\n" +
@@ -2477,14 +3485,10 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\x05token\x18\x03 \x01(\v2!.smart_kart.account.http.v3.TokenH\x01R\x05token\x88\x01\x01B\n" +
 	"\n" +
 	"\b_accountB\b\n" +
-	"\x06_token\"\x85\x01\n" +
-	"\x11AdminLoginRequest\x12!\n" +
-	"\tuser_name\x18\x01 \x01(\tH\x00R\tuser_name\x88\x01\x01\x12\x19\n" +
-	"\x05email\x18\x02 \x01(\tH\x01R\x05email\x88\x01\x01\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpasswordB\f\n" +
-	"\n" +
-	"_user_nameB\b\n" +
-	"\x06_email\"\xe8\x01\n" +
+	"\x06_token\"E\n" +
+	"\x11AdminLoginRequest\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xe8\x01\n" +
 	"\x12AdminLoginResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12<\n" +
 	"\x05token\x18\x02 \x01(\v2!.smart_kart.account.http.v3.TokenH\x00R\x05token\x88\x01\x01\x12B\n" +
@@ -2492,29 +3496,20 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\vpermissions\x18\x04 \x03(\tR\vpermissionsB\b\n" +
 	"\x06_tokenB\n" +
 	"\n" +
-	"\b_account\"\xf1\x03\n" +
+	"\b_account\"\xb1\x02\n" +
 	"\x11ConfigUserRequest\x12\x18\n" +
 	"\auser_id\x18\x01 \x01(\tR\auser_id\x12\x19\n" +
-	"\x05email\x18\x02 \x01(\tH\x00R\x05email\x88\x01\x01\x12!\n" +
-	"\tuser_name\x18\x03 \x01(\tH\x01R\tuser_name\x88\x01\x01\x12'\n" +
-	"\fphone_number\x18\x04 \x01(\tH\x02R\fphone_number\x88\x01\x01\x12'\n" +
+	"\x05email\x18\x02 \x01(\tH\x00R\x05email\x88\x01\x01\x12'\n" +
+	"\fphone_number\x18\x03 \x01(\tH\x01R\fphone_number\x88\x01\x01\x12!\n" +
+	"\tfull_name\x18\x04 \x01(\tH\x02R\tfull_name\x88\x01\x01\x12'\n" +
 	"\fold_password\x18\x05 \x01(\tH\x03R\fold_password\x88\x01\x01\x12'\n" +
-	"\fnew_password\x18\x06 \x01(\tH\x04R\fnew_password\x88\x01\x01\x12L\n" +
-	"\bmetadata\x18\a \x01(\v2+.smart_kart.account.http.v3.AccountMetadataH\x05R\bmetadata\x88\x01\x01\x12#\n" +
+	"\fnew_password\x18\x06 \x01(\tH\x04R\fnew_password\x88\x01\x01B\b\n" +
+	"\x06_emailB\x0f\n" +
+	"\r_phone_numberB\f\n" +
 	"\n" +
-	"first_name\x18\b \x01(\tH\x06R\n" +
-	"first_name\x88\x01\x01\x12!\n" +
-	"\tlast_name\x18\t \x01(\tH\aR\tlast_name\x88\x01\x01B\b\n" +
-	"\x06_emailB\f\n" +
-	"\n" +
-	"_user_nameB\x0f\n" +
-	"\r_phone_numberB\x0f\n" +
+	"_full_nameB\x0f\n" +
 	"\r_old_passwordB\x0f\n" +
-	"\r_new_passwordB\v\n" +
-	"\t_metadataB\r\n" +
-	"\v_first_nameB\f\n" +
-	"\n" +
-	"_last_name\"~\n" +
+	"\r_new_password\"~\n" +
 	"\x12ConfigUserResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12B\n" +
 	"\aaccount\x18\x02 \x01(\v2#.smart_kart.account.http.v3.AccountH\x00R\aaccount\x88\x01\x01B\n" +
@@ -2581,10 +3576,130 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\fEmptyRequest\"Y\n" +
 	"\x1aRefreshTokenSilentResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\x96\x14\n" +
-	"\x12AccountHTTPService\x12\x80\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"E\n" +
+	"\x1bInitiateRegistrationRequest\x12&\n" +
+	"\x0eemail_or_phone\x18\x01 \x01(\tR\x0eemail_or_phone\"\xaa\x01\n" +
+	"\x1cInitiateRegistrationResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12$\n" +
+	"\rsession_token\x18\x02 \x01(\tR\rsession_token\x12\"\n" +
+	"\fcontact_type\x18\x03 \x01(\tR\fcontact_type\x12&\n" +
+	"\x0emasked_contact\x18\x04 \x01(\tR\x0emasked_contact\"V\n" +
+	"\x1cVerifyRegistrationOTPRequest\x12$\n" +
+	"\rsession_token\x18\x01 \x01(\tR\rsession_token\x12\x10\n" +
+	"\x03otp\x18\x02 \x01(\tR\x03otp\"y\n" +
+	"\x1dVerifyRegistrationOTPResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12$\n" +
+	"\rsession_token\x18\x03 \x01(\tR\rsession_token\"}\n" +
+	"\x1bCompleteRegistrationRequest\x12$\n" +
+	"\rsession_token\x18\x01 \x01(\tR\rsession_token\x12\x1c\n" +
+	"\tfull_name\x18\x02 \x01(\tR\tfull_name\x12\x1a\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\"\xb0\x01\n" +
+	"\x1cCompleteRegistrationResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12=\n" +
+	"\aaccount\x18\x02 \x01(\v2#.smart_kart.account.http.v3.AccountR\aaccount\x127\n" +
+	"\x05token\x18\x03 \x01(\v2!.smart_kart.account.http.v3.TokenR\x05token\"\xd7\x03\n" +
+	"\aAddress\x12\x1e\n" +
 	"\n" +
-	"CreateUser\x12-.smart_kart.account.http.v3.CreateUserRequest\x1a..smart_kart.account.http.v3.CreateUserResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/v3/user\x12\x83\x01\n" +
+	"address_id\x18\x01 \x01(\tR\n" +
+	"address_id\x12\x18\n" +
+	"\auser_id\x18\x02 \x01(\tR\auser_id\x12\x1c\n" +
+	"\tfull_name\x18\x03 \x01(\tR\tfull_name\x12\"\n" +
+	"\fphone_number\x18\x04 \x01(\tR\fphone_number\x12$\n" +
+	"\raddress_line1\x18\x05 \x01(\tR\raddress_line1\x12$\n" +
+	"\raddress_line2\x18\x06 \x01(\tR\raddress_line2\x12\x1a\n" +
+	"\blandmark\x18\a \x01(\tR\blandmark\x12\x12\n" +
+	"\x04city\x18\b \x01(\tR\x04city\x12\x14\n" +
+	"\x05state\x18\t \x01(\tR\x05state\x12 \n" +
+	"\vpostal_code\x18\n" +
+	" \x01(\tR\vpostal_code\x12\x18\n" +
+	"\acountry\x18\v \x01(\tR\acountry\x12\"\n" +
+	"\faddress_type\x18\f \x01(\tR\faddress_type\x12\x1e\n" +
+	"\n" +
+	"is_default\x18\r \x01(\bR\n" +
+	"is_default\x12\x1e\n" +
+	"\n" +
+	"created_at\x18\x0e \x01(\tR\n" +
+	"created_at\x12\x1e\n" +
+	"\n" +
+	"updated_at\x18\x0f \x01(\tR\n" +
+	"updated_at\"\xe7\x02\n" +
+	"\x11AddAddressRequest\x12\x1c\n" +
+	"\tfull_name\x18\x01 \x01(\tR\tfull_name\x12\"\n" +
+	"\fphone_number\x18\x02 \x01(\tR\fphone_number\x12$\n" +
+	"\raddress_line1\x18\x03 \x01(\tR\raddress_line1\x12$\n" +
+	"\raddress_line2\x18\x04 \x01(\tR\raddress_line2\x12\x1a\n" +
+	"\blandmark\x18\x05 \x01(\tR\blandmark\x12\x12\n" +
+	"\x04city\x18\x06 \x01(\tR\x04city\x12\x14\n" +
+	"\x05state\x18\a \x01(\tR\x05state\x12 \n" +
+	"\vpostal_code\x18\b \x01(\tR\vpostal_code\x12\x18\n" +
+	"\acountry\x18\t \x01(\tR\acountry\x12\"\n" +
+	"\faddress_type\x18\n" +
+	" \x01(\tR\faddress_type\x12\x1e\n" +
+	"\n" +
+	"is_default\x18\v \x01(\bR\n" +
+	"is_default\"\x87\x01\n" +
+	"\x12AddAddressResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
+	"\aaddress\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AddressR\aaddress\"3\n" +
+	"\x11GetAddressRequest\x12\x1e\n" +
+	"\n" +
+	"address_id\x18\x01 \x01(\tR\n" +
+	"address_id\"\x87\x01\n" +
+	"\x12GetAddressResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
+	"\aaddress\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AddressR\aaddress\"P\n" +
+	"\x14ListAddressesRequest\x12'\n" +
+	"\faddress_type\x18\x01 \x01(\tH\x00R\faddress_type\x88\x01\x01B\x0f\n" +
+	"\r_address_type\"\xb0\x01\n" +
+	"\x15ListAddressesResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12A\n" +
+	"\taddresses\x18\x03 \x03(\v2#.smart_kart.account.http.v3.AddressR\taddresses\x12 \n" +
+	"\vtotal_count\x18\x04 \x01(\x05R\vtotal_count\"\x8a\x03\n" +
+	"\x14UpdateAddressRequest\x12\x1e\n" +
+	"\n" +
+	"address_id\x18\x01 \x01(\tR\n" +
+	"address_id\x12\x1c\n" +
+	"\tfull_name\x18\x02 \x01(\tR\tfull_name\x12\"\n" +
+	"\fphone_number\x18\x03 \x01(\tR\fphone_number\x12$\n" +
+	"\raddress_line1\x18\x04 \x01(\tR\raddress_line1\x12$\n" +
+	"\raddress_line2\x18\x05 \x01(\tR\raddress_line2\x12\x1a\n" +
+	"\blandmark\x18\x06 \x01(\tR\blandmark\x12\x12\n" +
+	"\x04city\x18\a \x01(\tR\x04city\x12\x14\n" +
+	"\x05state\x18\b \x01(\tR\x05state\x12 \n" +
+	"\vpostal_code\x18\t \x01(\tR\vpostal_code\x12\x18\n" +
+	"\acountry\x18\n" +
+	" \x01(\tR\acountry\x12\"\n" +
+	"\faddress_type\x18\v \x01(\tR\faddress_type\x12\x1e\n" +
+	"\n" +
+	"is_default\x18\f \x01(\bR\n" +
+	"is_default\"\x8a\x01\n" +
+	"\x15UpdateAddressResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
+	"\aaddress\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AddressR\aaddress\"6\n" +
+	"\x14DeleteAddressRequest\x12\x1e\n" +
+	"\n" +
+	"address_id\x18\x01 \x01(\tR\n" +
+	"address_id\"K\n" +
+	"\x15DeleteAddressResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\":\n" +
+	"\x18SetDefaultAddressRequest\x12\x1e\n" +
+	"\n" +
+	"address_id\x18\x01 \x01(\tR\n" +
+	"address_id\"\x8e\x01\n" +
+	"\x19SetDefaultAddressResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
+	"\aaddress\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AddressR\aaddress2\xe6\x1e\n" +
+	"\x12AccountHTTPService\x12\xb0\x01\n" +
+	"\x14InitiateRegistration\x127.smart_kart.account.http.v3.InitiateRegistrationRequest\x1a8.smart_kart.account.http.v3.InitiateRegistrationResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/user/register/initiate\x12\xb5\x01\n" +
+	"\x15VerifyRegistrationOTP\x128.smart_kart.account.http.v3.VerifyRegistrationOTPRequest\x1a9.smart_kart.account.http.v3.VerifyRegistrationOTPResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v3/user/register/verify-otp\x12\xb0\x01\n" +
+	"\x14CompleteRegistration\x127.smart_kart.account.http.v3.CompleteRegistrationRequest\x1a8.smart_kart.account.http.v3.CompleteRegistrationResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/user/register/complete\x12\x83\x01\n" +
 	"\tLoginUser\x12,.smart_kart.account.http.v3.LoginUserRequest\x1a-.smart_kart.account.http.v3.LoginUserResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v3/user/login\x12\x98\x01\n" +
 	"\x0eLoginWithPhone\x121.smart_kart.account.http.v3.LoginWithPhoneRequest\x1a-.smart_kart.account.http.v3.LoginUserResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v3/user/login-with-phone\x12\x8c\x01\n" +
 	"\n" +
@@ -2603,7 +3718,15 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\aGetUser\x12*.smart_kart.account.http.v3.GetUserRequest\x1a+.smart_kart.account.http.v3.GetUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v3/user/{user_id}\x12{\n" +
 	"\x06Logout\x12).smart_kart.account.http.v3.LogoutRequest\x1a*.smart_kart.account.http.v3.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v3/user/logout\x12\x94\x01\n" +
 	"\fRefreshToken\x12/.smart_kart.account.http.v3.RefreshTokenRequest\x1a0.smart_kart.account.http.v3.RefreshTokenResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v3/user/refresh-token\x12\x9a\x01\n" +
-	"\x12RefreshTokenSilent\x12(.smart_kart.account.http.v3.EmptyRequest\x1a6.smart_kart.account.http.v3.RefreshTokenSilentResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/refresh-silentB\xf3\x01\n" +
+	"\x12RefreshTokenSilent\x12(.smart_kart.account.http.v3.EmptyRequest\x1a6.smart_kart.account.http.v3.RefreshTokenSilentResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/refresh-silent\x12\x8a\x01\n" +
+	"\n" +
+	"AddAddress\x12-.smart_kart.account.http.v3.AddAddressRequest\x1a..smart_kart.account.http.v3.AddAddressResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v3/user/addresses\x12\x94\x01\n" +
+	"\n" +
+	"GetAddress\x12-.smart_kart.account.http.v3.GetAddressRequest\x1a..smart_kart.account.http.v3.GetAddressResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/v3/user/addresses/{address_id}\x12\x90\x01\n" +
+	"\rListAddresses\x120.smart_kart.account.http.v3.ListAddressesRequest\x1a1.smart_kart.account.http.v3.ListAddressesResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v3/user/addresses\x12\xa0\x01\n" +
+	"\rUpdateAddress\x120.smart_kart.account.http.v3.UpdateAddressRequest\x1a1.smart_kart.account.http.v3.UpdateAddressResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\x1a\x1f/v3/user/addresses/{address_id}\x12\x9d\x01\n" +
+	"\rDeleteAddress\x120.smart_kart.account.http.v3.DeleteAddressRequest\x1a1.smart_kart.account.http.v3.DeleteAddressResponse\"'\x82\xd3\xe4\x93\x02!*\x1f/v3/user/addresses/{address_id}\x12\xb8\x01\n" +
+	"\x11SetDefaultAddress\x124.smart_kart.account.http.v3.SetDefaultAddressRequest\x1a5.smart_kart.account.http.v3.SetDefaultAddressResponse\"6\x82\xd3\xe4\x93\x020:\x01*\x1a+/v3/user/addresses/{address_id}/set-defaultB\xf3\x01\n" +
 	"\x1ecom.smart_kart.account.http.v3B\fAccountProtoP\x01Z<github.com/smart-kart/proto/gen/go/account/http/v3;accountv3\xa2\x02\x03SAH\xaa\x02\x19SmartKart.Account.Http.V3\xca\x02\x19SmartKart\\Account\\Http\\V3\xe2\x02%SmartKart\\Account\\Http\\V3\\GPBMetadata\xea\x02\x1cSmartKart::Account::Http::V3b\x06proto3"
 
 var (
@@ -2618,7 +3741,7 @@ func file_http_v3_account_proto_rawDescGZIP() []byte {
 	return file_http_v3_account_proto_rawDescData
 }
 
-var file_http_v3_account_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
+var file_http_v3_account_proto_msgTypes = make([]protoimpl.MessageInfo, 56)
 var file_http_v3_account_proto_goTypes = []any{
 	(*LoginWithPhoneRequest)(nil),         // 0: smart_kart.account.http.v3.LoginWithPhoneRequest
 	(*ForgetPasswordRequest)(nil),         // 1: smart_kart.account.http.v3.ForgetPasswordRequest
@@ -2626,99 +3749,132 @@ var file_http_v3_account_proto_goTypes = []any{
 	(*ResetPasswordRequest)(nil),          // 3: smart_kart.account.http.v3.ResetPasswordRequest
 	(*ResetPasswordResponse)(nil),         // 4: smart_kart.account.http.v3.ResetPasswordResponse
 	(*Account)(nil),                       // 5: smart_kart.account.http.v3.Account
-	(*AccountMetadata)(nil),               // 6: smart_kart.account.http.v3.AccountMetadata
-	(*Token)(nil),                         // 7: smart_kart.account.http.v3.Token
-	(*CreateUserRequest)(nil),             // 8: smart_kart.account.http.v3.CreateUserRequest
-	(*CreateUserResponse)(nil),            // 9: smart_kart.account.http.v3.CreateUserResponse
-	(*LoginUserRequest)(nil),              // 10: smart_kart.account.http.v3.LoginUserRequest
-	(*LoginUserResponse)(nil),             // 11: smart_kart.account.http.v3.LoginUserResponse
-	(*GoogleAuthRequest)(nil),             // 12: smart_kart.account.http.v3.GoogleAuthRequest
-	(*GoogleAuthResponse)(nil),            // 13: smart_kart.account.http.v3.GoogleAuthResponse
-	(*LinkGoogleAccountRequest)(nil),      // 14: smart_kart.account.http.v3.LinkGoogleAccountRequest
-	(*LinkGoogleAccountResponse)(nil),     // 15: smart_kart.account.http.v3.LinkGoogleAccountResponse
-	(*AdminLoginRequest)(nil),             // 16: smart_kart.account.http.v3.AdminLoginRequest
-	(*AdminLoginResponse)(nil),            // 17: smart_kart.account.http.v3.AdminLoginResponse
-	(*ConfigUserRequest)(nil),             // 18: smart_kart.account.http.v3.ConfigUserRequest
-	(*ConfigUserResponse)(nil),            // 19: smart_kart.account.http.v3.ConfigUserResponse
-	(*DeleteAccountRequest)(nil),          // 20: smart_kart.account.http.v3.DeleteAccountRequest
-	(*DeleteAccountResponse)(nil),         // 21: smart_kart.account.http.v3.DeleteAccountResponse
-	(*ListAccountsRequest)(nil),           // 22: smart_kart.account.http.v3.ListAccountsRequest
-	(*ListAccountsResponse)(nil),          // 23: smart_kart.account.http.v3.ListAccountsResponse
-	(*SendVerificationEmailRequest)(nil),  // 24: smart_kart.account.http.v3.SendVerificationEmailRequest
-	(*SendVerificationEmailResponse)(nil), // 25: smart_kart.account.http.v3.SendVerificationEmailResponse
-	(*VerifyEmailRequest)(nil),            // 26: smart_kart.account.http.v3.VerifyEmailRequest
-	(*VerifyEmailResponse)(nil),           // 27: smart_kart.account.http.v3.VerifyEmailResponse
-	(*SendVerificationSMSRequest)(nil),    // 28: smart_kart.account.http.v3.SendVerificationSMSRequest
-	(*SendVerificationSMSResponse)(nil),   // 29: smart_kart.account.http.v3.SendVerificationSMSResponse
-	(*VerifyPhoneRequest)(nil),            // 30: smart_kart.account.http.v3.VerifyPhoneRequest
-	(*VerifyPhoneResponse)(nil),           // 31: smart_kart.account.http.v3.VerifyPhoneResponse
-	(*GetUserRequest)(nil),                // 32: smart_kart.account.http.v3.GetUserRequest
-	(*GetUserResponse)(nil),               // 33: smart_kart.account.http.v3.GetUserResponse
-	(*LogoutRequest)(nil),                 // 34: smart_kart.account.http.v3.LogoutRequest
-	(*LogoutResponse)(nil),                // 35: smart_kart.account.http.v3.LogoutResponse
-	(*RefreshTokenRequest)(nil),           // 36: smart_kart.account.http.v3.RefreshTokenRequest
-	(*RefreshTokenResponse)(nil),          // 37: smart_kart.account.http.v3.RefreshTokenResponse
-	(*EmptyRequest)(nil),                  // 38: smart_kart.account.http.v3.EmptyRequest
-	(*RefreshTokenSilentResponse)(nil),    // 39: smart_kart.account.http.v3.RefreshTokenSilentResponse
-	nil,                                   // 40: smart_kart.account.http.v3.AccountMetadata.CustomFieldsEntry
+	(*Token)(nil),                         // 6: smart_kart.account.http.v3.Token
+	(*LoginUserRequest)(nil),              // 7: smart_kart.account.http.v3.LoginUserRequest
+	(*LoginUserResponse)(nil),             // 8: smart_kart.account.http.v3.LoginUserResponse
+	(*GoogleAuthRequest)(nil),             // 9: smart_kart.account.http.v3.GoogleAuthRequest
+	(*GoogleAuthResponse)(nil),            // 10: smart_kart.account.http.v3.GoogleAuthResponse
+	(*LinkGoogleAccountRequest)(nil),      // 11: smart_kart.account.http.v3.LinkGoogleAccountRequest
+	(*LinkGoogleAccountResponse)(nil),     // 12: smart_kart.account.http.v3.LinkGoogleAccountResponse
+	(*AdminLoginRequest)(nil),             // 13: smart_kart.account.http.v3.AdminLoginRequest
+	(*AdminLoginResponse)(nil),            // 14: smart_kart.account.http.v3.AdminLoginResponse
+	(*ConfigUserRequest)(nil),             // 15: smart_kart.account.http.v3.ConfigUserRequest
+	(*ConfigUserResponse)(nil),            // 16: smart_kart.account.http.v3.ConfigUserResponse
+	(*DeleteAccountRequest)(nil),          // 17: smart_kart.account.http.v3.DeleteAccountRequest
+	(*DeleteAccountResponse)(nil),         // 18: smart_kart.account.http.v3.DeleteAccountResponse
+	(*ListAccountsRequest)(nil),           // 19: smart_kart.account.http.v3.ListAccountsRequest
+	(*ListAccountsResponse)(nil),          // 20: smart_kart.account.http.v3.ListAccountsResponse
+	(*SendVerificationEmailRequest)(nil),  // 21: smart_kart.account.http.v3.SendVerificationEmailRequest
+	(*SendVerificationEmailResponse)(nil), // 22: smart_kart.account.http.v3.SendVerificationEmailResponse
+	(*VerifyEmailRequest)(nil),            // 23: smart_kart.account.http.v3.VerifyEmailRequest
+	(*VerifyEmailResponse)(nil),           // 24: smart_kart.account.http.v3.VerifyEmailResponse
+	(*SendVerificationSMSRequest)(nil),    // 25: smart_kart.account.http.v3.SendVerificationSMSRequest
+	(*SendVerificationSMSResponse)(nil),   // 26: smart_kart.account.http.v3.SendVerificationSMSResponse
+	(*VerifyPhoneRequest)(nil),            // 27: smart_kart.account.http.v3.VerifyPhoneRequest
+	(*VerifyPhoneResponse)(nil),           // 28: smart_kart.account.http.v3.VerifyPhoneResponse
+	(*GetUserRequest)(nil),                // 29: smart_kart.account.http.v3.GetUserRequest
+	(*GetUserResponse)(nil),               // 30: smart_kart.account.http.v3.GetUserResponse
+	(*LogoutRequest)(nil),                 // 31: smart_kart.account.http.v3.LogoutRequest
+	(*LogoutResponse)(nil),                // 32: smart_kart.account.http.v3.LogoutResponse
+	(*RefreshTokenRequest)(nil),           // 33: smart_kart.account.http.v3.RefreshTokenRequest
+	(*RefreshTokenResponse)(nil),          // 34: smart_kart.account.http.v3.RefreshTokenResponse
+	(*EmptyRequest)(nil),                  // 35: smart_kart.account.http.v3.EmptyRequest
+	(*RefreshTokenSilentResponse)(nil),    // 36: smart_kart.account.http.v3.RefreshTokenSilentResponse
+	(*InitiateRegistrationRequest)(nil),   // 37: smart_kart.account.http.v3.InitiateRegistrationRequest
+	(*InitiateRegistrationResponse)(nil),  // 38: smart_kart.account.http.v3.InitiateRegistrationResponse
+	(*VerifyRegistrationOTPRequest)(nil),  // 39: smart_kart.account.http.v3.VerifyRegistrationOTPRequest
+	(*VerifyRegistrationOTPResponse)(nil), // 40: smart_kart.account.http.v3.VerifyRegistrationOTPResponse
+	(*CompleteRegistrationRequest)(nil),   // 41: smart_kart.account.http.v3.CompleteRegistrationRequest
+	(*CompleteRegistrationResponse)(nil),  // 42: smart_kart.account.http.v3.CompleteRegistrationResponse
+	(*Address)(nil),                       // 43: smart_kart.account.http.v3.Address
+	(*AddAddressRequest)(nil),             // 44: smart_kart.account.http.v3.AddAddressRequest
+	(*AddAddressResponse)(nil),            // 45: smart_kart.account.http.v3.AddAddressResponse
+	(*GetAddressRequest)(nil),             // 46: smart_kart.account.http.v3.GetAddressRequest
+	(*GetAddressResponse)(nil),            // 47: smart_kart.account.http.v3.GetAddressResponse
+	(*ListAddressesRequest)(nil),          // 48: smart_kart.account.http.v3.ListAddressesRequest
+	(*ListAddressesResponse)(nil),         // 49: smart_kart.account.http.v3.ListAddressesResponse
+	(*UpdateAddressRequest)(nil),          // 50: smart_kart.account.http.v3.UpdateAddressRequest
+	(*UpdateAddressResponse)(nil),         // 51: smart_kart.account.http.v3.UpdateAddressResponse
+	(*DeleteAddressRequest)(nil),          // 52: smart_kart.account.http.v3.DeleteAddressRequest
+	(*DeleteAddressResponse)(nil),         // 53: smart_kart.account.http.v3.DeleteAddressResponse
+	(*SetDefaultAddressRequest)(nil),      // 54: smart_kart.account.http.v3.SetDefaultAddressRequest
+	(*SetDefaultAddressResponse)(nil),     // 55: smart_kart.account.http.v3.SetDefaultAddressResponse
 }
 var file_http_v3_account_proto_depIdxs = []int32{
-	6,  // 0: smart_kart.account.http.v3.Account.metadata:type_name -> smart_kart.account.http.v3.AccountMetadata
-	40, // 1: smart_kart.account.http.v3.AccountMetadata.custom_fields:type_name -> smart_kart.account.http.v3.AccountMetadata.CustomFieldsEntry
-	6,  // 2: smart_kart.account.http.v3.CreateUserRequest.metadata:type_name -> smart_kart.account.http.v3.AccountMetadata
-	5,  // 3: smart_kart.account.http.v3.CreateUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	7,  // 4: smart_kart.account.http.v3.LoginUserResponse.token:type_name -> smart_kart.account.http.v3.Token
-	5,  // 5: smart_kart.account.http.v3.LoginUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	5,  // 6: smart_kart.account.http.v3.GoogleAuthResponse.account:type_name -> smart_kart.account.http.v3.Account
-	7,  // 7: smart_kart.account.http.v3.GoogleAuthResponse.token:type_name -> smart_kart.account.http.v3.Token
-	5,  // 8: smart_kart.account.http.v3.LinkGoogleAccountResponse.account:type_name -> smart_kart.account.http.v3.Account
-	7,  // 9: smart_kart.account.http.v3.LinkGoogleAccountResponse.token:type_name -> smart_kart.account.http.v3.Token
-	7,  // 10: smart_kart.account.http.v3.AdminLoginResponse.token:type_name -> smart_kart.account.http.v3.Token
-	5,  // 11: smart_kart.account.http.v3.AdminLoginResponse.account:type_name -> smart_kart.account.http.v3.Account
-	6,  // 12: smart_kart.account.http.v3.ConfigUserRequest.metadata:type_name -> smart_kart.account.http.v3.AccountMetadata
-	5,  // 13: smart_kart.account.http.v3.ConfigUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	5,  // 14: smart_kart.account.http.v3.ListAccountsResponse.accounts:type_name -> smart_kart.account.http.v3.Account
-	5,  // 15: smart_kart.account.http.v3.GetUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	7,  // 16: smart_kart.account.http.v3.RefreshTokenResponse.token:type_name -> smart_kart.account.http.v3.Token
-	8,  // 17: smart_kart.account.http.v3.AccountHTTPService.CreateUser:input_type -> smart_kart.account.http.v3.CreateUserRequest
-	10, // 18: smart_kart.account.http.v3.AccountHTTPService.LoginUser:input_type -> smart_kart.account.http.v3.LoginUserRequest
-	0,  // 19: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:input_type -> smart_kart.account.http.v3.LoginWithPhoneRequest
-	12, // 20: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:input_type -> smart_kart.account.http.v3.GoogleAuthRequest
-	14, // 21: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:input_type -> smart_kart.account.http.v3.LinkGoogleAccountRequest
-	16, // 22: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:input_type -> smart_kart.account.http.v3.AdminLoginRequest
-	18, // 23: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:input_type -> smart_kart.account.http.v3.ConfigUserRequest
-	24, // 24: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:input_type -> smart_kart.account.http.v3.SendVerificationEmailRequest
-	26, // 25: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:input_type -> smart_kart.account.http.v3.VerifyEmailRequest
-	28, // 26: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:input_type -> smart_kart.account.http.v3.SendVerificationSMSRequest
-	30, // 27: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:input_type -> smart_kart.account.http.v3.VerifyPhoneRequest
-	1,  // 28: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:input_type -> smart_kart.account.http.v3.ForgetPasswordRequest
-	3,  // 29: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:input_type -> smart_kart.account.http.v3.ResetPasswordRequest
-	32, // 30: smart_kart.account.http.v3.AccountHTTPService.GetUser:input_type -> smart_kart.account.http.v3.GetUserRequest
-	34, // 31: smart_kart.account.http.v3.AccountHTTPService.Logout:input_type -> smart_kart.account.http.v3.LogoutRequest
-	36, // 32: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:input_type -> smart_kart.account.http.v3.RefreshTokenRequest
-	38, // 33: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:input_type -> smart_kart.account.http.v3.EmptyRequest
-	9,  // 34: smart_kart.account.http.v3.AccountHTTPService.CreateUser:output_type -> smart_kart.account.http.v3.CreateUserResponse
-	11, // 35: smart_kart.account.http.v3.AccountHTTPService.LoginUser:output_type -> smart_kart.account.http.v3.LoginUserResponse
-	11, // 36: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:output_type -> smart_kart.account.http.v3.LoginUserResponse
-	13, // 37: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:output_type -> smart_kart.account.http.v3.GoogleAuthResponse
-	15, // 38: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:output_type -> smart_kart.account.http.v3.LinkGoogleAccountResponse
-	17, // 39: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:output_type -> smart_kart.account.http.v3.AdminLoginResponse
-	19, // 40: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:output_type -> smart_kart.account.http.v3.ConfigUserResponse
-	25, // 41: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:output_type -> smart_kart.account.http.v3.SendVerificationEmailResponse
-	27, // 42: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:output_type -> smart_kart.account.http.v3.VerifyEmailResponse
-	29, // 43: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:output_type -> smart_kart.account.http.v3.SendVerificationSMSResponse
-	31, // 44: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:output_type -> smart_kart.account.http.v3.VerifyPhoneResponse
-	2,  // 45: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:output_type -> smart_kart.account.http.v3.ForgetPasswordResponse
-	4,  // 46: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:output_type -> smart_kart.account.http.v3.ResetPasswordResponse
-	33, // 47: smart_kart.account.http.v3.AccountHTTPService.GetUser:output_type -> smart_kart.account.http.v3.GetUserResponse
-	35, // 48: smart_kart.account.http.v3.AccountHTTPService.Logout:output_type -> smart_kart.account.http.v3.LogoutResponse
-	37, // 49: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:output_type -> smart_kart.account.http.v3.RefreshTokenResponse
-	39, // 50: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:output_type -> smart_kart.account.http.v3.RefreshTokenSilentResponse
-	34, // [34:51] is the sub-list for method output_type
-	17, // [17:34] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	6,  // 0: smart_kart.account.http.v3.LoginUserResponse.token:type_name -> smart_kart.account.http.v3.Token
+	5,  // 1: smart_kart.account.http.v3.LoginUserResponse.account:type_name -> smart_kart.account.http.v3.Account
+	5,  // 2: smart_kart.account.http.v3.GoogleAuthResponse.account:type_name -> smart_kart.account.http.v3.Account
+	6,  // 3: smart_kart.account.http.v3.GoogleAuthResponse.token:type_name -> smart_kart.account.http.v3.Token
+	5,  // 4: smart_kart.account.http.v3.LinkGoogleAccountResponse.account:type_name -> smart_kart.account.http.v3.Account
+	6,  // 5: smart_kart.account.http.v3.LinkGoogleAccountResponse.token:type_name -> smart_kart.account.http.v3.Token
+	6,  // 6: smart_kart.account.http.v3.AdminLoginResponse.token:type_name -> smart_kart.account.http.v3.Token
+	5,  // 7: smart_kart.account.http.v3.AdminLoginResponse.account:type_name -> smart_kart.account.http.v3.Account
+	5,  // 8: smart_kart.account.http.v3.ConfigUserResponse.account:type_name -> smart_kart.account.http.v3.Account
+	5,  // 9: smart_kart.account.http.v3.ListAccountsResponse.accounts:type_name -> smart_kart.account.http.v3.Account
+	5,  // 10: smart_kart.account.http.v3.GetUserResponse.account:type_name -> smart_kart.account.http.v3.Account
+	6,  // 11: smart_kart.account.http.v3.RefreshTokenResponse.token:type_name -> smart_kart.account.http.v3.Token
+	5,  // 12: smart_kart.account.http.v3.CompleteRegistrationResponse.account:type_name -> smart_kart.account.http.v3.Account
+	6,  // 13: smart_kart.account.http.v3.CompleteRegistrationResponse.token:type_name -> smart_kart.account.http.v3.Token
+	43, // 14: smart_kart.account.http.v3.AddAddressResponse.address:type_name -> smart_kart.account.http.v3.Address
+	43, // 15: smart_kart.account.http.v3.GetAddressResponse.address:type_name -> smart_kart.account.http.v3.Address
+	43, // 16: smart_kart.account.http.v3.ListAddressesResponse.addresses:type_name -> smart_kart.account.http.v3.Address
+	43, // 17: smart_kart.account.http.v3.UpdateAddressResponse.address:type_name -> smart_kart.account.http.v3.Address
+	43, // 18: smart_kart.account.http.v3.SetDefaultAddressResponse.address:type_name -> smart_kart.account.http.v3.Address
+	37, // 19: smart_kart.account.http.v3.AccountHTTPService.InitiateRegistration:input_type -> smart_kart.account.http.v3.InitiateRegistrationRequest
+	39, // 20: smart_kart.account.http.v3.AccountHTTPService.VerifyRegistrationOTP:input_type -> smart_kart.account.http.v3.VerifyRegistrationOTPRequest
+	41, // 21: smart_kart.account.http.v3.AccountHTTPService.CompleteRegistration:input_type -> smart_kart.account.http.v3.CompleteRegistrationRequest
+	7,  // 22: smart_kart.account.http.v3.AccountHTTPService.LoginUser:input_type -> smart_kart.account.http.v3.LoginUserRequest
+	0,  // 23: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:input_type -> smart_kart.account.http.v3.LoginWithPhoneRequest
+	9,  // 24: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:input_type -> smart_kart.account.http.v3.GoogleAuthRequest
+	11, // 25: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:input_type -> smart_kart.account.http.v3.LinkGoogleAccountRequest
+	13, // 26: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:input_type -> smart_kart.account.http.v3.AdminLoginRequest
+	15, // 27: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:input_type -> smart_kart.account.http.v3.ConfigUserRequest
+	21, // 28: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:input_type -> smart_kart.account.http.v3.SendVerificationEmailRequest
+	23, // 29: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:input_type -> smart_kart.account.http.v3.VerifyEmailRequest
+	25, // 30: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:input_type -> smart_kart.account.http.v3.SendVerificationSMSRequest
+	27, // 31: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:input_type -> smart_kart.account.http.v3.VerifyPhoneRequest
+	1,  // 32: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:input_type -> smart_kart.account.http.v3.ForgetPasswordRequest
+	3,  // 33: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:input_type -> smart_kart.account.http.v3.ResetPasswordRequest
+	29, // 34: smart_kart.account.http.v3.AccountHTTPService.GetUser:input_type -> smart_kart.account.http.v3.GetUserRequest
+	31, // 35: smart_kart.account.http.v3.AccountHTTPService.Logout:input_type -> smart_kart.account.http.v3.LogoutRequest
+	33, // 36: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:input_type -> smart_kart.account.http.v3.RefreshTokenRequest
+	35, // 37: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:input_type -> smart_kart.account.http.v3.EmptyRequest
+	44, // 38: smart_kart.account.http.v3.AccountHTTPService.AddAddress:input_type -> smart_kart.account.http.v3.AddAddressRequest
+	46, // 39: smart_kart.account.http.v3.AccountHTTPService.GetAddress:input_type -> smart_kart.account.http.v3.GetAddressRequest
+	48, // 40: smart_kart.account.http.v3.AccountHTTPService.ListAddresses:input_type -> smart_kart.account.http.v3.ListAddressesRequest
+	50, // 41: smart_kart.account.http.v3.AccountHTTPService.UpdateAddress:input_type -> smart_kart.account.http.v3.UpdateAddressRequest
+	52, // 42: smart_kart.account.http.v3.AccountHTTPService.DeleteAddress:input_type -> smart_kart.account.http.v3.DeleteAddressRequest
+	54, // 43: smart_kart.account.http.v3.AccountHTTPService.SetDefaultAddress:input_type -> smart_kart.account.http.v3.SetDefaultAddressRequest
+	38, // 44: smart_kart.account.http.v3.AccountHTTPService.InitiateRegistration:output_type -> smart_kart.account.http.v3.InitiateRegistrationResponse
+	40, // 45: smart_kart.account.http.v3.AccountHTTPService.VerifyRegistrationOTP:output_type -> smart_kart.account.http.v3.VerifyRegistrationOTPResponse
+	42, // 46: smart_kart.account.http.v3.AccountHTTPService.CompleteRegistration:output_type -> smart_kart.account.http.v3.CompleteRegistrationResponse
+	8,  // 47: smart_kart.account.http.v3.AccountHTTPService.LoginUser:output_type -> smart_kart.account.http.v3.LoginUserResponse
+	8,  // 48: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:output_type -> smart_kart.account.http.v3.LoginUserResponse
+	10, // 49: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:output_type -> smart_kart.account.http.v3.GoogleAuthResponse
+	12, // 50: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:output_type -> smart_kart.account.http.v3.LinkGoogleAccountResponse
+	14, // 51: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:output_type -> smart_kart.account.http.v3.AdminLoginResponse
+	16, // 52: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:output_type -> smart_kart.account.http.v3.ConfigUserResponse
+	22, // 53: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:output_type -> smart_kart.account.http.v3.SendVerificationEmailResponse
+	24, // 54: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:output_type -> smart_kart.account.http.v3.VerifyEmailResponse
+	26, // 55: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:output_type -> smart_kart.account.http.v3.SendVerificationSMSResponse
+	28, // 56: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:output_type -> smart_kart.account.http.v3.VerifyPhoneResponse
+	2,  // 57: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:output_type -> smart_kart.account.http.v3.ForgetPasswordResponse
+	4,  // 58: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:output_type -> smart_kart.account.http.v3.ResetPasswordResponse
+	30, // 59: smart_kart.account.http.v3.AccountHTTPService.GetUser:output_type -> smart_kart.account.http.v3.GetUserResponse
+	32, // 60: smart_kart.account.http.v3.AccountHTTPService.Logout:output_type -> smart_kart.account.http.v3.LogoutResponse
+	34, // 61: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:output_type -> smart_kart.account.http.v3.RefreshTokenResponse
+	36, // 62: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:output_type -> smart_kart.account.http.v3.RefreshTokenSilentResponse
+	45, // 63: smart_kart.account.http.v3.AccountHTTPService.AddAddress:output_type -> smart_kart.account.http.v3.AddAddressResponse
+	47, // 64: smart_kart.account.http.v3.AccountHTTPService.GetAddress:output_type -> smart_kart.account.http.v3.GetAddressResponse
+	49, // 65: smart_kart.account.http.v3.AccountHTTPService.ListAddresses:output_type -> smart_kart.account.http.v3.ListAddressesResponse
+	51, // 66: smart_kart.account.http.v3.AccountHTTPService.UpdateAddress:output_type -> smart_kart.account.http.v3.UpdateAddressResponse
+	53, // 67: smart_kart.account.http.v3.AccountHTTPService.DeleteAddress:output_type -> smart_kart.account.http.v3.DeleteAddressResponse
+	55, // 68: smart_kart.account.http.v3.AccountHTTPService.SetDefaultAddress:output_type -> smart_kart.account.http.v3.SetDefaultAddressResponse
+	44, // [44:69] is the sub-list for method output_type
+	19, // [19:44] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_http_v3_account_proto_init() }
@@ -2730,22 +3886,20 @@ func file_http_v3_account_proto_init() {
 	file_http_v3_account_proto_msgTypes[5].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[8].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[10].OneofWrappers = []any{}
-	file_http_v3_account_proto_msgTypes[11].OneofWrappers = []any{}
-	file_http_v3_account_proto_msgTypes[13].OneofWrappers = []any{}
+	file_http_v3_account_proto_msgTypes[12].OneofWrappers = []any{}
+	file_http_v3_account_proto_msgTypes[14].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[15].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[16].OneofWrappers = []any{}
-	file_http_v3_account_proto_msgTypes[17].OneofWrappers = []any{}
-	file_http_v3_account_proto_msgTypes[18].OneofWrappers = []any{}
 	file_http_v3_account_proto_msgTypes[19].OneofWrappers = []any{}
-	file_http_v3_account_proto_msgTypes[22].OneofWrappers = []any{}
-	file_http_v3_account_proto_msgTypes[34].OneofWrappers = []any{}
+	file_http_v3_account_proto_msgTypes[31].OneofWrappers = []any{}
+	file_http_v3_account_proto_msgTypes[48].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_http_v3_account_proto_rawDesc), len(file_http_v3_account_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   41,
+			NumMessages:   56,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

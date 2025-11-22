@@ -1,0 +1,602 @@
+syntax = "proto3";
+
+package orders.http.v3;
+
+option go_package = "github.com/smart-kart/proto/gen/go/orders/http/v3;ordersv3";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+// OrdersService handles cart and order management
+service OrdersService {
+  // Cart Management (Authenticated Users)
+  rpc AddToCart(AddToCartRequest) returns (AddToCartResponse) {
+    option (google.api.http) = {
+      post: "/v3/cart/add"
+      body: "*"
+    };
+  }
+
+  rpc GetCart(GetCartRequest) returns (GetCartResponse) {
+    option (google.api.http) = {
+      get: "/v3/cart"
+    };
+  }
+
+  rpc UpdateCartItem(UpdateCartItemRequest) returns (UpdateCartItemResponse) {
+    option (google.api.http) = {
+      put: "/v3/cart/item/{cart_item_id}"
+      body: "*"
+    };
+  }
+
+  rpc RemoveFromCart(RemoveFromCartRequest) returns (RemoveFromCartResponse) {
+    option (google.api.http) = {
+      delete: "/v3/cart/item/{cart_item_id}"
+    };
+  }
+
+  rpc ClearCart(ClearCartRequest) returns (ClearCartResponse) {
+    option (google.api.http) = {
+      delete: "/v3/cart"
+    };
+  }
+
+  // Guest Cart Management (Unauthenticated Users)
+  rpc GetGuestCart(GetGuestCartRequest) returns (GetGuestCartResponse) {
+    option (google.api.http) = {
+      get: "/v3/guest/cart"
+    };
+  }
+
+  rpc AddToGuestCart(AddToGuestCartRequest) returns (AddToGuestCartResponse) {
+    option (google.api.http) = {
+      post: "/v3/guest/cart/add"
+      body: "*"
+    };
+  }
+
+  rpc UpdateGuestCartItem(UpdateGuestCartItemRequest) returns (UpdateGuestCartItemResponse) {
+    option (google.api.http) = {
+      put: "/v3/guest/cart/item/{cart_item_id}"
+      body: "*"
+    };
+  }
+
+  rpc RemoveFromGuestCart(RemoveFromGuestCartRequest) returns (RemoveFromGuestCartResponse) {
+    option (google.api.http) = {
+      delete: "/v3/guest/cart/item/{cart_item_id}"
+    };
+  }
+
+  rpc ClearGuestCart(ClearGuestCartRequest) returns (ClearGuestCartResponse) {
+    option (google.api.http) = {
+      delete: "/v3/guest/cart"
+    };
+  }
+
+  // Cart Merge (After Login)
+  rpc MergeGuestCart(MergeGuestCartRequest) returns (MergeGuestCartResponse) {
+    option (google.api.http) = {
+      post: "/v3/cart/merge"
+      body: "*"
+    };
+  }
+
+  // Order Management
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {
+    option (google.api.http) = {
+      post: "/v3/orders"
+      body: "*"
+    };
+  }
+
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse) {
+    option (google.api.http) = {
+      get: "/v3/orders/{order_id}"
+    };
+  }
+
+  rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse) {
+    option (google.api.http) = {
+      get: "/v3/orders"
+    };
+  }
+
+  rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse) {
+    option (google.api.http) = {
+      put: "/v3/orders/{order_id}/cancel"
+      body: "*"
+    };
+  }
+
+  // Coupon Management (Customer)
+  rpc ValidateCoupon(ValidateCouponRequest) returns (ValidateCouponResponse) {
+    option (google.api.http) = {
+      post: "/v3/cart/coupon/validate"
+      body: "*"
+    };
+  }
+
+  rpc ApplyCoupon(ApplyCouponRequest) returns (ApplyCouponResponse) {
+    option (google.api.http) = {
+      post: "/v3/cart/coupon/apply"
+      body: "*"
+    };
+  }
+
+  rpc RemoveCoupon(RemoveCouponRequest) returns (RemoveCouponResponse) {
+    option (google.api.http) = {
+      delete: "/v3/cart/coupon"
+    };
+  }
+
+  // Coupon Management (Admin)
+  rpc CreateCoupon(CreateCouponRequest) returns (CreateCouponResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/coupons"
+      body: "*"
+    };
+  }
+
+  rpc GetCoupon(GetCouponRequest) returns (GetCouponResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/coupons/{coupon_id}"
+    };
+  }
+
+  rpc ListCoupons(ListCouponsRequest) returns (ListCouponsResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/coupons"
+    };
+  }
+
+  rpc UpdateCoupon(UpdateCouponRequest) returns (UpdateCouponResponse) {
+    option (google.api.http) = {
+      put: "/v3/admin/coupons/{coupon_id}"
+      body: "*"
+    };
+  }
+
+  rpc DeactivateCoupon(DeactivateCouponRequest) returns (DeactivateCouponResponse) {
+    option (google.api.http) = {
+      delete: "/v3/admin/coupons/{coupon_id}"
+    };
+  }
+
+  rpc GetCouponUsageHistory(GetCouponUsageHistoryRequest) returns (GetCouponUsageHistoryResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/coupons/{coupon_id}/usage"
+    };
+  }
+}
+
+// ========================================
+// Cart Messages
+// ========================================
+
+message AddToCartRequest {
+  string product_id = 1;
+  int32 quantity = 2;
+}
+
+message AddToCartResponse {
+  bool success = 1;
+  string message = 2;
+  CartItem cart_item = 3;
+}
+
+message GetCartRequest {
+  // User ID extracted from auth token
+}
+
+message GetCartResponse {
+  bool success = 1;
+  string message = 2;
+  Cart cart = 3;
+}
+
+message UpdateCartItemRequest {
+  string cart_item_id = 1;
+  int32 quantity = 2;
+}
+
+message UpdateCartItemResponse {
+  bool success = 1;
+  string message = 2;
+  CartItem cart_item = 3;
+}
+
+message RemoveFromCartRequest {
+  string cart_item_id = 1;
+}
+
+message RemoveFromCartResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ClearCartRequest {
+  // User ID extracted from auth token
+}
+
+message ClearCartResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// ========================================
+// Guest Cart Messages
+// ========================================
+
+message GetGuestCartRequest {
+  // Session ID extracted from X-Session-ID header
+}
+
+message GetGuestCartResponse {
+  bool success = 1;
+  string message = 2;
+  Cart cart = 3;
+}
+
+message AddToGuestCartRequest {
+  string product_id = 1;
+  int32 quantity = 2;
+}
+
+message AddToGuestCartResponse {
+  bool success = 1;
+  string message = 2;
+  CartItem cart_item = 3;
+}
+
+message UpdateGuestCartItemRequest {
+  string cart_item_id = 1;
+  int32 quantity = 2;
+}
+
+message UpdateGuestCartItemResponse {
+  bool success = 1;
+  string message = 2;
+  CartItem cart_item = 3;
+}
+
+message RemoveFromGuestCartRequest {
+  string cart_item_id = 1;
+}
+
+message RemoveFromGuestCartResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ClearGuestCartRequest {
+  // Session ID extracted from X-Session-ID header
+}
+
+message ClearGuestCartResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message MergeGuestCartRequest {
+  // User ID from auth token, Session ID from X-Session-ID header
+}
+
+message MergeGuestCartResponse {
+  bool success = 1;
+  string message = 2;
+  Cart cart = 3;  // The merged user cart
+}
+
+// ========================================
+// Order Messages
+// ========================================
+
+message CreateOrderRequest {
+  string shipping_address_id = 1;
+  string billing_address_id = 2;
+  string payment_method = 3;  // For Phase 3: "cod", "card", "upi"
+  optional string coupon_code = 4;  // Apply coupon during checkout
+}
+
+message CreateOrderResponse {
+  bool success = 1;
+  string message = 2;
+  Order order = 3;
+}
+
+message GetOrderRequest {
+  string order_id = 1;
+}
+
+message GetOrderResponse {
+  bool success = 1;
+  string message = 2;
+  Order order = 3;
+}
+
+message ListOrdersRequest {
+  optional string status = 1;  // Filter by status
+  int32 page = 2;              // Pagination
+  int32 page_size = 3;
+}
+
+message ListOrdersResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Order orders = 3;
+  int32 total_count = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+}
+
+message CancelOrderRequest {
+  string order_id = 1;
+  string cancellation_reason = 2;
+}
+
+message CancelOrderResponse {
+  bool success = 1;
+  string message = 2;
+  Order order = 3;
+}
+
+// ========================================
+// Data Models
+// ========================================
+
+message Cart {
+  string cart_id = 1;
+  optional string user_id = 2;     // NULL for guest carts
+  optional string session_id = 8;  // NULL for authenticated user carts
+  repeated CartItem items = 3;
+  double subtotal = 4;
+  int32 total_items = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  // Coupon fields
+  optional string coupon_code = 9;
+  double coupon_discount = 10;
+  // Calculated totals (from discount engine)
+  double shipping_fee = 11;
+  double tax = 12;
+  double total = 13;
+  // Configuration values for frontend display
+  double shipping_threshold = 14;  // e.g., 500 for free shipping
+}
+
+message CartItem {
+  string cart_item_id = 1;
+  string cart_id = 2;
+  string product_id = 3;
+  string product_name = 4;
+  string product_image_url = 5;
+  double price = 6; // selling_price
+  int32 quantity = 7;
+  double subtotal = 8;
+  int32 stock_available = 9;
+  google.protobuf.Timestamp added_at = 10;
+  // Pricing fields
+  optional double mrp = 11; // Maximum Retail Price (for showing strikethrough)
+  optional double tax_rate = 12; // GST percentage
+  optional double discount_pct = 13; // Discount percentage
+}
+
+message Order {
+  string order_id = 1;
+  string user_id = 2;
+  string status = 3;  // pending, confirmed, processing, shipped, delivered, cancelled
+
+  // Order Items
+  repeated OrderItem items = 4;
+  int32 total_items = 5;
+
+  // Pricing
+  double subtotal = 6;
+  double shipping_fee = 7;
+  double tax = 8;
+  double discount = 9;
+  double total_amount = 10;
+
+  // Addresses (from Account service)
+  string shipping_address_id = 11;
+  string billing_address_id = 12;
+
+  // Payment (for Phase 3)
+  string payment_method = 13;      // "cod", "card", "upi"
+  string payment_status = 14;      // "pending", "completed", "failed"
+
+  // Tracking
+  google.protobuf.Timestamp order_date = 15;
+  google.protobuf.Timestamp confirmed_at = 16;
+  google.protobuf.Timestamp shipped_at = 17;
+  google.protobuf.Timestamp delivered_at = 18;
+  google.protobuf.Timestamp cancelled_at = 19;
+  string cancellation_reason = 20;
+
+  // Coupon fields
+  optional string coupon_code = 21;
+  optional string coupon_id = 22;
+  double coupon_discount = 23;
+}
+
+message OrderItem {
+  string order_item_id = 1;
+  string order_id = 2;
+  string product_id = 3;
+  string product_name = 4;
+  string product_image_url = 5;
+  double price_at_purchase = 6;
+  int32 quantity = 7;
+  double subtotal = 8;
+}
+
+// ========================================
+// Coupon Messages (Customer)
+// ========================================
+
+message ValidateCouponRequest {
+  string coupon_code = 1;
+}
+
+message ValidateCouponResponse {
+  bool success = 1;
+  string message = 2;
+  bool is_valid = 3;
+  double discount_amount = 4;
+  Coupon coupon = 5;
+}
+
+message ApplyCouponRequest {
+  string coupon_code = 1;
+}
+
+message ApplyCouponResponse {
+  bool success = 1;
+  string message = 2;
+  Cart cart = 3;
+  double discount_applied = 4;
+}
+
+message RemoveCouponRequest {
+  // User ID extracted from auth token
+}
+
+message RemoveCouponResponse {
+  bool success = 1;
+  string message = 2;
+  Cart cart = 3;
+}
+
+// ========================================
+// Coupon Messages (Admin)
+// ========================================
+
+message CreateCouponRequest {
+  string code = 1;
+  optional string description = 2;
+  string discount_type = 3;          // "percent" or "fixed_amount"
+  double discount_value = 4;
+  optional double max_discount = 5;  // For percentage coupons
+  optional double min_order_value = 6;
+  optional int32 max_usage = 7;
+  optional int32 max_usage_per_user = 8;
+  repeated string applicable_categories = 9;
+  repeated string applicable_products = 10;
+  google.protobuf.Timestamp valid_from = 11;
+  optional google.protobuf.Timestamp valid_until = 12;
+}
+
+message CreateCouponResponse {
+  bool success = 1;
+  string message = 2;
+  Coupon coupon = 3;
+}
+
+message GetCouponRequest {
+  string coupon_id = 1;
+}
+
+message GetCouponResponse {
+  bool success = 1;
+  string message = 2;
+  Coupon coupon = 3;
+}
+
+message ListCouponsRequest {
+  optional string status = 1;  // active, inactive, expired
+  optional string search = 2;  // Search by code or description
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+message ListCouponsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Coupon coupons = 3;
+  int32 total_count = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+}
+
+message UpdateCouponRequest {
+  string coupon_id = 1;
+  optional string code = 2;
+  optional string description = 3;
+  optional string status = 4;
+  optional string discount_type = 5;
+  optional double discount_value = 6;
+  optional double max_discount = 7;
+  optional double min_order_value = 8;
+  optional int32 max_usage = 9;
+  optional int32 max_usage_per_user = 10;
+  repeated string applicable_categories = 11;
+  repeated string applicable_products = 12;
+  optional google.protobuf.Timestamp valid_from = 13;
+  optional google.protobuf.Timestamp valid_until = 14;
+}
+
+message UpdateCouponResponse {
+  bool success = 1;
+  string message = 2;
+  Coupon coupon = 3;
+}
+
+message DeactivateCouponRequest {
+  string coupon_id = 1;
+}
+
+message DeactivateCouponResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetCouponUsageHistoryRequest {
+  string coupon_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message GetCouponUsageHistoryResponse {
+  bool success = 1;
+  string message = 2;
+  repeated CouponUsage usages = 3;
+  int32 total_count = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+}
+
+// ========================================
+// Coupon Data Models
+// ========================================
+
+message Coupon {
+  string coupon_id = 1;
+  string code = 2;
+  optional string description = 3;
+  string status = 4;                 // active, inactive, expired
+  string discount_type = 5;          // percent, fixed_amount
+  double discount_value = 6;
+  optional double max_discount = 7;
+  optional double min_order_value = 8;
+  optional int32 max_usage = 9;
+  int32 used_count = 10;
+  optional int32 max_usage_per_user = 11;
+  repeated string applicable_categories = 12;
+  repeated string applicable_products = 13;
+  google.protobuf.Timestamp valid_from = 14;
+  optional google.protobuf.Timestamp valid_until = 15;
+  string created_by = 16;
+  google.protobuf.Timestamp created_at = 17;
+  google.protobuf.Timestamp updated_at = 18;
+}
+
+message CouponUsage {
+  string usage_id = 1;
+  string coupon_id = 2;
+  string user_id = 3;
+  string order_id = 4;
+  double discount_applied = 5;
+  google.protobuf.Timestamp used_at = 6;
+}

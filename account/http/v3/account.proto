@@ -8,22 +8,38 @@ import "google/api/annotations.proto";
 
 // AccountHTTPService provides HTTP v3 endpoints for account management
 service AccountHTTPService {
-  // CreateAccount creates a new account via HTTP
-  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+  // InitiateRegistration - Step 1: User enters email or phone, receives OTP
+  rpc InitiateRegistration(InitiateRegistrationRequest) returns (InitiateRegistrationResponse) {
     option (google.api.http) = {
-      post: "/v3/user"
+      post: "/v3/user/register/initiate"
       body: "*"
     };
   }
 
-  // LoginUser login a user
+  // VerifyRegistrationOTP - Step 2: User verifies OTP sent to email/phone
+  rpc VerifyRegistrationOTP(VerifyRegistrationOTPRequest) returns (VerifyRegistrationOTPResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/register/verify-otp"
+      body: "*"
+    };
+  }
+
+  // CompleteRegistration - Step 3: User provides name & password, account created & auto-login
+  rpc CompleteRegistration(CompleteRegistrationRequest) returns (CompleteRegistrationResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/register/complete"
+      body: "*"
+    };
+  }
+
+  // LoginUser login a user (accepts email OR phone + password)
   rpc LoginUser(LoginUserRequest) returns(LoginUserResponse) {
     option (google.api.http) = {
       post: "/v3/user/login"
       body: "*"
     };
   }
-  // LoginWithPhone login a user
+  // LoginWithPhone login a user (OTP-based login)
   rpc LoginWithPhone(LoginWithPhoneRequest) returns(LoginUserResponse) {
     option (google.api.http) = {
       post: "/v3/user/login-with-phone"
@@ -141,6 +157,53 @@ service AccountHTTPService {
       body: "*"
     };
   }
+
+  // ========== ADDRESS MANAGEMENT ==========
+
+  // AddAddress adds a new shipping/billing address for the user
+  rpc AddAddress(AddAddressRequest) returns (AddAddressResponse) {
+    option (google.api.http) = {
+      post: "/v3/user/addresses"
+      body: "*"
+    };
+  }
+
+  // GetAddress retrieves a specific address by ID
+  rpc GetAddress(GetAddressRequest) returns (GetAddressResponse) {
+    option (google.api.http) = {
+      get: "/v3/user/addresses/{address_id}"
+    };
+  }
+
+  // ListAddresses retrieves all addresses for the authenticated user
+  rpc ListAddresses(ListAddressesRequest) returns (ListAddressesResponse) {
+    option (google.api.http) = {
+      get: "/v3/user/addresses"
+    };
+  }
+
+  // UpdateAddress updates an existing address
+  rpc UpdateAddress(UpdateAddressRequest) returns (UpdateAddressResponse) {
+    option (google.api.http) = {
+      put: "/v3/user/addresses/{address_id}"
+      body: "*"
+    };
+  }
+
+  // DeleteAddress deletes an address
+  rpc DeleteAddress(DeleteAddressRequest) returns (DeleteAddressResponse) {
+    option (google.api.http) = {
+      delete: "/v3/user/addresses/{address_id}"
+    };
+  }
+
+  // SetDefaultAddress sets an address as the default for shipping/billing
+  rpc SetDefaultAddress(SetDefaultAddressRequest) returns (SetDefaultAddressResponse) {
+    option (google.api.http) = {
+      put: "/v3/user/addresses/{address_id}/set-default"
+      body: "*"
+    };
+  }
 }
 
 // LoginWithPhoneRequest represents the HTTP v3 request to login with phone number
@@ -177,25 +240,16 @@ message ResetPasswordResponse {
 // Account represents an account entity in HTTP v3
 message Account {
   string user_id = 1;
-  string user_name = 2;
-  string email = 3;
-  string status = 4;
-  AccountMetadata metadata = 5;
-  string created_at = 6;
-  string updated_at = 7;
-  optional string first_name = 8;
-  optional string last_name = 9;
-  optional string phone_number = 10;
-  optional string profile_picture_url = 11 [json_name = "profile_picture_url"];
-  bool email_verified = 12 [json_name = "email_verified"];
-  bool phone_verified = 13 [json_name = "phone_verified"];
-  bool is_oauth_only = 14 [json_name = "is_oauth_only"];
-}
-
-// AccountMetadata contains additional account information
-message AccountMetadata {
-  string account_type = 1;
-  map<string, string> custom_fields = 2;
+  optional string email = 2; // Optional because user might register with phone only
+  optional string phone_number = 3; // Optional because user might register with email only
+  optional string full_name = 4 [json_name = "full_name"]; // User's full name
+  optional string profile_picture_url = 5 [json_name = "profile_picture_url"];
+  string status = 6;
+  bool email_verified = 7 [json_name = "email_verified"];
+  bool phone_verified = 8 [json_name = "phone_verified"];
+  bool is_oauth_only = 9 [json_name = "is_oauth_only"];
+  string created_at = 10;
+  string updated_at = 11;
 }
 
 // Token represents JWT authentication tokens
@@ -205,30 +259,11 @@ message Token {
   string token_type = 3 [json_name = "token_type"]; // e.g., "Bearer"
 }
 
-// CreateuserRequest represents the HTTP v3 request to create an account
-message CreateUserRequest {
-  string user_name = 1 [json_name = "user_name"]; // @gotags: validate:"required"
-  string email = 2 [json_name = "email"]; // @gotags: validate:"required,email"
-  AccountMetadata metadata = 3 [json_name = "metadata"];
-  string password = 4 [json_name = "password"]; // @gotags: validate:"required,min=8"
-  string confirm_password = 5 [json_name = "confirm_password"]; // @gotags: validate:"required,eqfield=Password"
-  optional string phone_number = 6 [json_name = "phone_number"]; // @gotags: validate:"omitempty"
-  optional string first_name = 7 [json_name = "first_name"]; // @gotags: validate:"omitempty,min=2,max=50"
-  optional string last_name = 8 [json_name = "last_name"]; // @gotags: validate:"omitempty,min=2,max=50"
-}
-
-// CreateUserResponse represents the HTTP v3 response for account creation
-message CreateUserResponse {
-  Account account = 1;
-  string message = 2;
-}
-
 // LoginuserRequest represents login request
-// At least one of user_name or email must be provided
+// email_or_phone can be email address or phone number (auto-detected)
 message LoginUserRequest {
-  optional string user_name = 1 [json_name = "user_name"]; // @gotags: validate:"required_without=Email"
-  optional string email = 2 [json_name = "email"]; // @gotags: validate:"required_without=UserName,omitempty,email"
-  string password = 3 [json_name = "password"]; // @gotags: validate:"required,min=8"
+  string email_or_phone = 1 [json_name = "email_or_phone"]; // @gotags: validate:"required"
+  string password = 2 [json_name = "password"]; // @gotags: validate:"required,min=8"
 }
 
 // LoginUserResponse represents the HTTP v3 response for login
@@ -267,9 +302,8 @@ message LinkGoogleAccountResponse {
 
 // AdminLoginRequest represents the HTTP v3 request to login admin
 message AdminLoginRequest {
-  optional string user_name = 1 [json_name = "user_name"]; // @gotags: validate:"required_without=Email"
-  optional string email = 2 [json_name = "email"]; // @gotags: validate:"required_without=UserName,omitempty,email"
-  string password = 3 [json_name = "password"]; // @gotags: validate:"required,min=8"
+  string email = 1 [json_name = "email"]; // @gotags: validate:"required,email"
+  string password = 2 [json_name = "password"]; // @gotags: validate:"required,min=8"
 }
 
 // AdminLoginResponse represents the HTTP v3 response for login admin
@@ -284,13 +318,10 @@ message AdminLoginResponse {
 message ConfigUserRequest {
   string user_id = 1 [json_name = "user_id"];
   optional string email = 2 [json_name = "email"];
-  optional string user_name = 3 [json_name = "user_name"];
-  optional string phone_number = 4 [json_name = "phone_number"];
+  optional string phone_number = 3 [json_name = "phone_number"];
+  optional string full_name = 4 [json_name = "full_name"];
   optional string old_password = 5 [json_name = "old_password"];
   optional string new_password = 6 [json_name = "new_password"];
-  optional AccountMetadata metadata = 7 [json_name = "metadata"];
-  optional string first_name = 8 [json_name = "first_name"];
-  optional string last_name = 9 [json_name = "last_name"];
 }
 
 // ConfigUserResponse represents the HTTP v3 response for updating an account
@@ -412,4 +443,160 @@ message RefreshTokenSilentResponse {
   string access_token = 1;  // Only access token in response body
   string message = 2;
   // Refresh token is in httpOnly cookie (not in response body)
+}
+
+// ===== New 3-Step Registration Flow Messages =====
+
+// InitiateRegistrationRequest - Step 1: User enters email OR phone
+message InitiateRegistrationRequest {
+  string email_or_phone = 1 [json_name = "email_or_phone"]; // @gotags: validate:"required"
+}
+
+// InitiateRegistrationResponse - Step 1 response with session token
+message InitiateRegistrationResponse {
+  string message = 1;
+  string session_token = 2 [json_name = "session_token"]; // Temporary token to track registration flow
+  string contact_type = 3 [json_name = "contact_type"]; // "email" or "phone"
+  string masked_contact = 4 [json_name = "masked_contact"]; // e.g., "j***@example.com" or "+91-9876***210"
+}
+
+// VerifyRegistrationOTPRequest - Step 2: User enters OTP
+message VerifyRegistrationOTPRequest {
+  string session_token = 1 [json_name = "session_token"]; // @gotags: validate:"required"
+  string otp = 2 [json_name = "otp"]; // @gotags: validate:"required,len=6"
+}
+
+// VerifyRegistrationOTPResponse - Step 2 response
+message VerifyRegistrationOTPResponse {
+  bool success = 1;
+  string message = 2;
+  string session_token = 3 [json_name = "session_token"]; // Updated session token for step 3
+}
+
+// CompleteRegistrationRequest - Step 3: User provides name & password
+message CompleteRegistrationRequest {
+  string session_token = 1 [json_name = "session_token"]; // @gotags: validate:"required"
+  string full_name = 2 [json_name = "full_name"]; // @gotags: validate:"required,min=2,max=100"
+  string password = 3 [json_name = "password"]; // @gotags: validate:"required,min=8"
+}
+
+// CompleteRegistrationResponse - Step 3 response with auto-login tokens
+message CompleteRegistrationResponse {
+  string message = 1;
+  Account account = 2;
+  Token token = 3; // Auto-login: access & refresh tokens
+}
+
+// ========== ADDRESS MESSAGES ==========
+
+// Address represents a user's shipping/billing address
+message Address {
+  string address_id = 1 [json_name = "address_id"];
+  string user_id = 2 [json_name = "user_id"];
+  string full_name = 3 [json_name = "full_name"];
+  string phone_number = 4 [json_name = "phone_number"];
+  string address_line1 = 5 [json_name = "address_line1"];
+  string address_line2 = 6 [json_name = "address_line2"];
+  string landmark = 7 [json_name = "landmark"];
+  string city = 8 [json_name = "city"];
+  string state = 9 [json_name = "state"];
+  string postal_code = 10 [json_name = "postal_code"];
+  string country = 11 [json_name = "country"];
+  string address_type = 12 [json_name = "address_type"]; // shipping, billing, both
+  bool is_default = 13 [json_name = "is_default"];
+  string created_at = 14 [json_name = "created_at"];
+  string updated_at = 15 [json_name = "updated_at"];
+}
+
+// AddAddressRequest - Add a new address
+message AddAddressRequest {
+  string full_name = 1 [json_name = "full_name"]; // @gotags: validate:"required,min=2,max=200"
+  string phone_number = 2 [json_name = "phone_number"]; // @gotags: validate:"required,e164"
+  string address_line1 = 3 [json_name = "address_line1"]; // @gotags: validate:"required,min=5,max=255"
+  string address_line2 = 4 [json_name = "address_line2"]; // @gotags: validate:"omitempty,max=255"
+  string landmark = 5 [json_name = "landmark"]; // @gotags: validate:"omitempty,max=255"
+  string city = 6 [json_name = "city"]; // @gotags: validate:"required,min=2,max=100"
+  string state = 7 [json_name = "state"]; // @gotags: validate:"required,min=2,max=100"
+  string postal_code = 8 [json_name = "postal_code"]; // @gotags: validate:"required,min=4,max=20"
+  string country = 9 [json_name = "country"]; // @gotags: validate:"required,min=2,max=100"
+  string address_type = 10 [json_name = "address_type"]; // @gotags: validate:"required,oneof=shipping billing both"
+  bool is_default = 11 [json_name = "is_default"];
+}
+
+// AddAddressResponse - Response after adding address
+message AddAddressResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Address address = 3 [json_name = "address"];
+}
+
+// GetAddressRequest - Get a specific address by ID
+message GetAddressRequest {
+  string address_id = 1 [json_name = "address_id"]; // @gotags: validate:"required"
+}
+
+// GetAddressResponse - Response with address details
+message GetAddressResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Address address = 3 [json_name = "address"];
+}
+
+// ListAddressesRequest - List all addresses for user
+message ListAddressesRequest {
+  optional string address_type = 1 [json_name = "address_type"]; // Optional filter: shipping, billing, both
+}
+
+// ListAddressesResponse - Response with list of addresses
+message ListAddressesResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  repeated Address addresses = 3 [json_name = "addresses"];
+  int32 total_count = 4 [json_name = "total_count"];
+}
+
+// UpdateAddressRequest - Update an existing address
+message UpdateAddressRequest {
+  string address_id = 1 [json_name = "address_id"]; // @gotags: validate:"required"
+  string full_name = 2 [json_name = "full_name"]; // @gotags: validate:"required,min=2,max=200"
+  string phone_number = 3 [json_name = "phone_number"]; // @gotags: validate:"required,e164"
+  string address_line1 = 4 [json_name = "address_line1"]; // @gotags: validate:"required,min=5,max=255"
+  string address_line2 = 5 [json_name = "address_line2"]; // @gotags: validate:"omitempty,max=255"
+  string landmark = 6 [json_name = "landmark"]; // @gotags: validate:"omitempty,max=255"
+  string city = 7 [json_name = "city"]; // @gotags: validate:"required,min=2,max=100"
+  string state = 8 [json_name = "state"]; // @gotags: validate:"required,min=2,max=100"
+  string postal_code = 9 [json_name = "postal_code"]; // @gotags: validate:"required,min=4,max=20"
+  string country = 10 [json_name = "country"]; // @gotags: validate:"required,min=2,max=100"
+  string address_type = 11 [json_name = "address_type"]; // @gotags: validate:"required,oneof=shipping billing both"
+  bool is_default = 12 [json_name = "is_default"];
+}
+
+// UpdateAddressResponse - Response after updating address
+message UpdateAddressResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Address address = 3 [json_name = "address"];
+}
+
+// DeleteAddressRequest - Delete an address
+message DeleteAddressRequest {
+  string address_id = 1 [json_name = "address_id"]; // @gotags: validate:"required"
+}
+
+// DeleteAddressResponse - Response after deleting address
+message DeleteAddressResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+// SetDefaultAddressRequest - Set an address as default
+message SetDefaultAddressRequest {
+  string address_id = 1 [json_name = "address_id"]; // @gotags: validate:"required"
+}
+
+// SetDefaultAddressResponse - Response after setting default
+message SetDefaultAddressResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Address address = 3 [json_name = "address"];
 }

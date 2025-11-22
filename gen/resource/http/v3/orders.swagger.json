@@ -1,0 +1,1449 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "http/v3/orders.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "orders.http.v3.OrdersService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v3/admin/coupons": {
+      "get": {
+        "operationId": "OrdersService_ListCoupons",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "status",
+            "description": "active, inactive, expired",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "description": "Search by code or description",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      },
+      "post": {
+        "summary": "Coupon Management (Admin)",
+        "operationId": "OrdersService_CreateCoupon",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCouponRequest"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/admin/coupons/{couponId}": {
+      "get": {
+        "operationId": "OrdersService_GetCoupon",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "couponId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "OrdersService_DeactivateCoupon",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "couponId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      },
+      "put": {
+        "operationId": "OrdersService_UpdateCoupon",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "couponId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateCouponBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/admin/coupons/{couponId}/usage": {
+      "get": {
+        "operationId": "OrdersService_GetCouponUsageHistory",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "couponId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/cart": {
+      "get": {
+        "operationId": "OrdersService_GetCart",
+        "responses": {},
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "OrdersService_ClearCart",
+        "responses": {},
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/cart/add": {
+      "post": {
+        "summary": "Cart Management (Authenticated Users)",
+        "operationId": "OrdersService_AddToCart",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddToCartRequest"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/cart/coupon": {
+      "delete": {
+        "operationId": "OrdersService_RemoveCoupon",
+        "responses": {},
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/cart/coupon/apply": {
+      "post": {
+        "operationId": "OrdersService_ApplyCoupon",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ApplyCouponRequest"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/cart/coupon/validate": {
+      "post": {
+        "summary": "Coupon Management (Customer)",
+        "operationId": "OrdersService_ValidateCoupon",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateCouponRequest"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/cart/item/{cartItemId}": {
+      "delete": {
+        "operationId": "OrdersService_RemoveFromCart",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "cartItemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      },
+      "put": {
+        "operationId": "OrdersService_UpdateCartItem",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "cartItemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateCartItemBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/cart/merge": {
+      "post": {
+        "summary": "Cart Merge (After Login)",
+        "operationId": "OrdersService_MergeGuestCart",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MergeGuestCartRequest"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/guest/cart": {
+      "get": {
+        "summary": "Guest Cart Management (Unauthenticated Users)",
+        "operationId": "OrdersService_GetGuestCart",
+        "responses": {},
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "OrdersService_ClearGuestCart",
+        "responses": {},
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/guest/cart/add": {
+      "post": {
+        "operationId": "OrdersService_AddToGuestCart",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddToGuestCartRequest"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/guest/cart/item/{cartItemId}": {
+      "delete": {
+        "operationId": "OrdersService_RemoveFromGuestCart",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "cartItemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      },
+      "put": {
+        "operationId": "OrdersService_UpdateGuestCartItem",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "cartItemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateGuestCartItemBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/orders": {
+      "get": {
+        "operationId": "OrdersService_ListOrders",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "status",
+            "description": "Filter by status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "Pagination",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      },
+      "post": {
+        "summary": "Order Management",
+        "operationId": "OrdersService_CreateOrder",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/orders/{orderId}": {
+      "get": {
+        "operationId": "OrdersService_GetOrder",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/orders/{orderId}/cancel": {
+      "put": {
+        "operationId": "OrdersService_CancelOrder",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CancelOrderBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddToCartRequest": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AddToCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cartItem": {
+          "$ref": "#/definitions/CartItem"
+        }
+      }
+    },
+    "AddToGuestCartRequest": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AddToGuestCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cartItem": {
+          "$ref": "#/definitions/CartItem"
+        }
+      }
+    },
+    "ApplyCouponRequest": {
+      "type": "object",
+      "properties": {
+        "couponCode": {
+          "type": "string"
+        }
+      }
+    },
+    "ApplyCouponResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cart": {
+          "$ref": "#/definitions/Cart"
+        },
+        "discountApplied": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "CancelOrderBody": {
+      "type": "object",
+      "properties": {
+        "cancellationReason": {
+          "type": "string"
+        }
+      }
+    },
+    "CancelOrderResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "order": {
+          "$ref": "#/definitions/Order"
+        }
+      }
+    },
+    "Cart": {
+      "type": "object",
+      "properties": {
+        "cartId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "NULL for guest carts"
+        },
+        "sessionId": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "NULL for authenticated user carts"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/CartItem"
+          }
+        },
+        "subtotal": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalItems": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "couponCode": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Coupon fields"
+        },
+        "couponDiscount": {
+          "type": "number",
+          "format": "double"
+        },
+        "shippingFee": {
+          "type": "number",
+          "format": "double",
+          "title": "Calculated totals (from discount engine)"
+        },
+        "tax": {
+          "type": "number",
+          "format": "double"
+        },
+        "total": {
+          "type": "number",
+          "format": "double"
+        },
+        "shippingThreshold": {
+          "type": "number",
+          "format": "double",
+          "description": "e.g., 500 for free shipping",
+          "title": "Configuration values for frontend display"
+        }
+      }
+    },
+    "CartItem": {
+      "type": "object",
+      "properties": {
+        "cartItemId": {
+          "type": "string"
+        },
+        "cartId": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "productImageUrl": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "title": "selling_price"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "subtotal": {
+          "type": "number",
+          "format": "double"
+        },
+        "stockAvailable": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mrp": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "description": "Maximum Retail Price (for showing strikethrough)",
+          "title": "Pricing fields"
+        },
+        "taxRate": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "GST percentage"
+        },
+        "discountPct": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "Discount percentage"
+        }
+      }
+    },
+    "ClearCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ClearGuestCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Coupon": {
+      "type": "object",
+      "properties": {
+        "couponId": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string",
+          "title": "active, inactive, expired"
+        },
+        "discountType": {
+          "type": "string",
+          "title": "percent, fixed_amount"
+        },
+        "discountValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxDiscount": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "minOrderValue": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "maxUsage": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "usedCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxUsagePerUser": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "applicableCategories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applicableProducts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "CouponUsage": {
+      "type": "object",
+      "properties": {
+        "usageId": {
+          "type": "string"
+        },
+        "couponId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "discountApplied": {
+          "type": "number",
+          "format": "double"
+        },
+        "usedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "CreateCouponRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "discountType": {
+          "type": "string",
+          "title": "\"percent\" or \"fixed_amount\""
+        },
+        "discountValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxDiscount": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "For percentage coupons"
+        },
+        "minOrderValue": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "maxUsage": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "maxUsagePerUser": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "applicableCategories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applicableProducts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        }
+      }
+    },
+    "CreateCouponResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "coupon": {
+          "$ref": "#/definitions/Coupon"
+        }
+      }
+    },
+    "CreateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "shippingAddressId": {
+          "type": "string"
+        },
+        "billingAddressId": {
+          "type": "string"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "title": "For Phase 3: \"cod\", \"card\", \"upi\""
+        },
+        "couponCode": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Apply coupon during checkout"
+        }
+      }
+    },
+    "CreateOrderResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "order": {
+          "$ref": "#/definitions/Order"
+        }
+      }
+    },
+    "DeactivateCouponResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "GetCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cart": {
+          "$ref": "#/definitions/Cart"
+        }
+      }
+    },
+    "GetCouponResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "coupon": {
+          "$ref": "#/definitions/Coupon"
+        }
+      }
+    },
+    "GetCouponUsageHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "usages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/CouponUsage"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "GetGuestCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cart": {
+          "$ref": "#/definitions/Cart"
+        }
+      }
+    },
+    "GetOrderResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "order": {
+          "$ref": "#/definitions/Order"
+        }
+      }
+    },
+    "ListCouponsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "coupons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Coupon"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ListOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Order"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "MergeGuestCartRequest": {
+      "type": "object",
+      "title": "User ID from auth token, Session ID from X-Session-ID header"
+    },
+    "MergeGuestCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cart": {
+          "$ref": "#/definitions/Cart",
+          "title": "The merged user cart"
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "title": "pending, confirmed, processing, shipped, delivered, cancelled"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/OrderItem"
+          },
+          "title": "Order Items"
+        },
+        "totalItems": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "subtotal": {
+          "type": "number",
+          "format": "double",
+          "title": "Pricing"
+        },
+        "shippingFee": {
+          "type": "number",
+          "format": "double"
+        },
+        "tax": {
+          "type": "number",
+          "format": "double"
+        },
+        "discount": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "shippingAddressId": {
+          "type": "string",
+          "title": "Addresses (from Account service)"
+        },
+        "billingAddressId": {
+          "type": "string"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "\"cod\", \"card\", \"upi\"",
+          "title": "Payment (for Phase 3)"
+        },
+        "paymentStatus": {
+          "type": "string",
+          "title": "\"pending\", \"completed\", \"failed\""
+        },
+        "orderDate": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Tracking"
+        },
+        "confirmedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "shippedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deliveredAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cancelledAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cancellationReason": {
+          "type": "string"
+        },
+        "couponCode": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Coupon fields"
+        },
+        "couponId": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "couponDiscount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "OrderItem": {
+      "type": "object",
+      "properties": {
+        "orderItemId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "productImageUrl": {
+          "type": "string"
+        },
+        "priceAtPurchase": {
+          "type": "number",
+          "format": "double"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "subtotal": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "RemoveCouponResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cart": {
+          "$ref": "#/definitions/Cart"
+        }
+      }
+    },
+    "RemoveFromCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "RemoveFromGuestCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateCartItemBody": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "UpdateCartItemResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cartItem": {
+          "$ref": "#/definitions/CartItem"
+        }
+      }
+    },
+    "UpdateCouponBody": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "discountType": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "discountValue": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "maxDiscount": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "minOrderValue": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "maxUsage": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "maxUsagePerUser": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "applicableCategories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applicableProducts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        }
+      }
+    },
+    "UpdateCouponResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "coupon": {
+          "$ref": "#/definitions/Coupon"
+        }
+      }
+    },
+    "UpdateGuestCartItemBody": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "UpdateGuestCartItemResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "cartItem": {
+          "$ref": "#/definitions/CartItem"
+        }
+      }
+    },
+    "ValidateCouponRequest": {
+      "type": "object",
+      "properties": {
+        "couponCode": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidateCouponResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "isValid": {
+          "type": "boolean"
+        },
+        "discountAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "coupon": {
+          "$ref": "#/definitions/Coupon"
+        }
+      }
+    }
+  }
+}

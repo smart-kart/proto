@@ -116,10 +116,27 @@
         ]
       }
     },
-    "/v3/user": {
+    "/v3/user/addresses": {
+      "get": {
+        "summary": "ListAddresses retrieves all addresses for the authenticated user",
+        "operationId": "AccountHTTPService_ListAddresses",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "address_type",
+            "description": "Optional filter: shipping, billing, both",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      },
       "post": {
-        "summary": "CreateAccount creates a new account via HTTP",
-        "operationId": "AccountHTTPService_CreateUser",
+        "summary": "AddAddress adds a new shipping/billing address for the user",
+        "operationId": "AccountHTTPService_AddAddress",
         "responses": {},
         "parameters": [
           {
@@ -127,7 +144,95 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CreateUserRequest"
+              "$ref": "#/definitions/AddAddressRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/addresses/{address_id}": {
+      "get": {
+        "summary": "GetAddress retrieves a specific address by ID",
+        "operationId": "AccountHTTPService_GetAddress",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "address_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteAddress deletes an address",
+        "operationId": "AccountHTTPService_DeleteAddress",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "address_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      },
+      "put": {
+        "summary": "UpdateAddress updates an existing address",
+        "operationId": "AccountHTTPService_UpdateAddress",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "address_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAddressBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/addresses/{address_id}/set-default": {
+      "put": {
+        "summary": "SetDefaultAddress sets an address as the default for shipping/billing",
+        "operationId": "AccountHTTPService_SetDefaultAddress",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "address_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SetDefaultAddressBody"
             }
           }
         ],
@@ -224,7 +329,7 @@
     },
     "/v3/user/login": {
       "post": {
-        "summary": "LoginUser login a user",
+        "summary": "LoginUser login a user (accepts email OR phone + password)",
         "operationId": "AccountHTTPService_LoginUser",
         "responses": {},
         "parameters": [
@@ -244,7 +349,7 @@
     },
     "/v3/user/login-with-phone": {
       "post": {
-        "summary": "LoginWithPhone login a user",
+        "summary": "LoginWithPhone login a user (OTP-based login)",
         "operationId": "AccountHTTPService_LoginWithPhone",
         "responses": {},
         "parameters": [
@@ -322,6 +427,66 @@
         ]
       }
     },
+    "/v3/user/register/complete": {
+      "post": {
+        "summary": "CompleteRegistration - Step 3: User provides name \u0026 password, account created \u0026 auto-login",
+        "operationId": "AccountHTTPService_CompleteRegistration",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompleteRegistrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/register/initiate": {
+      "post": {
+        "summary": "InitiateRegistration - Step 1: User enters email or phone, receives OTP",
+        "operationId": "AccountHTTPService_InitiateRegistration",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InitiateRegistrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
+    "/v3/user/register/verify-otp": {
+      "post": {
+        "summary": "VerifyRegistrationOTP - Step 2: User verifies OTP sent to email/phone",
+        "operationId": "AccountHTTPService_VerifyRegistrationOTP",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VerifyRegistrationOTPRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.account.http.v3.AccountHTTPService"
+        ]
+      }
+    },
     "/v3/user/reset-password": {
       "post": {
         "summary": "ResetPassword verifies token and sets new password",
@@ -369,39 +534,27 @@
         "userId": {
           "type": "string"
         },
-        "userName": {
-          "type": "string"
-        },
         "email": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        },
-        "metadata": {
-          "$ref": "#/definitions/AccountMetadata"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        },
-        "firstName": {
           "type": "string",
-          "x-nullable": true
-        },
-        "lastName": {
-          "type": "string",
-          "x-nullable": true
+          "x-nullable": true,
+          "title": "Optional because user might register with phone only"
         },
         "phoneNumber": {
           "type": "string",
-          "x-nullable": true
+          "x-nullable": true,
+          "title": "Optional because user might register with email only"
+        },
+        "full_name": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "User's full name"
         },
         "profile_picture_url": {
           "type": "string",
           "x-nullable": true
+        },
+        "status": {
+          "type": "string"
         },
         "email_verified": {
           "type": "boolean"
@@ -411,37 +564,138 @@
         },
         "is_oauth_only": {
           "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
         }
       },
       "title": "Account represents an account entity in HTTP v3"
     },
-    "AccountMetadata": {
+    "AddAddressRequest": {
       "type": "object",
       "properties": {
-        "accountType": {
-          "type": "string"
+        "full_name": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=200\""
         },
-        "customFields": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
+        "phone_number": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,e164\""
+        },
+        "address_line1": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=5,max=255\""
+        },
+        "address_line2": {
+          "type": "string",
+          "title": "@gotags: validate:\"omitempty,max=255\""
+        },
+        "landmark": {
+          "type": "string",
+          "title": "@gotags: validate:\"omitempty,max=255\""
+        },
+        "city": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=100\""
+        },
+        "state": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=100\""
+        },
+        "postal_code": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=4,max=20\""
+        },
+        "country": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=100\""
+        },
+        "address_type": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,oneof=shipping billing both\""
+        },
+        "is_default": {
+          "type": "boolean"
         }
       },
-      "title": "AccountMetadata contains additional account information"
+      "title": "AddAddressRequest - Add a new address"
+    },
+    "AddAddressResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        }
+      },
+      "title": "AddAddressResponse - Response after adding address"
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "address_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "address_line1": {
+          "type": "string"
+        },
+        "address_line2": {
+          "type": "string"
+        },
+        "landmark": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "address_type": {
+          "type": "string",
+          "title": "shipping, billing, both"
+        },
+        "is_default": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "title": "Address represents a user's shipping/billing address"
     },
     "AdminLoginRequest": {
       "type": "object",
       "properties": {
-        "user_name": {
-          "type": "string",
-          "x-nullable": true,
-          "title": "@gotags: validate:\"required_without=Email\""
-        },
         "email": {
           "type": "string",
-          "x-nullable": true,
-          "title": "@gotags: validate:\"required_without=UserName,omitempty,email\""
+          "title": "@gotags: validate:\"required,email\""
         },
         "password": {
           "type": "string",
@@ -474,6 +728,40 @@
       },
       "title": "AdminLoginResponse represents the HTTP v3 response for login admin"
     },
+    "CompleteRegistrationRequest": {
+      "type": "object",
+      "properties": {
+        "session_token": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "full_name": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=100\""
+        },
+        "password": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=8\""
+        }
+      },
+      "title": "CompleteRegistrationRequest - Step 3: User provides name \u0026 password"
+    },
+    "CompleteRegistrationResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "#/definitions/Account"
+        },
+        "token": {
+          "$ref": "#/definitions/Token",
+          "title": "Auto-login: access \u0026 refresh tokens"
+        }
+      },
+      "title": "CompleteRegistrationResponse - Step 3 response with auto-login tokens"
+    },
     "ConfigUserBody": {
       "type": "object",
       "properties": {
@@ -481,11 +769,11 @@
           "type": "string",
           "x-nullable": true
         },
-        "user_name": {
+        "phone_number": {
           "type": "string",
           "x-nullable": true
         },
-        "phone_number": {
+        "full_name": {
           "type": "string",
           "x-nullable": true
         },
@@ -494,18 +782,6 @@
           "x-nullable": true
         },
         "new_password": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "metadata": {
-          "$ref": "#/definitions/AccountMetadata",
-          "x-nullable": true
-        },
-        "first_name": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "last_name": {
           "type": "string",
           "x-nullable": true
         }
@@ -525,57 +801,17 @@
       },
       "title": "ConfigUserResponse represents the HTTP v3 response for updating an account"
     },
-    "CreateUserRequest": {
+    "DeleteAddressResponse": {
       "type": "object",
       "properties": {
-        "user_name": {
-          "type": "string",
-          "title": "@gotags: validate:\"required\""
-        },
-        "email": {
-          "type": "string",
-          "title": "@gotags: validate:\"required,email\""
-        },
-        "metadata": {
-          "$ref": "#/definitions/AccountMetadata"
-        },
-        "password": {
-          "type": "string",
-          "title": "@gotags: validate:\"required,min=8\""
-        },
-        "confirm_password": {
-          "type": "string",
-          "title": "@gotags: validate:\"required,eqfield=Password\""
-        },
-        "phone_number": {
-          "type": "string",
-          "x-nullable": true,
-          "title": "@gotags: validate:\"omitempty\""
-        },
-        "first_name": {
-          "type": "string",
-          "x-nullable": true,
-          "title": "@gotags: validate:\"omitempty,min=2,max=50\""
-        },
-        "last_name": {
-          "type": "string",
-          "x-nullable": true,
-          "title": "@gotags: validate:\"omitempty,min=2,max=50\""
-        }
-      },
-      "title": "CreateuserRequest represents the HTTP v3 request to create an account"
-    },
-    "CreateUserResponse": {
-      "type": "object",
-      "properties": {
-        "account": {
-          "$ref": "#/definitions/Account"
+        "success": {
+          "type": "boolean"
         },
         "message": {
           "type": "string"
         }
       },
-      "title": "CreateUserResponse represents the HTTP v3 response for account creation"
+      "title": "DeleteAddressResponse - Response after deleting address"
     },
     "EmptyRequest": {
       "type": "object",
@@ -598,6 +834,21 @@
         }
       },
       "title": "ForgetPasswordResponse represents the HTTP v3 response to forget password"
+    },
+    "GetAddressResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        }
+      },
+      "title": "GetAddressResponse - Response with address details"
     },
     "GetUserResponse": {
       "type": "object",
@@ -642,6 +893,37 @@
       },
       "title": "GoogleAuthResponse represents the HTTP v3 response for Google OAuth"
     },
+    "InitiateRegistrationRequest": {
+      "type": "object",
+      "properties": {
+        "email_or_phone": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        }
+      },
+      "title": "InitiateRegistrationRequest - Step 1: User enters email OR phone"
+    },
+    "InitiateRegistrationResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "session_token": {
+          "type": "string",
+          "title": "Temporary token to track registration flow"
+        },
+        "contact_type": {
+          "type": "string",
+          "title": "\"email\" or \"phone\""
+        },
+        "masked_contact": {
+          "type": "string",
+          "title": "e.g., \"j***@example.com\" or \"+91-9876***210\""
+        }
+      },
+      "title": "InitiateRegistrationResponse - Step 1 response with session token"
+    },
     "LinkGoogleAccountRequest": {
       "type": "object",
       "properties": {
@@ -677,25 +959,42 @@
       },
       "title": "LinkGoogleAccountResponse represents the HTTP v3 response for linking Google account"
     },
+    "ListAddressesResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "total_count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ListAddressesResponse - Response with list of addresses"
+    },
     "LoginUserRequest": {
       "type": "object",
       "properties": {
-        "user_name": {
+        "email_or_phone": {
           "type": "string",
-          "x-nullable": true,
-          "title": "@gotags: validate:\"required_without=Email\""
-        },
-        "email": {
-          "type": "string",
-          "x-nullable": true,
-          "title": "@gotags: validate:\"required_without=UserName,omitempty,email\""
+          "title": "@gotags: validate:\"required\""
         },
         "password": {
           "type": "string",
           "title": "@gotags: validate:\"required,min=8\""
         }
       },
-      "title": "LoginuserRequest represents login request\nAt least one of user_name or email must be provided"
+      "title": "LoginuserRequest represents login request\nemail_or_phone can be email address or phone number (auto-detected)"
     },
     "LoginUserResponse": {
       "type": "object",
@@ -859,6 +1158,25 @@
       },
       "title": "SendVerificationSMSResponse represents the HTTP v3 response for sending verification SMS"
     },
+    "SetDefaultAddressBody": {
+      "type": "object",
+      "title": "SetDefaultAddressRequest - Set an address as default"
+    },
+    "SetDefaultAddressResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        }
+      },
+      "title": "SetDefaultAddressResponse - Response after setting default"
+    },
     "Token": {
       "type": "object",
       "properties": {
@@ -874,6 +1192,70 @@
         }
       },
       "title": "Token represents JWT authentication tokens"
+    },
+    "UpdateAddressBody": {
+      "type": "object",
+      "properties": {
+        "full_name": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=200\""
+        },
+        "phone_number": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,e164\""
+        },
+        "address_line1": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=5,max=255\""
+        },
+        "address_line2": {
+          "type": "string",
+          "title": "@gotags: validate:\"omitempty,max=255\""
+        },
+        "landmark": {
+          "type": "string",
+          "title": "@gotags: validate:\"omitempty,max=255\""
+        },
+        "city": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=100\""
+        },
+        "state": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=100\""
+        },
+        "postal_code": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=4,max=20\""
+        },
+        "country": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=2,max=100\""
+        },
+        "address_type": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,oneof=shipping billing both\""
+        },
+        "is_default": {
+          "type": "boolean"
+        }
+      },
+      "title": "UpdateAddressRequest - Update an existing address"
+    },
+    "UpdateAddressResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        }
+      },
+      "title": "UpdateAddressResponse - Response after updating address"
     },
     "VerifyEmailRequest": {
       "type": "object",
@@ -926,6 +1308,36 @@
         }
       },
       "title": "VerifyPhoneResponse represents the HTTP v3 response for verifying phone"
+    },
+    "VerifyRegistrationOTPRequest": {
+      "type": "object",
+      "properties": {
+        "session_token": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "otp": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,len=6\""
+        }
+      },
+      "title": "VerifyRegistrationOTPRequest - Step 2: User enters OTP"
+    },
+    "VerifyRegistrationOTPResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "session_token": {
+          "type": "string",
+          "title": "Updated session token for step 3"
+        }
+      },
+      "title": "VerifyRegistrationOTPResponse - Step 2 response"
     }
   }
 }

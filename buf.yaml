@@ -6,6 +6,8 @@ modules:
     name: buf.build/smart-kart/account
   - path: error
     name: buf.build/smart-kart/error
+  - path: orders
+    name: buf.build/smart-kart/orders
   - path: products
     name: buf.build/smart-kart/products
 lint:
