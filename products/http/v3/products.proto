@@ -136,6 +136,27 @@ service ProductsHTTPService {
     };
   }
 
+  rpc GetLowStockCount(GetLowStockCountRequest) returns (GetLowStockCountResponse) {
+    option (google.api.http) = {
+      get: "/v3/inventory/low-stock-count"
+    };
+  }
+
+  // Dashboard operations
+  rpc GetDashboardStats(GetDashboardStatsRequest) returns (GetDashboardStatsResponse) {
+    option (google.api.http) = {
+      get: "/v3/dashboard/stats"
+    };
+  }
+
+  // Pricing operations (for profit calculations)
+  rpc GetProductPricing(GetProductPricingRequest) returns (GetProductPricingResponse) {
+    option (google.api.http) = {
+      post: "/v3/products/pricing"
+      body: "*"
+    };
+  }
+
   // Product Image operations
   rpc UploadProductImages(UploadProductImagesRequest) returns (UploadProductImagesResponse) {
     option (google.api.http) = {
@@ -235,6 +256,180 @@ service ProductsHTTPService {
     option (google.api.http) = {
       post: "/v3/carousel-images/upload"
       body: "*"
+    };
+  }
+
+  // ============================================================================
+  // Wishlist Management
+  // ============================================================================
+
+  // Get user's wishlist (authenticated or guest)
+  rpc GetWishlist(GetWishlistRequest) returns (GetWishlistResponse) {
+    option (google.api.http) = {
+      get: "/v3/wishlist"
+    };
+  }
+
+  // Add product to wishlist
+  rpc AddToWishlist(AddToWishlistRequest) returns (AddToWishlistResponse) {
+    option (google.api.http) = {
+      post: "/v3/wishlist/add"
+      body: "*"
+    };
+  }
+
+  // Remove product from wishlist
+  rpc RemoveFromWishlist(RemoveFromWishlistRequest) returns (RemoveFromWishlistResponse) {
+    option (google.api.http) = {
+      delete: "/v3/wishlist/items/{wishlist_item_id}"
+    };
+  }
+
+  // Clear entire wishlist
+  rpc ClearWishlist(ClearWishlistRequest) returns (ClearWishlistResponse) {
+    option (google.api.http) = {
+      delete: "/v3/wishlist"
+    };
+  }
+
+  // Check if product is in wishlist
+  rpc IsInWishlist(IsInWishlistRequest) returns (IsInWishlistResponse) {
+    option (google.api.http) = {
+      get: "/v3/wishlist/check/{product_id}"
+    };
+  }
+
+  // Merge guest wishlist to authenticated user (called on login)
+  rpc MergeWishlist(MergeWishlistRequest) returns (MergeWishlistResponse) {
+    option (google.api.http) = {
+      post: "/v3/wishlist/merge"
+      body: "*"
+    };
+  }
+
+  // Move wishlist item to cart
+  rpc MoveToCart(MoveToCartRequest) returns (MoveToCartResponse) {
+    option (google.api.http) = {
+      post: "/v3/wishlist/move-to-cart"
+      body: "*"
+    };
+  }
+
+  // ==================== Reviews & Ratings ====================
+
+  // Submit a review/rating (requires authentication)
+  rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse) {
+    option (google.api.http) = {
+      post: "/v3/products/{product_id}/reviews"
+      body: "*"
+    };
+  }
+
+  // Get reviews for a product (paginated, public)
+  rpc GetProductReviews(GetProductReviewsRequest) returns (GetProductReviewsResponse) {
+    option (google.api.http) = {
+      get: "/v3/products/{product_id}/reviews"
+    };
+  }
+
+  // Get product ratings summary (public)
+  rpc GetProductRating(GetProductRatingRequest) returns (GetProductRatingResponse) {
+    option (google.api.http) = {
+      get: "/v3/products/{product_id}/rating"
+    };
+  }
+
+  // Get user's review for a product (check if already reviewed)
+  rpc GetUserReviewForProduct(GetUserReviewForProductRequest) returns (GetUserReviewForProductResponse) {
+    option (google.api.http) = {
+      get: "/v3/products/{product_id}/my-review"
+    };
+  }
+
+  // Update user's own review
+  rpc UpdateReview(UpdateReviewRequest) returns (UpdateReviewResponse) {
+    option (google.api.http) = {
+      put: "/v3/reviews/{review_id}"
+      body: "*"
+    };
+  }
+
+  // Delete user's own review
+  rpc DeleteReview(DeleteReviewRequest) returns (DeleteReviewResponse) {
+    option (google.api.http) = {
+      delete: "/v3/reviews/{review_id}"
+    };
+  }
+
+  // Mark review as helpful
+  rpc MarkReviewHelpful(MarkReviewHelpfulRequest) returns (MarkReviewHelpfulResponse) {
+    option (google.api.http) = {
+      post: "/v3/reviews/{review_id}/helpful"
+      body: "*"
+    };
+  }
+
+  // Upload review images (multipart form data)
+  // Note: Actual file upload is handled via multipart/form-data in HTTP handler
+  rpc UploadReviewImages(UploadReviewImagesRequest) returns (UploadReviewImagesResponse) {
+    option (google.api.http) = {
+      post: "/v3/reviews/{review_id}/images"
+      body: "*"
+    };
+  }
+
+  // ==================== Admin Review Management ====================
+
+  // Get all reviews with filters (admin only)
+  rpc AdminGetReviews(AdminGetReviewsRequest) returns (AdminGetReviewsResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/reviews"
+    };
+  }
+
+  // Approve review (admin)
+  rpc AdminApproveReview(AdminApproveReviewRequest) returns (AdminApproveReviewResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/reviews/{review_id}/approve"
+      body: "*"
+    };
+  }
+
+  // Reject review (admin)
+  rpc AdminRejectReview(AdminRejectReviewRequest) returns (AdminRejectReviewResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/reviews/{review_id}/reject"
+      body: "*"
+    };
+  }
+
+  // Delete review (admin)
+  rpc AdminDeleteReview(AdminDeleteReviewRequest) returns (AdminDeleteReviewResponse) {
+    option (google.api.http) = {
+      delete: "/v3/admin/reviews/{review_id}"
+    };
+  }
+
+  // Admin respond to review
+  rpc AdminRespondToReview(AdminRespondToReviewRequest) returns (AdminRespondToReviewResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/reviews/{review_id}/respond"
+      body: "*"
+    };
+  }
+
+  // Bulk approve reviews (admin)
+  rpc AdminBulkApproveReviews(AdminBulkApproveReviewsRequest) returns (AdminBulkApproveReviewsResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/reviews/bulk-approve"
+      body: "*"
+    };
+  }
+
+  // Get review analytics (admin)
+  rpc AdminGetReviewAnalytics(AdminGetReviewAnalyticsRequest) returns (AdminGetReviewAnalyticsResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/reviews/analytics"
     };
   }
 }
@@ -368,6 +563,7 @@ message ListProductsRequest {
   optional double price_max = 4 [json_name = "price_max"];
   int32 page = 5 [json_name = "page"];
   int32 page_size = 6 [json_name = "page_size"];
+  optional string query = 7 [json_name = "query"]; // Search query for product name/SKU
 }
 
 message ListProductsResponse {
@@ -596,6 +792,60 @@ message ReleaseStockRequest {
 message ReleaseStockResponse {
   bool success = 1 [json_name = "success"];
   string message = 2 [json_name = "errors"];
+}
+
+message GetLowStockCountRequest {
+  // @gotags: validate:"omitempty,gte=0"
+  optional int32 threshold = 1 [json_name = "threshold"]; // Default 10 if not provided
+}
+
+message GetLowStockCountResponse {
+  int64 count = 1 [json_name = "count"];
+  int32 threshold = 2 [json_name = "threshold"];
+  string message = 3 [json_name = "message"];
+}
+
+// ============================================================================
+// Dashboard Messages
+// ============================================================================
+
+message CategoryStat {
+  string category_id = 1 [json_name = "category_id"];
+  string category_name = 2 [json_name = "category_name"];
+  int64 product_count = 3 [json_name = "product_count"];
+  double percentage = 4 [json_name = "percentage"];
+}
+
+message GetDashboardStatsRequest {}
+
+message GetDashboardStatsResponse {
+  int64 total_products = 1 [json_name = "total_products"];
+  int64 low_stock_count = 2 [json_name = "low_stock_count"];
+  int64 out_of_stock_count = 3 [json_name = "out_of_stock_count"];
+  double inventory_value = 4 [json_name = "inventory_value"];
+  double potential_profit = 5 [json_name = "potential_profit"];
+  double average_margin = 6 [json_name = "average_margin"];
+  repeated CategoryStat category_stats = 7 [json_name = "category_stats"];
+  double current_profit = 8 [json_name = "current_profit"];  // Profit from sold items (last 30 days)
+  string message = 9 [json_name = "message"];
+}
+
+// Pricing messages for profit calculations
+message GetProductPricingRequest {
+  repeated string product_ids = 1 [json_name = "product_ids"];
+}
+
+message GetProductPricingResponse {
+  map<string, ProductPricing> pricing = 1 [json_name = "pricing"];  // product_id -> pricing
+  string message = 2 [json_name = "message"];
+}
+
+message ProductPricing {
+  string product_id = 1 [json_name = "product_id"];
+  double selling_price = 2 [json_name = "selling_price"];
+  double cost_price = 3 [json_name = "cost_price"];
+  double mrp = 4 [json_name = "mrp"];
+  double tax_rate = 5 [json_name = "tax_rate"];
 }
 
 // ============================================================================
@@ -833,4 +1083,374 @@ message UploadCarouselImageRequest {
 message UploadCarouselImageResponse {
   CarouselImage carousel_image = 1 [json_name = "carousel_image"];
   string message = 2 [json_name = "message"];
+}
+
+// ============================================================================
+// Wishlist Messages
+// ============================================================================
+
+message Wishlist {
+  string wishlist_id = 1 [json_name = "wishlist_id"];
+  optional string user_id = 2 [json_name = "user_id"];
+  repeated WishlistItem items = 3 [json_name = "items"];
+  int32 item_count = 4 [json_name = "item_count"];
+  google.protobuf.Timestamp created_at = 5 [json_name = "created_at"];
+}
+
+message WishlistItem {
+  string wishlist_item_id = 1 [json_name = "wishlist_item_id"];
+  string wishlist_id = 2 [json_name = "wishlist_id"];
+  string product_id = 3 [json_name = "product_id"];
+
+  // Enriched product data (joined from products table)
+  string product_name = 4 [json_name = "product_name"];
+  double price = 5 [json_name = "price"];
+  optional string image_url = 6 [json_name = "image_url"];
+  string stock_status = 7 [json_name = "stock_status"];  // in_stock, out_of_stock, low_stock
+  int32 available_quantity = 8 [json_name = "available_quantity"];
+
+  google.protobuf.Timestamp added_at = 9 [json_name = "added_at"];
+
+  // Price tracking fields (Phase 4)
+  optional double price_at_addition = 10 [json_name = "price_at_addition"];
+  optional google.protobuf.Timestamp last_price_check = 11 [json_name = "last_price_check"];
+  optional double price_change_amount = 12 [json_name = "price_change_amount"];
+  optional double price_change_percentage = 13 [json_name = "price_change_percentage"];
+}
+
+message GetWishlistRequest {
+  optional string session_id = 1 [json_name = "session_id"];  // For guest users
+
+  // Sorting options
+  optional string sort_by = 2 [json_name = "sort_by"];
+  // Values: "recently_added" (default), "price_asc", "price_desc", "name_asc", "best_offers"
+
+  // Filter options
+  optional double min_price = 3 [json_name = "min_price"];
+  optional double max_price = 4 [json_name = "max_price"];
+  optional string search_query = 5 [json_name = "search_query"];  // Search by product name
+}
+
+message GetWishlistResponse {
+  Wishlist wishlist = 1 [json_name = "wishlist"];
+  string message = 2 [json_name = "message"];
+}
+
+message AddToWishlistRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  optional string session_id = 2 [json_name = "session_id"];  // For guest users
+}
+
+message AddToWishlistResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  WishlistItem item = 3 [json_name = "item"];
+}
+
+message RemoveFromWishlistRequest {
+  // @gotags: validate:"required"
+  string wishlist_item_id = 1 [json_name = "wishlist_item_id"];
+}
+
+message RemoveFromWishlistResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+message ClearWishlistRequest {
+  optional string session_id = 1 [json_name = "session_id"];
+}
+
+message ClearWishlistResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+message IsInWishlistRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  optional string session_id = 2 [json_name = "session_id"];
+}
+
+message IsInWishlistResponse {
+  bool in_wishlist = 1 [json_name = "in_wishlist"];
+  optional string wishlist_item_id = 2 [json_name = "wishlist_item_id"];
+}
+
+message MergeWishlistRequest {
+  // @gotags: validate:"required"
+  string session_id = 1 [json_name = "session_id"];  // Guest session to merge
+}
+
+message MergeWishlistResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  int32 merged_items = 3 [json_name = "merged_items"];
+}
+
+message MoveToCartRequest {
+  // @gotags: validate:"required"
+  string wishlist_item_id = 1 [json_name = "wishlist_item_id"];
+  int32 quantity = 2 [json_name = "quantity"];  // Default 1
+}
+
+message MoveToCartResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+// ============================================================================
+// Reviews & Ratings Messages
+// ============================================================================
+
+message Review {
+  string review_id = 1 [json_name = "review_id"];
+  string product_id = 2 [json_name = "product_id"];
+  string user_id = 3 [json_name = "user_id"];
+  optional string order_id = 4 [json_name = "order_id"];
+
+  int32 rating = 5 [json_name = "rating"];
+  optional string title = 6 [json_name = "title"];
+  optional string review_text = 7 [json_name = "review_text"];
+
+  string status = 8 [json_name = "status"];
+  bool is_verified_purchase = 9 [json_name = "is_verified_purchase"];
+
+  int32 helpful_count = 10 [json_name = "helpful_count"];
+  int32 reported_count = 11 [json_name = "reported_count"];
+
+  optional string admin_response = 12 [json_name = "admin_response"];
+  optional google.protobuf.Timestamp admin_response_at = 13 [json_name = "admin_response_at"];
+
+  repeated ReviewImage images = 14 [json_name = "images"];
+  string user_name = 15 [json_name = "user_name"];
+  bool marked_helpful_by_user = 16 [json_name = "marked_helpful_by_user"];
+
+  google.protobuf.Timestamp created_at = 17 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 18 [json_name = "updated_at"];
+}
+
+message ReviewImage {
+  string image_id = 1 [json_name = "image_id"];
+  string review_id = 2 [json_name = "review_id"];
+  string image_url = 3 [json_name = "image_url"];
+  int32 display_order = 4 [json_name = "display_order"];
+  optional int32 width = 5 [json_name = "width"];
+  optional int32 height = 6 [json_name = "height"];
+}
+
+message ProductRatingSummary {
+  string product_id = 1 [json_name = "product_id"];
+  double average_rating = 2 [json_name = "average_rating"];
+  int32 total_reviews = 3 [json_name = "total_reviews"];
+  int32 total_ratings = 4 [json_name = "total_ratings"];
+
+  int32 rating_5_count = 5 [json_name = "rating_5_count"];
+  int32 rating_4_count = 6 [json_name = "rating_4_count"];
+  int32 rating_3_count = 7 [json_name = "rating_3_count"];
+  int32 rating_2_count = 8 [json_name = "rating_2_count"];
+  int32 rating_1_count = 9 [json_name = "rating_1_count"];
+}
+
+message CreateReviewRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+
+  // @gotags: validate:"required,min=1,max=5"
+  int32 rating = 2 [json_name = "rating"];
+
+  // @gotags: validate:"omitempty,min=3,max=200"
+  optional string title = 3 [json_name = "title"];
+
+  // @gotags: validate:"omitempty,min=10,max=5000"
+  optional string review_text = 4 [json_name = "review_text"];
+}
+
+message CreateReviewResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Review review = 3 [json_name = "review"];
+}
+
+message GetProductReviewsRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+
+  int32 page = 2 [json_name = "page"];
+  int32 page_size = 3 [json_name = "page_size"];
+  optional int32 rating_filter = 4 [json_name = "rating_filter"];
+  string sort_by = 5 [json_name = "sort_by"];  // newest, highest_rated, most_helpful
+}
+
+message GetProductReviewsResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  repeated Review reviews = 3 [json_name = "reviews"];
+  Pagination pagination = 4 [json_name = "pagination"];
+}
+
+message GetProductRatingRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+}
+
+message GetProductRatingResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  ProductRatingSummary rating_summary = 3 [json_name = "rating_summary"];
+}
+
+message GetUserReviewForProductRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+}
+
+message GetUserReviewForProductResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  bool has_reviewed = 3 [json_name = "has_reviewed"];
+  optional Review review = 4 [json_name = "review"];
+}
+
+message UpdateReviewRequest {
+  // @gotags: validate:"required"
+  string review_id = 1 [json_name = "review_id"];
+
+  // @gotags: validate:"required,min=1,max=5"
+  int32 rating = 2 [json_name = "rating"];
+
+  optional string title = 3 [json_name = "title"];
+  optional string review_text = 4 [json_name = "review_text"];
+}
+
+message UpdateReviewResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Review review = 3 [json_name = "review"];
+}
+
+message DeleteReviewRequest {
+  // @gotags: validate:"required"
+  string review_id = 1 [json_name = "review_id"];
+}
+
+message DeleteReviewResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+message MarkReviewHelpfulRequest {
+  // @gotags: validate:"required"
+  string review_id = 1 [json_name = "review_id"];
+}
+
+message MarkReviewHelpfulResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  int32 helpful_count = 3 [json_name = "helpful_count"];
+}
+
+message UploadReviewImagesRequest {
+  // @gotags: validate:"required"
+  string review_id = 1 [json_name = "review_id"];
+  // Note: Actual file upload is handled via multipart/form-data in HTTP handler
+  // This message is used for the gRPC endpoint definition only
+  // The custom HTTP handler bypasses this and handles multipart directly
+}
+
+message UploadReviewImagesResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  repeated ReviewImage images = 3 [json_name = "images"];
+}
+
+// Admin Messages
+message AdminGetReviewsRequest {
+  int32 page = 1 [json_name = "page"];
+  int32 page_size = 2 [json_name = "page_size"];
+  optional string status = 3 [json_name = "status"];
+  optional string product_id = 4 [json_name = "product_id"];
+  string sort_by = 5 [json_name = "sort_by"];
+}
+
+message AdminGetReviewsResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  repeated Review reviews = 3 [json_name = "reviews"];
+  Pagination pagination = 4 [json_name = "pagination"];
+}
+
+message AdminApproveReviewRequest {
+  // @gotags: validate:"required"
+  string review_id = 1 [json_name = "review_id"];
+}
+
+message AdminApproveReviewResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+message AdminRejectReviewRequest {
+  // @gotags: validate:"required"
+  string review_id = 1 [json_name = "review_id"];
+  optional string reason = 2 [json_name = "reason"];
+}
+
+message AdminRejectReviewResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+message AdminDeleteReviewRequest {
+  // @gotags: validate:"required"
+  string review_id = 1 [json_name = "review_id"];
+}
+
+message AdminDeleteReviewResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+message AdminRespondToReviewRequest {
+  // @gotags: validate:"required"
+  string review_id = 1 [json_name = "review_id"];
+
+  // @gotags: validate:"required,min=10,max=1000"
+  string response = 2 [json_name = "response"];
+}
+
+message AdminRespondToReviewResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+message AdminBulkApproveReviewsRequest {
+  // @gotags: validate:"required,min=1"
+  repeated string review_ids = 1 [json_name = "review_ids"];
+}
+
+message AdminBulkApproveReviewsResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  int32 approved_count = 3 [json_name = "approved_count"];
+}
+
+message AdminGetReviewAnalyticsRequest {
+  optional string product_id = 1 [json_name = "product_id"];
+  optional string start_date = 2 [json_name = "start_date"];
+  optional string end_date = 3 [json_name = "end_date"];
+}
+
+message AdminGetReviewAnalyticsResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  int32 total_reviews = 3 [json_name = "total_reviews"];
+  int32 pending_reviews = 4 [json_name = "pending_reviews"];
+  int32 approved_reviews = 5 [json_name = "approved_reviews"];
+  int32 rejected_reviews = 6 [json_name = "rejected_reviews"];
+  double average_rating = 7 [json_name = "average_rating"];
+  map<string, int32> rating_distribution = 8 [json_name = "rating_distribution"];
+  int32 reviews_with_images = 9 [json_name = "reviews_with_images"];
+  int32 verified_purchase_reviews = 10 [json_name = "verified_purchase_reviews"];
 }

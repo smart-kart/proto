@@ -1,0 +1,297 @@
+syntax = "proto3";
+
+package payments.http.v3;
+
+option go_package = "github.com/smart-kart/proto/gen/go/payments/http/v3;paymentsv3";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+// PaymentsService handles payment processing with Razorpay
+service PaymentsService {
+  // Customer Payment Flow
+
+  // CreatePaymentOrder creates a Razorpay order for payment
+  rpc CreatePaymentOrder(CreatePaymentOrderRequest) returns (CreatePaymentOrderResponse) {
+    option (google.api.http) = {
+      post: "/v3/payments/orders"
+      body: "*"
+    };
+  }
+
+  // VerifyPayment verifies payment signature after successful payment
+  rpc VerifyPayment(VerifyPaymentRequest) returns (VerifyPaymentResponse) {
+    option (google.api.http) = {
+      post: "/v3/payments/verify"
+      body: "*"
+    };
+  }
+
+  // GetPayment retrieves payment details by payment ID
+  rpc GetPayment(GetPaymentRequest) returns (GetPaymentResponse) {
+    option (google.api.http) = {
+      get: "/v3/payments/{payment_id}"
+    };
+  }
+
+  // GetPaymentByOrder retrieves payment details by order ID
+  rpc GetPaymentByOrder(GetPaymentByOrderRequest) returns (GetPaymentByOrderResponse) {
+    option (google.api.http) = {
+      get: "/v3/payments/order/{order_id}"
+    };
+  }
+
+  // Webhooks
+
+  // HandleWebhook processes Razorpay webhook events
+  rpc HandleWebhook(WebhookRequest) returns (WebhookResponse) {
+    option (google.api.http) = {
+      post: "/v3/webhooks/razorpay"
+      body: "*"
+    };
+  }
+
+  // Refunds (Admin)
+
+  // CreateRefund initiates a refund for a payment
+  rpc CreateRefund(CreateRefundRequest) returns (CreateRefundResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/refunds"
+      body: "*"
+    };
+  }
+
+  // CreateItemRefund initiates a refund for specific order items
+  rpc CreateItemRefund(CreateItemRefundRequest) returns (CreateRefundResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/refunds/items"
+      body: "*"
+    };
+  }
+
+  // GetRefund retrieves refund details
+  rpc GetRefund(GetRefundRequest) returns (GetRefundResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/refunds/{refund_id}"
+    };
+  }
+
+  // ListRefunds retrieves all refunds with optional filters
+  rpc ListRefunds(ListRefundsRequest) returns (ListRefundsResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/refunds"
+    };
+  }
+
+  // Admin Analytics
+
+  // GetPaymentStats retrieves payment statistics
+  rpc GetPaymentStats(GetPaymentStatsRequest) returns (GetPaymentStatsResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/payments/stats"
+    };
+  }
+}
+
+// ========================================
+// Payment Messages
+// ========================================
+
+message CreatePaymentOrderRequest {
+  string order_id = 1;
+}
+
+message CreatePaymentOrderResponse {
+  bool success = 1;
+  string message = 2;
+  string payment_id = 3;           // Our internal payment ID
+  string razorpay_order_id = 4;    // Razorpay order ID
+  string razorpay_key_id = 5;      // Razorpay public key for frontend
+  double amount = 6;               // Amount in INR
+  string currency = 7;             // INR
+}
+
+message VerifyPaymentRequest {
+  string order_id = 1;
+  string razorpay_order_id = 2;
+  string razorpay_payment_id = 3;
+  string razorpay_signature = 4;
+}
+
+message VerifyPaymentResponse {
+  bool success = 1;
+  string message = 2;
+  Payment payment = 3;
+}
+
+message GetPaymentRequest {
+  string payment_id = 1;
+}
+
+message GetPaymentResponse {
+  bool success = 1;
+  string message = 2;
+  Payment payment = 3;
+}
+
+message GetPaymentByOrderRequest {
+  string order_id = 1;
+}
+
+message GetPaymentByOrderResponse {
+  bool success = 1;
+  string message = 2;
+  Payment payment = 3;
+}
+
+// Payment represents a payment record
+message Payment {
+  string payment_id = 1;
+  string order_id = 2;
+  string user_id = 3;
+  double amount = 4;
+  string currency = 5;
+  string status = 6;               // pending, authorized, captured, failed, refunded
+
+  // Razorpay references
+  string razorpay_order_id = 7;
+  string razorpay_payment_id = 8;
+
+  // Payment details
+  string method = 9;               // card, upi, netbanking, wallet
+  string bank = 10;
+  string wallet = 11;
+  string vpa = 12;                 // UPI VPA
+  string card_last4 = 13;
+  string card_network = 14;
+
+  // Error info (if failed)
+  string error_code = 15;
+  string error_description = 16;
+
+  // Timestamps
+  google.protobuf.Timestamp created_at = 17;
+  google.protobuf.Timestamp captured_at = 18;
+  google.protobuf.Timestamp failed_at = 19;
+}
+
+// ========================================
+// Webhook Messages
+// ========================================
+
+message WebhookRequest {
+  // Raw JSON payload from Razorpay
+  bytes payload = 1;
+}
+
+message WebhookResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// ========================================
+// Refund Messages
+// ========================================
+
+message CreateRefundRequest {
+  string order_id = 1;
+  double amount = 2;               // Amount to refund (must be <= payment amount)
+  string reason = 3;
+  string speed = 4;                // normal, optimum
+}
+
+message CreateRefundResponse {
+  bool success = 1;
+  string message = 2;
+  Refund refund = 3;
+}
+
+message GetRefundRequest {
+  string refund_id = 1;
+}
+
+message GetRefundResponse {
+  bool success = 1;
+  string message = 2;
+  Refund refund = 3;
+}
+
+message ListRefundsRequest {
+  string order_id = 1;             // Optional: filter by order
+  string status = 2;               // Optional: filter by status
+  string start_date = 3;           // Optional: filter by date range
+  string end_date = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+}
+
+message ListRefundsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Refund refunds = 3;
+  int32 total_count = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+}
+
+// Refund represents a refund record
+message Refund {
+  string refund_id = 1;
+  string payment_id = 2;
+  string order_id = 3;
+  double amount = 4;
+  string status = 5;               // pending, processed, failed
+  string razorpay_refund_id = 6;
+  string reason = 7;
+  string speed = 8;
+
+  // Error info (if failed)
+  string error_code = 9;
+  string error_description = 10;
+
+  // Timestamps
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp processed_at = 12;
+
+  string initiated_by = 13;        // Admin who initiated
+}
+
+// ========================================
+// Item-level Refund Messages
+// ========================================
+
+message CreateItemRefundRequest {
+  string order_id = 1;                // Order ID
+  repeated string order_item_ids = 2; // Array of order item IDs to refund
+  double amount = 3;                  // Total refund amount
+  string reason = 4;                  // Reason for refund
+  string reason_category = 5;         // Category: changed_mind, found_better_price, etc.
+  string speed = 6;                   // "normal" or "optimum"
+}
+
+// ========================================
+// Stats Messages
+// ========================================
+
+message GetPaymentStatsRequest {
+  string start_date = 1;           // Optional: YYYY-MM-DD
+  string end_date = 2;             // Optional: YYYY-MM-DD
+}
+
+message GetPaymentStatsResponse {
+  bool success = 1;
+  string message = 2;
+
+  // Totals
+  int32 total_payments = 3;
+  double total_amount = 4;
+  int32 successful_payments = 5;
+  int32 failed_payments = 6;
+
+  // Refunds
+  int32 total_refunds = 7;
+  double total_refund_amount = 8;
+
+  // Success rate
+  double success_rate = 9;         // Percentage
+}

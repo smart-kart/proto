@@ -477,6 +477,132 @@ func local_request_OrdersService_CancelOrder_0(ctx context.Context, marshaler ru
 	return msg, metadata, err
 }
 
+func request_OrdersService_CancelOrderItems_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CancelOrderItemsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["order_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_id")
+	}
+	protoReq.OrderId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_id", err)
+	}
+	msg, err := client.CancelOrderItems(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_OrdersService_CancelOrderItems_0(ctx context.Context, marshaler runtime.Marshaler, server OrdersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CancelOrderItemsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["order_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_id")
+	}
+	protoReq.OrderId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_id", err)
+	}
+	msg, err := server.CancelOrderItems(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_OrdersService_UpdateOrderStatus_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateOrderStatusRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["order_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_id")
+	}
+	protoReq.OrderId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_id", err)
+	}
+	msg, err := client.UpdateOrderStatus(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_OrdersService_UpdateOrderStatus_0(ctx context.Context, marshaler runtime.Marshaler, server OrdersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateOrderStatusRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["order_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_id")
+	}
+	protoReq.OrderId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_id", err)
+	}
+	msg, err := server.UpdateOrderStatus(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_OrdersService_UpdatePaymentStatus_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdatePaymentStatusRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["order_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_id")
+	}
+	protoReq.OrderId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_id", err)
+	}
+	msg, err := client.UpdatePaymentStatus(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_OrdersService_UpdatePaymentStatus_0(ctx context.Context, marshaler runtime.Marshaler, server OrdersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdatePaymentStatusRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["order_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_id")
+	}
+	protoReq.OrderId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_id", err)
+	}
+	msg, err := server.UpdatePaymentStatus(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_OrdersService_ValidateCoupon_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ValidateCouponRequest
@@ -541,6 +667,25 @@ func local_request_OrdersService_RemoveCoupon_0(ctx context.Context, marshaler r
 		metadata runtime.ServerMetadata
 	)
 	msg, err := server.RemoveCoupon(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_OrdersService_GetAvailableCoupons_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetAvailableCouponsRequest
+		metadata runtime.ServerMetadata
+	)
+	io.Copy(io.Discard, req.Body)
+	msg, err := client.GetAvailableCoupons(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_OrdersService_GetAvailableCoupons_0(ctx context.Context, marshaler runtime.Marshaler, server OrdersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetAvailableCouponsRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.GetAvailableCoupons(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -717,6 +862,43 @@ func local_request_OrdersService_DeactivateCoupon_0(ctx context.Context, marshal
 	return msg, metadata, err
 }
 
+func request_OrdersService_DeleteCoupon_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteCouponRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["coupon_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "coupon_id")
+	}
+	protoReq.CouponId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "coupon_id", err)
+	}
+	msg, err := client.DeleteCoupon(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_OrdersService_DeleteCoupon_0(ctx context.Context, marshaler runtime.Marshaler, server OrdersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteCouponRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["coupon_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "coupon_id")
+	}
+	protoReq.CouponId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "coupon_id", err)
+	}
+	msg, err := server.DeleteCoupon(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 var filter_OrdersService_GetCouponUsageHistory_0 = &utilities.DoubleArray{Encoding: map[string]int{"coupon_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_OrdersService_GetCouponUsageHistory_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -765,6 +947,76 @@ func local_request_OrdersService_GetCouponUsageHistory_0(ctx context.Context, ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.GetCouponUsageHistory(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_OrdersService_GetProductSalesAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
+func request_OrdersService_GetProductSalesAnalytics_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetProductSalesAnalyticsRequest
+		metadata runtime.ServerMetadata
+	)
+	io.Copy(io.Discard, req.Body)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_OrdersService_GetProductSalesAnalytics_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.GetProductSalesAnalytics(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_OrdersService_GetProductSalesAnalytics_0(ctx context.Context, marshaler runtime.Marshaler, server OrdersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetProductSalesAnalyticsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_OrdersService_GetProductSalesAnalytics_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetProductSalesAnalytics(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_OrdersService_HasPurchasedProduct_0(ctx context.Context, marshaler runtime.Marshaler, client OrdersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq HasPurchasedProductRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	msg, err := client.HasPurchasedProduct(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_OrdersService_HasPurchasedProduct_0(ctx context.Context, marshaler runtime.Marshaler, server OrdersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq HasPurchasedProductRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["product_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "product_id")
+	}
+	protoReq.ProductId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "product_id", err)
+	}
+	msg, err := server.HasPurchasedProduct(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -1074,6 +1326,66 @@ func RegisterOrdersServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_OrdersService_CancelOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_OrdersService_CancelOrderItems_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/CancelOrderItems", runtime.WithHTTPPathPattern("/v3/orders/{order_id}/items/cancel"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_OrdersService_CancelOrderItems_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_CancelOrderItems_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPatch, pattern_OrdersService_UpdateOrderStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/UpdateOrderStatus", runtime.WithHTTPPathPattern("/v3/orders/{order_id}/status"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_OrdersService_UpdateOrderStatus_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_UpdateOrderStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPatch, pattern_OrdersService_UpdatePaymentStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/UpdatePaymentStatus", runtime.WithHTTPPathPattern("/v3/orders/{order_id}/payment-status"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_OrdersService_UpdatePaymentStatus_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_UpdatePaymentStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_OrdersService_ValidateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1133,6 +1445,26 @@ func RegisterOrdersServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 		forward_OrdersService_RemoveCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_OrdersService_GetAvailableCoupons_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/GetAvailableCoupons", runtime.WithHTTPPathPattern("/v3/cart/coupons/available"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_OrdersService_GetAvailableCoupons_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_GetAvailableCoupons_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_OrdersService_CreateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1214,13 +1546,13 @@ func RegisterOrdersServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_OrdersService_UpdateCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_OrdersService_DeactivateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_OrdersService_DeactivateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/DeactivateCoupon", runtime.WithHTTPPathPattern("/v3/admin/coupons/{coupon_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/DeactivateCoupon", runtime.WithHTTPPathPattern("/v3/admin/coupons/{coupon_id}/deactivate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1233,6 +1565,26 @@ func RegisterOrdersServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 		forward_OrdersService_DeactivateCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_OrdersService_DeleteCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/DeleteCoupon", runtime.WithHTTPPathPattern("/v3/admin/coupons/{coupon_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_OrdersService_DeleteCoupon_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_DeleteCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_OrdersService_GetCouponUsageHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1253,6 +1605,46 @@ func RegisterOrdersServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 		forward_OrdersService_GetCouponUsageHistory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_OrdersService_GetProductSalesAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/GetProductSalesAnalytics", runtime.WithHTTPPathPattern("/v3/admin/analytics/product-sales"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_OrdersService_GetProductSalesAnalytics_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_GetProductSalesAnalytics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_OrdersService_HasPurchasedProduct_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/orders.http.v3.OrdersService/HasPurchasedProduct", runtime.WithHTTPPathPattern("/v3/orders/verify-purchase/{product_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_OrdersService_HasPurchasedProduct_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_HasPurchasedProduct_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -1549,6 +1941,57 @@ func RegisterOrdersServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_OrdersService_CancelOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_OrdersService_CancelOrderItems_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/CancelOrderItems", runtime.WithHTTPPathPattern("/v3/orders/{order_id}/items/cancel"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_OrdersService_CancelOrderItems_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_CancelOrderItems_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPatch, pattern_OrdersService_UpdateOrderStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/UpdateOrderStatus", runtime.WithHTTPPathPattern("/v3/orders/{order_id}/status"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_OrdersService_UpdateOrderStatus_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_UpdateOrderStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPatch, pattern_OrdersService_UpdatePaymentStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/UpdatePaymentStatus", runtime.WithHTTPPathPattern("/v3/orders/{order_id}/payment-status"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_OrdersService_UpdatePaymentStatus_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_UpdatePaymentStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_OrdersService_ValidateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1599,6 +2042,23 @@ func RegisterOrdersServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 		forward_OrdersService_RemoveCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_OrdersService_GetAvailableCoupons_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/GetAvailableCoupons", runtime.WithHTTPPathPattern("/v3/cart/coupons/available"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_OrdersService_GetAvailableCoupons_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_GetAvailableCoupons_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_OrdersService_CreateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1668,11 +2128,11 @@ func RegisterOrdersServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_OrdersService_UpdateCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_OrdersService_DeactivateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_OrdersService_DeactivateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/DeactivateCoupon", runtime.WithHTTPPathPattern("/v3/admin/coupons/{coupon_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/DeactivateCoupon", runtime.WithHTTPPathPattern("/v3/admin/coupons/{coupon_id}/deactivate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1684,6 +2144,23 @@ func RegisterOrdersServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 		forward_OrdersService_DeactivateCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_OrdersService_DeleteCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/DeleteCoupon", runtime.WithHTTPPathPattern("/v3/admin/coupons/{coupon_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_OrdersService_DeleteCoupon_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_DeleteCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_OrdersService_GetCouponUsageHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1702,59 +2179,107 @@ func RegisterOrdersServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_OrdersService_GetCouponUsageHistory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_OrdersService_GetProductSalesAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/GetProductSalesAnalytics", runtime.WithHTTPPathPattern("/v3/admin/analytics/product-sales"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_OrdersService_GetProductSalesAnalytics_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_GetProductSalesAnalytics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_OrdersService_HasPurchasedProduct_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/orders.http.v3.OrdersService/HasPurchasedProduct", runtime.WithHTTPPathPattern("/v3/orders/verify-purchase/{product_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_OrdersService_HasPurchasedProduct_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_OrdersService_HasPurchasedProduct_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_OrdersService_AddToCart_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "cart", "add"}, ""))
-	pattern_OrdersService_GetCart_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "cart"}, ""))
-	pattern_OrdersService_UpdateCartItem_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "cart", "item", "cart_item_id"}, ""))
-	pattern_OrdersService_RemoveFromCart_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "cart", "item", "cart_item_id"}, ""))
-	pattern_OrdersService_ClearCart_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "cart"}, ""))
-	pattern_OrdersService_GetGuestCart_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "guest", "cart"}, ""))
-	pattern_OrdersService_AddToGuestCart_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v3", "guest", "cart", "add"}, ""))
-	pattern_OrdersService_UpdateGuestCartItem_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v3", "guest", "cart", "item", "cart_item_id"}, ""))
-	pattern_OrdersService_RemoveFromGuestCart_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v3", "guest", "cart", "item", "cart_item_id"}, ""))
-	pattern_OrdersService_ClearGuestCart_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "guest", "cart"}, ""))
-	pattern_OrdersService_MergeGuestCart_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "cart", "merge"}, ""))
-	pattern_OrdersService_CreateOrder_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "orders"}, ""))
-	pattern_OrdersService_GetOrder_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "orders", "order_id"}, ""))
-	pattern_OrdersService_ListOrders_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "orders"}, ""))
-	pattern_OrdersService_CancelOrder_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v3", "orders", "order_id", "cancel"}, ""))
-	pattern_OrdersService_ValidateCoupon_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v3", "cart", "coupon", "validate"}, ""))
-	pattern_OrdersService_ApplyCoupon_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v3", "cart", "coupon", "apply"}, ""))
-	pattern_OrdersService_RemoveCoupon_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "cart", "coupon"}, ""))
-	pattern_OrdersService_CreateCoupon_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "admin", "coupons"}, ""))
-	pattern_OrdersService_GetCoupon_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "admin", "coupons", "coupon_id"}, ""))
-	pattern_OrdersService_ListCoupons_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "admin", "coupons"}, ""))
-	pattern_OrdersService_UpdateCoupon_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "admin", "coupons", "coupon_id"}, ""))
-	pattern_OrdersService_DeactivateCoupon_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "admin", "coupons", "coupon_id"}, ""))
-	pattern_OrdersService_GetCouponUsageHistory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v3", "admin", "coupons", "coupon_id", "usage"}, ""))
+	pattern_OrdersService_AddToCart_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "cart", "add"}, ""))
+	pattern_OrdersService_GetCart_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "cart"}, ""))
+	pattern_OrdersService_UpdateCartItem_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "cart", "item", "cart_item_id"}, ""))
+	pattern_OrdersService_RemoveFromCart_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "cart", "item", "cart_item_id"}, ""))
+	pattern_OrdersService_ClearCart_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "cart"}, ""))
+	pattern_OrdersService_GetGuestCart_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "guest", "cart"}, ""))
+	pattern_OrdersService_AddToGuestCart_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v3", "guest", "cart", "add"}, ""))
+	pattern_OrdersService_UpdateGuestCartItem_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v3", "guest", "cart", "item", "cart_item_id"}, ""))
+	pattern_OrdersService_RemoveFromGuestCart_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v3", "guest", "cart", "item", "cart_item_id"}, ""))
+	pattern_OrdersService_ClearGuestCart_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "guest", "cart"}, ""))
+	pattern_OrdersService_MergeGuestCart_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "cart", "merge"}, ""))
+	pattern_OrdersService_CreateOrder_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "orders"}, ""))
+	pattern_OrdersService_GetOrder_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v3", "orders", "order_id"}, ""))
+	pattern_OrdersService_ListOrders_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v3", "orders"}, ""))
+	pattern_OrdersService_CancelOrder_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v3", "orders", "order_id", "cancel"}, ""))
+	pattern_OrdersService_CancelOrderItems_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 2, 4}, []string{"v3", "orders", "order_id", "items", "cancel"}, ""))
+	pattern_OrdersService_UpdateOrderStatus_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v3", "orders", "order_id", "status"}, ""))
+	pattern_OrdersService_UpdatePaymentStatus_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v3", "orders", "order_id", "payment-status"}, ""))
+	pattern_OrdersService_ValidateCoupon_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v3", "cart", "coupon", "validate"}, ""))
+	pattern_OrdersService_ApplyCoupon_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v3", "cart", "coupon", "apply"}, ""))
+	pattern_OrdersService_RemoveCoupon_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "cart", "coupon"}, ""))
+	pattern_OrdersService_GetAvailableCoupons_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v3", "cart", "coupons", "available"}, ""))
+	pattern_OrdersService_CreateCoupon_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "admin", "coupons"}, ""))
+	pattern_OrdersService_GetCoupon_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "admin", "coupons", "coupon_id"}, ""))
+	pattern_OrdersService_ListCoupons_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v3", "admin", "coupons"}, ""))
+	pattern_OrdersService_UpdateCoupon_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "admin", "coupons", "coupon_id"}, ""))
+	pattern_OrdersService_DeactivateCoupon_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v3", "admin", "coupons", "coupon_id", "deactivate"}, ""))
+	pattern_OrdersService_DeleteCoupon_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "admin", "coupons", "coupon_id"}, ""))
+	pattern_OrdersService_GetCouponUsageHistory_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v3", "admin", "coupons", "coupon_id", "usage"}, ""))
+	pattern_OrdersService_GetProductSalesAnalytics_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v3", "admin", "analytics", "product-sales"}, ""))
+	pattern_OrdersService_HasPurchasedProduct_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v3", "orders", "verify-purchase", "product_id"}, ""))
 )
 
 var (
-	forward_OrdersService_AddToCart_0             = runtime.ForwardResponseMessage
-	forward_OrdersService_GetCart_0               = runtime.ForwardResponseMessage
-	forward_OrdersService_UpdateCartItem_0        = runtime.ForwardResponseMessage
-	forward_OrdersService_RemoveFromCart_0        = runtime.ForwardResponseMessage
-	forward_OrdersService_ClearCart_0             = runtime.ForwardResponseMessage
-	forward_OrdersService_GetGuestCart_0          = runtime.ForwardResponseMessage
-	forward_OrdersService_AddToGuestCart_0        = runtime.ForwardResponseMessage
-	forward_OrdersService_UpdateGuestCartItem_0   = runtime.ForwardResponseMessage
-	forward_OrdersService_RemoveFromGuestCart_0   = runtime.ForwardResponseMessage
-	forward_OrdersService_ClearGuestCart_0        = runtime.ForwardResponseMessage
-	forward_OrdersService_MergeGuestCart_0        = runtime.ForwardResponseMessage
-	forward_OrdersService_CreateOrder_0           = runtime.ForwardResponseMessage
-	forward_OrdersService_GetOrder_0              = runtime.ForwardResponseMessage
-	forward_OrdersService_ListOrders_0            = runtime.ForwardResponseMessage
-	forward_OrdersService_CancelOrder_0           = runtime.ForwardResponseMessage
-	forward_OrdersService_ValidateCoupon_0        = runtime.ForwardResponseMessage
-	forward_OrdersService_ApplyCoupon_0           = runtime.ForwardResponseMessage
-	forward_OrdersService_RemoveCoupon_0          = runtime.ForwardResponseMessage
-	forward_OrdersService_CreateCoupon_0          = runtime.ForwardResponseMessage
-	forward_OrdersService_GetCoupon_0             = runtime.ForwardResponseMessage
-	forward_OrdersService_ListCoupons_0           = runtime.ForwardResponseMessage
-	forward_OrdersService_UpdateCoupon_0          = runtime.ForwardResponseMessage
-	forward_OrdersService_DeactivateCoupon_0      = runtime.ForwardResponseMessage
-	forward_OrdersService_GetCouponUsageHistory_0 = runtime.ForwardResponseMessage
+	forward_OrdersService_AddToCart_0                = runtime.ForwardResponseMessage
+	forward_OrdersService_GetCart_0                  = runtime.ForwardResponseMessage
+	forward_OrdersService_UpdateCartItem_0           = runtime.ForwardResponseMessage
+	forward_OrdersService_RemoveFromCart_0           = runtime.ForwardResponseMessage
+	forward_OrdersService_ClearCart_0                = runtime.ForwardResponseMessage
+	forward_OrdersService_GetGuestCart_0             = runtime.ForwardResponseMessage
+	forward_OrdersService_AddToGuestCart_0           = runtime.ForwardResponseMessage
+	forward_OrdersService_UpdateGuestCartItem_0      = runtime.ForwardResponseMessage
+	forward_OrdersService_RemoveFromGuestCart_0      = runtime.ForwardResponseMessage
+	forward_OrdersService_ClearGuestCart_0           = runtime.ForwardResponseMessage
+	forward_OrdersService_MergeGuestCart_0           = runtime.ForwardResponseMessage
+	forward_OrdersService_CreateOrder_0              = runtime.ForwardResponseMessage
+	forward_OrdersService_GetOrder_0                 = runtime.ForwardResponseMessage
+	forward_OrdersService_ListOrders_0               = runtime.ForwardResponseMessage
+	forward_OrdersService_CancelOrder_0              = runtime.ForwardResponseMessage
+	forward_OrdersService_CancelOrderItems_0         = runtime.ForwardResponseMessage
+	forward_OrdersService_UpdateOrderStatus_0        = runtime.ForwardResponseMessage
+	forward_OrdersService_UpdatePaymentStatus_0      = runtime.ForwardResponseMessage
+	forward_OrdersService_ValidateCoupon_0           = runtime.ForwardResponseMessage
+	forward_OrdersService_ApplyCoupon_0              = runtime.ForwardResponseMessage
+	forward_OrdersService_RemoveCoupon_0             = runtime.ForwardResponseMessage
+	forward_OrdersService_GetAvailableCoupons_0      = runtime.ForwardResponseMessage
+	forward_OrdersService_CreateCoupon_0             = runtime.ForwardResponseMessage
+	forward_OrdersService_GetCoupon_0                = runtime.ForwardResponseMessage
+	forward_OrdersService_ListCoupons_0              = runtime.ForwardResponseMessage
+	forward_OrdersService_UpdateCoupon_0             = runtime.ForwardResponseMessage
+	forward_OrdersService_DeactivateCoupon_0         = runtime.ForwardResponseMessage
+	forward_OrdersService_DeleteCoupon_0             = runtime.ForwardResponseMessage
+	forward_OrdersService_GetCouponUsageHistory_0    = runtime.ForwardResponseMessage
+	forward_OrdersService_GetProductSalesAnalytics_0 = runtime.ForwardResponseMessage
+	forward_OrdersService_HasPurchasedProduct_0      = runtime.ForwardResponseMessage
 )

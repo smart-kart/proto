@@ -1615,6 +1615,278 @@ func (x *CancelOrderResponse) GetOrder() *Order {
 	return nil
 }
 
+type UpdateOrderStatusRequest struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	OrderId           string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	Status            string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`                                                        // "confirmed", "processing", "shipped", "delivered"
+	RazorpayPaymentId *string                `protobuf:"bytes,3,opt,name=razorpay_payment_id,json=razorpayPaymentId,proto3,oneof" json:"razorpay_payment_id,omitempty"` // Optional payment ID for reference
+	RazorpayOrderId   *string                `protobuf:"bytes,4,opt,name=razorpay_order_id,json=razorpayOrderId,proto3,oneof" json:"razorpay_order_id,omitempty"`       // Optional Razorpay order ID
+	RazorpaySignature *string                `protobuf:"bytes,5,opt,name=razorpay_signature,json=razorpaySignature,proto3,oneof" json:"razorpay_signature,omitempty"`   // Optional signature
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *UpdateOrderStatusRequest) Reset() {
+	*x = UpdateOrderStatusRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateOrderStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateOrderStatusRequest) ProtoMessage() {}
+
+func (x *UpdateOrderStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateOrderStatusRequest.ProtoReflect.Descriptor instead.
+func (*UpdateOrderStatusRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *UpdateOrderStatusRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *UpdateOrderStatusRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *UpdateOrderStatusRequest) GetRazorpayPaymentId() string {
+	if x != nil && x.RazorpayPaymentId != nil {
+		return *x.RazorpayPaymentId
+	}
+	return ""
+}
+
+func (x *UpdateOrderStatusRequest) GetRazorpayOrderId() string {
+	if x != nil && x.RazorpayOrderId != nil {
+		return *x.RazorpayOrderId
+	}
+	return ""
+}
+
+func (x *UpdateOrderStatusRequest) GetRazorpaySignature() string {
+	if x != nil && x.RazorpaySignature != nil {
+		return *x.RazorpaySignature
+	}
+	return ""
+}
+
+type UpdateOrderStatusResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Order         *Order                 `protobuf:"bytes,3,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateOrderStatusResponse) Reset() {
+	*x = UpdateOrderStatusResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateOrderStatusResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateOrderStatusResponse) ProtoMessage() {}
+
+func (x *UpdateOrderStatusResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateOrderStatusResponse.ProtoReflect.Descriptor instead.
+func (*UpdateOrderStatusResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *UpdateOrderStatusResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *UpdateOrderStatusResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *UpdateOrderStatusResponse) GetOrder() *Order {
+	if x != nil {
+		return x.Order
+	}
+	return nil
+}
+
+type UpdatePaymentStatusRequest struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	OrderId           string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	PaymentStatus     string                 `protobuf:"bytes,2,opt,name=payment_status,json=paymentStatus,proto3" json:"payment_status,omitempty"`                     // "pending", "processing", "captured", "failed", "refunded"
+	RazorpayPaymentId *string                `protobuf:"bytes,3,opt,name=razorpay_payment_id,json=razorpayPaymentId,proto3,oneof" json:"razorpay_payment_id,omitempty"` // Razorpay payment ID
+	RazorpayOrderId   *string                `protobuf:"bytes,4,opt,name=razorpay_order_id,json=razorpayOrderId,proto3,oneof" json:"razorpay_order_id,omitempty"`       // Razorpay order ID
+	RazorpaySignature *string                `protobuf:"bytes,5,opt,name=razorpay_signature,json=razorpaySignature,proto3,oneof" json:"razorpay_signature,omitempty"`   // Razorpay signature for verification
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *UpdatePaymentStatusRequest) Reset() {
+	*x = UpdatePaymentStatusRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdatePaymentStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdatePaymentStatusRequest) ProtoMessage() {}
+
+func (x *UpdatePaymentStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdatePaymentStatusRequest.ProtoReflect.Descriptor instead.
+func (*UpdatePaymentStatusRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *UpdatePaymentStatusRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *UpdatePaymentStatusRequest) GetPaymentStatus() string {
+	if x != nil {
+		return x.PaymentStatus
+	}
+	return ""
+}
+
+func (x *UpdatePaymentStatusRequest) GetRazorpayPaymentId() string {
+	if x != nil && x.RazorpayPaymentId != nil {
+		return *x.RazorpayPaymentId
+	}
+	return ""
+}
+
+func (x *UpdatePaymentStatusRequest) GetRazorpayOrderId() string {
+	if x != nil && x.RazorpayOrderId != nil {
+		return *x.RazorpayOrderId
+	}
+	return ""
+}
+
+func (x *UpdatePaymentStatusRequest) GetRazorpaySignature() string {
+	if x != nil && x.RazorpaySignature != nil {
+		return *x.RazorpaySignature
+	}
+	return ""
+}
+
+type UpdatePaymentStatusResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Order         *Order                 `protobuf:"bytes,3,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdatePaymentStatusResponse) Reset() {
+	*x = UpdatePaymentStatusResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdatePaymentStatusResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdatePaymentStatusResponse) ProtoMessage() {}
+
+func (x *UpdatePaymentStatusResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdatePaymentStatusResponse.ProtoReflect.Descriptor instead.
+func (*UpdatePaymentStatusResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *UpdatePaymentStatusResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *UpdatePaymentStatusResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *UpdatePaymentStatusResponse) GetOrder() *Order {
+	if x != nil {
+		return x.Order
+	}
+	return nil
+}
+
 type Cart struct {
 	state      protoimpl.MessageState `protogen:"open.v1"`
 	CartId     string                 `protobuf:"bytes,1,opt,name=cart_id,json=cartId,proto3" json:"cart_id,omitempty"`
@@ -1640,7 +1912,7 @@ type Cart struct {
 
 func (x *Cart) Reset() {
 	*x = Cart{}
-	mi := &file_http_v3_orders_proto_msgTypes[30]
+	mi := &file_http_v3_orders_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1652,7 +1924,7 @@ func (x *Cart) String() string {
 func (*Cart) ProtoMessage() {}
 
 func (x *Cart) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[30]
+	mi := &file_http_v3_orders_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1665,7 +1937,7 @@ func (x *Cart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cart.ProtoReflect.Descriptor instead.
 func (*Cart) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{30}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *Cart) GetCartId() string {
@@ -1788,7 +2060,7 @@ type CartItem struct {
 
 func (x *CartItem) Reset() {
 	*x = CartItem{}
-	mi := &file_http_v3_orders_proto_msgTypes[31]
+	mi := &file_http_v3_orders_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1800,7 +2072,7 @@ func (x *CartItem) String() string {
 func (*CartItem) ProtoMessage() {}
 
 func (x *CartItem) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[31]
+	mi := &file_http_v3_orders_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1813,7 +2085,7 @@ func (x *CartItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CartItem.ProtoReflect.Descriptor instead.
 func (*CartItem) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{31}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *CartItem) GetCartItemId() string {
@@ -1944,7 +2216,7 @@ type Order struct {
 
 func (x *Order) Reset() {
 	*x = Order{}
-	mi := &file_http_v3_orders_proto_msgTypes[32]
+	mi := &file_http_v3_orders_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1956,7 +2228,7 @@ func (x *Order) String() string {
 func (*Order) ProtoMessage() {}
 
 func (x *Order) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[32]
+	mi := &file_http_v3_orders_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1969,7 +2241,7 @@ func (x *Order) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Order.ProtoReflect.Descriptor instead.
 func (*Order) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{32}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *Order) GetOrderId() string {
@@ -2134,22 +2406,24 @@ func (x *Order) GetCouponDiscount() float64 {
 }
 
 type OrderItem struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	OrderItemId     string                 `protobuf:"bytes,1,opt,name=order_item_id,json=orderItemId,proto3" json:"order_item_id,omitempty"`
-	OrderId         string                 `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	ProductId       string                 `protobuf:"bytes,3,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	ProductName     string                 `protobuf:"bytes,4,opt,name=product_name,json=productName,proto3" json:"product_name,omitempty"`
-	ProductImageUrl string                 `protobuf:"bytes,5,opt,name=product_image_url,json=productImageUrl,proto3" json:"product_image_url,omitempty"`
-	PriceAtPurchase float64                `protobuf:"fixed64,6,opt,name=price_at_purchase,json=priceAtPurchase,proto3" json:"price_at_purchase,omitempty"`
-	Quantity        int32                  `protobuf:"varint,7,opt,name=quantity,proto3" json:"quantity,omitempty"`
-	Subtotal        float64                `protobuf:"fixed64,8,opt,name=subtotal,proto3" json:"subtotal,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	OrderItemId        string                 `protobuf:"bytes,1,opt,name=order_item_id,json=orderItemId,proto3" json:"order_item_id,omitempty"`
+	OrderId            string                 `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	ProductId          string                 `protobuf:"bytes,3,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	ProductName        string                 `protobuf:"bytes,4,opt,name=product_name,json=productName,proto3" json:"product_name,omitempty"`
+	ProductImageUrl    string                 `protobuf:"bytes,5,opt,name=product_image_url,json=productImageUrl,proto3" json:"product_image_url,omitempty"`
+	PriceAtPurchase    float64                `protobuf:"fixed64,6,opt,name=price_at_purchase,json=priceAtPurchase,proto3" json:"price_at_purchase,omitempty"`
+	Quantity           int32                  `protobuf:"varint,7,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	Subtotal           float64                `protobuf:"fixed64,8,opt,name=subtotal,proto3" json:"subtotal,omitempty"`
+	Status             string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	CancellationReason *string                `protobuf:"bytes,10,opt,name=cancellation_reason,json=cancellationReason,proto3,oneof" json:"cancellation_reason,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *OrderItem) Reset() {
 	*x = OrderItem{}
-	mi := &file_http_v3_orders_proto_msgTypes[33]
+	mi := &file_http_v3_orders_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2161,7 +2435,7 @@ func (x *OrderItem) String() string {
 func (*OrderItem) ProtoMessage() {}
 
 func (x *OrderItem) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[33]
+	mi := &file_http_v3_orders_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2174,7 +2448,7 @@ func (x *OrderItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderItem.ProtoReflect.Descriptor instead.
 func (*OrderItem) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{33}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *OrderItem) GetOrderItemId() string {
@@ -2233,6 +2507,20 @@ func (x *OrderItem) GetSubtotal() float64 {
 	return 0
 }
 
+func (x *OrderItem) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *OrderItem) GetCancellationReason() string {
+	if x != nil && x.CancellationReason != nil {
+		return *x.CancellationReason
+	}
+	return ""
+}
+
 type ValidateCouponRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CouponCode    string                 `protobuf:"bytes,1,opt,name=coupon_code,json=couponCode,proto3" json:"coupon_code,omitempty"`
@@ -2242,7 +2530,7 @@ type ValidateCouponRequest struct {
 
 func (x *ValidateCouponRequest) Reset() {
 	*x = ValidateCouponRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[34]
+	mi := &file_http_v3_orders_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2254,7 +2542,7 @@ func (x *ValidateCouponRequest) String() string {
 func (*ValidateCouponRequest) ProtoMessage() {}
 
 func (x *ValidateCouponRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[34]
+	mi := &file_http_v3_orders_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2267,7 +2555,7 @@ func (x *ValidateCouponRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidateCouponRequest.ProtoReflect.Descriptor instead.
 func (*ValidateCouponRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{34}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ValidateCouponRequest) GetCouponCode() string {
@@ -2290,7 +2578,7 @@ type ValidateCouponResponse struct {
 
 func (x *ValidateCouponResponse) Reset() {
 	*x = ValidateCouponResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[35]
+	mi := &file_http_v3_orders_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2302,7 +2590,7 @@ func (x *ValidateCouponResponse) String() string {
 func (*ValidateCouponResponse) ProtoMessage() {}
 
 func (x *ValidateCouponResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[35]
+	mi := &file_http_v3_orders_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2315,7 +2603,7 @@ func (x *ValidateCouponResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidateCouponResponse.ProtoReflect.Descriptor instead.
 func (*ValidateCouponResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{35}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *ValidateCouponResponse) GetSuccess() bool {
@@ -2362,7 +2650,7 @@ type ApplyCouponRequest struct {
 
 func (x *ApplyCouponRequest) Reset() {
 	*x = ApplyCouponRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[36]
+	mi := &file_http_v3_orders_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2374,7 +2662,7 @@ func (x *ApplyCouponRequest) String() string {
 func (*ApplyCouponRequest) ProtoMessage() {}
 
 func (x *ApplyCouponRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[36]
+	mi := &file_http_v3_orders_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2387,7 +2675,7 @@ func (x *ApplyCouponRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApplyCouponRequest.ProtoReflect.Descriptor instead.
 func (*ApplyCouponRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{36}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *ApplyCouponRequest) GetCouponCode() string {
@@ -2409,7 +2697,7 @@ type ApplyCouponResponse struct {
 
 func (x *ApplyCouponResponse) Reset() {
 	*x = ApplyCouponResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[37]
+	mi := &file_http_v3_orders_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2421,7 +2709,7 @@ func (x *ApplyCouponResponse) String() string {
 func (*ApplyCouponResponse) ProtoMessage() {}
 
 func (x *ApplyCouponResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[37]
+	mi := &file_http_v3_orders_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2434,7 +2722,7 @@ func (x *ApplyCouponResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApplyCouponResponse.ProtoReflect.Descriptor instead.
 func (*ApplyCouponResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{37}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *ApplyCouponResponse) GetSuccess() bool {
@@ -2473,7 +2761,7 @@ type RemoveCouponRequest struct {
 
 func (x *RemoveCouponRequest) Reset() {
 	*x = RemoveCouponRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[38]
+	mi := &file_http_v3_orders_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2485,7 +2773,7 @@ func (x *RemoveCouponRequest) String() string {
 func (*RemoveCouponRequest) ProtoMessage() {}
 
 func (x *RemoveCouponRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[38]
+	mi := &file_http_v3_orders_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2498,7 +2786,7 @@ func (x *RemoveCouponRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveCouponRequest.ProtoReflect.Descriptor instead.
 func (*RemoveCouponRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{38}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{42}
 }
 
 type RemoveCouponResponse struct {
@@ -2512,7 +2800,7 @@ type RemoveCouponResponse struct {
 
 func (x *RemoveCouponResponse) Reset() {
 	*x = RemoveCouponResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[39]
+	mi := &file_http_v3_orders_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2524,7 +2812,7 @@ func (x *RemoveCouponResponse) String() string {
 func (*RemoveCouponResponse) ProtoMessage() {}
 
 func (x *RemoveCouponResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[39]
+	mi := &file_http_v3_orders_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2537,7 +2825,7 @@ func (x *RemoveCouponResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveCouponResponse.ProtoReflect.Descriptor instead.
 func (*RemoveCouponResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{39}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *RemoveCouponResponse) GetSuccess() bool {
@@ -2581,7 +2869,7 @@ type CreateCouponRequest struct {
 
 func (x *CreateCouponRequest) Reset() {
 	*x = CreateCouponRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[40]
+	mi := &file_http_v3_orders_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2593,7 +2881,7 @@ func (x *CreateCouponRequest) String() string {
 func (*CreateCouponRequest) ProtoMessage() {}
 
 func (x *CreateCouponRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[40]
+	mi := &file_http_v3_orders_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2606,7 +2894,7 @@ func (x *CreateCouponRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCouponRequest.ProtoReflect.Descriptor instead.
 func (*CreateCouponRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{40}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *CreateCouponRequest) GetCode() string {
@@ -2704,7 +2992,7 @@ type CreateCouponResponse struct {
 
 func (x *CreateCouponResponse) Reset() {
 	*x = CreateCouponResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[41]
+	mi := &file_http_v3_orders_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2716,7 +3004,7 @@ func (x *CreateCouponResponse) String() string {
 func (*CreateCouponResponse) ProtoMessage() {}
 
 func (x *CreateCouponResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[41]
+	mi := &file_http_v3_orders_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2729,7 +3017,7 @@ func (x *CreateCouponResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCouponResponse.ProtoReflect.Descriptor instead.
 func (*CreateCouponResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{41}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *CreateCouponResponse) GetSuccess() bool {
@@ -2762,7 +3050,7 @@ type GetCouponRequest struct {
 
 func (x *GetCouponRequest) Reset() {
 	*x = GetCouponRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[42]
+	mi := &file_http_v3_orders_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2774,7 +3062,7 @@ func (x *GetCouponRequest) String() string {
 func (*GetCouponRequest) ProtoMessage() {}
 
 func (x *GetCouponRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[42]
+	mi := &file_http_v3_orders_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2787,7 +3075,7 @@ func (x *GetCouponRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCouponRequest.ProtoReflect.Descriptor instead.
 func (*GetCouponRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{42}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *GetCouponRequest) GetCouponId() string {
@@ -2808,7 +3096,7 @@ type GetCouponResponse struct {
 
 func (x *GetCouponResponse) Reset() {
 	*x = GetCouponResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[43]
+	mi := &file_http_v3_orders_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2820,7 +3108,7 @@ func (x *GetCouponResponse) String() string {
 func (*GetCouponResponse) ProtoMessage() {}
 
 func (x *GetCouponResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[43]
+	mi := &file_http_v3_orders_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2833,7 +3121,7 @@ func (x *GetCouponResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCouponResponse.ProtoReflect.Descriptor instead.
 func (*GetCouponResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{43}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *GetCouponResponse) GetSuccess() bool {
@@ -2869,7 +3157,7 @@ type ListCouponsRequest struct {
 
 func (x *ListCouponsRequest) Reset() {
 	*x = ListCouponsRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[44]
+	mi := &file_http_v3_orders_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2881,7 +3169,7 @@ func (x *ListCouponsRequest) String() string {
 func (*ListCouponsRequest) ProtoMessage() {}
 
 func (x *ListCouponsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[44]
+	mi := &file_http_v3_orders_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2894,7 +3182,7 @@ func (x *ListCouponsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCouponsRequest.ProtoReflect.Descriptor instead.
 func (*ListCouponsRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{44}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *ListCouponsRequest) GetStatus() string {
@@ -2939,7 +3227,7 @@ type ListCouponsResponse struct {
 
 func (x *ListCouponsResponse) Reset() {
 	*x = ListCouponsResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[45]
+	mi := &file_http_v3_orders_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2951,7 +3239,7 @@ func (x *ListCouponsResponse) String() string {
 func (*ListCouponsResponse) ProtoMessage() {}
 
 func (x *ListCouponsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[45]
+	mi := &file_http_v3_orders_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2964,7 +3252,7 @@ func (x *ListCouponsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCouponsResponse.ProtoReflect.Descriptor instead.
 func (*ListCouponsResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{45}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *ListCouponsResponse) GetSuccess() bool {
@@ -3031,7 +3319,7 @@ type UpdateCouponRequest struct {
 
 func (x *UpdateCouponRequest) Reset() {
 	*x = UpdateCouponRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[46]
+	mi := &file_http_v3_orders_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3043,7 +3331,7 @@ func (x *UpdateCouponRequest) String() string {
 func (*UpdateCouponRequest) ProtoMessage() {}
 
 func (x *UpdateCouponRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[46]
+	mi := &file_http_v3_orders_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3056,7 +3344,7 @@ func (x *UpdateCouponRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCouponRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCouponRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{46}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *UpdateCouponRequest) GetCouponId() string {
@@ -3168,7 +3456,7 @@ type UpdateCouponResponse struct {
 
 func (x *UpdateCouponResponse) Reset() {
 	*x = UpdateCouponResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[47]
+	mi := &file_http_v3_orders_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3180,7 +3468,7 @@ func (x *UpdateCouponResponse) String() string {
 func (*UpdateCouponResponse) ProtoMessage() {}
 
 func (x *UpdateCouponResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[47]
+	mi := &file_http_v3_orders_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3193,7 +3481,7 @@ func (x *UpdateCouponResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCouponResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCouponResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{47}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *UpdateCouponResponse) GetSuccess() bool {
@@ -3226,7 +3514,7 @@ type DeactivateCouponRequest struct {
 
 func (x *DeactivateCouponRequest) Reset() {
 	*x = DeactivateCouponRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[48]
+	mi := &file_http_v3_orders_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3238,7 +3526,7 @@ func (x *DeactivateCouponRequest) String() string {
 func (*DeactivateCouponRequest) ProtoMessage() {}
 
 func (x *DeactivateCouponRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[48]
+	mi := &file_http_v3_orders_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3251,7 +3539,7 @@ func (x *DeactivateCouponRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeactivateCouponRequest.ProtoReflect.Descriptor instead.
 func (*DeactivateCouponRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{48}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *DeactivateCouponRequest) GetCouponId() string {
@@ -3271,7 +3559,7 @@ type DeactivateCouponResponse struct {
 
 func (x *DeactivateCouponResponse) Reset() {
 	*x = DeactivateCouponResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[49]
+	mi := &file_http_v3_orders_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3283,7 +3571,7 @@ func (x *DeactivateCouponResponse) String() string {
 func (*DeactivateCouponResponse) ProtoMessage() {}
 
 func (x *DeactivateCouponResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[49]
+	mi := &file_http_v3_orders_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3296,7 +3584,7 @@ func (x *DeactivateCouponResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeactivateCouponResponse.ProtoReflect.Descriptor instead.
 func (*DeactivateCouponResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{49}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *DeactivateCouponResponse) GetSuccess() bool {
@@ -3307,6 +3595,102 @@ func (x *DeactivateCouponResponse) GetSuccess() bool {
 }
 
 func (x *DeactivateCouponResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type DeleteCouponRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CouponId      string                 `protobuf:"bytes,1,opt,name=coupon_id,json=couponId,proto3" json:"coupon_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteCouponRequest) Reset() {
+	*x = DeleteCouponRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[54]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteCouponRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCouponRequest) ProtoMessage() {}
+
+func (x *DeleteCouponRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[54]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCouponRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCouponRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *DeleteCouponRequest) GetCouponId() string {
+	if x != nil {
+		return x.CouponId
+	}
+	return ""
+}
+
+type DeleteCouponResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteCouponResponse) Reset() {
+	*x = DeleteCouponResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[55]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteCouponResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCouponResponse) ProtoMessage() {}
+
+func (x *DeleteCouponResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[55]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCouponResponse.ProtoReflect.Descriptor instead.
+func (*DeleteCouponResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *DeleteCouponResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *DeleteCouponResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -3324,7 +3708,7 @@ type GetCouponUsageHistoryRequest struct {
 
 func (x *GetCouponUsageHistoryRequest) Reset() {
 	*x = GetCouponUsageHistoryRequest{}
-	mi := &file_http_v3_orders_proto_msgTypes[50]
+	mi := &file_http_v3_orders_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3336,7 +3720,7 @@ func (x *GetCouponUsageHistoryRequest) String() string {
 func (*GetCouponUsageHistoryRequest) ProtoMessage() {}
 
 func (x *GetCouponUsageHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[50]
+	mi := &file_http_v3_orders_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3349,7 +3733,7 @@ func (x *GetCouponUsageHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCouponUsageHistoryRequest.ProtoReflect.Descriptor instead.
 func (*GetCouponUsageHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{50}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *GetCouponUsageHistoryRequest) GetCouponId() string {
@@ -3387,7 +3771,7 @@ type GetCouponUsageHistoryResponse struct {
 
 func (x *GetCouponUsageHistoryResponse) Reset() {
 	*x = GetCouponUsageHistoryResponse{}
-	mi := &file_http_v3_orders_proto_msgTypes[51]
+	mi := &file_http_v3_orders_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3399,7 +3783,7 @@ func (x *GetCouponUsageHistoryResponse) String() string {
 func (*GetCouponUsageHistoryResponse) ProtoMessage() {}
 
 func (x *GetCouponUsageHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[51]
+	mi := &file_http_v3_orders_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3412,7 +3796,7 @@ func (x *GetCouponUsageHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCouponUsageHistoryResponse.ProtoReflect.Descriptor instead.
 func (*GetCouponUsageHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{51}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *GetCouponUsageHistoryResponse) GetSuccess() bool {
@@ -3483,7 +3867,7 @@ type Coupon struct {
 
 func (x *Coupon) Reset() {
 	*x = Coupon{}
-	mi := &file_http_v3_orders_proto_msgTypes[52]
+	mi := &file_http_v3_orders_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3495,7 +3879,7 @@ func (x *Coupon) String() string {
 func (*Coupon) ProtoMessage() {}
 
 func (x *Coupon) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[52]
+	mi := &file_http_v3_orders_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3508,7 +3892,7 @@ func (x *Coupon) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Coupon.ProtoReflect.Descriptor instead.
 func (*Coupon) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{52}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *Coupon) GetCouponId() string {
@@ -3651,7 +4035,7 @@ type CouponUsage struct {
 
 func (x *CouponUsage) Reset() {
 	*x = CouponUsage{}
-	mi := &file_http_v3_orders_proto_msgTypes[53]
+	mi := &file_http_v3_orders_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3663,7 +4047,7 @@ func (x *CouponUsage) String() string {
 func (*CouponUsage) ProtoMessage() {}
 
 func (x *CouponUsage) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_orders_proto_msgTypes[53]
+	mi := &file_http_v3_orders_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3676,7 +4060,7 @@ func (x *CouponUsage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CouponUsage.ProtoReflect.Descriptor instead.
 func (*CouponUsage) Descriptor() ([]byte, []int) {
-	return file_http_v3_orders_proto_rawDescGZIP(), []int{53}
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *CouponUsage) GetUsageId() string {
@@ -3719,6 +4103,797 @@ func (x *CouponUsage) GetUsedAt() *timestamppb.Timestamp {
 		return x.UsedAt
 	}
 	return nil
+}
+
+// Get Available Coupons (Customer-facing)
+type GetAvailableCouponsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAvailableCouponsRequest) Reset() {
+	*x = GetAvailableCouponsRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[60]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAvailableCouponsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAvailableCouponsRequest) ProtoMessage() {}
+
+func (x *GetAvailableCouponsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[60]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAvailableCouponsRequest.ProtoReflect.Descriptor instead.
+func (*GetAvailableCouponsRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{60}
+}
+
+type GetAvailableCouponsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Coupons       []*AvailableCoupon     `protobuf:"bytes,3,rep,name=coupons,proto3" json:"coupons,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAvailableCouponsResponse) Reset() {
+	*x = GetAvailableCouponsResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[61]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAvailableCouponsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAvailableCouponsResponse) ProtoMessage() {}
+
+func (x *GetAvailableCouponsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[61]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAvailableCouponsResponse.ProtoReflect.Descriptor instead.
+func (*GetAvailableCouponsResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{61}
+}
+
+func (x *GetAvailableCouponsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetAvailableCouponsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetAvailableCouponsResponse) GetCoupons() []*AvailableCoupon {
+	if x != nil {
+		return x.Coupons
+	}
+	return nil
+}
+
+type AvailableCoupon struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Code              string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Description       *string                `protobuf:"bytes,2,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	DiscountType      string                 `protobuf:"bytes,3,opt,name=discount_type,json=discountType,proto3" json:"discount_type,omitempty"`      // "percent" or "fixed_amount"
+	DiscountValue     float64                `protobuf:"fixed64,4,opt,name=discount_value,json=discountValue,proto3" json:"discount_value,omitempty"` // 20 for 20% or 100 for ₹100
+	MaxDiscount       *float64               `protobuf:"fixed64,5,opt,name=max_discount,json=maxDiscount,proto3,oneof" json:"max_discount,omitempty"` // Cap for percentage discounts
+	MinOrderValue     *float64               `protobuf:"fixed64,6,opt,name=min_order_value,json=minOrderValue,proto3,oneof" json:"min_order_value,omitempty"`
+	ValidUntil        string                 `protobuf:"bytes,7,opt,name=valid_until,json=validUntil,proto3" json:"valid_until,omitempty"`                        // Formatted date string or "No Expiry"
+	EstimatedDiscount float64                `protobuf:"fixed64,8,opt,name=estimated_discount,json=estimatedDiscount,proto3" json:"estimated_discount,omitempty"` // Calculated discount for current cart
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *AvailableCoupon) Reset() {
+	*x = AvailableCoupon{}
+	mi := &file_http_v3_orders_proto_msgTypes[62]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AvailableCoupon) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AvailableCoupon) ProtoMessage() {}
+
+func (x *AvailableCoupon) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[62]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AvailableCoupon.ProtoReflect.Descriptor instead.
+func (*AvailableCoupon) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{62}
+}
+
+func (x *AvailableCoupon) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *AvailableCoupon) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
+func (x *AvailableCoupon) GetDiscountType() string {
+	if x != nil {
+		return x.DiscountType
+	}
+	return ""
+}
+
+func (x *AvailableCoupon) GetDiscountValue() float64 {
+	if x != nil {
+		return x.DiscountValue
+	}
+	return 0
+}
+
+func (x *AvailableCoupon) GetMaxDiscount() float64 {
+	if x != nil && x.MaxDiscount != nil {
+		return *x.MaxDiscount
+	}
+	return 0
+}
+
+func (x *AvailableCoupon) GetMinOrderValue() float64 {
+	if x != nil && x.MinOrderValue != nil {
+		return *x.MinOrderValue
+	}
+	return 0
+}
+
+func (x *AvailableCoupon) GetValidUntil() string {
+	if x != nil {
+		return x.ValidUntil
+	}
+	return ""
+}
+
+func (x *AvailableCoupon) GetEstimatedDiscount() float64 {
+	if x != nil {
+		return x.EstimatedDiscount
+	}
+	return 0
+}
+
+type GetProductSalesAnalyticsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StartDate     *string                `protobuf:"bytes,1,opt,name=start_date,json=startDate,proto3,oneof" json:"start_date,omitempty"` // ISO 8601 format: "2024-01-01"
+	EndDate       *string                `protobuf:"bytes,2,opt,name=end_date,json=endDate,proto3,oneof" json:"end_date,omitempty"`       // ISO 8601 format: "2024-01-31"
+	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductSalesAnalyticsRequest) Reset() {
+	*x = GetProductSalesAnalyticsRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[63]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductSalesAnalyticsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductSalesAnalyticsRequest) ProtoMessage() {}
+
+func (x *GetProductSalesAnalyticsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[63]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductSalesAnalyticsRequest.ProtoReflect.Descriptor instead.
+func (*GetProductSalesAnalyticsRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{63}
+}
+
+func (x *GetProductSalesAnalyticsRequest) GetStartDate() string {
+	if x != nil && x.StartDate != nil {
+		return *x.StartDate
+	}
+	return ""
+}
+
+func (x *GetProductSalesAnalyticsRequest) GetEndDate() string {
+	if x != nil && x.EndDate != nil {
+		return *x.EndDate
+	}
+	return ""
+}
+
+func (x *GetProductSalesAnalyticsRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetProductSalesAnalyticsRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type GetProductSalesAnalyticsResponse struct {
+	state      protoimpl.MessageState `protogen:"open.v1"`
+	Success    bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message    string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Products   []*ProductSalesData    `protobuf:"bytes,3,rep,name=products,proto3" json:"products,omitempty"`
+	TotalCount int32                  `protobuf:"varint,4,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Page       int32                  `protobuf:"varint,5,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize   int32                  `protobuf:"varint,6,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	// Summary totals
+	TotalRevenue   float64 `protobuf:"fixed64,7,opt,name=total_revenue,json=totalRevenue,proto3" json:"total_revenue,omitempty"`
+	TotalUnitsSold int32   `protobuf:"varint,8,opt,name=total_units_sold,json=totalUnitsSold,proto3" json:"total_units_sold,omitempty"`
+	TotalOrders    int32   `protobuf:"varint,9,opt,name=total_orders,json=totalOrders,proto3" json:"total_orders,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetProductSalesAnalyticsResponse) Reset() {
+	*x = GetProductSalesAnalyticsResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[64]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductSalesAnalyticsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductSalesAnalyticsResponse) ProtoMessage() {}
+
+func (x *GetProductSalesAnalyticsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[64]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductSalesAnalyticsResponse.ProtoReflect.Descriptor instead.
+func (*GetProductSalesAnalyticsResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{64}
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetProducts() []*ProductSalesData {
+	if x != nil {
+		return x.Products
+	}
+	return nil
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetTotalRevenue() float64 {
+	if x != nil {
+		return x.TotalRevenue
+	}
+	return 0
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetTotalUnitsSold() int32 {
+	if x != nil {
+		return x.TotalUnitsSold
+	}
+	return 0
+}
+
+func (x *GetProductSalesAnalyticsResponse) GetTotalOrders() int32 {
+	if x != nil {
+		return x.TotalOrders
+	}
+	return 0
+}
+
+type ProductSalesData struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProductId     string                 `protobuf:"bytes,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	ProductName   string                 `protobuf:"bytes,2,opt,name=product_name,json=productName,proto3" json:"product_name,omitempty"`
+	UnitsSold     int32                  `protobuf:"varint,3,opt,name=units_sold,json=unitsSold,proto3" json:"units_sold,omitempty"`
+	TotalRevenue  float64                `protobuf:"fixed64,4,opt,name=total_revenue,json=totalRevenue,proto3" json:"total_revenue,omitempty"`
+	OrdersCount   int32                  `protobuf:"varint,5,opt,name=orders_count,json=ordersCount,proto3" json:"orders_count,omitempty"`
+	AveragePrice  float64                `protobuf:"fixed64,6,opt,name=average_price,json=averagePrice,proto3" json:"average_price,omitempty"` // Average selling price
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductSalesData) Reset() {
+	*x = ProductSalesData{}
+	mi := &file_http_v3_orders_proto_msgTypes[65]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductSalesData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductSalesData) ProtoMessage() {}
+
+func (x *ProductSalesData) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[65]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductSalesData.ProtoReflect.Descriptor instead.
+func (*ProductSalesData) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{65}
+}
+
+func (x *ProductSalesData) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *ProductSalesData) GetProductName() string {
+	if x != nil {
+		return x.ProductName
+	}
+	return ""
+}
+
+func (x *ProductSalesData) GetUnitsSold() int32 {
+	if x != nil {
+		return x.UnitsSold
+	}
+	return 0
+}
+
+func (x *ProductSalesData) GetTotalRevenue() float64 {
+	if x != nil {
+		return x.TotalRevenue
+	}
+	return 0
+}
+
+func (x *ProductSalesData) GetOrdersCount() int32 {
+	if x != nil {
+		return x.OrdersCount
+	}
+	return 0
+}
+
+func (x *ProductSalesData) GetAveragePrice() float64 {
+	if x != nil {
+		return x.AveragePrice
+	}
+	return 0
+}
+
+type CancelOrderItemsRequest struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	OrderId            string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	OrderItemIds       []string               `protobuf:"bytes,2,rep,name=order_item_ids,json=orderItemIds,proto3" json:"order_item_ids,omitempty"`                 // Array of order item IDs to cancel
+	CancellationReason string                 `protobuf:"bytes,3,opt,name=cancellation_reason,json=cancellationReason,proto3" json:"cancellation_reason,omitempty"` // Reason for cancellation
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *CancelOrderItemsRequest) Reset() {
+	*x = CancelOrderItemsRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[66]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CancelOrderItemsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CancelOrderItemsRequest) ProtoMessage() {}
+
+func (x *CancelOrderItemsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[66]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CancelOrderItemsRequest.ProtoReflect.Descriptor instead.
+func (*CancelOrderItemsRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{66}
+}
+
+func (x *CancelOrderItemsRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *CancelOrderItemsRequest) GetOrderItemIds() []string {
+	if x != nil {
+		return x.OrderItemIds
+	}
+	return nil
+}
+
+func (x *CancelOrderItemsRequest) GetCancellationReason() string {
+	if x != nil {
+		return x.CancellationReason
+	}
+	return ""
+}
+
+type CancelOrderItemsResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Success        bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message        string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Order          *Order                 `protobuf:"bytes,3,opt,name=order,proto3" json:"order,omitempty"`                                         // Updated order
+	CancelledItems []*OrderItem           `protobuf:"bytes,4,rep,name=cancelled_items,json=cancelledItems,proto3" json:"cancelled_items,omitempty"` // Cancelled items
+	Summary        *CancellationSummary   `protobuf:"bytes,5,opt,name=summary,proto3" json:"summary,omitempty"`                                     // Financial summary
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *CancelOrderItemsResponse) Reset() {
+	*x = CancelOrderItemsResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[67]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CancelOrderItemsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CancelOrderItemsResponse) ProtoMessage() {}
+
+func (x *CancelOrderItemsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[67]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CancelOrderItemsResponse.ProtoReflect.Descriptor instead.
+func (*CancelOrderItemsResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{67}
+}
+
+func (x *CancelOrderItemsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *CancelOrderItemsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *CancelOrderItemsResponse) GetOrder() *Order {
+	if x != nil {
+		return x.Order
+	}
+	return nil
+}
+
+func (x *CancelOrderItemsResponse) GetCancelledItems() []*OrderItem {
+	if x != nil {
+		return x.CancelledItems
+	}
+	return nil
+}
+
+func (x *CancelOrderItemsResponse) GetSummary() *CancellationSummary {
+	if x != nil {
+		return x.Summary
+	}
+	return nil
+}
+
+type CancellationSummary struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ItemsSubtotal       float64                `protobuf:"fixed64,1,opt,name=items_subtotal,json=itemsSubtotal,proto3" json:"items_subtotal,omitempty"`                     // Total subtotal of cancelled items
+	TaxRefunded         float64                `protobuf:"fixed64,2,opt,name=tax_refunded,json=taxRefunded,proto3" json:"tax_refunded,omitempty"`                           // Proportional tax refunded
+	CouponRemoved       bool                   `protobuf:"varint,3,opt,name=coupon_removed,json=couponRemoved,proto3" json:"coupon_removed,omitempty"`                      // Whether coupon was removed
+	CouponAmountRemoved float64                `protobuf:"fixed64,4,opt,name=coupon_amount_removed,json=couponAmountRemoved,proto3" json:"coupon_amount_removed,omitempty"` // Amount of coupon discount removed
+	TotalRefundAmount   float64                `protobuf:"fixed64,5,opt,name=total_refund_amount,json=totalRefundAmount,proto3" json:"total_refund_amount,omitempty"`       // Total amount to be refunded
+	RefundNote          string                 `protobuf:"bytes,6,opt,name=refund_note,json=refundNote,proto3" json:"refund_note,omitempty"`                                // Note about shipping and admin approval
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *CancellationSummary) Reset() {
+	*x = CancellationSummary{}
+	mi := &file_http_v3_orders_proto_msgTypes[68]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CancellationSummary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CancellationSummary) ProtoMessage() {}
+
+func (x *CancellationSummary) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[68]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CancellationSummary.ProtoReflect.Descriptor instead.
+func (*CancellationSummary) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{68}
+}
+
+func (x *CancellationSummary) GetItemsSubtotal() float64 {
+	if x != nil {
+		return x.ItemsSubtotal
+	}
+	return 0
+}
+
+func (x *CancellationSummary) GetTaxRefunded() float64 {
+	if x != nil {
+		return x.TaxRefunded
+	}
+	return 0
+}
+
+func (x *CancellationSummary) GetCouponRemoved() bool {
+	if x != nil {
+		return x.CouponRemoved
+	}
+	return false
+}
+
+func (x *CancellationSummary) GetCouponAmountRemoved() float64 {
+	if x != nil {
+		return x.CouponAmountRemoved
+	}
+	return 0
+}
+
+func (x *CancellationSummary) GetTotalRefundAmount() float64 {
+	if x != nil {
+		return x.TotalRefundAmount
+	}
+	return 0
+}
+
+func (x *CancellationSummary) GetRefundNote() string {
+	if x != nil {
+		return x.RefundNote
+	}
+	return ""
+}
+
+type HasPurchasedProductRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ProductId     string `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"` // user_id extracted from JWT context
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HasPurchasedProductRequest) Reset() {
+	*x = HasPurchasedProductRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[69]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HasPurchasedProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HasPurchasedProductRequest) ProtoMessage() {}
+
+func (x *HasPurchasedProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[69]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HasPurchasedProductRequest.ProtoReflect.Descriptor instead.
+func (*HasPurchasedProductRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{69}
+}
+
+func (x *HasPurchasedProductRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+type HasPurchasedProductResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	HasPurchased  bool                   `protobuf:"varint,3,opt,name=has_purchased,proto3" json:"has_purchased,omitempty"`
+	OrderId       *string                `protobuf:"bytes,4,opt,name=order_id,proto3,oneof" json:"order_id,omitempty"` // For display
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HasPurchasedProductResponse) Reset() {
+	*x = HasPurchasedProductResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[70]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HasPurchasedProductResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HasPurchasedProductResponse) ProtoMessage() {}
+
+func (x *HasPurchasedProductResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[70]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HasPurchasedProductResponse.ProtoReflect.Descriptor instead.
+func (*HasPurchasedProductResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{70}
+}
+
+func (x *HasPurchasedProductResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *HasPurchasedProductResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *HasPurchasedProductResponse) GetHasPurchased() bool {
+	if x != nil {
+		return x.HasPurchased
+	}
+	return false
+}
+
+func (x *HasPurchasedProductResponse) GetOrderId() string {
+	if x != nil && x.OrderId != nil {
+		return *x.OrderId
+	}
+	return ""
 }
 
 var File_http_v3_orders_proto protoreflect.FileDescriptor
@@ -3829,6 +5004,32 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\x13CancelOrderResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12+\n" +
+	"\x05order\x18\x03 \x01(\v2\x15.orders.http.v3.OrderR\x05order\"\xac\x02\n" +
+	"\x18UpdateOrderStatusRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x123\n" +
+	"\x13razorpay_payment_id\x18\x03 \x01(\tH\x00R\x11razorpayPaymentId\x88\x01\x01\x12/\n" +
+	"\x11razorpay_order_id\x18\x04 \x01(\tH\x01R\x0frazorpayOrderId\x88\x01\x01\x122\n" +
+	"\x12razorpay_signature\x18\x05 \x01(\tH\x02R\x11razorpaySignature\x88\x01\x01B\x16\n" +
+	"\x14_razorpay_payment_idB\x14\n" +
+	"\x12_razorpay_order_idB\x15\n" +
+	"\x13_razorpay_signature\"|\n" +
+	"\x19UpdateOrderStatusResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12+\n" +
+	"\x05order\x18\x03 \x01(\v2\x15.orders.http.v3.OrderR\x05order\"\xbd\x02\n" +
+	"\x1aUpdatePaymentStatusRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12%\n" +
+	"\x0epayment_status\x18\x02 \x01(\tR\rpaymentStatus\x123\n" +
+	"\x13razorpay_payment_id\x18\x03 \x01(\tH\x00R\x11razorpayPaymentId\x88\x01\x01\x12/\n" +
+	"\x11razorpay_order_id\x18\x04 \x01(\tH\x01R\x0frazorpayOrderId\x88\x01\x01\x122\n" +
+	"\x12razorpay_signature\x18\x05 \x01(\tH\x02R\x11razorpaySignature\x88\x01\x01B\x16\n" +
+	"\x14_razorpay_payment_idB\x14\n" +
+	"\x12_razorpay_order_idB\x15\n" +
+	"\x13_razorpay_signature\"~\n" +
+	"\x1bUpdatePaymentStatusResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12+\n" +
 	"\x05order\x18\x03 \x01(\v2\x15.orders.http.v3.OrderR\x05order\"\xb8\x04\n" +
 	"\x04Cart\x12\x17\n" +
 	"\acart_id\x18\x01 \x01(\tR\x06cartId\x12\x1c\n" +
@@ -3906,7 +5107,7 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\x0fcoupon_discount\x18\x17 \x01(\x01R\x0ecouponDiscountB\x0e\n" +
 	"\f_coupon_codeB\f\n" +
 	"\n" +
-	"_coupon_id\"\x9c\x02\n" +
+	"_coupon_id\"\x82\x03\n" +
 	"\tOrderItem\x12\"\n" +
 	"\rorder_item_id\x18\x01 \x01(\tR\vorderItemId\x12\x19\n" +
 	"\border_id\x18\x02 \x01(\tR\aorderId\x12\x1d\n" +
@@ -3916,7 +5117,11 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\x11product_image_url\x18\x05 \x01(\tR\x0fproductImageUrl\x12*\n" +
 	"\x11price_at_purchase\x18\x06 \x01(\x01R\x0fpriceAtPurchase\x12\x1a\n" +
 	"\bquantity\x18\a \x01(\x05R\bquantity\x12\x1a\n" +
-	"\bsubtotal\x18\b \x01(\x01R\bsubtotal\"8\n" +
+	"\bsubtotal\x18\b \x01(\x01R\bsubtotal\x12\x16\n" +
+	"\x06status\x18\t \x01(\tR\x06status\x124\n" +
+	"\x13cancellation_reason\x18\n" +
+	" \x01(\tH\x00R\x12cancellationReason\x88\x01\x01B\x16\n" +
+	"\x14_cancellation_reason\"8\n" +
 	"\x15ValidateCouponRequest\x12\x1f\n" +
 	"\vcoupon_code\x18\x01 \x01(\tR\n" +
 	"couponCode\"\xc0\x01\n" +
@@ -4026,6 +5231,11 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\tcoupon_id\x18\x01 \x01(\tR\bcouponId\"N\n" +
 	"\x18DeactivateCouponResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"2\n" +
+	"\x13DeleteCouponRequest\x12\x1b\n" +
+	"\tcoupon_id\x18\x01 \x01(\tR\bcouponId\"J\n" +
+	"\x14DeleteCouponResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"l\n" +
 	"\x1cGetCouponUsageHistoryRequest\x12\x1b\n" +
 	"\tcoupon_id\x18\x01 \x01(\tR\bcouponId\x12\x12\n" +
@@ -4078,7 +5288,81 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\auser_id\x18\x03 \x01(\tR\x06userId\x12\x19\n" +
 	"\border_id\x18\x04 \x01(\tR\aorderId\x12)\n" +
 	"\x10discount_applied\x18\x05 \x01(\x01R\x0fdiscountApplied\x123\n" +
-	"\aused_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x06usedAt2\xce\x17\n" +
+	"\aused_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x06usedAt\"\x1c\n" +
+	"\x1aGetAvailableCouponsRequest\"\x8c\x01\n" +
+	"\x1bGetAvailableCouponsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x129\n" +
+	"\acoupons\x18\x03 \x03(\v2\x1f.orders.http.v3.AvailableCouponR\acoupons\"\xf2\x02\n" +
+	"\x0fAvailableCoupon\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12%\n" +
+	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01\x12#\n" +
+	"\rdiscount_type\x18\x03 \x01(\tR\fdiscountType\x12%\n" +
+	"\x0ediscount_value\x18\x04 \x01(\x01R\rdiscountValue\x12&\n" +
+	"\fmax_discount\x18\x05 \x01(\x01H\x01R\vmaxDiscount\x88\x01\x01\x12+\n" +
+	"\x0fmin_order_value\x18\x06 \x01(\x01H\x02R\rminOrderValue\x88\x01\x01\x12\x1f\n" +
+	"\vvalid_until\x18\a \x01(\tR\n" +
+	"validUntil\x12-\n" +
+	"\x12estimated_discount\x18\b \x01(\x01R\x11estimatedDiscountB\x0e\n" +
+	"\f_descriptionB\x0f\n" +
+	"\r_max_discountB\x12\n" +
+	"\x10_min_order_value\"\xb2\x01\n" +
+	"\x1fGetProductSalesAnalyticsRequest\x12\"\n" +
+	"\n" +
+	"start_date\x18\x01 \x01(\tH\x00R\tstartDate\x88\x01\x01\x12\x1e\n" +
+	"\bend_date\x18\x02 \x01(\tH\x01R\aendDate\x88\x01\x01\x12\x12\n" +
+	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSizeB\r\n" +
+	"\v_start_dateB\v\n" +
+	"\t_end_date\"\xd8\x02\n" +
+	" GetProductSalesAnalyticsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12<\n" +
+	"\bproducts\x18\x03 \x03(\v2 .orders.http.v3.ProductSalesDataR\bproducts\x12\x1f\n" +
+	"\vtotal_count\x18\x04 \x01(\x05R\n" +
+	"totalCount\x12\x12\n" +
+	"\x04page\x18\x05 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x06 \x01(\x05R\bpageSize\x12#\n" +
+	"\rtotal_revenue\x18\a \x01(\x01R\ftotalRevenue\x12(\n" +
+	"\x10total_units_sold\x18\b \x01(\x05R\x0etotalUnitsSold\x12!\n" +
+	"\ftotal_orders\x18\t \x01(\x05R\vtotalOrders\"\xe0\x01\n" +
+	"\x10ProductSalesData\x12\x1d\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\tproductId\x12!\n" +
+	"\fproduct_name\x18\x02 \x01(\tR\vproductName\x12\x1d\n" +
+	"\n" +
+	"units_sold\x18\x03 \x01(\x05R\tunitsSold\x12#\n" +
+	"\rtotal_revenue\x18\x04 \x01(\x01R\ftotalRevenue\x12!\n" +
+	"\forders_count\x18\x05 \x01(\x05R\vordersCount\x12#\n" +
+	"\raverage_price\x18\x06 \x01(\x01R\faveragePrice\"\x8b\x01\n" +
+	"\x17CancelOrderItemsRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12$\n" +
+	"\x0eorder_item_ids\x18\x02 \x03(\tR\forderItemIds\x12/\n" +
+	"\x13cancellation_reason\x18\x03 \x01(\tR\x12cancellationReason\"\xfe\x01\n" +
+	"\x18CancelOrderItemsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12+\n" +
+	"\x05order\x18\x03 \x01(\v2\x15.orders.http.v3.OrderR\x05order\x12B\n" +
+	"\x0fcancelled_items\x18\x04 \x03(\v2\x19.orders.http.v3.OrderItemR\x0ecancelledItems\x12=\n" +
+	"\asummary\x18\x05 \x01(\v2#.orders.http.v3.CancellationSummaryR\asummary\"\x8b\x02\n" +
+	"\x13CancellationSummary\x12%\n" +
+	"\x0eitems_subtotal\x18\x01 \x01(\x01R\ritemsSubtotal\x12!\n" +
+	"\ftax_refunded\x18\x02 \x01(\x01R\vtaxRefunded\x12%\n" +
+	"\x0ecoupon_removed\x18\x03 \x01(\bR\rcouponRemoved\x122\n" +
+	"\x15coupon_amount_removed\x18\x04 \x01(\x01R\x13couponAmountRemoved\x12.\n" +
+	"\x13total_refund_amount\x18\x05 \x01(\x01R\x11totalRefundAmount\x12\x1f\n" +
+	"\vrefund_note\x18\x06 \x01(\tR\n" +
+	"refundNote\"<\n" +
+	"\x1aHasPurchasedProductRequest\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\"\xa5\x01\n" +
+	"\x1bHasPurchasedProductResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12$\n" +
+	"\rhas_purchased\x18\x03 \x01(\bR\rhas_purchased\x12\x1f\n" +
+	"\border_id\x18\x04 \x01(\tH\x00R\border_id\x88\x01\x01B\v\n" +
+	"\t_order_id2\x8b \n" +
 	"\rOrdersService\x12i\n" +
 	"\tAddToCart\x12 .orders.http.v3.AddToCartRequest\x1a!.orders.http.v3.AddToCartResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v3/cart/add\x12\\\n" +
 	"\aGetCart\x12\x1e.orders.http.v3.GetCartRequest\x1a\x1f.orders.http.v3.GetCartResponse\"\x10\x82\xd3\xe4\x93\x02\n" +
@@ -4099,16 +5383,23 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\n" +
 	"ListOrders\x12!.orders.http.v3.ListOrdersRequest\x1a\".orders.http.v3.ListOrdersResponse\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
 	"/v3/orders\x12\x7f\n" +
-	"\vCancelOrder\x12\".orders.http.v3.CancelOrderRequest\x1a#.orders.http.v3.CancelOrderResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v3/orders/{order_id}/cancel\x12\x84\x01\n" +
+	"\vCancelOrder\x12\".orders.http.v3.CancelOrderRequest\x1a#.orders.http.v3.CancelOrderResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v3/orders/{order_id}/cancel\x12\x94\x01\n" +
+	"\x10CancelOrderItems\x12'.orders.http.v3.CancelOrderItemsRequest\x1a(.orders.http.v3.CancelOrderItemsResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v3/orders/{order_id}/items/cancel\x12\x91\x01\n" +
+	"\x11UpdateOrderStatus\x12(.orders.http.v3.UpdateOrderStatusRequest\x1a).orders.http.v3.UpdateOrderStatusResponse\"'\x82\xd3\xe4\x93\x02!:\x01*2\x1c/v3/orders/{order_id}/status\x12\x9f\x01\n" +
+	"\x13UpdatePaymentStatus\x12*.orders.http.v3.UpdatePaymentStatusRequest\x1a+.orders.http.v3.UpdatePaymentStatusResponse\"/\x82\xd3\xe4\x93\x02):\x01*2$/v3/orders/{order_id}/payment-status\x12\x84\x01\n" +
 	"\x0eValidateCoupon\x12%.orders.http.v3.ValidateCouponRequest\x1a&.orders.http.v3.ValidateCouponResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/cart/coupon/validate\x12x\n" +
 	"\vApplyCoupon\x12\".orders.http.v3.ApplyCouponRequest\x1a#.orders.http.v3.ApplyCouponResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/cart/coupon/apply\x12r\n" +
-	"\fRemoveCoupon\x12#.orders.http.v3.RemoveCouponRequest\x1a$.orders.http.v3.RemoveCouponResponse\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v3/cart/coupon\x12w\n" +
+	"\fRemoveCoupon\x12#.orders.http.v3.RemoveCouponRequest\x1a$.orders.http.v3.RemoveCouponResponse\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v3/cart/coupon\x12\x92\x01\n" +
+	"\x13GetAvailableCoupons\x12*.orders.http.v3.GetAvailableCouponsRequest\x1a+.orders.http.v3.GetAvailableCouponsResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v3/cart/coupons/available\x12w\n" +
 	"\fCreateCoupon\x12#.orders.http.v3.CreateCouponRequest\x1a$.orders.http.v3.CreateCouponResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v3/admin/coupons\x12w\n" +
 	"\tGetCoupon\x12 .orders.http.v3.GetCouponRequest\x1a!.orders.http.v3.GetCouponResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v3/admin/coupons/{coupon_id}\x12q\n" +
 	"\vListCoupons\x12\".orders.http.v3.ListCouponsRequest\x1a#.orders.http.v3.ListCouponsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v3/admin/coupons\x12\x83\x01\n" +
-	"\fUpdateCoupon\x12#.orders.http.v3.UpdateCouponRequest\x1a$.orders.http.v3.UpdateCouponResponse\"(\x82\xd3\xe4\x93\x02\":\x01*\x1a\x1d/v3/admin/coupons/{coupon_id}\x12\x8c\x01\n" +
-	"\x10DeactivateCoupon\x12'.orders.http.v3.DeactivateCouponRequest\x1a(.orders.http.v3.DeactivateCouponResponse\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/v3/admin/coupons/{coupon_id}\x12\xa1\x01\n" +
-	"\x15GetCouponUsageHistory\x12,.orders.http.v3.GetCouponUsageHistoryRequest\x1a-.orders.http.v3.GetCouponUsageHistoryResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v3/admin/coupons/{coupon_id}/usageB\xb7\x01\n" +
+	"\fUpdateCoupon\x12#.orders.http.v3.UpdateCouponRequest\x1a$.orders.http.v3.UpdateCouponResponse\"(\x82\xd3\xe4\x93\x02\":\x01*\x1a\x1d/v3/admin/coupons/{coupon_id}\x12\x97\x01\n" +
+	"\x10DeactivateCoupon\x12'.orders.http.v3.DeactivateCouponRequest\x1a(.orders.http.v3.DeactivateCouponResponse\"0\x82\xd3\xe4\x93\x02*\"(/v3/admin/coupons/{coupon_id}/deactivate\x12\x80\x01\n" +
+	"\fDeleteCoupon\x12#.orders.http.v3.DeleteCouponRequest\x1a$.orders.http.v3.DeleteCouponResponse\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/v3/admin/coupons/{coupon_id}\x12\xa1\x01\n" +
+	"\x15GetCouponUsageHistory\x12,.orders.http.v3.GetCouponUsageHistoryRequest\x1a-.orders.http.v3.GetCouponUsageHistoryResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v3/admin/coupons/{coupon_id}/usage\x12\xa8\x01\n" +
+	"\x18GetProductSalesAnalytics\x12/.orders.http.v3.GetProductSalesAnalyticsRequest\x1a0.orders.http.v3.GetProductSalesAnalyticsResponse\")\x82\xd3\xe4\x93\x02#\x12!/v3/admin/analytics/product-sales\x12\x9f\x01\n" +
+	"\x13HasPurchasedProduct\x12*.orders.http.v3.HasPurchasedProductRequest\x1a+.orders.http.v3.HasPurchasedProductResponse\"/\x82\xd3\xe4\x93\x02)\x12'/v3/orders/verify-purchase/{product_id}B\xb7\x01\n" +
 	"\x12com.orders.http.v3B\vOrdersProtoP\x01Z:github.com/smart-kart/proto/gen/go/orders/http/v3;ordersv3\xa2\x02\x03OHX\xaa\x02\x0eOrders.Http.V3\xca\x02\x0eOrders\\Http\\V3\xe2\x02\x1aOrders\\Http\\V3\\GPBMetadata\xea\x02\x10Orders::Http::V3b\x06proto3"
 
 var (
@@ -4123,156 +5414,194 @@ func file_http_v3_orders_proto_rawDescGZIP() []byte {
 	return file_http_v3_orders_proto_rawDescData
 }
 
-var file_http_v3_orders_proto_msgTypes = make([]protoimpl.MessageInfo, 54)
+var file_http_v3_orders_proto_msgTypes = make([]protoimpl.MessageInfo, 71)
 var file_http_v3_orders_proto_goTypes = []any{
-	(*AddToCartRequest)(nil),              // 0: orders.http.v3.AddToCartRequest
-	(*AddToCartResponse)(nil),             // 1: orders.http.v3.AddToCartResponse
-	(*GetCartRequest)(nil),                // 2: orders.http.v3.GetCartRequest
-	(*GetCartResponse)(nil),               // 3: orders.http.v3.GetCartResponse
-	(*UpdateCartItemRequest)(nil),         // 4: orders.http.v3.UpdateCartItemRequest
-	(*UpdateCartItemResponse)(nil),        // 5: orders.http.v3.UpdateCartItemResponse
-	(*RemoveFromCartRequest)(nil),         // 6: orders.http.v3.RemoveFromCartRequest
-	(*RemoveFromCartResponse)(nil),        // 7: orders.http.v3.RemoveFromCartResponse
-	(*ClearCartRequest)(nil),              // 8: orders.http.v3.ClearCartRequest
-	(*ClearCartResponse)(nil),             // 9: orders.http.v3.ClearCartResponse
-	(*GetGuestCartRequest)(nil),           // 10: orders.http.v3.GetGuestCartRequest
-	(*GetGuestCartResponse)(nil),          // 11: orders.http.v3.GetGuestCartResponse
-	(*AddToGuestCartRequest)(nil),         // 12: orders.http.v3.AddToGuestCartRequest
-	(*AddToGuestCartResponse)(nil),        // 13: orders.http.v3.AddToGuestCartResponse
-	(*UpdateGuestCartItemRequest)(nil),    // 14: orders.http.v3.UpdateGuestCartItemRequest
-	(*UpdateGuestCartItemResponse)(nil),   // 15: orders.http.v3.UpdateGuestCartItemResponse
-	(*RemoveFromGuestCartRequest)(nil),    // 16: orders.http.v3.RemoveFromGuestCartRequest
-	(*RemoveFromGuestCartResponse)(nil),   // 17: orders.http.v3.RemoveFromGuestCartResponse
-	(*ClearGuestCartRequest)(nil),         // 18: orders.http.v3.ClearGuestCartRequest
-	(*ClearGuestCartResponse)(nil),        // 19: orders.http.v3.ClearGuestCartResponse
-	(*MergeGuestCartRequest)(nil),         // 20: orders.http.v3.MergeGuestCartRequest
-	(*MergeGuestCartResponse)(nil),        // 21: orders.http.v3.MergeGuestCartResponse
-	(*CreateOrderRequest)(nil),            // 22: orders.http.v3.CreateOrderRequest
-	(*CreateOrderResponse)(nil),           // 23: orders.http.v3.CreateOrderResponse
-	(*GetOrderRequest)(nil),               // 24: orders.http.v3.GetOrderRequest
-	(*GetOrderResponse)(nil),              // 25: orders.http.v3.GetOrderResponse
-	(*ListOrdersRequest)(nil),             // 26: orders.http.v3.ListOrdersRequest
-	(*ListOrdersResponse)(nil),            // 27: orders.http.v3.ListOrdersResponse
-	(*CancelOrderRequest)(nil),            // 28: orders.http.v3.CancelOrderRequest
-	(*CancelOrderResponse)(nil),           // 29: orders.http.v3.CancelOrderResponse
-	(*Cart)(nil),                          // 30: orders.http.v3.Cart
-	(*CartItem)(nil),                      // 31: orders.http.v3.CartItem
-	(*Order)(nil),                         // 32: orders.http.v3.Order
-	(*OrderItem)(nil),                     // 33: orders.http.v3.OrderItem
-	(*ValidateCouponRequest)(nil),         // 34: orders.http.v3.ValidateCouponRequest
-	(*ValidateCouponResponse)(nil),        // 35: orders.http.v3.ValidateCouponResponse
-	(*ApplyCouponRequest)(nil),            // 36: orders.http.v3.ApplyCouponRequest
-	(*ApplyCouponResponse)(nil),           // 37: orders.http.v3.ApplyCouponResponse
-	(*RemoveCouponRequest)(nil),           // 38: orders.http.v3.RemoveCouponRequest
-	(*RemoveCouponResponse)(nil),          // 39: orders.http.v3.RemoveCouponResponse
-	(*CreateCouponRequest)(nil),           // 40: orders.http.v3.CreateCouponRequest
-	(*CreateCouponResponse)(nil),          // 41: orders.http.v3.CreateCouponResponse
-	(*GetCouponRequest)(nil),              // 42: orders.http.v3.GetCouponRequest
-	(*GetCouponResponse)(nil),             // 43: orders.http.v3.GetCouponResponse
-	(*ListCouponsRequest)(nil),            // 44: orders.http.v3.ListCouponsRequest
-	(*ListCouponsResponse)(nil),           // 45: orders.http.v3.ListCouponsResponse
-	(*UpdateCouponRequest)(nil),           // 46: orders.http.v3.UpdateCouponRequest
-	(*UpdateCouponResponse)(nil),          // 47: orders.http.v3.UpdateCouponResponse
-	(*DeactivateCouponRequest)(nil),       // 48: orders.http.v3.DeactivateCouponRequest
-	(*DeactivateCouponResponse)(nil),      // 49: orders.http.v3.DeactivateCouponResponse
-	(*GetCouponUsageHistoryRequest)(nil),  // 50: orders.http.v3.GetCouponUsageHistoryRequest
-	(*GetCouponUsageHistoryResponse)(nil), // 51: orders.http.v3.GetCouponUsageHistoryResponse
-	(*Coupon)(nil),                        // 52: orders.http.v3.Coupon
-	(*CouponUsage)(nil),                   // 53: orders.http.v3.CouponUsage
-	(*timestamppb.Timestamp)(nil),         // 54: google.protobuf.Timestamp
+	(*AddToCartRequest)(nil),                 // 0: orders.http.v3.AddToCartRequest
+	(*AddToCartResponse)(nil),                // 1: orders.http.v3.AddToCartResponse
+	(*GetCartRequest)(nil),                   // 2: orders.http.v3.GetCartRequest
+	(*GetCartResponse)(nil),                  // 3: orders.http.v3.GetCartResponse
+	(*UpdateCartItemRequest)(nil),            // 4: orders.http.v3.UpdateCartItemRequest
+	(*UpdateCartItemResponse)(nil),           // 5: orders.http.v3.UpdateCartItemResponse
+	(*RemoveFromCartRequest)(nil),            // 6: orders.http.v3.RemoveFromCartRequest
+	(*RemoveFromCartResponse)(nil),           // 7: orders.http.v3.RemoveFromCartResponse
+	(*ClearCartRequest)(nil),                 // 8: orders.http.v3.ClearCartRequest
+	(*ClearCartResponse)(nil),                // 9: orders.http.v3.ClearCartResponse
+	(*GetGuestCartRequest)(nil),              // 10: orders.http.v3.GetGuestCartRequest
+	(*GetGuestCartResponse)(nil),             // 11: orders.http.v3.GetGuestCartResponse
+	(*AddToGuestCartRequest)(nil),            // 12: orders.http.v3.AddToGuestCartRequest
+	(*AddToGuestCartResponse)(nil),           // 13: orders.http.v3.AddToGuestCartResponse
+	(*UpdateGuestCartItemRequest)(nil),       // 14: orders.http.v3.UpdateGuestCartItemRequest
+	(*UpdateGuestCartItemResponse)(nil),      // 15: orders.http.v3.UpdateGuestCartItemResponse
+	(*RemoveFromGuestCartRequest)(nil),       // 16: orders.http.v3.RemoveFromGuestCartRequest
+	(*RemoveFromGuestCartResponse)(nil),      // 17: orders.http.v3.RemoveFromGuestCartResponse
+	(*ClearGuestCartRequest)(nil),            // 18: orders.http.v3.ClearGuestCartRequest
+	(*ClearGuestCartResponse)(nil),           // 19: orders.http.v3.ClearGuestCartResponse
+	(*MergeGuestCartRequest)(nil),            // 20: orders.http.v3.MergeGuestCartRequest
+	(*MergeGuestCartResponse)(nil),           // 21: orders.http.v3.MergeGuestCartResponse
+	(*CreateOrderRequest)(nil),               // 22: orders.http.v3.CreateOrderRequest
+	(*CreateOrderResponse)(nil),              // 23: orders.http.v3.CreateOrderResponse
+	(*GetOrderRequest)(nil),                  // 24: orders.http.v3.GetOrderRequest
+	(*GetOrderResponse)(nil),                 // 25: orders.http.v3.GetOrderResponse
+	(*ListOrdersRequest)(nil),                // 26: orders.http.v3.ListOrdersRequest
+	(*ListOrdersResponse)(nil),               // 27: orders.http.v3.ListOrdersResponse
+	(*CancelOrderRequest)(nil),               // 28: orders.http.v3.CancelOrderRequest
+	(*CancelOrderResponse)(nil),              // 29: orders.http.v3.CancelOrderResponse
+	(*UpdateOrderStatusRequest)(nil),         // 30: orders.http.v3.UpdateOrderStatusRequest
+	(*UpdateOrderStatusResponse)(nil),        // 31: orders.http.v3.UpdateOrderStatusResponse
+	(*UpdatePaymentStatusRequest)(nil),       // 32: orders.http.v3.UpdatePaymentStatusRequest
+	(*UpdatePaymentStatusResponse)(nil),      // 33: orders.http.v3.UpdatePaymentStatusResponse
+	(*Cart)(nil),                             // 34: orders.http.v3.Cart
+	(*CartItem)(nil),                         // 35: orders.http.v3.CartItem
+	(*Order)(nil),                            // 36: orders.http.v3.Order
+	(*OrderItem)(nil),                        // 37: orders.http.v3.OrderItem
+	(*ValidateCouponRequest)(nil),            // 38: orders.http.v3.ValidateCouponRequest
+	(*ValidateCouponResponse)(nil),           // 39: orders.http.v3.ValidateCouponResponse
+	(*ApplyCouponRequest)(nil),               // 40: orders.http.v3.ApplyCouponRequest
+	(*ApplyCouponResponse)(nil),              // 41: orders.http.v3.ApplyCouponResponse
+	(*RemoveCouponRequest)(nil),              // 42: orders.http.v3.RemoveCouponRequest
+	(*RemoveCouponResponse)(nil),             // 43: orders.http.v3.RemoveCouponResponse
+	(*CreateCouponRequest)(nil),              // 44: orders.http.v3.CreateCouponRequest
+	(*CreateCouponResponse)(nil),             // 45: orders.http.v3.CreateCouponResponse
+	(*GetCouponRequest)(nil),                 // 46: orders.http.v3.GetCouponRequest
+	(*GetCouponResponse)(nil),                // 47: orders.http.v3.GetCouponResponse
+	(*ListCouponsRequest)(nil),               // 48: orders.http.v3.ListCouponsRequest
+	(*ListCouponsResponse)(nil),              // 49: orders.http.v3.ListCouponsResponse
+	(*UpdateCouponRequest)(nil),              // 50: orders.http.v3.UpdateCouponRequest
+	(*UpdateCouponResponse)(nil),             // 51: orders.http.v3.UpdateCouponResponse
+	(*DeactivateCouponRequest)(nil),          // 52: orders.http.v3.DeactivateCouponRequest
+	(*DeactivateCouponResponse)(nil),         // 53: orders.http.v3.DeactivateCouponResponse
+	(*DeleteCouponRequest)(nil),              // 54: orders.http.v3.DeleteCouponRequest
+	(*DeleteCouponResponse)(nil),             // 55: orders.http.v3.DeleteCouponResponse
+	(*GetCouponUsageHistoryRequest)(nil),     // 56: orders.http.v3.GetCouponUsageHistoryRequest
+	(*GetCouponUsageHistoryResponse)(nil),    // 57: orders.http.v3.GetCouponUsageHistoryResponse
+	(*Coupon)(nil),                           // 58: orders.http.v3.Coupon
+	(*CouponUsage)(nil),                      // 59: orders.http.v3.CouponUsage
+	(*GetAvailableCouponsRequest)(nil),       // 60: orders.http.v3.GetAvailableCouponsRequest
+	(*GetAvailableCouponsResponse)(nil),      // 61: orders.http.v3.GetAvailableCouponsResponse
+	(*AvailableCoupon)(nil),                  // 62: orders.http.v3.AvailableCoupon
+	(*GetProductSalesAnalyticsRequest)(nil),  // 63: orders.http.v3.GetProductSalesAnalyticsRequest
+	(*GetProductSalesAnalyticsResponse)(nil), // 64: orders.http.v3.GetProductSalesAnalyticsResponse
+	(*ProductSalesData)(nil),                 // 65: orders.http.v3.ProductSalesData
+	(*CancelOrderItemsRequest)(nil),          // 66: orders.http.v3.CancelOrderItemsRequest
+	(*CancelOrderItemsResponse)(nil),         // 67: orders.http.v3.CancelOrderItemsResponse
+	(*CancellationSummary)(nil),              // 68: orders.http.v3.CancellationSummary
+	(*HasPurchasedProductRequest)(nil),       // 69: orders.http.v3.HasPurchasedProductRequest
+	(*HasPurchasedProductResponse)(nil),      // 70: orders.http.v3.HasPurchasedProductResponse
+	(*timestamppb.Timestamp)(nil),            // 71: google.protobuf.Timestamp
 }
 var file_http_v3_orders_proto_depIdxs = []int32{
-	31, // 0: orders.http.v3.AddToCartResponse.cart_item:type_name -> orders.http.v3.CartItem
-	30, // 1: orders.http.v3.GetCartResponse.cart:type_name -> orders.http.v3.Cart
-	31, // 2: orders.http.v3.UpdateCartItemResponse.cart_item:type_name -> orders.http.v3.CartItem
-	30, // 3: orders.http.v3.GetGuestCartResponse.cart:type_name -> orders.http.v3.Cart
-	31, // 4: orders.http.v3.AddToGuestCartResponse.cart_item:type_name -> orders.http.v3.CartItem
-	31, // 5: orders.http.v3.UpdateGuestCartItemResponse.cart_item:type_name -> orders.http.v3.CartItem
-	30, // 6: orders.http.v3.MergeGuestCartResponse.cart:type_name -> orders.http.v3.Cart
-	32, // 7: orders.http.v3.CreateOrderResponse.order:type_name -> orders.http.v3.Order
-	32, // 8: orders.http.v3.GetOrderResponse.order:type_name -> orders.http.v3.Order
-	32, // 9: orders.http.v3.ListOrdersResponse.orders:type_name -> orders.http.v3.Order
-	32, // 10: orders.http.v3.CancelOrderResponse.order:type_name -> orders.http.v3.Order
-	31, // 11: orders.http.v3.Cart.items:type_name -> orders.http.v3.CartItem
-	54, // 12: orders.http.v3.Cart.created_at:type_name -> google.protobuf.Timestamp
-	54, // 13: orders.http.v3.Cart.updated_at:type_name -> google.protobuf.Timestamp
-	54, // 14: orders.http.v3.CartItem.added_at:type_name -> google.protobuf.Timestamp
-	33, // 15: orders.http.v3.Order.items:type_name -> orders.http.v3.OrderItem
-	54, // 16: orders.http.v3.Order.order_date:type_name -> google.protobuf.Timestamp
-	54, // 17: orders.http.v3.Order.confirmed_at:type_name -> google.protobuf.Timestamp
-	54, // 18: orders.http.v3.Order.shipped_at:type_name -> google.protobuf.Timestamp
-	54, // 19: orders.http.v3.Order.delivered_at:type_name -> google.protobuf.Timestamp
-	54, // 20: orders.http.v3.Order.cancelled_at:type_name -> google.protobuf.Timestamp
-	52, // 21: orders.http.v3.ValidateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
-	30, // 22: orders.http.v3.ApplyCouponResponse.cart:type_name -> orders.http.v3.Cart
-	30, // 23: orders.http.v3.RemoveCouponResponse.cart:type_name -> orders.http.v3.Cart
-	54, // 24: orders.http.v3.CreateCouponRequest.valid_from:type_name -> google.protobuf.Timestamp
-	54, // 25: orders.http.v3.CreateCouponRequest.valid_until:type_name -> google.protobuf.Timestamp
-	52, // 26: orders.http.v3.CreateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
-	52, // 27: orders.http.v3.GetCouponResponse.coupon:type_name -> orders.http.v3.Coupon
-	52, // 28: orders.http.v3.ListCouponsResponse.coupons:type_name -> orders.http.v3.Coupon
-	54, // 29: orders.http.v3.UpdateCouponRequest.valid_from:type_name -> google.protobuf.Timestamp
-	54, // 30: orders.http.v3.UpdateCouponRequest.valid_until:type_name -> google.protobuf.Timestamp
-	52, // 31: orders.http.v3.UpdateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
-	53, // 32: orders.http.v3.GetCouponUsageHistoryResponse.usages:type_name -> orders.http.v3.CouponUsage
-	54, // 33: orders.http.v3.Coupon.valid_from:type_name -> google.protobuf.Timestamp
-	54, // 34: orders.http.v3.Coupon.valid_until:type_name -> google.protobuf.Timestamp
-	54, // 35: orders.http.v3.Coupon.created_at:type_name -> google.protobuf.Timestamp
-	54, // 36: orders.http.v3.Coupon.updated_at:type_name -> google.protobuf.Timestamp
-	54, // 37: orders.http.v3.CouponUsage.used_at:type_name -> google.protobuf.Timestamp
-	0,  // 38: orders.http.v3.OrdersService.AddToCart:input_type -> orders.http.v3.AddToCartRequest
-	2,  // 39: orders.http.v3.OrdersService.GetCart:input_type -> orders.http.v3.GetCartRequest
-	4,  // 40: orders.http.v3.OrdersService.UpdateCartItem:input_type -> orders.http.v3.UpdateCartItemRequest
-	6,  // 41: orders.http.v3.OrdersService.RemoveFromCart:input_type -> orders.http.v3.RemoveFromCartRequest
-	8,  // 42: orders.http.v3.OrdersService.ClearCart:input_type -> orders.http.v3.ClearCartRequest
-	10, // 43: orders.http.v3.OrdersService.GetGuestCart:input_type -> orders.http.v3.GetGuestCartRequest
-	12, // 44: orders.http.v3.OrdersService.AddToGuestCart:input_type -> orders.http.v3.AddToGuestCartRequest
-	14, // 45: orders.http.v3.OrdersService.UpdateGuestCartItem:input_type -> orders.http.v3.UpdateGuestCartItemRequest
-	16, // 46: orders.http.v3.OrdersService.RemoveFromGuestCart:input_type -> orders.http.v3.RemoveFromGuestCartRequest
-	18, // 47: orders.http.v3.OrdersService.ClearGuestCart:input_type -> orders.http.v3.ClearGuestCartRequest
-	20, // 48: orders.http.v3.OrdersService.MergeGuestCart:input_type -> orders.http.v3.MergeGuestCartRequest
-	22, // 49: orders.http.v3.OrdersService.CreateOrder:input_type -> orders.http.v3.CreateOrderRequest
-	24, // 50: orders.http.v3.OrdersService.GetOrder:input_type -> orders.http.v3.GetOrderRequest
-	26, // 51: orders.http.v3.OrdersService.ListOrders:input_type -> orders.http.v3.ListOrdersRequest
-	28, // 52: orders.http.v3.OrdersService.CancelOrder:input_type -> orders.http.v3.CancelOrderRequest
-	34, // 53: orders.http.v3.OrdersService.ValidateCoupon:input_type -> orders.http.v3.ValidateCouponRequest
-	36, // 54: orders.http.v3.OrdersService.ApplyCoupon:input_type -> orders.http.v3.ApplyCouponRequest
-	38, // 55: orders.http.v3.OrdersService.RemoveCoupon:input_type -> orders.http.v3.RemoveCouponRequest
-	40, // 56: orders.http.v3.OrdersService.CreateCoupon:input_type -> orders.http.v3.CreateCouponRequest
-	42, // 57: orders.http.v3.OrdersService.GetCoupon:input_type -> orders.http.v3.GetCouponRequest
-	44, // 58: orders.http.v3.OrdersService.ListCoupons:input_type -> orders.http.v3.ListCouponsRequest
-	46, // 59: orders.http.v3.OrdersService.UpdateCoupon:input_type -> orders.http.v3.UpdateCouponRequest
-	48, // 60: orders.http.v3.OrdersService.DeactivateCoupon:input_type -> orders.http.v3.DeactivateCouponRequest
-	50, // 61: orders.http.v3.OrdersService.GetCouponUsageHistory:input_type -> orders.http.v3.GetCouponUsageHistoryRequest
-	1,  // 62: orders.http.v3.OrdersService.AddToCart:output_type -> orders.http.v3.AddToCartResponse
-	3,  // 63: orders.http.v3.OrdersService.GetCart:output_type -> orders.http.v3.GetCartResponse
-	5,  // 64: orders.http.v3.OrdersService.UpdateCartItem:output_type -> orders.http.v3.UpdateCartItemResponse
-	7,  // 65: orders.http.v3.OrdersService.RemoveFromCart:output_type -> orders.http.v3.RemoveFromCartResponse
-	9,  // 66: orders.http.v3.OrdersService.ClearCart:output_type -> orders.http.v3.ClearCartResponse
-	11, // 67: orders.http.v3.OrdersService.GetGuestCart:output_type -> orders.http.v3.GetGuestCartResponse
-	13, // 68: orders.http.v3.OrdersService.AddToGuestCart:output_type -> orders.http.v3.AddToGuestCartResponse
-	15, // 69: orders.http.v3.OrdersService.UpdateGuestCartItem:output_type -> orders.http.v3.UpdateGuestCartItemResponse
-	17, // 70: orders.http.v3.OrdersService.RemoveFromGuestCart:output_type -> orders.http.v3.RemoveFromGuestCartResponse
-	19, // 71: orders.http.v3.OrdersService.ClearGuestCart:output_type -> orders.http.v3.ClearGuestCartResponse
-	21, // 72: orders.http.v3.OrdersService.MergeGuestCart:output_type -> orders.http.v3.MergeGuestCartResponse
-	23, // 73: orders.http.v3.OrdersService.CreateOrder:output_type -> orders.http.v3.CreateOrderResponse
-	25, // 74: orders.http.v3.OrdersService.GetOrder:output_type -> orders.http.v3.GetOrderResponse
-	27, // 75: orders.http.v3.OrdersService.ListOrders:output_type -> orders.http.v3.ListOrdersResponse
-	29, // 76: orders.http.v3.OrdersService.CancelOrder:output_type -> orders.http.v3.CancelOrderResponse
-	35, // 77: orders.http.v3.OrdersService.ValidateCoupon:output_type -> orders.http.v3.ValidateCouponResponse
-	37, // 78: orders.http.v3.OrdersService.ApplyCoupon:output_type -> orders.http.v3.ApplyCouponResponse
-	39, // 79: orders.http.v3.OrdersService.RemoveCoupon:output_type -> orders.http.v3.RemoveCouponResponse
-	41, // 80: orders.http.v3.OrdersService.CreateCoupon:output_type -> orders.http.v3.CreateCouponResponse
-	43, // 81: orders.http.v3.OrdersService.GetCoupon:output_type -> orders.http.v3.GetCouponResponse
-	45, // 82: orders.http.v3.OrdersService.ListCoupons:output_type -> orders.http.v3.ListCouponsResponse
-	47, // 83: orders.http.v3.OrdersService.UpdateCoupon:output_type -> orders.http.v3.UpdateCouponResponse
-	49, // 84: orders.http.v3.OrdersService.DeactivateCoupon:output_type -> orders.http.v3.DeactivateCouponResponse
-	51, // 85: orders.http.v3.OrdersService.GetCouponUsageHistory:output_type -> orders.http.v3.GetCouponUsageHistoryResponse
-	62, // [62:86] is the sub-list for method output_type
-	38, // [38:62] is the sub-list for method input_type
-	38, // [38:38] is the sub-list for extension type_name
-	38, // [38:38] is the sub-list for extension extendee
-	0,  // [0:38] is the sub-list for field type_name
+	35, // 0: orders.http.v3.AddToCartResponse.cart_item:type_name -> orders.http.v3.CartItem
+	34, // 1: orders.http.v3.GetCartResponse.cart:type_name -> orders.http.v3.Cart
+	35, // 2: orders.http.v3.UpdateCartItemResponse.cart_item:type_name -> orders.http.v3.CartItem
+	34, // 3: orders.http.v3.GetGuestCartResponse.cart:type_name -> orders.http.v3.Cart
+	35, // 4: orders.http.v3.AddToGuestCartResponse.cart_item:type_name -> orders.http.v3.CartItem
+	35, // 5: orders.http.v3.UpdateGuestCartItemResponse.cart_item:type_name -> orders.http.v3.CartItem
+	34, // 6: orders.http.v3.MergeGuestCartResponse.cart:type_name -> orders.http.v3.Cart
+	36, // 7: orders.http.v3.CreateOrderResponse.order:type_name -> orders.http.v3.Order
+	36, // 8: orders.http.v3.GetOrderResponse.order:type_name -> orders.http.v3.Order
+	36, // 9: orders.http.v3.ListOrdersResponse.orders:type_name -> orders.http.v3.Order
+	36, // 10: orders.http.v3.CancelOrderResponse.order:type_name -> orders.http.v3.Order
+	36, // 11: orders.http.v3.UpdateOrderStatusResponse.order:type_name -> orders.http.v3.Order
+	36, // 12: orders.http.v3.UpdatePaymentStatusResponse.order:type_name -> orders.http.v3.Order
+	35, // 13: orders.http.v3.Cart.items:type_name -> orders.http.v3.CartItem
+	71, // 14: orders.http.v3.Cart.created_at:type_name -> google.protobuf.Timestamp
+	71, // 15: orders.http.v3.Cart.updated_at:type_name -> google.protobuf.Timestamp
+	71, // 16: orders.http.v3.CartItem.added_at:type_name -> google.protobuf.Timestamp
+	37, // 17: orders.http.v3.Order.items:type_name -> orders.http.v3.OrderItem
+	71, // 18: orders.http.v3.Order.order_date:type_name -> google.protobuf.Timestamp
+	71, // 19: orders.http.v3.Order.confirmed_at:type_name -> google.protobuf.Timestamp
+	71, // 20: orders.http.v3.Order.shipped_at:type_name -> google.protobuf.Timestamp
+	71, // 21: orders.http.v3.Order.delivered_at:type_name -> google.protobuf.Timestamp
+	71, // 22: orders.http.v3.Order.cancelled_at:type_name -> google.protobuf.Timestamp
+	58, // 23: orders.http.v3.ValidateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
+	34, // 24: orders.http.v3.ApplyCouponResponse.cart:type_name -> orders.http.v3.Cart
+	34, // 25: orders.http.v3.RemoveCouponResponse.cart:type_name -> orders.http.v3.Cart
+	71, // 26: orders.http.v3.CreateCouponRequest.valid_from:type_name -> google.protobuf.Timestamp
+	71, // 27: orders.http.v3.CreateCouponRequest.valid_until:type_name -> google.protobuf.Timestamp
+	58, // 28: orders.http.v3.CreateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
+	58, // 29: orders.http.v3.GetCouponResponse.coupon:type_name -> orders.http.v3.Coupon
+	58, // 30: orders.http.v3.ListCouponsResponse.coupons:type_name -> orders.http.v3.Coupon
+	71, // 31: orders.http.v3.UpdateCouponRequest.valid_from:type_name -> google.protobuf.Timestamp
+	71, // 32: orders.http.v3.UpdateCouponRequest.valid_until:type_name -> google.protobuf.Timestamp
+	58, // 33: orders.http.v3.UpdateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
+	59, // 34: orders.http.v3.GetCouponUsageHistoryResponse.usages:type_name -> orders.http.v3.CouponUsage
+	71, // 35: orders.http.v3.Coupon.valid_from:type_name -> google.protobuf.Timestamp
+	71, // 36: orders.http.v3.Coupon.valid_until:type_name -> google.protobuf.Timestamp
+	71, // 37: orders.http.v3.Coupon.created_at:type_name -> google.protobuf.Timestamp
+	71, // 38: orders.http.v3.Coupon.updated_at:type_name -> google.protobuf.Timestamp
+	71, // 39: orders.http.v3.CouponUsage.used_at:type_name -> google.protobuf.Timestamp
+	62, // 40: orders.http.v3.GetAvailableCouponsResponse.coupons:type_name -> orders.http.v3.AvailableCoupon
+	65, // 41: orders.http.v3.GetProductSalesAnalyticsResponse.products:type_name -> orders.http.v3.ProductSalesData
+	36, // 42: orders.http.v3.CancelOrderItemsResponse.order:type_name -> orders.http.v3.Order
+	37, // 43: orders.http.v3.CancelOrderItemsResponse.cancelled_items:type_name -> orders.http.v3.OrderItem
+	68, // 44: orders.http.v3.CancelOrderItemsResponse.summary:type_name -> orders.http.v3.CancellationSummary
+	0,  // 45: orders.http.v3.OrdersService.AddToCart:input_type -> orders.http.v3.AddToCartRequest
+	2,  // 46: orders.http.v3.OrdersService.GetCart:input_type -> orders.http.v3.GetCartRequest
+	4,  // 47: orders.http.v3.OrdersService.UpdateCartItem:input_type -> orders.http.v3.UpdateCartItemRequest
+	6,  // 48: orders.http.v3.OrdersService.RemoveFromCart:input_type -> orders.http.v3.RemoveFromCartRequest
+	8,  // 49: orders.http.v3.OrdersService.ClearCart:input_type -> orders.http.v3.ClearCartRequest
+	10, // 50: orders.http.v3.OrdersService.GetGuestCart:input_type -> orders.http.v3.GetGuestCartRequest
+	12, // 51: orders.http.v3.OrdersService.AddToGuestCart:input_type -> orders.http.v3.AddToGuestCartRequest
+	14, // 52: orders.http.v3.OrdersService.UpdateGuestCartItem:input_type -> orders.http.v3.UpdateGuestCartItemRequest
+	16, // 53: orders.http.v3.OrdersService.RemoveFromGuestCart:input_type -> orders.http.v3.RemoveFromGuestCartRequest
+	18, // 54: orders.http.v3.OrdersService.ClearGuestCart:input_type -> orders.http.v3.ClearGuestCartRequest
+	20, // 55: orders.http.v3.OrdersService.MergeGuestCart:input_type -> orders.http.v3.MergeGuestCartRequest
+	22, // 56: orders.http.v3.OrdersService.CreateOrder:input_type -> orders.http.v3.CreateOrderRequest
+	24, // 57: orders.http.v3.OrdersService.GetOrder:input_type -> orders.http.v3.GetOrderRequest
+	26, // 58: orders.http.v3.OrdersService.ListOrders:input_type -> orders.http.v3.ListOrdersRequest
+	28, // 59: orders.http.v3.OrdersService.CancelOrder:input_type -> orders.http.v3.CancelOrderRequest
+	66, // 60: orders.http.v3.OrdersService.CancelOrderItems:input_type -> orders.http.v3.CancelOrderItemsRequest
+	30, // 61: orders.http.v3.OrdersService.UpdateOrderStatus:input_type -> orders.http.v3.UpdateOrderStatusRequest
+	32, // 62: orders.http.v3.OrdersService.UpdatePaymentStatus:input_type -> orders.http.v3.UpdatePaymentStatusRequest
+	38, // 63: orders.http.v3.OrdersService.ValidateCoupon:input_type -> orders.http.v3.ValidateCouponRequest
+	40, // 64: orders.http.v3.OrdersService.ApplyCoupon:input_type -> orders.http.v3.ApplyCouponRequest
+	42, // 65: orders.http.v3.OrdersService.RemoveCoupon:input_type -> orders.http.v3.RemoveCouponRequest
+	60, // 66: orders.http.v3.OrdersService.GetAvailableCoupons:input_type -> orders.http.v3.GetAvailableCouponsRequest
+	44, // 67: orders.http.v3.OrdersService.CreateCoupon:input_type -> orders.http.v3.CreateCouponRequest
+	46, // 68: orders.http.v3.OrdersService.GetCoupon:input_type -> orders.http.v3.GetCouponRequest
+	48, // 69: orders.http.v3.OrdersService.ListCoupons:input_type -> orders.http.v3.ListCouponsRequest
+	50, // 70: orders.http.v3.OrdersService.UpdateCoupon:input_type -> orders.http.v3.UpdateCouponRequest
+	52, // 71: orders.http.v3.OrdersService.DeactivateCoupon:input_type -> orders.http.v3.DeactivateCouponRequest
+	54, // 72: orders.http.v3.OrdersService.DeleteCoupon:input_type -> orders.http.v3.DeleteCouponRequest
+	56, // 73: orders.http.v3.OrdersService.GetCouponUsageHistory:input_type -> orders.http.v3.GetCouponUsageHistoryRequest
+	63, // 74: orders.http.v3.OrdersService.GetProductSalesAnalytics:input_type -> orders.http.v3.GetProductSalesAnalyticsRequest
+	69, // 75: orders.http.v3.OrdersService.HasPurchasedProduct:input_type -> orders.http.v3.HasPurchasedProductRequest
+	1,  // 76: orders.http.v3.OrdersService.AddToCart:output_type -> orders.http.v3.AddToCartResponse
+	3,  // 77: orders.http.v3.OrdersService.GetCart:output_type -> orders.http.v3.GetCartResponse
+	5,  // 78: orders.http.v3.OrdersService.UpdateCartItem:output_type -> orders.http.v3.UpdateCartItemResponse
+	7,  // 79: orders.http.v3.OrdersService.RemoveFromCart:output_type -> orders.http.v3.RemoveFromCartResponse
+	9,  // 80: orders.http.v3.OrdersService.ClearCart:output_type -> orders.http.v3.ClearCartResponse
+	11, // 81: orders.http.v3.OrdersService.GetGuestCart:output_type -> orders.http.v3.GetGuestCartResponse
+	13, // 82: orders.http.v3.OrdersService.AddToGuestCart:output_type -> orders.http.v3.AddToGuestCartResponse
+	15, // 83: orders.http.v3.OrdersService.UpdateGuestCartItem:output_type -> orders.http.v3.UpdateGuestCartItemResponse
+	17, // 84: orders.http.v3.OrdersService.RemoveFromGuestCart:output_type -> orders.http.v3.RemoveFromGuestCartResponse
+	19, // 85: orders.http.v3.OrdersService.ClearGuestCart:output_type -> orders.http.v3.ClearGuestCartResponse
+	21, // 86: orders.http.v3.OrdersService.MergeGuestCart:output_type -> orders.http.v3.MergeGuestCartResponse
+	23, // 87: orders.http.v3.OrdersService.CreateOrder:output_type -> orders.http.v3.CreateOrderResponse
+	25, // 88: orders.http.v3.OrdersService.GetOrder:output_type -> orders.http.v3.GetOrderResponse
+	27, // 89: orders.http.v3.OrdersService.ListOrders:output_type -> orders.http.v3.ListOrdersResponse
+	29, // 90: orders.http.v3.OrdersService.CancelOrder:output_type -> orders.http.v3.CancelOrderResponse
+	67, // 91: orders.http.v3.OrdersService.CancelOrderItems:output_type -> orders.http.v3.CancelOrderItemsResponse
+	31, // 92: orders.http.v3.OrdersService.UpdateOrderStatus:output_type -> orders.http.v3.UpdateOrderStatusResponse
+	33, // 93: orders.http.v3.OrdersService.UpdatePaymentStatus:output_type -> orders.http.v3.UpdatePaymentStatusResponse
+	39, // 94: orders.http.v3.OrdersService.ValidateCoupon:output_type -> orders.http.v3.ValidateCouponResponse
+	41, // 95: orders.http.v3.OrdersService.ApplyCoupon:output_type -> orders.http.v3.ApplyCouponResponse
+	43, // 96: orders.http.v3.OrdersService.RemoveCoupon:output_type -> orders.http.v3.RemoveCouponResponse
+	61, // 97: orders.http.v3.OrdersService.GetAvailableCoupons:output_type -> orders.http.v3.GetAvailableCouponsResponse
+	45, // 98: orders.http.v3.OrdersService.CreateCoupon:output_type -> orders.http.v3.CreateCouponResponse
+	47, // 99: orders.http.v3.OrdersService.GetCoupon:output_type -> orders.http.v3.GetCouponResponse
+	49, // 100: orders.http.v3.OrdersService.ListCoupons:output_type -> orders.http.v3.ListCouponsResponse
+	51, // 101: orders.http.v3.OrdersService.UpdateCoupon:output_type -> orders.http.v3.UpdateCouponResponse
+	53, // 102: orders.http.v3.OrdersService.DeactivateCoupon:output_type -> orders.http.v3.DeactivateCouponResponse
+	55, // 103: orders.http.v3.OrdersService.DeleteCoupon:output_type -> orders.http.v3.DeleteCouponResponse
+	57, // 104: orders.http.v3.OrdersService.GetCouponUsageHistory:output_type -> orders.http.v3.GetCouponUsageHistoryResponse
+	64, // 105: orders.http.v3.OrdersService.GetProductSalesAnalytics:output_type -> orders.http.v3.GetProductSalesAnalyticsResponse
+	70, // 106: orders.http.v3.OrdersService.HasPurchasedProduct:output_type -> orders.http.v3.HasPurchasedProductResponse
+	76, // [76:107] is the sub-list for method output_type
+	45, // [45:76] is the sub-list for method input_type
+	45, // [45:45] is the sub-list for extension type_name
+	45, // [45:45] is the sub-list for extension extendee
+	0,  // [0:45] is the sub-list for field type_name
 }
 
 func init() { file_http_v3_orders_proto_init() }
@@ -4283,19 +5612,25 @@ func file_http_v3_orders_proto_init() {
 	file_http_v3_orders_proto_msgTypes[22].OneofWrappers = []any{}
 	file_http_v3_orders_proto_msgTypes[26].OneofWrappers = []any{}
 	file_http_v3_orders_proto_msgTypes[30].OneofWrappers = []any{}
-	file_http_v3_orders_proto_msgTypes[31].OneofWrappers = []any{}
 	file_http_v3_orders_proto_msgTypes[32].OneofWrappers = []any{}
-	file_http_v3_orders_proto_msgTypes[40].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[34].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[35].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[36].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[37].OneofWrappers = []any{}
 	file_http_v3_orders_proto_msgTypes[44].OneofWrappers = []any{}
-	file_http_v3_orders_proto_msgTypes[46].OneofWrappers = []any{}
-	file_http_v3_orders_proto_msgTypes[52].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[48].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[50].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[58].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[62].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[63].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[70].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_http_v3_orders_proto_rawDesc), len(file_http_v3_orders_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   54,
+			NumMessages:   71,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

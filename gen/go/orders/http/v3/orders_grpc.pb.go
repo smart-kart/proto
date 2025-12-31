@@ -19,30 +19,37 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OrdersService_AddToCart_FullMethodName             = "/orders.http.v3.OrdersService/AddToCart"
-	OrdersService_GetCart_FullMethodName               = "/orders.http.v3.OrdersService/GetCart"
-	OrdersService_UpdateCartItem_FullMethodName        = "/orders.http.v3.OrdersService/UpdateCartItem"
-	OrdersService_RemoveFromCart_FullMethodName        = "/orders.http.v3.OrdersService/RemoveFromCart"
-	OrdersService_ClearCart_FullMethodName             = "/orders.http.v3.OrdersService/ClearCart"
-	OrdersService_GetGuestCart_FullMethodName          = "/orders.http.v3.OrdersService/GetGuestCart"
-	OrdersService_AddToGuestCart_FullMethodName        = "/orders.http.v3.OrdersService/AddToGuestCart"
-	OrdersService_UpdateGuestCartItem_FullMethodName   = "/orders.http.v3.OrdersService/UpdateGuestCartItem"
-	OrdersService_RemoveFromGuestCart_FullMethodName   = "/orders.http.v3.OrdersService/RemoveFromGuestCart"
-	OrdersService_ClearGuestCart_FullMethodName        = "/orders.http.v3.OrdersService/ClearGuestCart"
-	OrdersService_MergeGuestCart_FullMethodName        = "/orders.http.v3.OrdersService/MergeGuestCart"
-	OrdersService_CreateOrder_FullMethodName           = "/orders.http.v3.OrdersService/CreateOrder"
-	OrdersService_GetOrder_FullMethodName              = "/orders.http.v3.OrdersService/GetOrder"
-	OrdersService_ListOrders_FullMethodName            = "/orders.http.v3.OrdersService/ListOrders"
-	OrdersService_CancelOrder_FullMethodName           = "/orders.http.v3.OrdersService/CancelOrder"
-	OrdersService_ValidateCoupon_FullMethodName        = "/orders.http.v3.OrdersService/ValidateCoupon"
-	OrdersService_ApplyCoupon_FullMethodName           = "/orders.http.v3.OrdersService/ApplyCoupon"
-	OrdersService_RemoveCoupon_FullMethodName          = "/orders.http.v3.OrdersService/RemoveCoupon"
-	OrdersService_CreateCoupon_FullMethodName          = "/orders.http.v3.OrdersService/CreateCoupon"
-	OrdersService_GetCoupon_FullMethodName             = "/orders.http.v3.OrdersService/GetCoupon"
-	OrdersService_ListCoupons_FullMethodName           = "/orders.http.v3.OrdersService/ListCoupons"
-	OrdersService_UpdateCoupon_FullMethodName          = "/orders.http.v3.OrdersService/UpdateCoupon"
-	OrdersService_DeactivateCoupon_FullMethodName      = "/orders.http.v3.OrdersService/DeactivateCoupon"
-	OrdersService_GetCouponUsageHistory_FullMethodName = "/orders.http.v3.OrdersService/GetCouponUsageHistory"
+	OrdersService_AddToCart_FullMethodName                = "/orders.http.v3.OrdersService/AddToCart"
+	OrdersService_GetCart_FullMethodName                  = "/orders.http.v3.OrdersService/GetCart"
+	OrdersService_UpdateCartItem_FullMethodName           = "/orders.http.v3.OrdersService/UpdateCartItem"
+	OrdersService_RemoveFromCart_FullMethodName           = "/orders.http.v3.OrdersService/RemoveFromCart"
+	OrdersService_ClearCart_FullMethodName                = "/orders.http.v3.OrdersService/ClearCart"
+	OrdersService_GetGuestCart_FullMethodName             = "/orders.http.v3.OrdersService/GetGuestCart"
+	OrdersService_AddToGuestCart_FullMethodName           = "/orders.http.v3.OrdersService/AddToGuestCart"
+	OrdersService_UpdateGuestCartItem_FullMethodName      = "/orders.http.v3.OrdersService/UpdateGuestCartItem"
+	OrdersService_RemoveFromGuestCart_FullMethodName      = "/orders.http.v3.OrdersService/RemoveFromGuestCart"
+	OrdersService_ClearGuestCart_FullMethodName           = "/orders.http.v3.OrdersService/ClearGuestCart"
+	OrdersService_MergeGuestCart_FullMethodName           = "/orders.http.v3.OrdersService/MergeGuestCart"
+	OrdersService_CreateOrder_FullMethodName              = "/orders.http.v3.OrdersService/CreateOrder"
+	OrdersService_GetOrder_FullMethodName                 = "/orders.http.v3.OrdersService/GetOrder"
+	OrdersService_ListOrders_FullMethodName               = "/orders.http.v3.OrdersService/ListOrders"
+	OrdersService_CancelOrder_FullMethodName              = "/orders.http.v3.OrdersService/CancelOrder"
+	OrdersService_CancelOrderItems_FullMethodName         = "/orders.http.v3.OrdersService/CancelOrderItems"
+	OrdersService_UpdateOrderStatus_FullMethodName        = "/orders.http.v3.OrdersService/UpdateOrderStatus"
+	OrdersService_UpdatePaymentStatus_FullMethodName      = "/orders.http.v3.OrdersService/UpdatePaymentStatus"
+	OrdersService_ValidateCoupon_FullMethodName           = "/orders.http.v3.OrdersService/ValidateCoupon"
+	OrdersService_ApplyCoupon_FullMethodName              = "/orders.http.v3.OrdersService/ApplyCoupon"
+	OrdersService_RemoveCoupon_FullMethodName             = "/orders.http.v3.OrdersService/RemoveCoupon"
+	OrdersService_GetAvailableCoupons_FullMethodName      = "/orders.http.v3.OrdersService/GetAvailableCoupons"
+	OrdersService_CreateCoupon_FullMethodName             = "/orders.http.v3.OrdersService/CreateCoupon"
+	OrdersService_GetCoupon_FullMethodName                = "/orders.http.v3.OrdersService/GetCoupon"
+	OrdersService_ListCoupons_FullMethodName              = "/orders.http.v3.OrdersService/ListCoupons"
+	OrdersService_UpdateCoupon_FullMethodName             = "/orders.http.v3.OrdersService/UpdateCoupon"
+	OrdersService_DeactivateCoupon_FullMethodName         = "/orders.http.v3.OrdersService/DeactivateCoupon"
+	OrdersService_DeleteCoupon_FullMethodName             = "/orders.http.v3.OrdersService/DeleteCoupon"
+	OrdersService_GetCouponUsageHistory_FullMethodName    = "/orders.http.v3.OrdersService/GetCouponUsageHistory"
+	OrdersService_GetProductSalesAnalytics_FullMethodName = "/orders.http.v3.OrdersService/GetProductSalesAnalytics"
+	OrdersService_HasPurchasedProduct_FullMethodName      = "/orders.http.v3.OrdersService/HasPurchasedProduct"
 )
 
 // OrdersServiceClient is the client API for OrdersService service.
@@ -70,17 +77,27 @@ type OrdersServiceClient interface {
 	GetOrder(ctx context.Context, in *GetOrderRequest, opts ...grpc.CallOption) (*GetOrderResponse, error)
 	ListOrders(ctx context.Context, in *ListOrdersRequest, opts ...grpc.CallOption) (*ListOrdersResponse, error)
 	CancelOrder(ctx context.Context, in *CancelOrderRequest, opts ...grpc.CallOption) (*CancelOrderResponse, error)
+	CancelOrderItems(ctx context.Context, in *CancelOrderItemsRequest, opts ...grpc.CallOption) (*CancelOrderItemsResponse, error)
+	// Order Status Management (Admin/System)
+	UpdateOrderStatus(ctx context.Context, in *UpdateOrderStatusRequest, opts ...grpc.CallOption) (*UpdateOrderStatusResponse, error)
+	UpdatePaymentStatus(ctx context.Context, in *UpdatePaymentStatusRequest, opts ...grpc.CallOption) (*UpdatePaymentStatusResponse, error)
 	// Coupon Management (Customer)
 	ValidateCoupon(ctx context.Context, in *ValidateCouponRequest, opts ...grpc.CallOption) (*ValidateCouponResponse, error)
 	ApplyCoupon(ctx context.Context, in *ApplyCouponRequest, opts ...grpc.CallOption) (*ApplyCouponResponse, error)
 	RemoveCoupon(ctx context.Context, in *RemoveCouponRequest, opts ...grpc.CallOption) (*RemoveCouponResponse, error)
+	GetAvailableCoupons(ctx context.Context, in *GetAvailableCouponsRequest, opts ...grpc.CallOption) (*GetAvailableCouponsResponse, error)
 	// Coupon Management (Admin)
 	CreateCoupon(ctx context.Context, in *CreateCouponRequest, opts ...grpc.CallOption) (*CreateCouponResponse, error)
 	GetCoupon(ctx context.Context, in *GetCouponRequest, opts ...grpc.CallOption) (*GetCouponResponse, error)
 	ListCoupons(ctx context.Context, in *ListCouponsRequest, opts ...grpc.CallOption) (*ListCouponsResponse, error)
 	UpdateCoupon(ctx context.Context, in *UpdateCouponRequest, opts ...grpc.CallOption) (*UpdateCouponResponse, error)
 	DeactivateCoupon(ctx context.Context, in *DeactivateCouponRequest, opts ...grpc.CallOption) (*DeactivateCouponResponse, error)
+	DeleteCoupon(ctx context.Context, in *DeleteCouponRequest, opts ...grpc.CallOption) (*DeleteCouponResponse, error)
 	GetCouponUsageHistory(ctx context.Context, in *GetCouponUsageHistoryRequest, opts ...grpc.CallOption) (*GetCouponUsageHistoryResponse, error)
+	// Analytics (Admin)
+	GetProductSalesAnalytics(ctx context.Context, in *GetProductSalesAnalyticsRequest, opts ...grpc.CallOption) (*GetProductSalesAnalyticsResponse, error)
+	// Verified Purchase Check (for Review System)
+	HasPurchasedProduct(ctx context.Context, in *HasPurchasedProductRequest, opts ...grpc.CallOption) (*HasPurchasedProductResponse, error)
 }
 
 type ordersServiceClient struct {
@@ -241,6 +258,36 @@ func (c *ordersServiceClient) CancelOrder(ctx context.Context, in *CancelOrderRe
 	return out, nil
 }
 
+func (c *ordersServiceClient) CancelOrderItems(ctx context.Context, in *CancelOrderItemsRequest, opts ...grpc.CallOption) (*CancelOrderItemsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CancelOrderItemsResponse)
+	err := c.cc.Invoke(ctx, OrdersService_CancelOrderItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) UpdateOrderStatus(ctx context.Context, in *UpdateOrderStatusRequest, opts ...grpc.CallOption) (*UpdateOrderStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateOrderStatusResponse)
+	err := c.cc.Invoke(ctx, OrdersService_UpdateOrderStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) UpdatePaymentStatus(ctx context.Context, in *UpdatePaymentStatusRequest, opts ...grpc.CallOption) (*UpdatePaymentStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdatePaymentStatusResponse)
+	err := c.cc.Invoke(ctx, OrdersService_UpdatePaymentStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ordersServiceClient) ValidateCoupon(ctx context.Context, in *ValidateCouponRequest, opts ...grpc.CallOption) (*ValidateCouponResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ValidateCouponResponse)
@@ -265,6 +312,16 @@ func (c *ordersServiceClient) RemoveCoupon(ctx context.Context, in *RemoveCoupon
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RemoveCouponResponse)
 	err := c.cc.Invoke(ctx, OrdersService_RemoveCoupon_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) GetAvailableCoupons(ctx context.Context, in *GetAvailableCouponsRequest, opts ...grpc.CallOption) (*GetAvailableCouponsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAvailableCouponsResponse)
+	err := c.cc.Invoke(ctx, OrdersService_GetAvailableCoupons_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -321,10 +378,40 @@ func (c *ordersServiceClient) DeactivateCoupon(ctx context.Context, in *Deactiva
 	return out, nil
 }
 
+func (c *ordersServiceClient) DeleteCoupon(ctx context.Context, in *DeleteCouponRequest, opts ...grpc.CallOption) (*DeleteCouponResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteCouponResponse)
+	err := c.cc.Invoke(ctx, OrdersService_DeleteCoupon_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ordersServiceClient) GetCouponUsageHistory(ctx context.Context, in *GetCouponUsageHistoryRequest, opts ...grpc.CallOption) (*GetCouponUsageHistoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetCouponUsageHistoryResponse)
 	err := c.cc.Invoke(ctx, OrdersService_GetCouponUsageHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) GetProductSalesAnalytics(ctx context.Context, in *GetProductSalesAnalyticsRequest, opts ...grpc.CallOption) (*GetProductSalesAnalyticsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProductSalesAnalyticsResponse)
+	err := c.cc.Invoke(ctx, OrdersService_GetProductSalesAnalytics_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) HasPurchasedProduct(ctx context.Context, in *HasPurchasedProductRequest, opts ...grpc.CallOption) (*HasPurchasedProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HasPurchasedProductResponse)
+	err := c.cc.Invoke(ctx, OrdersService_HasPurchasedProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -356,17 +443,27 @@ type OrdersServiceServer interface {
 	GetOrder(context.Context, *GetOrderRequest) (*GetOrderResponse, error)
 	ListOrders(context.Context, *ListOrdersRequest) (*ListOrdersResponse, error)
 	CancelOrder(context.Context, *CancelOrderRequest) (*CancelOrderResponse, error)
+	CancelOrderItems(context.Context, *CancelOrderItemsRequest) (*CancelOrderItemsResponse, error)
+	// Order Status Management (Admin/System)
+	UpdateOrderStatus(context.Context, *UpdateOrderStatusRequest) (*UpdateOrderStatusResponse, error)
+	UpdatePaymentStatus(context.Context, *UpdatePaymentStatusRequest) (*UpdatePaymentStatusResponse, error)
 	// Coupon Management (Customer)
 	ValidateCoupon(context.Context, *ValidateCouponRequest) (*ValidateCouponResponse, error)
 	ApplyCoupon(context.Context, *ApplyCouponRequest) (*ApplyCouponResponse, error)
 	RemoveCoupon(context.Context, *RemoveCouponRequest) (*RemoveCouponResponse, error)
+	GetAvailableCoupons(context.Context, *GetAvailableCouponsRequest) (*GetAvailableCouponsResponse, error)
 	// Coupon Management (Admin)
 	CreateCoupon(context.Context, *CreateCouponRequest) (*CreateCouponResponse, error)
 	GetCoupon(context.Context, *GetCouponRequest) (*GetCouponResponse, error)
 	ListCoupons(context.Context, *ListCouponsRequest) (*ListCouponsResponse, error)
 	UpdateCoupon(context.Context, *UpdateCouponRequest) (*UpdateCouponResponse, error)
 	DeactivateCoupon(context.Context, *DeactivateCouponRequest) (*DeactivateCouponResponse, error)
+	DeleteCoupon(context.Context, *DeleteCouponRequest) (*DeleteCouponResponse, error)
 	GetCouponUsageHistory(context.Context, *GetCouponUsageHistoryRequest) (*GetCouponUsageHistoryResponse, error)
+	// Analytics (Admin)
+	GetProductSalesAnalytics(context.Context, *GetProductSalesAnalyticsRequest) (*GetProductSalesAnalyticsResponse, error)
+	// Verified Purchase Check (for Review System)
+	HasPurchasedProduct(context.Context, *HasPurchasedProductRequest) (*HasPurchasedProductResponse, error)
 	mustEmbedUnimplementedOrdersServiceServer()
 }
 
@@ -422,6 +519,15 @@ func (UnimplementedOrdersServiceServer) ListOrders(context.Context, *ListOrdersR
 func (UnimplementedOrdersServiceServer) CancelOrder(context.Context, *CancelOrderRequest) (*CancelOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelOrder not implemented")
 }
+func (UnimplementedOrdersServiceServer) CancelOrderItems(context.Context, *CancelOrderItemsRequest) (*CancelOrderItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelOrderItems not implemented")
+}
+func (UnimplementedOrdersServiceServer) UpdateOrderStatus(context.Context, *UpdateOrderStatusRequest) (*UpdateOrderStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrderStatus not implemented")
+}
+func (UnimplementedOrdersServiceServer) UpdatePaymentStatus(context.Context, *UpdatePaymentStatusRequest) (*UpdatePaymentStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePaymentStatus not implemented")
+}
 func (UnimplementedOrdersServiceServer) ValidateCoupon(context.Context, *ValidateCouponRequest) (*ValidateCouponResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateCoupon not implemented")
 }
@@ -430,6 +536,9 @@ func (UnimplementedOrdersServiceServer) ApplyCoupon(context.Context, *ApplyCoupo
 }
 func (UnimplementedOrdersServiceServer) RemoveCoupon(context.Context, *RemoveCouponRequest) (*RemoveCouponResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveCoupon not implemented")
+}
+func (UnimplementedOrdersServiceServer) GetAvailableCoupons(context.Context, *GetAvailableCouponsRequest) (*GetAvailableCouponsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAvailableCoupons not implemented")
 }
 func (UnimplementedOrdersServiceServer) CreateCoupon(context.Context, *CreateCouponRequest) (*CreateCouponResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCoupon not implemented")
@@ -446,8 +555,17 @@ func (UnimplementedOrdersServiceServer) UpdateCoupon(context.Context, *UpdateCou
 func (UnimplementedOrdersServiceServer) DeactivateCoupon(context.Context, *DeactivateCouponRequest) (*DeactivateCouponResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeactivateCoupon not implemented")
 }
+func (UnimplementedOrdersServiceServer) DeleteCoupon(context.Context, *DeleteCouponRequest) (*DeleteCouponResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCoupon not implemented")
+}
 func (UnimplementedOrdersServiceServer) GetCouponUsageHistory(context.Context, *GetCouponUsageHistoryRequest) (*GetCouponUsageHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCouponUsageHistory not implemented")
+}
+func (UnimplementedOrdersServiceServer) GetProductSalesAnalytics(context.Context, *GetProductSalesAnalyticsRequest) (*GetProductSalesAnalyticsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductSalesAnalytics not implemented")
+}
+func (UnimplementedOrdersServiceServer) HasPurchasedProduct(context.Context, *HasPurchasedProductRequest) (*HasPurchasedProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HasPurchasedProduct not implemented")
 }
 func (UnimplementedOrdersServiceServer) mustEmbedUnimplementedOrdersServiceServer() {}
 func (UnimplementedOrdersServiceServer) testEmbeddedByValue()                       {}
@@ -740,6 +858,60 @@ func _OrdersService_CancelOrder_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrdersService_CancelOrderItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelOrderItemsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).CancelOrderItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_CancelOrderItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).CancelOrderItems(ctx, req.(*CancelOrderItemsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_UpdateOrderStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrderStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).UpdateOrderStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_UpdateOrderStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).UpdateOrderStatus(ctx, req.(*UpdateOrderStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_UpdatePaymentStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePaymentStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).UpdatePaymentStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_UpdatePaymentStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).UpdatePaymentStatus(ctx, req.(*UpdatePaymentStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _OrdersService_ValidateCoupon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ValidateCouponRequest)
 	if err := dec(in); err != nil {
@@ -790,6 +962,24 @@ func _OrdersService_RemoveCoupon_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OrdersServiceServer).RemoveCoupon(ctx, req.(*RemoveCouponRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_GetAvailableCoupons_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAvailableCouponsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).GetAvailableCoupons(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_GetAvailableCoupons_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).GetAvailableCoupons(ctx, req.(*GetAvailableCouponsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -884,6 +1074,24 @@ func _OrdersService_DeactivateCoupon_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrdersService_DeleteCoupon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCouponRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).DeleteCoupon(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_DeleteCoupon_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).DeleteCoupon(ctx, req.(*DeleteCouponRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _OrdersService_GetCouponUsageHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetCouponUsageHistoryRequest)
 	if err := dec(in); err != nil {
@@ -898,6 +1106,42 @@ func _OrdersService_GetCouponUsageHistory_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OrdersServiceServer).GetCouponUsageHistory(ctx, req.(*GetCouponUsageHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_GetProductSalesAnalytics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProductSalesAnalyticsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).GetProductSalesAnalytics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_GetProductSalesAnalytics_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).GetProductSalesAnalytics(ctx, req.(*GetProductSalesAnalyticsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_HasPurchasedProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HasPurchasedProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).HasPurchasedProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_HasPurchasedProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).HasPurchasedProduct(ctx, req.(*HasPurchasedProductRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -970,6 +1214,18 @@ var OrdersService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OrdersService_CancelOrder_Handler,
 		},
 		{
+			MethodName: "CancelOrderItems",
+			Handler:    _OrdersService_CancelOrderItems_Handler,
+		},
+		{
+			MethodName: "UpdateOrderStatus",
+			Handler:    _OrdersService_UpdateOrderStatus_Handler,
+		},
+		{
+			MethodName: "UpdatePaymentStatus",
+			Handler:    _OrdersService_UpdatePaymentStatus_Handler,
+		},
+		{
 			MethodName: "ValidateCoupon",
 			Handler:    _OrdersService_ValidateCoupon_Handler,
 		},
@@ -980,6 +1236,10 @@ var OrdersService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveCoupon",
 			Handler:    _OrdersService_RemoveCoupon_Handler,
+		},
+		{
+			MethodName: "GetAvailableCoupons",
+			Handler:    _OrdersService_GetAvailableCoupons_Handler,
 		},
 		{
 			MethodName: "CreateCoupon",
@@ -1002,8 +1262,20 @@ var OrdersService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OrdersService_DeactivateCoupon_Handler,
 		},
 		{
+			MethodName: "DeleteCoupon",
+			Handler:    _OrdersService_DeleteCoupon_Handler,
+		},
+		{
 			MethodName: "GetCouponUsageHistory",
 			Handler:    _OrdersService_GetCouponUsageHistory_Handler,
+		},
+		{
+			MethodName: "GetProductSalesAnalytics",
+			Handler:    _OrdersService_GetProductSalesAnalytics_Handler,
+		},
+		{
+			MethodName: "HasPurchasedProduct",
+			Handler:    _OrdersService_HasPurchasedProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

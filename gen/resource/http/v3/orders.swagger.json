@@ -16,6 +16,46 @@
     "application/json"
   ],
   "paths": {
+    "/v3/admin/analytics/product-sales": {
+      "get": {
+        "summary": "Analytics (Admin)",
+        "operationId": "OrdersService_GetProductSalesAnalytics",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "startDate",
+            "description": "ISO 8601 format: \"2024-01-01\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "description": "ISO 8601 format: \"2024-01-31\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
     "/v3/admin/coupons": {
       "get": {
         "operationId": "OrdersService_ListCoupons",
@@ -90,7 +130,7 @@
         ]
       },
       "delete": {
-        "operationId": "OrdersService_DeactivateCoupon",
+        "operationId": "OrdersService_DeleteCoupon",
         "responses": {},
         "parameters": [
           {
@@ -121,6 +161,23 @@
             "schema": {
               "$ref": "#/definitions/UpdateCouponBody"
             }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/admin/coupons/{couponId}/deactivate": {
+      "post": {
+        "operationId": "OrdersService_DeactivateCoupon",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "couponId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -238,6 +295,15 @@
             }
           }
         ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/cart/coupons/available": {
+      "get": {
+        "operationId": "OrdersService_GetAvailableCoupons",
+        "responses": {},
         "tags": [
           "orders.http.v3.OrdersService"
         ]
@@ -430,6 +496,25 @@
         ]
       }
     },
+    "/v3/orders/verify-purchase/{product_id}": {
+      "get": {
+        "summary": "Verified Purchase Check (for Review System)",
+        "operationId": "OrdersService_HasPurchasedProduct",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"\n\nuser_id extracted from JWT context",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
     "/v3/orders/{orderId}": {
       "get": {
         "operationId": "OrdersService_GetOrder",
@@ -464,6 +549,82 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/CancelOrderBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/orders/{orderId}/items/cancel": {
+      "post": {
+        "operationId": "OrdersService_CancelOrderItems",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CancelOrderItemsBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/orders/{orderId}/payment-status": {
+      "patch": {
+        "operationId": "OrdersService_UpdatePaymentStatus",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePaymentStatusBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/orders/{orderId}/status": {
+      "patch": {
+        "summary": "Order Status Management (Admin/System)",
+        "operationId": "OrdersService_UpdateOrderStatus",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateOrderStatusBody"
             }
           }
         ],
@@ -552,11 +713,95 @@
         }
       }
     },
+    "AvailableCoupon": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "discountType": {
+          "type": "string",
+          "title": "\"percent\" or \"fixed_amount\""
+        },
+        "discountValue": {
+          "type": "number",
+          "format": "double",
+          "title": "20 for 20% or 100 for ₹100"
+        },
+        "maxDiscount": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "Cap for percentage discounts"
+        },
+        "minOrderValue": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "validUntil": {
+          "type": "string",
+          "title": "Formatted date string or \"No Expiry\""
+        },
+        "estimatedDiscount": {
+          "type": "number",
+          "format": "double",
+          "title": "Calculated discount for current cart"
+        }
+      }
+    },
     "CancelOrderBody": {
       "type": "object",
       "properties": {
         "cancellationReason": {
           "type": "string"
+        }
+      }
+    },
+    "CancelOrderItemsBody": {
+      "type": "object",
+      "properties": {
+        "orderItemIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Array of order item IDs to cancel"
+        },
+        "cancellationReason": {
+          "type": "string",
+          "title": "Reason for cancellation"
+        }
+      }
+    },
+    "CancelOrderItemsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "order": {
+          "$ref": "#/definitions/Order",
+          "title": "Updated order"
+        },
+        "cancelledItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/OrderItem"
+          },
+          "title": "Cancelled items"
+        },
+        "summary": {
+          "$ref": "#/definitions/CancellationSummary",
+          "title": "Financial summary"
         }
       }
     },
@@ -571,6 +816,39 @@
         },
         "order": {
           "$ref": "#/definitions/Order"
+        }
+      }
+    },
+    "CancellationSummary": {
+      "type": "object",
+      "properties": {
+        "itemsSubtotal": {
+          "type": "number",
+          "format": "double",
+          "title": "Total subtotal of cancelled items"
+        },
+        "taxRefunded": {
+          "type": "number",
+          "format": "double",
+          "title": "Proportional tax refunded"
+        },
+        "couponRemoved": {
+          "type": "boolean",
+          "title": "Whether coupon was removed"
+        },
+        "couponAmountRemoved": {
+          "type": "number",
+          "format": "double",
+          "title": "Amount of coupon discount removed"
+        },
+        "totalRefundAmount": {
+          "type": "number",
+          "format": "double",
+          "title": "Total amount to be refunded"
+        },
+        "refundNote": {
+          "type": "string",
+          "title": "Note about shipping and admin approval"
         }
       }
     },
@@ -954,6 +1232,35 @@
         }
       }
     },
+    "DeleteCouponResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "GetAvailableCouponsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "coupons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AvailableCoupon"
+          }
+        }
+      }
+    },
     "GetCartResponse": {
       "type": "object",
       "properties": {
@@ -1037,6 +1344,68 @@
         },
         "order": {
           "$ref": "#/definitions/Order"
+        }
+      }
+    },
+    "GetProductSalesAnalyticsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ProductSalesData"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalRevenue": {
+          "type": "number",
+          "format": "double",
+          "title": "Summary totals"
+        },
+        "totalUnitsSold": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalOrders": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "HasPurchasedProductResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "has_purchased": {
+          "type": "boolean"
+        },
+        "order_id": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "For display"
         }
       }
     },
@@ -1249,6 +1618,41 @@
         "subtotal": {
           "type": "number",
           "format": "double"
+        },
+        "status": {
+          "type": "string"
+        },
+        "cancellationReason": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "ProductSalesData": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "unitsSold": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalRevenue": {
+          "type": "number",
+          "format": "double"
+        },
+        "ordersCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "averagePrice": {
+          "type": "number",
+          "format": "double",
+          "title": "Average selling price"
         }
       }
     },
@@ -1413,6 +1817,82 @@
         },
         "cartItem": {
           "$ref": "#/definitions/CartItem"
+        }
+      }
+    },
+    "UpdateOrderStatusBody": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "title": "\"confirmed\", \"processing\", \"shipped\", \"delivered\""
+        },
+        "razorpayPaymentId": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Optional payment ID for reference"
+        },
+        "razorpayOrderId": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Optional Razorpay order ID"
+        },
+        "razorpaySignature": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Optional signature"
+        }
+      }
+    },
+    "UpdateOrderStatusResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "order": {
+          "$ref": "#/definitions/Order"
+        }
+      }
+    },
+    "UpdatePaymentStatusBody": {
+      "type": "object",
+      "properties": {
+        "paymentStatus": {
+          "type": "string",
+          "title": "\"pending\", \"processing\", \"captured\", \"failed\", \"refunded\""
+        },
+        "razorpayPaymentId": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Razorpay payment ID"
+        },
+        "razorpayOrderId": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Razorpay order ID"
+        },
+        "razorpaySignature": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "Razorpay signature for verification"
+        }
+      }
+    },
+    "UpdatePaymentStatusResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "order": {
+          "$ref": "#/definitions/Order"
         }
       }
     },

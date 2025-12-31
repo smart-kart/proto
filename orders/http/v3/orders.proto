@@ -110,6 +110,28 @@ service OrdersService {
     };
   }
 
+  rpc CancelOrderItems(CancelOrderItemsRequest) returns (CancelOrderItemsResponse) {
+    option (google.api.http) = {
+      post: "/v3/orders/{order_id}/items/cancel"
+      body: "*"
+    };
+  }
+
+  // Order Status Management (Admin/System)
+  rpc UpdateOrderStatus(UpdateOrderStatusRequest) returns (UpdateOrderStatusResponse) {
+    option (google.api.http) = {
+      patch: "/v3/orders/{order_id}/status"
+      body: "*"
+    };
+  }
+
+  rpc UpdatePaymentStatus(UpdatePaymentStatusRequest) returns (UpdatePaymentStatusResponse) {
+    option (google.api.http) = {
+      patch: "/v3/orders/{order_id}/payment-status"
+      body: "*"
+    };
+  }
+
   // Coupon Management (Customer)
   rpc ValidateCoupon(ValidateCouponRequest) returns (ValidateCouponResponse) {
     option (google.api.http) = {
@@ -128,6 +150,12 @@ service OrdersService {
   rpc RemoveCoupon(RemoveCouponRequest) returns (RemoveCouponResponse) {
     option (google.api.http) = {
       delete: "/v3/cart/coupon"
+    };
+  }
+
+  rpc GetAvailableCoupons(GetAvailableCouponsRequest) returns (GetAvailableCouponsResponse) {
+    option (google.api.http) = {
+      get: "/v3/cart/coupons/available"
     };
   }
 
@@ -160,6 +188,12 @@ service OrdersService {
 
   rpc DeactivateCoupon(DeactivateCouponRequest) returns (DeactivateCouponResponse) {
     option (google.api.http) = {
+      post: "/v3/admin/coupons/{coupon_id}/deactivate"
+    };
+  }
+
+  rpc DeleteCoupon(DeleteCouponRequest) returns (DeleteCouponResponse) {
+    option (google.api.http) = {
       delete: "/v3/admin/coupons/{coupon_id}"
     };
   }
@@ -167,6 +201,20 @@ service OrdersService {
   rpc GetCouponUsageHistory(GetCouponUsageHistoryRequest) returns (GetCouponUsageHistoryResponse) {
     option (google.api.http) = {
       get: "/v3/admin/coupons/{coupon_id}/usage"
+    };
+  }
+
+  // Analytics (Admin)
+  rpc GetProductSalesAnalytics(GetProductSalesAnalyticsRequest) returns (GetProductSalesAnalyticsResponse) {
+    option (google.api.http) = {
+      get: "/v3/admin/analytics/product-sales"
+    };
+  }
+
+  // Verified Purchase Check (for Review System)
+  rpc HasPurchasedProduct(HasPurchasedProductRequest) returns (HasPurchasedProductResponse) {
+    option (google.api.http) = {
+      get: "/v3/orders/verify-purchase/{product_id}"
     };
   }
 }
@@ -342,6 +390,34 @@ message CancelOrderResponse {
   Order order = 3;
 }
 
+message UpdateOrderStatusRequest {
+  string order_id = 1;
+  string status = 2;  // "confirmed", "processing", "shipped", "delivered"
+  optional string razorpay_payment_id = 3;  // Optional payment ID for reference
+  optional string razorpay_order_id = 4;    // Optional Razorpay order ID
+  optional string razorpay_signature = 5;   // Optional signature
+}
+
+message UpdateOrderStatusResponse {
+  bool success = 1;
+  string message = 2;
+  Order order = 3;
+}
+
+message UpdatePaymentStatusRequest {
+  string order_id = 1;
+  string payment_status = 2;  // "pending", "processing", "captured", "failed", "refunded"
+  optional string razorpay_payment_id = 3;  // Razorpay payment ID
+  optional string razorpay_order_id = 4;    // Razorpay order ID
+  optional string razorpay_signature = 5;   // Razorpay signature for verification
+}
+
+message UpdatePaymentStatusResponse {
+  bool success = 1;
+  string message = 2;
+  Order order = 3;
+}
+
 // ========================================
 // Data Models
 // ========================================
@@ -430,6 +506,8 @@ message OrderItem {
   double price_at_purchase = 6;
   int32 quantity = 7;
   double subtotal = 8;
+  string status = 9;
+  optional string cancellation_reason = 10;
 }
 
 // ========================================
@@ -552,6 +630,15 @@ message DeactivateCouponResponse {
   string message = 2;
 }
 
+message DeleteCouponRequest {
+  string coupon_id = 1;
+}
+
+message DeleteCouponResponse {
+  bool success = 1;
+  string message = 2;
+}
+
 message GetCouponUsageHistoryRequest {
   string coupon_id = 1;
   int32 page = 2;
@@ -599,4 +686,103 @@ message CouponUsage {
   string order_id = 4;
   double discount_applied = 5;
   google.protobuf.Timestamp used_at = 6;
+}
+
+// Get Available Coupons (Customer-facing)
+message GetAvailableCouponsRequest {
+  // No parameters needed - uses authenticated user's cart
+}
+
+message GetAvailableCouponsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated AvailableCoupon coupons = 3;
+}
+
+message AvailableCoupon {
+  string code = 1;
+  optional string description = 2;
+  string discount_type = 3;           // "percent" or "fixed_amount"
+  double discount_value = 4;          // 20 for 20% or 100 for ₹100
+  optional double max_discount = 5;   // Cap for percentage discounts
+  optional double min_order_value = 6;
+  string valid_until = 7;             // Formatted date string or "No Expiry"
+  double estimated_discount = 8;      // Calculated discount for current cart
+}
+
+// ========================================
+// Analytics Messages
+// ========================================
+
+message GetProductSalesAnalyticsRequest {
+  optional string start_date = 1;  // ISO 8601 format: "2024-01-01"
+  optional string end_date = 2;    // ISO 8601 format: "2024-01-31"
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+message GetProductSalesAnalyticsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated ProductSalesData products = 3;
+  int32 total_count = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+  // Summary totals
+  double total_revenue = 7;
+  int32 total_units_sold = 8;
+  int32 total_orders = 9;
+}
+
+message ProductSalesData {
+  string product_id = 1;
+  string product_name = 2;
+  int32 units_sold = 3;
+  double total_revenue = 4;
+  int32 orders_count = 5;
+  double average_price = 6;  // Average selling price
+}
+
+// ========================================
+// Partial Order Cancellation Messages
+// ========================================
+
+message CancelOrderItemsRequest {
+  string order_id = 1;
+  repeated string order_item_ids = 2;  // Array of order item IDs to cancel
+  string cancellation_reason = 3;      // Reason for cancellation
+}
+
+message CancelOrderItemsResponse {
+  bool success = 1;
+  string message = 2;
+  Order order = 3;                     // Updated order
+  repeated OrderItem cancelled_items = 4;  // Cancelled items
+  CancellationSummary summary = 5;     // Financial summary
+}
+
+message CancellationSummary {
+  double items_subtotal = 1;           // Total subtotal of cancelled items
+  double tax_refunded = 2;             // Proportional tax refunded
+  bool coupon_removed = 3;             // Whether coupon was removed
+  double coupon_amount_removed = 4;    // Amount of coupon discount removed
+  double total_refund_amount = 5;      // Total amount to be refunded
+  string refund_note = 6;              // Note about shipping and admin approval
+}
+
+// ========================================
+// Verified Purchase Messages
+// ========================================
+
+message HasPurchasedProductRequest {
+  // @gotags: validate:"required"
+  string product_id = 1 [json_name = "product_id"];
+  // user_id extracted from JWT context
+}
+
+message HasPurchasedProductResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  bool has_purchased = 3 [json_name = "has_purchased"];
+  optional string order_id = 4 [json_name = "order_id"];  // For display
 }

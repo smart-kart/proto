@@ -38,6 +38,9 @@ const (
 	ProductsHTTPService_CheckStock_FullMethodName              = "/smart_kart.products.http.v3.ProductsHTTPService/CheckStock"
 	ProductsHTTPService_ReserveStock_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/ReserveStock"
 	ProductsHTTPService_ReleaseStock_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/ReleaseStock"
+	ProductsHTTPService_GetLowStockCount_FullMethodName        = "/smart_kart.products.http.v3.ProductsHTTPService/GetLowStockCount"
+	ProductsHTTPService_GetDashboardStats_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/GetDashboardStats"
+	ProductsHTTPService_GetProductPricing_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/GetProductPricing"
 	ProductsHTTPService_UploadProductImages_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/UploadProductImages"
 	ProductsHTTPService_GetProductImages_FullMethodName        = "/smart_kart.products.http.v3.ProductsHTTPService/GetProductImages"
 	ProductsHTTPService_ReorderProductImages_FullMethodName    = "/smart_kart.products.http.v3.ProductsHTTPService/ReorderProductImages"
@@ -53,6 +56,28 @@ const (
 	ProductsHTTPService_DeleteCarouselImage_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCarouselImage"
 	ProductsHTTPService_ReorderCarouselImages_FullMethodName   = "/smart_kart.products.http.v3.ProductsHTTPService/ReorderCarouselImages"
 	ProductsHTTPService_UploadCarouselImage_FullMethodName     = "/smart_kart.products.http.v3.ProductsHTTPService/UploadCarouselImage"
+	ProductsHTTPService_GetWishlist_FullMethodName             = "/smart_kart.products.http.v3.ProductsHTTPService/GetWishlist"
+	ProductsHTTPService_AddToWishlist_FullMethodName           = "/smart_kart.products.http.v3.ProductsHTTPService/AddToWishlist"
+	ProductsHTTPService_RemoveFromWishlist_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/RemoveFromWishlist"
+	ProductsHTTPService_ClearWishlist_FullMethodName           = "/smart_kart.products.http.v3.ProductsHTTPService/ClearWishlist"
+	ProductsHTTPService_IsInWishlist_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/IsInWishlist"
+	ProductsHTTPService_MergeWishlist_FullMethodName           = "/smart_kart.products.http.v3.ProductsHTTPService/MergeWishlist"
+	ProductsHTTPService_MoveToCart_FullMethodName              = "/smart_kart.products.http.v3.ProductsHTTPService/MoveToCart"
+	ProductsHTTPService_CreateReview_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/CreateReview"
+	ProductsHTTPService_GetProductReviews_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/GetProductReviews"
+	ProductsHTTPService_GetProductRating_FullMethodName        = "/smart_kart.products.http.v3.ProductsHTTPService/GetProductRating"
+	ProductsHTTPService_GetUserReviewForProduct_FullMethodName = "/smart_kart.products.http.v3.ProductsHTTPService/GetUserReviewForProduct"
+	ProductsHTTPService_UpdateReview_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/UpdateReview"
+	ProductsHTTPService_DeleteReview_FullMethodName            = "/smart_kart.products.http.v3.ProductsHTTPService/DeleteReview"
+	ProductsHTTPService_MarkReviewHelpful_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/MarkReviewHelpful"
+	ProductsHTTPService_UploadReviewImages_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/UploadReviewImages"
+	ProductsHTTPService_AdminGetReviews_FullMethodName         = "/smart_kart.products.http.v3.ProductsHTTPService/AdminGetReviews"
+	ProductsHTTPService_AdminApproveReview_FullMethodName      = "/smart_kart.products.http.v3.ProductsHTTPService/AdminApproveReview"
+	ProductsHTTPService_AdminRejectReview_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/AdminRejectReview"
+	ProductsHTTPService_AdminDeleteReview_FullMethodName       = "/smart_kart.products.http.v3.ProductsHTTPService/AdminDeleteReview"
+	ProductsHTTPService_AdminRespondToReview_FullMethodName    = "/smart_kart.products.http.v3.ProductsHTTPService/AdminRespondToReview"
+	ProductsHTTPService_AdminBulkApproveReviews_FullMethodName = "/smart_kart.products.http.v3.ProductsHTTPService/AdminBulkApproveReviews"
+	ProductsHTTPService_AdminGetReviewAnalytics_FullMethodName = "/smart_kart.products.http.v3.ProductsHTTPService/AdminGetReviewAnalytics"
 )
 
 // ProductsHTTPServiceClient is the client API for ProductsHTTPService service.
@@ -83,6 +108,11 @@ type ProductsHTTPServiceClient interface {
 	CheckStock(ctx context.Context, in *CheckStockRequest, opts ...grpc.CallOption) (*CheckStockResponse, error)
 	ReserveStock(ctx context.Context, in *ReserveStockRequest, opts ...grpc.CallOption) (*ReserveStockResponse, error)
 	ReleaseStock(ctx context.Context, in *ReleaseStockRequest, opts ...grpc.CallOption) (*ReleaseStockResponse, error)
+	GetLowStockCount(ctx context.Context, in *GetLowStockCountRequest, opts ...grpc.CallOption) (*GetLowStockCountResponse, error)
+	// Dashboard operations
+	GetDashboardStats(ctx context.Context, in *GetDashboardStatsRequest, opts ...grpc.CallOption) (*GetDashboardStatsResponse, error)
+	// Pricing operations (for profit calculations)
+	GetProductPricing(ctx context.Context, in *GetProductPricingRequest, opts ...grpc.CallOption) (*GetProductPricingResponse, error)
 	// Product Image operations
 	UploadProductImages(ctx context.Context, in *UploadProductImagesRequest, opts ...grpc.CallOption) (*UploadProductImagesResponse, error)
 	GetProductImages(ctx context.Context, in *GetProductImagesRequest, opts ...grpc.CallOption) (*GetProductImagesResponse, error)
@@ -101,6 +131,51 @@ type ProductsHTTPServiceClient interface {
 	DeleteCarouselImage(ctx context.Context, in *DeleteCarouselImageRequest, opts ...grpc.CallOption) (*DeleteCarouselImageResponse, error)
 	ReorderCarouselImages(ctx context.Context, in *ReorderCarouselImagesRequest, opts ...grpc.CallOption) (*ReorderCarouselImagesResponse, error)
 	UploadCarouselImage(ctx context.Context, in *UploadCarouselImageRequest, opts ...grpc.CallOption) (*UploadCarouselImageResponse, error)
+	// Get user's wishlist (authenticated or guest)
+	GetWishlist(ctx context.Context, in *GetWishlistRequest, opts ...grpc.CallOption) (*GetWishlistResponse, error)
+	// Add product to wishlist
+	AddToWishlist(ctx context.Context, in *AddToWishlistRequest, opts ...grpc.CallOption) (*AddToWishlistResponse, error)
+	// Remove product from wishlist
+	RemoveFromWishlist(ctx context.Context, in *RemoveFromWishlistRequest, opts ...grpc.CallOption) (*RemoveFromWishlistResponse, error)
+	// Clear entire wishlist
+	ClearWishlist(ctx context.Context, in *ClearWishlistRequest, opts ...grpc.CallOption) (*ClearWishlistResponse, error)
+	// Check if product is in wishlist
+	IsInWishlist(ctx context.Context, in *IsInWishlistRequest, opts ...grpc.CallOption) (*IsInWishlistResponse, error)
+	// Merge guest wishlist to authenticated user (called on login)
+	MergeWishlist(ctx context.Context, in *MergeWishlistRequest, opts ...grpc.CallOption) (*MergeWishlistResponse, error)
+	// Move wishlist item to cart
+	MoveToCart(ctx context.Context, in *MoveToCartRequest, opts ...grpc.CallOption) (*MoveToCartResponse, error)
+	// Submit a review/rating (requires authentication)
+	CreateReview(ctx context.Context, in *CreateReviewRequest, opts ...grpc.CallOption) (*CreateReviewResponse, error)
+	// Get reviews for a product (paginated, public)
+	GetProductReviews(ctx context.Context, in *GetProductReviewsRequest, opts ...grpc.CallOption) (*GetProductReviewsResponse, error)
+	// Get product ratings summary (public)
+	GetProductRating(ctx context.Context, in *GetProductRatingRequest, opts ...grpc.CallOption) (*GetProductRatingResponse, error)
+	// Get user's review for a product (check if already reviewed)
+	GetUserReviewForProduct(ctx context.Context, in *GetUserReviewForProductRequest, opts ...grpc.CallOption) (*GetUserReviewForProductResponse, error)
+	// Update user's own review
+	UpdateReview(ctx context.Context, in *UpdateReviewRequest, opts ...grpc.CallOption) (*UpdateReviewResponse, error)
+	// Delete user's own review
+	DeleteReview(ctx context.Context, in *DeleteReviewRequest, opts ...grpc.CallOption) (*DeleteReviewResponse, error)
+	// Mark review as helpful
+	MarkReviewHelpful(ctx context.Context, in *MarkReviewHelpfulRequest, opts ...grpc.CallOption) (*MarkReviewHelpfulResponse, error)
+	// Upload review images (multipart form data)
+	// Note: Actual file upload is handled via multipart/form-data in HTTP handler
+	UploadReviewImages(ctx context.Context, in *UploadReviewImagesRequest, opts ...grpc.CallOption) (*UploadReviewImagesResponse, error)
+	// Get all reviews with filters (admin only)
+	AdminGetReviews(ctx context.Context, in *AdminGetReviewsRequest, opts ...grpc.CallOption) (*AdminGetReviewsResponse, error)
+	// Approve review (admin)
+	AdminApproveReview(ctx context.Context, in *AdminApproveReviewRequest, opts ...grpc.CallOption) (*AdminApproveReviewResponse, error)
+	// Reject review (admin)
+	AdminRejectReview(ctx context.Context, in *AdminRejectReviewRequest, opts ...grpc.CallOption) (*AdminRejectReviewResponse, error)
+	// Delete review (admin)
+	AdminDeleteReview(ctx context.Context, in *AdminDeleteReviewRequest, opts ...grpc.CallOption) (*AdminDeleteReviewResponse, error)
+	// Admin respond to review
+	AdminRespondToReview(ctx context.Context, in *AdminRespondToReviewRequest, opts ...grpc.CallOption) (*AdminRespondToReviewResponse, error)
+	// Bulk approve reviews (admin)
+	AdminBulkApproveReviews(ctx context.Context, in *AdminBulkApproveReviewsRequest, opts ...grpc.CallOption) (*AdminBulkApproveReviewsResponse, error)
+	// Get review analytics (admin)
+	AdminGetReviewAnalytics(ctx context.Context, in *AdminGetReviewAnalyticsRequest, opts ...grpc.CallOption) (*AdminGetReviewAnalyticsResponse, error)
 }
 
 type productsHTTPServiceClient struct {
@@ -301,6 +376,36 @@ func (c *productsHTTPServiceClient) ReleaseStock(ctx context.Context, in *Releas
 	return out, nil
 }
 
+func (c *productsHTTPServiceClient) GetLowStockCount(ctx context.Context, in *GetLowStockCountRequest, opts ...grpc.CallOption) (*GetLowStockCountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLowStockCountResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_GetLowStockCount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) GetDashboardStats(ctx context.Context, in *GetDashboardStatsRequest, opts ...grpc.CallOption) (*GetDashboardStatsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDashboardStatsResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_GetDashboardStats_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) GetProductPricing(ctx context.Context, in *GetProductPricingRequest, opts ...grpc.CallOption) (*GetProductPricingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProductPricingResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_GetProductPricing_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *productsHTTPServiceClient) UploadProductImages(ctx context.Context, in *UploadProductImagesRequest, opts ...grpc.CallOption) (*UploadProductImagesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UploadProductImagesResponse)
@@ -451,6 +556,226 @@ func (c *productsHTTPServiceClient) UploadCarouselImage(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *productsHTTPServiceClient) GetWishlist(ctx context.Context, in *GetWishlistRequest, opts ...grpc.CallOption) (*GetWishlistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWishlistResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_GetWishlist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AddToWishlist(ctx context.Context, in *AddToWishlistRequest, opts ...grpc.CallOption) (*AddToWishlistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddToWishlistResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AddToWishlist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) RemoveFromWishlist(ctx context.Context, in *RemoveFromWishlistRequest, opts ...grpc.CallOption) (*RemoveFromWishlistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveFromWishlistResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_RemoveFromWishlist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) ClearWishlist(ctx context.Context, in *ClearWishlistRequest, opts ...grpc.CallOption) (*ClearWishlistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ClearWishlistResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_ClearWishlist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) IsInWishlist(ctx context.Context, in *IsInWishlistRequest, opts ...grpc.CallOption) (*IsInWishlistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsInWishlistResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_IsInWishlist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) MergeWishlist(ctx context.Context, in *MergeWishlistRequest, opts ...grpc.CallOption) (*MergeWishlistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MergeWishlistResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_MergeWishlist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) MoveToCart(ctx context.Context, in *MoveToCartRequest, opts ...grpc.CallOption) (*MoveToCartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MoveToCartResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_MoveToCart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) CreateReview(ctx context.Context, in *CreateReviewRequest, opts ...grpc.CallOption) (*CreateReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateReviewResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_CreateReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) GetProductReviews(ctx context.Context, in *GetProductReviewsRequest, opts ...grpc.CallOption) (*GetProductReviewsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProductReviewsResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_GetProductReviews_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) GetProductRating(ctx context.Context, in *GetProductRatingRequest, opts ...grpc.CallOption) (*GetProductRatingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProductRatingResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_GetProductRating_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) GetUserReviewForProduct(ctx context.Context, in *GetUserReviewForProductRequest, opts ...grpc.CallOption) (*GetUserReviewForProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserReviewForProductResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_GetUserReviewForProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) UpdateReview(ctx context.Context, in *UpdateReviewRequest, opts ...grpc.CallOption) (*UpdateReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateReviewResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_UpdateReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) DeleteReview(ctx context.Context, in *DeleteReviewRequest, opts ...grpc.CallOption) (*DeleteReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteReviewResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_DeleteReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) MarkReviewHelpful(ctx context.Context, in *MarkReviewHelpfulRequest, opts ...grpc.CallOption) (*MarkReviewHelpfulResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MarkReviewHelpfulResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_MarkReviewHelpful_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) UploadReviewImages(ctx context.Context, in *UploadReviewImagesRequest, opts ...grpc.CallOption) (*UploadReviewImagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UploadReviewImagesResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_UploadReviewImages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AdminGetReviews(ctx context.Context, in *AdminGetReviewsRequest, opts ...grpc.CallOption) (*AdminGetReviewsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminGetReviewsResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AdminGetReviews_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AdminApproveReview(ctx context.Context, in *AdminApproveReviewRequest, opts ...grpc.CallOption) (*AdminApproveReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminApproveReviewResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AdminApproveReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AdminRejectReview(ctx context.Context, in *AdminRejectReviewRequest, opts ...grpc.CallOption) (*AdminRejectReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminRejectReviewResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AdminRejectReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AdminDeleteReview(ctx context.Context, in *AdminDeleteReviewRequest, opts ...grpc.CallOption) (*AdminDeleteReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminDeleteReviewResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AdminDeleteReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AdminRespondToReview(ctx context.Context, in *AdminRespondToReviewRequest, opts ...grpc.CallOption) (*AdminRespondToReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminRespondToReviewResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AdminRespondToReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AdminBulkApproveReviews(ctx context.Context, in *AdminBulkApproveReviewsRequest, opts ...grpc.CallOption) (*AdminBulkApproveReviewsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminBulkApproveReviewsResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AdminBulkApproveReviews_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productsHTTPServiceClient) AdminGetReviewAnalytics(ctx context.Context, in *AdminGetReviewAnalyticsRequest, opts ...grpc.CallOption) (*AdminGetReviewAnalyticsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminGetReviewAnalyticsResponse)
+	err := c.cc.Invoke(ctx, ProductsHTTPService_AdminGetReviewAnalytics_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductsHTTPServiceServer is the server API for ProductsHTTPService service.
 // All implementations must embed UnimplementedProductsHTTPServiceServer
 // for forward compatibility.
@@ -479,6 +804,11 @@ type ProductsHTTPServiceServer interface {
 	CheckStock(context.Context, *CheckStockRequest) (*CheckStockResponse, error)
 	ReserveStock(context.Context, *ReserveStockRequest) (*ReserveStockResponse, error)
 	ReleaseStock(context.Context, *ReleaseStockRequest) (*ReleaseStockResponse, error)
+	GetLowStockCount(context.Context, *GetLowStockCountRequest) (*GetLowStockCountResponse, error)
+	// Dashboard operations
+	GetDashboardStats(context.Context, *GetDashboardStatsRequest) (*GetDashboardStatsResponse, error)
+	// Pricing operations (for profit calculations)
+	GetProductPricing(context.Context, *GetProductPricingRequest) (*GetProductPricingResponse, error)
 	// Product Image operations
 	UploadProductImages(context.Context, *UploadProductImagesRequest) (*UploadProductImagesResponse, error)
 	GetProductImages(context.Context, *GetProductImagesRequest) (*GetProductImagesResponse, error)
@@ -497,6 +827,51 @@ type ProductsHTTPServiceServer interface {
 	DeleteCarouselImage(context.Context, *DeleteCarouselImageRequest) (*DeleteCarouselImageResponse, error)
 	ReorderCarouselImages(context.Context, *ReorderCarouselImagesRequest) (*ReorderCarouselImagesResponse, error)
 	UploadCarouselImage(context.Context, *UploadCarouselImageRequest) (*UploadCarouselImageResponse, error)
+	// Get user's wishlist (authenticated or guest)
+	GetWishlist(context.Context, *GetWishlistRequest) (*GetWishlistResponse, error)
+	// Add product to wishlist
+	AddToWishlist(context.Context, *AddToWishlistRequest) (*AddToWishlistResponse, error)
+	// Remove product from wishlist
+	RemoveFromWishlist(context.Context, *RemoveFromWishlistRequest) (*RemoveFromWishlistResponse, error)
+	// Clear entire wishlist
+	ClearWishlist(context.Context, *ClearWishlistRequest) (*ClearWishlistResponse, error)
+	// Check if product is in wishlist
+	IsInWishlist(context.Context, *IsInWishlistRequest) (*IsInWishlistResponse, error)
+	// Merge guest wishlist to authenticated user (called on login)
+	MergeWishlist(context.Context, *MergeWishlistRequest) (*MergeWishlistResponse, error)
+	// Move wishlist item to cart
+	MoveToCart(context.Context, *MoveToCartRequest) (*MoveToCartResponse, error)
+	// Submit a review/rating (requires authentication)
+	CreateReview(context.Context, *CreateReviewRequest) (*CreateReviewResponse, error)
+	// Get reviews for a product (paginated, public)
+	GetProductReviews(context.Context, *GetProductReviewsRequest) (*GetProductReviewsResponse, error)
+	// Get product ratings summary (public)
+	GetProductRating(context.Context, *GetProductRatingRequest) (*GetProductRatingResponse, error)
+	// Get user's review for a product (check if already reviewed)
+	GetUserReviewForProduct(context.Context, *GetUserReviewForProductRequest) (*GetUserReviewForProductResponse, error)
+	// Update user's own review
+	UpdateReview(context.Context, *UpdateReviewRequest) (*UpdateReviewResponse, error)
+	// Delete user's own review
+	DeleteReview(context.Context, *DeleteReviewRequest) (*DeleteReviewResponse, error)
+	// Mark review as helpful
+	MarkReviewHelpful(context.Context, *MarkReviewHelpfulRequest) (*MarkReviewHelpfulResponse, error)
+	// Upload review images (multipart form data)
+	// Note: Actual file upload is handled via multipart/form-data in HTTP handler
+	UploadReviewImages(context.Context, *UploadReviewImagesRequest) (*UploadReviewImagesResponse, error)
+	// Get all reviews with filters (admin only)
+	AdminGetReviews(context.Context, *AdminGetReviewsRequest) (*AdminGetReviewsResponse, error)
+	// Approve review (admin)
+	AdminApproveReview(context.Context, *AdminApproveReviewRequest) (*AdminApproveReviewResponse, error)
+	// Reject review (admin)
+	AdminRejectReview(context.Context, *AdminRejectReviewRequest) (*AdminRejectReviewResponse, error)
+	// Delete review (admin)
+	AdminDeleteReview(context.Context, *AdminDeleteReviewRequest) (*AdminDeleteReviewResponse, error)
+	// Admin respond to review
+	AdminRespondToReview(context.Context, *AdminRespondToReviewRequest) (*AdminRespondToReviewResponse, error)
+	// Bulk approve reviews (admin)
+	AdminBulkApproveReviews(context.Context, *AdminBulkApproveReviewsRequest) (*AdminBulkApproveReviewsResponse, error)
+	// Get review analytics (admin)
+	AdminGetReviewAnalytics(context.Context, *AdminGetReviewAnalyticsRequest) (*AdminGetReviewAnalyticsResponse, error)
 	mustEmbedUnimplementedProductsHTTPServiceServer()
 }
 
@@ -564,6 +939,15 @@ func (UnimplementedProductsHTTPServiceServer) ReserveStock(context.Context, *Res
 func (UnimplementedProductsHTTPServiceServer) ReleaseStock(context.Context, *ReleaseStockRequest) (*ReleaseStockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReleaseStock not implemented")
 }
+func (UnimplementedProductsHTTPServiceServer) GetLowStockCount(context.Context, *GetLowStockCountRequest) (*GetLowStockCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLowStockCount not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) GetDashboardStats(context.Context, *GetDashboardStatsRequest) (*GetDashboardStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDashboardStats not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) GetProductPricing(context.Context, *GetProductPricingRequest) (*GetProductPricingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductPricing not implemented")
+}
 func (UnimplementedProductsHTTPServiceServer) UploadProductImages(context.Context, *UploadProductImagesRequest) (*UploadProductImagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadProductImages not implemented")
 }
@@ -608,6 +992,72 @@ func (UnimplementedProductsHTTPServiceServer) ReorderCarouselImages(context.Cont
 }
 func (UnimplementedProductsHTTPServiceServer) UploadCarouselImage(context.Context, *UploadCarouselImageRequest) (*UploadCarouselImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadCarouselImage not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) GetWishlist(context.Context, *GetWishlistRequest) (*GetWishlistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWishlist not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AddToWishlist(context.Context, *AddToWishlistRequest) (*AddToWishlistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddToWishlist not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) RemoveFromWishlist(context.Context, *RemoveFromWishlistRequest) (*RemoveFromWishlistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFromWishlist not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) ClearWishlist(context.Context, *ClearWishlistRequest) (*ClearWishlistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClearWishlist not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) IsInWishlist(context.Context, *IsInWishlistRequest) (*IsInWishlistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsInWishlist not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) MergeWishlist(context.Context, *MergeWishlistRequest) (*MergeWishlistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MergeWishlist not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) MoveToCart(context.Context, *MoveToCartRequest) (*MoveToCartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MoveToCart not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) CreateReview(context.Context, *CreateReviewRequest) (*CreateReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateReview not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) GetProductReviews(context.Context, *GetProductReviewsRequest) (*GetProductReviewsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductReviews not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) GetProductRating(context.Context, *GetProductRatingRequest) (*GetProductRatingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductRating not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) GetUserReviewForProduct(context.Context, *GetUserReviewForProductRequest) (*GetUserReviewForProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserReviewForProduct not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) UpdateReview(context.Context, *UpdateReviewRequest) (*UpdateReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateReview not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) DeleteReview(context.Context, *DeleteReviewRequest) (*DeleteReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteReview not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) MarkReviewHelpful(context.Context, *MarkReviewHelpfulRequest) (*MarkReviewHelpfulResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MarkReviewHelpful not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) UploadReviewImages(context.Context, *UploadReviewImagesRequest) (*UploadReviewImagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadReviewImages not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AdminGetReviews(context.Context, *AdminGetReviewsRequest) (*AdminGetReviewsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminGetReviews not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AdminApproveReview(context.Context, *AdminApproveReviewRequest) (*AdminApproveReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminApproveReview not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AdminRejectReview(context.Context, *AdminRejectReviewRequest) (*AdminRejectReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminRejectReview not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AdminDeleteReview(context.Context, *AdminDeleteReviewRequest) (*AdminDeleteReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminDeleteReview not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AdminRespondToReview(context.Context, *AdminRespondToReviewRequest) (*AdminRespondToReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminRespondToReview not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AdminBulkApproveReviews(context.Context, *AdminBulkApproveReviewsRequest) (*AdminBulkApproveReviewsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminBulkApproveReviews not implemented")
+}
+func (UnimplementedProductsHTTPServiceServer) AdminGetReviewAnalytics(context.Context, *AdminGetReviewAnalyticsRequest) (*AdminGetReviewAnalyticsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminGetReviewAnalytics not implemented")
 }
 func (UnimplementedProductsHTTPServiceServer) mustEmbedUnimplementedProductsHTTPServiceServer() {}
 func (UnimplementedProductsHTTPServiceServer) testEmbeddedByValue()                             {}
@@ -972,6 +1422,60 @@ func _ProductsHTTPService_ReleaseStock_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProductsHTTPService_GetLowStockCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLowStockCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).GetLowStockCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_GetLowStockCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).GetLowStockCount(ctx, req.(*GetLowStockCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_GetDashboardStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDashboardStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).GetDashboardStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_GetDashboardStats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).GetDashboardStats(ctx, req.(*GetDashboardStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_GetProductPricing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProductPricingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).GetProductPricing(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_GetProductPricing_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).GetProductPricing(ctx, req.(*GetProductPricingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ProductsHTTPService_UploadProductImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UploadProductImagesRequest)
 	if err := dec(in); err != nil {
@@ -1242,6 +1746,402 @@ func _ProductsHTTPService_UploadCarouselImage_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProductsHTTPService_GetWishlist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWishlistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).GetWishlist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_GetWishlist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).GetWishlist(ctx, req.(*GetWishlistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AddToWishlist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddToWishlistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AddToWishlist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AddToWishlist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AddToWishlist(ctx, req.(*AddToWishlistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_RemoveFromWishlist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveFromWishlistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).RemoveFromWishlist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_RemoveFromWishlist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).RemoveFromWishlist(ctx, req.(*RemoveFromWishlistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_ClearWishlist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClearWishlistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).ClearWishlist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_ClearWishlist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).ClearWishlist(ctx, req.(*ClearWishlistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_IsInWishlist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsInWishlistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).IsInWishlist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_IsInWishlist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).IsInWishlist(ctx, req.(*IsInWishlistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_MergeWishlist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MergeWishlistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).MergeWishlist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_MergeWishlist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).MergeWishlist(ctx, req.(*MergeWishlistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_MoveToCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MoveToCartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).MoveToCart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_MoveToCart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).MoveToCart(ctx, req.(*MoveToCartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_CreateReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).CreateReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_CreateReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).CreateReview(ctx, req.(*CreateReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_GetProductReviews_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProductReviewsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).GetProductReviews(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_GetProductReviews_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).GetProductReviews(ctx, req.(*GetProductReviewsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_GetProductRating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProductRatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).GetProductRating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_GetProductRating_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).GetProductRating(ctx, req.(*GetProductRatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_GetUserReviewForProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserReviewForProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).GetUserReviewForProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_GetUserReviewForProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).GetUserReviewForProduct(ctx, req.(*GetUserReviewForProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_UpdateReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).UpdateReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_UpdateReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).UpdateReview(ctx, req.(*UpdateReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_DeleteReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).DeleteReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_DeleteReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).DeleteReview(ctx, req.(*DeleteReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_MarkReviewHelpful_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarkReviewHelpfulRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).MarkReviewHelpful(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_MarkReviewHelpful_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).MarkReviewHelpful(ctx, req.(*MarkReviewHelpfulRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_UploadReviewImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadReviewImagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).UploadReviewImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_UploadReviewImages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).UploadReviewImages(ctx, req.(*UploadReviewImagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AdminGetReviews_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminGetReviewsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AdminGetReviews(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AdminGetReviews_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AdminGetReviews(ctx, req.(*AdminGetReviewsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AdminApproveReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminApproveReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AdminApproveReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AdminApproveReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AdminApproveReview(ctx, req.(*AdminApproveReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AdminRejectReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminRejectReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AdminRejectReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AdminRejectReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AdminRejectReview(ctx, req.(*AdminRejectReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AdminDeleteReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminDeleteReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AdminDeleteReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AdminDeleteReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AdminDeleteReview(ctx, req.(*AdminDeleteReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AdminRespondToReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminRespondToReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AdminRespondToReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AdminRespondToReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AdminRespondToReview(ctx, req.(*AdminRespondToReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AdminBulkApproveReviews_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminBulkApproveReviewsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AdminBulkApproveReviews(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AdminBulkApproveReviews_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AdminBulkApproveReviews(ctx, req.(*AdminBulkApproveReviewsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductsHTTPService_AdminGetReviewAnalytics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminGetReviewAnalyticsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductsHTTPServiceServer).AdminGetReviewAnalytics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductsHTTPService_AdminGetReviewAnalytics_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductsHTTPServiceServer).AdminGetReviewAnalytics(ctx, req.(*AdminGetReviewAnalyticsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProductsHTTPService_ServiceDesc is the grpc.ServiceDesc for ProductsHTTPService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1326,6 +2226,18 @@ var ProductsHTTPService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProductsHTTPService_ReleaseStock_Handler,
 		},
 		{
+			MethodName: "GetLowStockCount",
+			Handler:    _ProductsHTTPService_GetLowStockCount_Handler,
+		},
+		{
+			MethodName: "GetDashboardStats",
+			Handler:    _ProductsHTTPService_GetDashboardStats_Handler,
+		},
+		{
+			MethodName: "GetProductPricing",
+			Handler:    _ProductsHTTPService_GetProductPricing_Handler,
+		},
+		{
 			MethodName: "UploadProductImages",
 			Handler:    _ProductsHTTPService_UploadProductImages_Handler,
 		},
@@ -1384,6 +2296,94 @@ var ProductsHTTPService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UploadCarouselImage",
 			Handler:    _ProductsHTTPService_UploadCarouselImage_Handler,
+		},
+		{
+			MethodName: "GetWishlist",
+			Handler:    _ProductsHTTPService_GetWishlist_Handler,
+		},
+		{
+			MethodName: "AddToWishlist",
+			Handler:    _ProductsHTTPService_AddToWishlist_Handler,
+		},
+		{
+			MethodName: "RemoveFromWishlist",
+			Handler:    _ProductsHTTPService_RemoveFromWishlist_Handler,
+		},
+		{
+			MethodName: "ClearWishlist",
+			Handler:    _ProductsHTTPService_ClearWishlist_Handler,
+		},
+		{
+			MethodName: "IsInWishlist",
+			Handler:    _ProductsHTTPService_IsInWishlist_Handler,
+		},
+		{
+			MethodName: "MergeWishlist",
+			Handler:    _ProductsHTTPService_MergeWishlist_Handler,
+		},
+		{
+			MethodName: "MoveToCart",
+			Handler:    _ProductsHTTPService_MoveToCart_Handler,
+		},
+		{
+			MethodName: "CreateReview",
+			Handler:    _ProductsHTTPService_CreateReview_Handler,
+		},
+		{
+			MethodName: "GetProductReviews",
+			Handler:    _ProductsHTTPService_GetProductReviews_Handler,
+		},
+		{
+			MethodName: "GetProductRating",
+			Handler:    _ProductsHTTPService_GetProductRating_Handler,
+		},
+		{
+			MethodName: "GetUserReviewForProduct",
+			Handler:    _ProductsHTTPService_GetUserReviewForProduct_Handler,
+		},
+		{
+			MethodName: "UpdateReview",
+			Handler:    _ProductsHTTPService_UpdateReview_Handler,
+		},
+		{
+			MethodName: "DeleteReview",
+			Handler:    _ProductsHTTPService_DeleteReview_Handler,
+		},
+		{
+			MethodName: "MarkReviewHelpful",
+			Handler:    _ProductsHTTPService_MarkReviewHelpful_Handler,
+		},
+		{
+			MethodName: "UploadReviewImages",
+			Handler:    _ProductsHTTPService_UploadReviewImages_Handler,
+		},
+		{
+			MethodName: "AdminGetReviews",
+			Handler:    _ProductsHTTPService_AdminGetReviews_Handler,
+		},
+		{
+			MethodName: "AdminApproveReview",
+			Handler:    _ProductsHTTPService_AdminApproveReview_Handler,
+		},
+		{
+			MethodName: "AdminRejectReview",
+			Handler:    _ProductsHTTPService_AdminRejectReview_Handler,
+		},
+		{
+			MethodName: "AdminDeleteReview",
+			Handler:    _ProductsHTTPService_AdminDeleteReview_Handler,
+		},
+		{
+			MethodName: "AdminRespondToReview",
+			Handler:    _ProductsHTTPService_AdminRespondToReview_Handler,
+		},
+		{
+			MethodName: "AdminBulkApproveReviews",
+			Handler:    _ProductsHTTPService_AdminBulkApproveReviews_Handler,
+		},
+		{
+			MethodName: "AdminGetReviewAnalytics",
+			Handler:    _ProductsHTTPService_AdminGetReviewAnalytics_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

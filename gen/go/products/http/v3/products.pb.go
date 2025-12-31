@@ -1005,6 +1005,7 @@ type ListProductsRequest struct {
 	PriceMax      *float64               `protobuf:"fixed64,4,opt,name=price_max,proto3,oneof" json:"price_max,omitempty"`
 	Page          int32                  `protobuf:"varint,5,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,6,opt,name=page_size,proto3" json:"page_size,omitempty"`
+	Query         *string                `protobuf:"bytes,7,opt,name=query,proto3,oneof" json:"query,omitempty"` // Search query for product name/SKU
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1079,6 +1080,13 @@ func (x *ListProductsRequest) GetPageSize() int32 {
 		return x.PageSize
 	}
 	return 0
+}
+
+func (x *ListProductsRequest) GetQuery() string {
+	if x != nil && x.Query != nil {
+		return *x.Query
+	}
+	return ""
 }
 
 type ListProductsResponse struct {
@@ -3102,6 +3110,496 @@ func (x *ReleaseStockResponse) GetMessage() string {
 	return ""
 }
 
+type GetLowStockCountRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	Threshold     *int32 `protobuf:"varint,1,opt,name=threshold,proto3,oneof" json:"threshold,omitempty" validate:"omitempty,gte=0"` // Default 10 if not provided
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetLowStockCountRequest) Reset() {
+	*x = GetLowStockCountRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLowStockCountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLowStockCountRequest) ProtoMessage() {}
+
+func (x *GetLowStockCountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLowStockCountRequest.ProtoReflect.Descriptor instead.
+func (*GetLowStockCountRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *GetLowStockCountRequest) GetThreshold() int32 {
+	if x != nil && x.Threshold != nil {
+		return *x.Threshold
+	}
+	return 0
+}
+
+type GetLowStockCountResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Count         int64                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	Threshold     int32                  `protobuf:"varint,2,opt,name=threshold,proto3" json:"threshold,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetLowStockCountResponse) Reset() {
+	*x = GetLowStockCountResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLowStockCountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLowStockCountResponse) ProtoMessage() {}
+
+func (x *GetLowStockCountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLowStockCountResponse.ProtoReflect.Descriptor instead.
+func (*GetLowStockCountResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *GetLowStockCountResponse) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *GetLowStockCountResponse) GetThreshold() int32 {
+	if x != nil {
+		return x.Threshold
+	}
+	return 0
+}
+
+func (x *GetLowStockCountResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type CategoryStat struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CategoryId    string                 `protobuf:"bytes,1,opt,name=category_id,proto3" json:"category_id,omitempty"`
+	CategoryName  string                 `protobuf:"bytes,2,opt,name=category_name,proto3" json:"category_name,omitempty"`
+	ProductCount  int64                  `protobuf:"varint,3,opt,name=product_count,proto3" json:"product_count,omitempty"`
+	Percentage    float64                `protobuf:"fixed64,4,opt,name=percentage,proto3" json:"percentage,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CategoryStat) Reset() {
+	*x = CategoryStat{}
+	mi := &file_http_v3_products_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CategoryStat) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CategoryStat) ProtoMessage() {}
+
+func (x *CategoryStat) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CategoryStat.ProtoReflect.Descriptor instead.
+func (*CategoryStat) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *CategoryStat) GetCategoryId() string {
+	if x != nil {
+		return x.CategoryId
+	}
+	return ""
+}
+
+func (x *CategoryStat) GetCategoryName() string {
+	if x != nil {
+		return x.CategoryName
+	}
+	return ""
+}
+
+func (x *CategoryStat) GetProductCount() int64 {
+	if x != nil {
+		return x.ProductCount
+	}
+	return 0
+}
+
+func (x *CategoryStat) GetPercentage() float64 {
+	if x != nil {
+		return x.Percentage
+	}
+	return 0
+}
+
+type GetDashboardStatsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetDashboardStatsRequest) Reset() {
+	*x = GetDashboardStatsRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[49]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDashboardStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDashboardStatsRequest) ProtoMessage() {}
+
+func (x *GetDashboardStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[49]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDashboardStatsRequest.ProtoReflect.Descriptor instead.
+func (*GetDashboardStatsRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{49}
+}
+
+type GetDashboardStatsResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	TotalProducts   int64                  `protobuf:"varint,1,opt,name=total_products,proto3" json:"total_products,omitempty"`
+	LowStockCount   int64                  `protobuf:"varint,2,opt,name=low_stock_count,proto3" json:"low_stock_count,omitempty"`
+	OutOfStockCount int64                  `protobuf:"varint,3,opt,name=out_of_stock_count,proto3" json:"out_of_stock_count,omitempty"`
+	InventoryValue  float64                `protobuf:"fixed64,4,opt,name=inventory_value,proto3" json:"inventory_value,omitempty"`
+	PotentialProfit float64                `protobuf:"fixed64,5,opt,name=potential_profit,proto3" json:"potential_profit,omitempty"`
+	AverageMargin   float64                `protobuf:"fixed64,6,opt,name=average_margin,proto3" json:"average_margin,omitempty"`
+	CategoryStats   []*CategoryStat        `protobuf:"bytes,7,rep,name=category_stats,proto3" json:"category_stats,omitempty"`
+	CurrentProfit   float64                `protobuf:"fixed64,8,opt,name=current_profit,proto3" json:"current_profit,omitempty"` // Profit from sold items (last 30 days)
+	Message         string                 `protobuf:"bytes,9,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetDashboardStatsResponse) Reset() {
+	*x = GetDashboardStatsResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDashboardStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDashboardStatsResponse) ProtoMessage() {}
+
+func (x *GetDashboardStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDashboardStatsResponse.ProtoReflect.Descriptor instead.
+func (*GetDashboardStatsResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *GetDashboardStatsResponse) GetTotalProducts() int64 {
+	if x != nil {
+		return x.TotalProducts
+	}
+	return 0
+}
+
+func (x *GetDashboardStatsResponse) GetLowStockCount() int64 {
+	if x != nil {
+		return x.LowStockCount
+	}
+	return 0
+}
+
+func (x *GetDashboardStatsResponse) GetOutOfStockCount() int64 {
+	if x != nil {
+		return x.OutOfStockCount
+	}
+	return 0
+}
+
+func (x *GetDashboardStatsResponse) GetInventoryValue() float64 {
+	if x != nil {
+		return x.InventoryValue
+	}
+	return 0
+}
+
+func (x *GetDashboardStatsResponse) GetPotentialProfit() float64 {
+	if x != nil {
+		return x.PotentialProfit
+	}
+	return 0
+}
+
+func (x *GetDashboardStatsResponse) GetAverageMargin() float64 {
+	if x != nil {
+		return x.AverageMargin
+	}
+	return 0
+}
+
+func (x *GetDashboardStatsResponse) GetCategoryStats() []*CategoryStat {
+	if x != nil {
+		return x.CategoryStats
+	}
+	return nil
+}
+
+func (x *GetDashboardStatsResponse) GetCurrentProfit() float64 {
+	if x != nil {
+		return x.CurrentProfit
+	}
+	return 0
+}
+
+func (x *GetDashboardStatsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// Pricing messages for profit calculations
+type GetProductPricingRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProductIds    []string               `protobuf:"bytes,1,rep,name=product_ids,proto3" json:"product_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductPricingRequest) Reset() {
+	*x = GetProductPricingRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[51]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductPricingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductPricingRequest) ProtoMessage() {}
+
+func (x *GetProductPricingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[51]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductPricingRequest.ProtoReflect.Descriptor instead.
+func (*GetProductPricingRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *GetProductPricingRequest) GetProductIds() []string {
+	if x != nil {
+		return x.ProductIds
+	}
+	return nil
+}
+
+type GetProductPricingResponse struct {
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	Pricing       map[string]*ProductPricing `protobuf:"bytes,1,rep,name=pricing,proto3" json:"pricing,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // product_id -> pricing
+	Message       string                     `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductPricingResponse) Reset() {
+	*x = GetProductPricingResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductPricingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductPricingResponse) ProtoMessage() {}
+
+func (x *GetProductPricingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductPricingResponse.ProtoReflect.Descriptor instead.
+func (*GetProductPricingResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *GetProductPricingResponse) GetPricing() map[string]*ProductPricing {
+	if x != nil {
+		return x.Pricing
+	}
+	return nil
+}
+
+func (x *GetProductPricingResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type ProductPricing struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProductId     string                 `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty"`
+	SellingPrice  float64                `protobuf:"fixed64,2,opt,name=selling_price,proto3" json:"selling_price,omitempty"`
+	CostPrice     float64                `protobuf:"fixed64,3,opt,name=cost_price,proto3" json:"cost_price,omitempty"`
+	Mrp           float64                `protobuf:"fixed64,4,opt,name=mrp,proto3" json:"mrp,omitempty"`
+	TaxRate       float64                `protobuf:"fixed64,5,opt,name=tax_rate,proto3" json:"tax_rate,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductPricing) Reset() {
+	*x = ProductPricing{}
+	mi := &file_http_v3_products_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductPricing) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductPricing) ProtoMessage() {}
+
+func (x *ProductPricing) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductPricing.ProtoReflect.Descriptor instead.
+func (*ProductPricing) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *ProductPricing) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *ProductPricing) GetSellingPrice() float64 {
+	if x != nil {
+		return x.SellingPrice
+	}
+	return 0
+}
+
+func (x *ProductPricing) GetCostPrice() float64 {
+	if x != nil {
+		return x.CostPrice
+	}
+	return 0
+}
+
+func (x *ProductPricing) GetMrp() float64 {
+	if x != nil {
+		return x.Mrp
+	}
+	return 0
+}
+
+func (x *ProductPricing) GetTaxRate() float64 {
+	if x != nil {
+		return x.TaxRate
+	}
+	return 0
+}
+
 type UploadProductImagesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	 
@@ -3112,7 +3610,7 @@ type UploadProductImagesRequest struct {
 
 func (x *UploadProductImagesRequest) Reset() {
 	*x = UploadProductImagesRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[46]
+	mi := &file_http_v3_products_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3124,7 +3622,7 @@ func (x *UploadProductImagesRequest) String() string {
 func (*UploadProductImagesRequest) ProtoMessage() {}
 
 func (x *UploadProductImagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[46]
+	mi := &file_http_v3_products_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3137,7 +3635,7 @@ func (x *UploadProductImagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadProductImagesRequest.ProtoReflect.Descriptor instead.
 func (*UploadProductImagesRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{46}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *UploadProductImagesRequest) GetProductId() string {
@@ -3157,7 +3655,7 @@ type UploadProductImagesResponse struct {
 
 func (x *UploadProductImagesResponse) Reset() {
 	*x = UploadProductImagesResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[47]
+	mi := &file_http_v3_products_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3169,7 +3667,7 @@ func (x *UploadProductImagesResponse) String() string {
 func (*UploadProductImagesResponse) ProtoMessage() {}
 
 func (x *UploadProductImagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[47]
+	mi := &file_http_v3_products_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3182,7 +3680,7 @@ func (x *UploadProductImagesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadProductImagesResponse.ProtoReflect.Descriptor instead.
 func (*UploadProductImagesResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{47}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *UploadProductImagesResponse) GetImages() []*ProductImage {
@@ -3209,7 +3707,7 @@ type GetProductImagesRequest struct {
 
 func (x *GetProductImagesRequest) Reset() {
 	*x = GetProductImagesRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[48]
+	mi := &file_http_v3_products_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3221,7 +3719,7 @@ func (x *GetProductImagesRequest) String() string {
 func (*GetProductImagesRequest) ProtoMessage() {}
 
 func (x *GetProductImagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[48]
+	mi := &file_http_v3_products_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3234,7 +3732,7 @@ func (x *GetProductImagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProductImagesRequest.ProtoReflect.Descriptor instead.
 func (*GetProductImagesRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{48}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *GetProductImagesRequest) GetProductId() string {
@@ -3254,7 +3752,7 @@ type GetProductImagesResponse struct {
 
 func (x *GetProductImagesResponse) Reset() {
 	*x = GetProductImagesResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[49]
+	mi := &file_http_v3_products_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3266,7 +3764,7 @@ func (x *GetProductImagesResponse) String() string {
 func (*GetProductImagesResponse) ProtoMessage() {}
 
 func (x *GetProductImagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[49]
+	mi := &file_http_v3_products_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3279,7 +3777,7 @@ func (x *GetProductImagesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProductImagesResponse.ProtoReflect.Descriptor instead.
 func (*GetProductImagesResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{49}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *GetProductImagesResponse) GetImages() []*ProductImage {
@@ -3308,7 +3806,7 @@ type ImageOrder struct {
 
 func (x *ImageOrder) Reset() {
 	*x = ImageOrder{}
-	mi := &file_http_v3_products_proto_msgTypes[50]
+	mi := &file_http_v3_products_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3320,7 +3818,7 @@ func (x *ImageOrder) String() string {
 func (*ImageOrder) ProtoMessage() {}
 
 func (x *ImageOrder) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[50]
+	mi := &file_http_v3_products_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3333,7 +3831,7 @@ func (x *ImageOrder) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImageOrder.ProtoReflect.Descriptor instead.
 func (*ImageOrder) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{50}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *ImageOrder) GetImageId() string {
@@ -3362,7 +3860,7 @@ type ReorderProductImagesRequest struct {
 
 func (x *ReorderProductImagesRequest) Reset() {
 	*x = ReorderProductImagesRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[51]
+	mi := &file_http_v3_products_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3374,7 +3872,7 @@ func (x *ReorderProductImagesRequest) String() string {
 func (*ReorderProductImagesRequest) ProtoMessage() {}
 
 func (x *ReorderProductImagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[51]
+	mi := &file_http_v3_products_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3387,7 +3885,7 @@ func (x *ReorderProductImagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderProductImagesRequest.ProtoReflect.Descriptor instead.
 func (*ReorderProductImagesRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{51}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *ReorderProductImagesRequest) GetProductId() string {
@@ -3414,7 +3912,7 @@ type ReorderProductImagesResponse struct {
 
 func (x *ReorderProductImagesResponse) Reset() {
 	*x = ReorderProductImagesResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[52]
+	mi := &file_http_v3_products_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3426,7 +3924,7 @@ func (x *ReorderProductImagesResponse) String() string {
 func (*ReorderProductImagesResponse) ProtoMessage() {}
 
 func (x *ReorderProductImagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[52]
+	mi := &file_http_v3_products_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3439,7 +3937,7 @@ func (x *ReorderProductImagesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderProductImagesResponse.ProtoReflect.Descriptor instead.
 func (*ReorderProductImagesResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{52}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *ReorderProductImagesResponse) GetImages() []*ProductImage {
@@ -3468,7 +3966,7 @@ type SetPrimaryImageRequest struct {
 
 func (x *SetPrimaryImageRequest) Reset() {
 	*x = SetPrimaryImageRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[53]
+	mi := &file_http_v3_products_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3480,7 +3978,7 @@ func (x *SetPrimaryImageRequest) String() string {
 func (*SetPrimaryImageRequest) ProtoMessage() {}
 
 func (x *SetPrimaryImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[53]
+	mi := &file_http_v3_products_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3493,7 +3991,7 @@ func (x *SetPrimaryImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetPrimaryImageRequest.ProtoReflect.Descriptor instead.
 func (*SetPrimaryImageRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{53}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *SetPrimaryImageRequest) GetProductId() string {
@@ -3520,7 +4018,7 @@ type SetPrimaryImageResponse struct {
 
 func (x *SetPrimaryImageResponse) Reset() {
 	*x = SetPrimaryImageResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[54]
+	mi := &file_http_v3_products_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3532,7 +4030,7 @@ func (x *SetPrimaryImageResponse) String() string {
 func (*SetPrimaryImageResponse) ProtoMessage() {}
 
 func (x *SetPrimaryImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[54]
+	mi := &file_http_v3_products_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3545,7 +4043,7 @@ func (x *SetPrimaryImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetPrimaryImageResponse.ProtoReflect.Descriptor instead.
 func (*SetPrimaryImageResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{54}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *SetPrimaryImageResponse) GetImage() *ProductImage {
@@ -3574,7 +4072,7 @@ type DeleteProductImageRequest struct {
 
 func (x *DeleteProductImageRequest) Reset() {
 	*x = DeleteProductImageRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[55]
+	mi := &file_http_v3_products_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3586,7 +4084,7 @@ func (x *DeleteProductImageRequest) String() string {
 func (*DeleteProductImageRequest) ProtoMessage() {}
 
 func (x *DeleteProductImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[55]
+	mi := &file_http_v3_products_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3599,7 +4097,7 @@ func (x *DeleteProductImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProductImageRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProductImageRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{55}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *DeleteProductImageRequest) GetProductId() string {
@@ -3625,7 +4123,7 @@ type DeleteProductImageResponse struct {
 
 func (x *DeleteProductImageResponse) Reset() {
 	*x = DeleteProductImageResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[56]
+	mi := &file_http_v3_products_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3637,7 +4135,7 @@ func (x *DeleteProductImageResponse) String() string {
 func (*DeleteProductImageResponse) ProtoMessage() {}
 
 func (x *DeleteProductImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[56]
+	mi := &file_http_v3_products_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3650,7 +4148,7 @@ func (x *DeleteProductImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProductImageResponse.ProtoReflect.Descriptor instead.
 func (*DeleteProductImageResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{56}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *DeleteProductImageResponse) GetMessage() string {
@@ -3678,7 +4176,7 @@ type FeaturedProduct struct {
 
 func (x *FeaturedProduct) Reset() {
 	*x = FeaturedProduct{}
-	mi := &file_http_v3_products_proto_msgTypes[57]
+	mi := &file_http_v3_products_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3690,7 +4188,7 @@ func (x *FeaturedProduct) String() string {
 func (*FeaturedProduct) ProtoMessage() {}
 
 func (x *FeaturedProduct) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[57]
+	mi := &file_http_v3_products_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3703,7 +4201,7 @@ func (x *FeaturedProduct) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeaturedProduct.ProtoReflect.Descriptor instead.
 func (*FeaturedProduct) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{57}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *FeaturedProduct) GetFeaturedId() string {
@@ -3787,7 +4285,7 @@ type ListFeaturedProductsRequest struct {
 
 func (x *ListFeaturedProductsRequest) Reset() {
 	*x = ListFeaturedProductsRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[58]
+	mi := &file_http_v3_products_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3799,7 +4297,7 @@ func (x *ListFeaturedProductsRequest) String() string {
 func (*ListFeaturedProductsRequest) ProtoMessage() {}
 
 func (x *ListFeaturedProductsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[58]
+	mi := &file_http_v3_products_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3812,7 +4310,7 @@ func (x *ListFeaturedProductsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFeaturedProductsRequest.ProtoReflect.Descriptor instead.
 func (*ListFeaturedProductsRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{58}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *ListFeaturedProductsRequest) GetSection() string {
@@ -3839,7 +4337,7 @@ type ListFeaturedProductsResponse struct {
 
 func (x *ListFeaturedProductsResponse) Reset() {
 	*x = ListFeaturedProductsResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[59]
+	mi := &file_http_v3_products_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3851,7 +4349,7 @@ func (x *ListFeaturedProductsResponse) String() string {
 func (*ListFeaturedProductsResponse) ProtoMessage() {}
 
 func (x *ListFeaturedProductsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[59]
+	mi := &file_http_v3_products_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3864,7 +4362,7 @@ func (x *ListFeaturedProductsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFeaturedProductsResponse.ProtoReflect.Descriptor instead.
 func (*ListFeaturedProductsResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{59}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *ListFeaturedProductsResponse) GetFeaturedProducts() []*FeaturedProduct {
@@ -3896,7 +4394,7 @@ type AddFeaturedProductRequest struct {
 
 func (x *AddFeaturedProductRequest) Reset() {
 	*x = AddFeaturedProductRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[60]
+	mi := &file_http_v3_products_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3908,7 +4406,7 @@ func (x *AddFeaturedProductRequest) String() string {
 func (*AddFeaturedProductRequest) ProtoMessage() {}
 
 func (x *AddFeaturedProductRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[60]
+	mi := &file_http_v3_products_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3921,7 +4419,7 @@ func (x *AddFeaturedProductRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddFeaturedProductRequest.ProtoReflect.Descriptor instead.
 func (*AddFeaturedProductRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{60}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *AddFeaturedProductRequest) GetProductId() string {
@@ -3969,7 +4467,7 @@ type AddFeaturedProductResponse struct {
 
 func (x *AddFeaturedProductResponse) Reset() {
 	*x = AddFeaturedProductResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[61]
+	mi := &file_http_v3_products_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3981,7 +4479,7 @@ func (x *AddFeaturedProductResponse) String() string {
 func (*AddFeaturedProductResponse) ProtoMessage() {}
 
 func (x *AddFeaturedProductResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[61]
+	mi := &file_http_v3_products_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3994,7 +4492,7 @@ func (x *AddFeaturedProductResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddFeaturedProductResponse.ProtoReflect.Descriptor instead.
 func (*AddFeaturedProductResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{61}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *AddFeaturedProductResponse) GetFeaturedProduct() *FeaturedProduct {
@@ -4021,7 +4519,7 @@ type RemoveFeaturedProductRequest struct {
 
 func (x *RemoveFeaturedProductRequest) Reset() {
 	*x = RemoveFeaturedProductRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[62]
+	mi := &file_http_v3_products_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4033,7 +4531,7 @@ func (x *RemoveFeaturedProductRequest) String() string {
 func (*RemoveFeaturedProductRequest) ProtoMessage() {}
 
 func (x *RemoveFeaturedProductRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[62]
+	mi := &file_http_v3_products_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4046,7 +4544,7 @@ func (x *RemoveFeaturedProductRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveFeaturedProductRequest.ProtoReflect.Descriptor instead.
 func (*RemoveFeaturedProductRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{62}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *RemoveFeaturedProductRequest) GetFeaturedId() string {
@@ -4065,7 +4563,7 @@ type RemoveFeaturedProductResponse struct {
 
 func (x *RemoveFeaturedProductResponse) Reset() {
 	*x = RemoveFeaturedProductResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[63]
+	mi := &file_http_v3_products_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4077,7 +4575,7 @@ func (x *RemoveFeaturedProductResponse) String() string {
 func (*RemoveFeaturedProductResponse) ProtoMessage() {}
 
 func (x *RemoveFeaturedProductResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[63]
+	mi := &file_http_v3_products_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4090,7 +4588,7 @@ func (x *RemoveFeaturedProductResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveFeaturedProductResponse.ProtoReflect.Descriptor instead.
 func (*RemoveFeaturedProductResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{63}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *RemoveFeaturedProductResponse) GetMessage() string {
@@ -4112,7 +4610,7 @@ type ReorderFeaturedProductsRequest struct {
 
 func (x *ReorderFeaturedProductsRequest) Reset() {
 	*x = ReorderFeaturedProductsRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[64]
+	mi := &file_http_v3_products_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4124,7 +4622,7 @@ func (x *ReorderFeaturedProductsRequest) String() string {
 func (*ReorderFeaturedProductsRequest) ProtoMessage() {}
 
 func (x *ReorderFeaturedProductsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[64]
+	mi := &file_http_v3_products_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4137,7 +4635,7 @@ func (x *ReorderFeaturedProductsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderFeaturedProductsRequest.ProtoReflect.Descriptor instead.
 func (*ReorderFeaturedProductsRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{64}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *ReorderFeaturedProductsRequest) GetSection() string {
@@ -4164,7 +4662,7 @@ type FeaturedOrder struct {
 
 func (x *FeaturedOrder) Reset() {
 	*x = FeaturedOrder{}
-	mi := &file_http_v3_products_proto_msgTypes[65]
+	mi := &file_http_v3_products_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4176,7 +4674,7 @@ func (x *FeaturedOrder) String() string {
 func (*FeaturedOrder) ProtoMessage() {}
 
 func (x *FeaturedOrder) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[65]
+	mi := &file_http_v3_products_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4189,7 +4687,7 @@ func (x *FeaturedOrder) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeaturedOrder.ProtoReflect.Descriptor instead.
 func (*FeaturedOrder) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{65}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *FeaturedOrder) GetFeaturedId() string {
@@ -4216,7 +4714,7 @@ type ReorderFeaturedProductsResponse struct {
 
 func (x *ReorderFeaturedProductsResponse) Reset() {
 	*x = ReorderFeaturedProductsResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[66]
+	mi := &file_http_v3_products_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4228,7 +4726,7 @@ func (x *ReorderFeaturedProductsResponse) String() string {
 func (*ReorderFeaturedProductsResponse) ProtoMessage() {}
 
 func (x *ReorderFeaturedProductsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[66]
+	mi := &file_http_v3_products_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4241,7 +4739,7 @@ func (x *ReorderFeaturedProductsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderFeaturedProductsResponse.ProtoReflect.Descriptor instead.
 func (*ReorderFeaturedProductsResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{66}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *ReorderFeaturedProductsResponse) GetFeaturedProducts() []*FeaturedProduct {
@@ -4277,7 +4775,7 @@ type CarouselImage struct {
 
 func (x *CarouselImage) Reset() {
 	*x = CarouselImage{}
-	mi := &file_http_v3_products_proto_msgTypes[67]
+	mi := &file_http_v3_products_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4289,7 +4787,7 @@ func (x *CarouselImage) String() string {
 func (*CarouselImage) ProtoMessage() {}
 
 func (x *CarouselImage) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[67]
+	mi := &file_http_v3_products_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4302,7 +4800,7 @@ func (x *CarouselImage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CarouselImage.ProtoReflect.Descriptor instead.
 func (*CarouselImage) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{67}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *CarouselImage) GetCarouselId() string {
@@ -4392,7 +4890,7 @@ type ListCarouselImagesRequest struct {
 
 func (x *ListCarouselImagesRequest) Reset() {
 	*x = ListCarouselImagesRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[68]
+	mi := &file_http_v3_products_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4404,7 +4902,7 @@ func (x *ListCarouselImagesRequest) String() string {
 func (*ListCarouselImagesRequest) ProtoMessage() {}
 
 func (x *ListCarouselImagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[68]
+	mi := &file_http_v3_products_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4417,7 +4915,7 @@ func (x *ListCarouselImagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCarouselImagesRequest.ProtoReflect.Descriptor instead.
 func (*ListCarouselImagesRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{68}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *ListCarouselImagesRequest) GetSection() string {
@@ -4437,7 +4935,7 @@ type ListCarouselImagesResponse struct {
 
 func (x *ListCarouselImagesResponse) Reset() {
 	*x = ListCarouselImagesResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[69]
+	mi := &file_http_v3_products_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4449,7 +4947,7 @@ func (x *ListCarouselImagesResponse) String() string {
 func (*ListCarouselImagesResponse) ProtoMessage() {}
 
 func (x *ListCarouselImagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[69]
+	mi := &file_http_v3_products_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4462,7 +4960,7 @@ func (x *ListCarouselImagesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCarouselImagesResponse.ProtoReflect.Descriptor instead.
 func (*ListCarouselImagesResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{69}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *ListCarouselImagesResponse) GetCarouselImages() []*CarouselImage {
@@ -4496,7 +4994,7 @@ type CreateCarouselImageRequest struct {
 
 func (x *CreateCarouselImageRequest) Reset() {
 	*x = CreateCarouselImageRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[70]
+	mi := &file_http_v3_products_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4508,7 +5006,7 @@ func (x *CreateCarouselImageRequest) String() string {
 func (*CreateCarouselImageRequest) ProtoMessage() {}
 
 func (x *CreateCarouselImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[70]
+	mi := &file_http_v3_products_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4521,7 +5019,7 @@ func (x *CreateCarouselImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCarouselImageRequest.ProtoReflect.Descriptor instead.
 func (*CreateCarouselImageRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{70}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *CreateCarouselImageRequest) GetImageUrl() string {
@@ -4583,7 +5081,7 @@ type CreateCarouselImageResponse struct {
 
 func (x *CreateCarouselImageResponse) Reset() {
 	*x = CreateCarouselImageResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[71]
+	mi := &file_http_v3_products_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4595,7 +5093,7 @@ func (x *CreateCarouselImageResponse) String() string {
 func (*CreateCarouselImageResponse) ProtoMessage() {}
 
 func (x *CreateCarouselImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[71]
+	mi := &file_http_v3_products_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4608,7 +5106,7 @@ func (x *CreateCarouselImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCarouselImageResponse.ProtoReflect.Descriptor instead.
 func (*CreateCarouselImageResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{71}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *CreateCarouselImageResponse) GetCarouselImage() *CarouselImage {
@@ -4642,7 +5140,7 @@ type UpdateCarouselImageRequest struct {
 
 func (x *UpdateCarouselImageRequest) Reset() {
 	*x = UpdateCarouselImageRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[72]
+	mi := &file_http_v3_products_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4654,7 +5152,7 @@ func (x *UpdateCarouselImageRequest) String() string {
 func (*UpdateCarouselImageRequest) ProtoMessage() {}
 
 func (x *UpdateCarouselImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[72]
+	mi := &file_http_v3_products_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4667,7 +5165,7 @@ func (x *UpdateCarouselImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCarouselImageRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCarouselImageRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{72}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *UpdateCarouselImageRequest) GetCarouselId() string {
@@ -4736,7 +5234,7 @@ type UpdateCarouselImageResponse struct {
 
 func (x *UpdateCarouselImageResponse) Reset() {
 	*x = UpdateCarouselImageResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[73]
+	mi := &file_http_v3_products_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4748,7 +5246,7 @@ func (x *UpdateCarouselImageResponse) String() string {
 func (*UpdateCarouselImageResponse) ProtoMessage() {}
 
 func (x *UpdateCarouselImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[73]
+	mi := &file_http_v3_products_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4761,7 +5259,7 @@ func (x *UpdateCarouselImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCarouselImageResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCarouselImageResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{73}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *UpdateCarouselImageResponse) GetCarouselImage() *CarouselImage {
@@ -4788,7 +5286,7 @@ type DeleteCarouselImageRequest struct {
 
 func (x *DeleteCarouselImageRequest) Reset() {
 	*x = DeleteCarouselImageRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[74]
+	mi := &file_http_v3_products_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4800,7 +5298,7 @@ func (x *DeleteCarouselImageRequest) String() string {
 func (*DeleteCarouselImageRequest) ProtoMessage() {}
 
 func (x *DeleteCarouselImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[74]
+	mi := &file_http_v3_products_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4813,7 +5311,7 @@ func (x *DeleteCarouselImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCarouselImageRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCarouselImageRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{74}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *DeleteCarouselImageRequest) GetCarouselId() string {
@@ -4832,7 +5330,7 @@ type DeleteCarouselImageResponse struct {
 
 func (x *DeleteCarouselImageResponse) Reset() {
 	*x = DeleteCarouselImageResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[75]
+	mi := &file_http_v3_products_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4844,7 +5342,7 @@ func (x *DeleteCarouselImageResponse) String() string {
 func (*DeleteCarouselImageResponse) ProtoMessage() {}
 
 func (x *DeleteCarouselImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[75]
+	mi := &file_http_v3_products_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4857,7 +5355,7 @@ func (x *DeleteCarouselImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCarouselImageResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCarouselImageResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{75}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *DeleteCarouselImageResponse) GetMessage() string {
@@ -4879,7 +5377,7 @@ type ReorderCarouselImagesRequest struct {
 
 func (x *ReorderCarouselImagesRequest) Reset() {
 	*x = ReorderCarouselImagesRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[76]
+	mi := &file_http_v3_products_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4891,7 +5389,7 @@ func (x *ReorderCarouselImagesRequest) String() string {
 func (*ReorderCarouselImagesRequest) ProtoMessage() {}
 
 func (x *ReorderCarouselImagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[76]
+	mi := &file_http_v3_products_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4904,7 +5402,7 @@ func (x *ReorderCarouselImagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderCarouselImagesRequest.ProtoReflect.Descriptor instead.
 func (*ReorderCarouselImagesRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{76}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *ReorderCarouselImagesRequest) GetSection() string {
@@ -4931,7 +5429,7 @@ type CarouselOrder struct {
 
 func (x *CarouselOrder) Reset() {
 	*x = CarouselOrder{}
-	mi := &file_http_v3_products_proto_msgTypes[77]
+	mi := &file_http_v3_products_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4943,7 +5441,7 @@ func (x *CarouselOrder) String() string {
 func (*CarouselOrder) ProtoMessage() {}
 
 func (x *CarouselOrder) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[77]
+	mi := &file_http_v3_products_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4956,7 +5454,7 @@ func (x *CarouselOrder) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CarouselOrder.ProtoReflect.Descriptor instead.
 func (*CarouselOrder) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{77}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *CarouselOrder) GetCarouselId() string {
@@ -4983,7 +5481,7 @@ type ReorderCarouselImagesResponse struct {
 
 func (x *ReorderCarouselImagesResponse) Reset() {
 	*x = ReorderCarouselImagesResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[78]
+	mi := &file_http_v3_products_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4995,7 +5493,7 @@ func (x *ReorderCarouselImagesResponse) String() string {
 func (*ReorderCarouselImagesResponse) ProtoMessage() {}
 
 func (x *ReorderCarouselImagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[78]
+	mi := &file_http_v3_products_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5008,7 +5506,7 @@ func (x *ReorderCarouselImagesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderCarouselImagesResponse.ProtoReflect.Descriptor instead.
 func (*ReorderCarouselImagesResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{78}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *ReorderCarouselImagesResponse) GetCarouselImages() []*CarouselImage {
@@ -5037,7 +5535,7 @@ type UploadCarouselImageRequest struct {
 
 func (x *UploadCarouselImageRequest) Reset() {
 	*x = UploadCarouselImageRequest{}
-	mi := &file_http_v3_products_proto_msgTypes[79]
+	mi := &file_http_v3_products_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5049,7 +5547,7 @@ func (x *UploadCarouselImageRequest) String() string {
 func (*UploadCarouselImageRequest) ProtoMessage() {}
 
 func (x *UploadCarouselImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[79]
+	mi := &file_http_v3_products_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5062,7 +5560,7 @@ func (x *UploadCarouselImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadCarouselImageRequest.ProtoReflect.Descriptor instead.
 func (*UploadCarouselImageRequest) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{79}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *UploadCarouselImageRequest) GetSection() string {
@@ -5082,7 +5580,7 @@ type UploadCarouselImageResponse struct {
 
 func (x *UploadCarouselImageResponse) Reset() {
 	*x = UploadCarouselImageResponse{}
-	mi := &file_http_v3_products_proto_msgTypes[80]
+	mi := &file_http_v3_products_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5094,7 +5592,7 @@ func (x *UploadCarouselImageResponse) String() string {
 func (*UploadCarouselImageResponse) ProtoMessage() {}
 
 func (x *UploadCarouselImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_http_v3_products_proto_msgTypes[80]
+	mi := &file_http_v3_products_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5107,7 +5605,7 @@ func (x *UploadCarouselImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadCarouselImageResponse.ProtoReflect.Descriptor instead.
 func (*UploadCarouselImageResponse) Descriptor() ([]byte, []int) {
-	return file_http_v3_products_proto_rawDescGZIP(), []int{80}
+	return file_http_v3_products_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *UploadCarouselImageResponse) GetCarouselImage() *CarouselImage {
@@ -5122,6 +5620,3110 @@ func (x *UploadCarouselImageResponse) GetMessage() string {
 		return x.Message
 	}
 	return ""
+}
+
+type Wishlist struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	WishlistId    string                 `protobuf:"bytes,1,opt,name=wishlist_id,proto3" json:"wishlist_id,omitempty"`
+	UserId        *string                `protobuf:"bytes,2,opt,name=user_id,proto3,oneof" json:"user_id,omitempty"`
+	Items         []*WishlistItem        `protobuf:"bytes,3,rep,name=items,proto3" json:"items,omitempty"`
+	ItemCount     int32                  `protobuf:"varint,4,opt,name=item_count,proto3" json:"item_count,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Wishlist) Reset() {
+	*x = Wishlist{}
+	mi := &file_http_v3_products_proto_msgTypes[89]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Wishlist) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Wishlist) ProtoMessage() {}
+
+func (x *Wishlist) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[89]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Wishlist.ProtoReflect.Descriptor instead.
+func (*Wishlist) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{89}
+}
+
+func (x *Wishlist) GetWishlistId() string {
+	if x != nil {
+		return x.WishlistId
+	}
+	return ""
+}
+
+func (x *Wishlist) GetUserId() string {
+	if x != nil && x.UserId != nil {
+		return *x.UserId
+	}
+	return ""
+}
+
+func (x *Wishlist) GetItems() []*WishlistItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *Wishlist) GetItemCount() int32 {
+	if x != nil {
+		return x.ItemCount
+	}
+	return 0
+}
+
+func (x *Wishlist) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+type WishlistItem struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	WishlistItemId string                 `protobuf:"bytes,1,opt,name=wishlist_item_id,proto3" json:"wishlist_item_id,omitempty"`
+	WishlistId     string                 `protobuf:"bytes,2,opt,name=wishlist_id,proto3" json:"wishlist_id,omitempty"`
+	ProductId      string                 `protobuf:"bytes,3,opt,name=product_id,proto3" json:"product_id,omitempty"`
+	// Enriched product data (joined from products table)
+	ProductName       string                 `protobuf:"bytes,4,opt,name=product_name,proto3" json:"product_name,omitempty"`
+	Price             float64                `protobuf:"fixed64,5,opt,name=price,proto3" json:"price,omitempty"`
+	ImageUrl          *string                `protobuf:"bytes,6,opt,name=image_url,proto3,oneof" json:"image_url,omitempty"`
+	StockStatus       string                 `protobuf:"bytes,7,opt,name=stock_status,proto3" json:"stock_status,omitempty"` // in_stock, out_of_stock, low_stock
+	AvailableQuantity int32                  `protobuf:"varint,8,opt,name=available_quantity,proto3" json:"available_quantity,omitempty"`
+	AddedAt           *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=added_at,proto3" json:"added_at,omitempty"`
+	// Price tracking fields (Phase 4)
+	PriceAtAddition       *float64               `protobuf:"fixed64,10,opt,name=price_at_addition,proto3,oneof" json:"price_at_addition,omitempty"`
+	LastPriceCheck        *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=last_price_check,proto3,oneof" json:"last_price_check,omitempty"`
+	PriceChangeAmount     *float64               `protobuf:"fixed64,12,opt,name=price_change_amount,proto3,oneof" json:"price_change_amount,omitempty"`
+	PriceChangePercentage *float64               `protobuf:"fixed64,13,opt,name=price_change_percentage,proto3,oneof" json:"price_change_percentage,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *WishlistItem) Reset() {
+	*x = WishlistItem{}
+	mi := &file_http_v3_products_proto_msgTypes[90]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WishlistItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WishlistItem) ProtoMessage() {}
+
+func (x *WishlistItem) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[90]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WishlistItem.ProtoReflect.Descriptor instead.
+func (*WishlistItem) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{90}
+}
+
+func (x *WishlistItem) GetWishlistItemId() string {
+	if x != nil {
+		return x.WishlistItemId
+	}
+	return ""
+}
+
+func (x *WishlistItem) GetWishlistId() string {
+	if x != nil {
+		return x.WishlistId
+	}
+	return ""
+}
+
+func (x *WishlistItem) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *WishlistItem) GetProductName() string {
+	if x != nil {
+		return x.ProductName
+	}
+	return ""
+}
+
+func (x *WishlistItem) GetPrice() float64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+func (x *WishlistItem) GetImageUrl() string {
+	if x != nil && x.ImageUrl != nil {
+		return *x.ImageUrl
+	}
+	return ""
+}
+
+func (x *WishlistItem) GetStockStatus() string {
+	if x != nil {
+		return x.StockStatus
+	}
+	return ""
+}
+
+func (x *WishlistItem) GetAvailableQuantity() int32 {
+	if x != nil {
+		return x.AvailableQuantity
+	}
+	return 0
+}
+
+func (x *WishlistItem) GetAddedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AddedAt
+	}
+	return nil
+}
+
+func (x *WishlistItem) GetPriceAtAddition() float64 {
+	if x != nil && x.PriceAtAddition != nil {
+		return *x.PriceAtAddition
+	}
+	return 0
+}
+
+func (x *WishlistItem) GetLastPriceCheck() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastPriceCheck
+	}
+	return nil
+}
+
+func (x *WishlistItem) GetPriceChangeAmount() float64 {
+	if x != nil && x.PriceChangeAmount != nil {
+		return *x.PriceChangeAmount
+	}
+	return 0
+}
+
+func (x *WishlistItem) GetPriceChangePercentage() float64 {
+	if x != nil && x.PriceChangePercentage != nil {
+		return *x.PriceChangePercentage
+	}
+	return 0
+}
+
+type GetWishlistRequest struct {
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	SessionId *string                `protobuf:"bytes,1,opt,name=session_id,proto3,oneof" json:"session_id,omitempty"` // For guest users
+	// Sorting options
+	SortBy *string `protobuf:"bytes,2,opt,name=sort_by,proto3,oneof" json:"sort_by,omitempty"` // Values: "recently_added" (default), "price_asc", "price_desc", "name_asc", "best_offers"
+	// Filter options
+	MinPrice      *float64 `protobuf:"fixed64,3,opt,name=min_price,proto3,oneof" json:"min_price,omitempty"`
+	MaxPrice      *float64 `protobuf:"fixed64,4,opt,name=max_price,proto3,oneof" json:"max_price,omitempty"`
+	SearchQuery   *string  `protobuf:"bytes,5,opt,name=search_query,proto3,oneof" json:"search_query,omitempty"` // Search by product name
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWishlistRequest) Reset() {
+	*x = GetWishlistRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[91]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWishlistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWishlistRequest) ProtoMessage() {}
+
+func (x *GetWishlistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[91]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWishlistRequest.ProtoReflect.Descriptor instead.
+func (*GetWishlistRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{91}
+}
+
+func (x *GetWishlistRequest) GetSessionId() string {
+	if x != nil && x.SessionId != nil {
+		return *x.SessionId
+	}
+	return ""
+}
+
+func (x *GetWishlistRequest) GetSortBy() string {
+	if x != nil && x.SortBy != nil {
+		return *x.SortBy
+	}
+	return ""
+}
+
+func (x *GetWishlistRequest) GetMinPrice() float64 {
+	if x != nil && x.MinPrice != nil {
+		return *x.MinPrice
+	}
+	return 0
+}
+
+func (x *GetWishlistRequest) GetMaxPrice() float64 {
+	if x != nil && x.MaxPrice != nil {
+		return *x.MaxPrice
+	}
+	return 0
+}
+
+func (x *GetWishlistRequest) GetSearchQuery() string {
+	if x != nil && x.SearchQuery != nil {
+		return *x.SearchQuery
+	}
+	return ""
+}
+
+type GetWishlistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Wishlist      *Wishlist              `protobuf:"bytes,1,opt,name=wishlist,proto3" json:"wishlist,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWishlistResponse) Reset() {
+	*x = GetWishlistResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[92]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWishlistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWishlistResponse) ProtoMessage() {}
+
+func (x *GetWishlistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[92]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWishlistResponse.ProtoReflect.Descriptor instead.
+func (*GetWishlistResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{92}
+}
+
+func (x *GetWishlistResponse) GetWishlist() *Wishlist {
+	if x != nil {
+		return x.Wishlist
+	}
+	return nil
+}
+
+func (x *GetWishlistResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type AddToWishlistRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ProductId     string  `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"`
+	SessionId     *string `protobuf:"bytes,2,opt,name=session_id,proto3,oneof" json:"session_id,omitempty"` // For guest users
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddToWishlistRequest) Reset() {
+	*x = AddToWishlistRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[93]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddToWishlistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddToWishlistRequest) ProtoMessage() {}
+
+func (x *AddToWishlistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[93]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddToWishlistRequest.ProtoReflect.Descriptor instead.
+func (*AddToWishlistRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{93}
+}
+
+func (x *AddToWishlistRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *AddToWishlistRequest) GetSessionId() string {
+	if x != nil && x.SessionId != nil {
+		return *x.SessionId
+	}
+	return ""
+}
+
+type AddToWishlistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Item          *WishlistItem          `protobuf:"bytes,3,opt,name=item,proto3" json:"item,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddToWishlistResponse) Reset() {
+	*x = AddToWishlistResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[94]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddToWishlistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddToWishlistResponse) ProtoMessage() {}
+
+func (x *AddToWishlistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[94]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddToWishlistResponse.ProtoReflect.Descriptor instead.
+func (*AddToWishlistResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{94}
+}
+
+func (x *AddToWishlistResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AddToWishlistResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *AddToWishlistResponse) GetItem() *WishlistItem {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
+type RemoveFromWishlistRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	WishlistItemId string `protobuf:"bytes,1,opt,name=wishlist_item_id,proto3" json:"wishlist_item_id,omitempty" validate:"required"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *RemoveFromWishlistRequest) Reset() {
+	*x = RemoveFromWishlistRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[95]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveFromWishlistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveFromWishlistRequest) ProtoMessage() {}
+
+func (x *RemoveFromWishlistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[95]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveFromWishlistRequest.ProtoReflect.Descriptor instead.
+func (*RemoveFromWishlistRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{95}
+}
+
+func (x *RemoveFromWishlistRequest) GetWishlistItemId() string {
+	if x != nil {
+		return x.WishlistItemId
+	}
+	return ""
+}
+
+type RemoveFromWishlistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RemoveFromWishlistResponse) Reset() {
+	*x = RemoveFromWishlistResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[96]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveFromWishlistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveFromWishlistResponse) ProtoMessage() {}
+
+func (x *RemoveFromWishlistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[96]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveFromWishlistResponse.ProtoReflect.Descriptor instead.
+func (*RemoveFromWishlistResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{96}
+}
+
+func (x *RemoveFromWishlistResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *RemoveFromWishlistResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type ClearWishlistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SessionId     *string                `protobuf:"bytes,1,opt,name=session_id,proto3,oneof" json:"session_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ClearWishlistRequest) Reset() {
+	*x = ClearWishlistRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[97]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ClearWishlistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClearWishlistRequest) ProtoMessage() {}
+
+func (x *ClearWishlistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[97]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClearWishlistRequest.ProtoReflect.Descriptor instead.
+func (*ClearWishlistRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{97}
+}
+
+func (x *ClearWishlistRequest) GetSessionId() string {
+	if x != nil && x.SessionId != nil {
+		return *x.SessionId
+	}
+	return ""
+}
+
+type ClearWishlistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ClearWishlistResponse) Reset() {
+	*x = ClearWishlistResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[98]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ClearWishlistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClearWishlistResponse) ProtoMessage() {}
+
+func (x *ClearWishlistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[98]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClearWishlistResponse.ProtoReflect.Descriptor instead.
+func (*ClearWishlistResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{98}
+}
+
+func (x *ClearWishlistResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *ClearWishlistResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type IsInWishlistRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ProductId     string  `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"`
+	SessionId     *string `protobuf:"bytes,2,opt,name=session_id,proto3,oneof" json:"session_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsInWishlistRequest) Reset() {
+	*x = IsInWishlistRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[99]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsInWishlistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsInWishlistRequest) ProtoMessage() {}
+
+func (x *IsInWishlistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[99]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsInWishlistRequest.ProtoReflect.Descriptor instead.
+func (*IsInWishlistRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{99}
+}
+
+func (x *IsInWishlistRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *IsInWishlistRequest) GetSessionId() string {
+	if x != nil && x.SessionId != nil {
+		return *x.SessionId
+	}
+	return ""
+}
+
+type IsInWishlistResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	InWishlist     bool                   `protobuf:"varint,1,opt,name=in_wishlist,proto3" json:"in_wishlist,omitempty"`
+	WishlistItemId *string                `protobuf:"bytes,2,opt,name=wishlist_item_id,proto3,oneof" json:"wishlist_item_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *IsInWishlistResponse) Reset() {
+	*x = IsInWishlistResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[100]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsInWishlistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsInWishlistResponse) ProtoMessage() {}
+
+func (x *IsInWishlistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[100]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsInWishlistResponse.ProtoReflect.Descriptor instead.
+func (*IsInWishlistResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{100}
+}
+
+func (x *IsInWishlistResponse) GetInWishlist() bool {
+	if x != nil {
+		return x.InWishlist
+	}
+	return false
+}
+
+func (x *IsInWishlistResponse) GetWishlistItemId() string {
+	if x != nil && x.WishlistItemId != nil {
+		return *x.WishlistItemId
+	}
+	return ""
+}
+
+type MergeWishlistRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	SessionId     string `protobuf:"bytes,1,opt,name=session_id,proto3" json:"session_id,omitempty" validate:"required"` // Guest session to merge
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MergeWishlistRequest) Reset() {
+	*x = MergeWishlistRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[101]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MergeWishlistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MergeWishlistRequest) ProtoMessage() {}
+
+func (x *MergeWishlistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[101]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MergeWishlistRequest.ProtoReflect.Descriptor instead.
+func (*MergeWishlistRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{101}
+}
+
+func (x *MergeWishlistRequest) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
+}
+
+type MergeWishlistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	MergedItems   int32                  `protobuf:"varint,3,opt,name=merged_items,proto3" json:"merged_items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MergeWishlistResponse) Reset() {
+	*x = MergeWishlistResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[102]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MergeWishlistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MergeWishlistResponse) ProtoMessage() {}
+
+func (x *MergeWishlistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[102]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MergeWishlistResponse.ProtoReflect.Descriptor instead.
+func (*MergeWishlistResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{102}
+}
+
+func (x *MergeWishlistResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *MergeWishlistResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *MergeWishlistResponse) GetMergedItems() int32 {
+	if x != nil {
+		return x.MergedItems
+	}
+	return 0
+}
+
+type MoveToCartRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	WishlistItemId string `protobuf:"bytes,1,opt,name=wishlist_item_id,proto3" json:"wishlist_item_id,omitempty" validate:"required"`
+	Quantity       int32  `protobuf:"varint,2,opt,name=quantity,proto3" json:"quantity,omitempty"` // Default 1
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *MoveToCartRequest) Reset() {
+	*x = MoveToCartRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[103]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MoveToCartRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MoveToCartRequest) ProtoMessage() {}
+
+func (x *MoveToCartRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[103]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MoveToCartRequest.ProtoReflect.Descriptor instead.
+func (*MoveToCartRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{103}
+}
+
+func (x *MoveToCartRequest) GetWishlistItemId() string {
+	if x != nil {
+		return x.WishlistItemId
+	}
+	return ""
+}
+
+func (x *MoveToCartRequest) GetQuantity() int32 {
+	if x != nil {
+		return x.Quantity
+	}
+	return 0
+}
+
+type MoveToCartResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MoveToCartResponse) Reset() {
+	*x = MoveToCartResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[104]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MoveToCartResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MoveToCartResponse) ProtoMessage() {}
+
+func (x *MoveToCartResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[104]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MoveToCartResponse.ProtoReflect.Descriptor instead.
+func (*MoveToCartResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{104}
+}
+
+func (x *MoveToCartResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *MoveToCartResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type Review struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ReviewId            string                 `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty"`
+	ProductId           string                 `protobuf:"bytes,2,opt,name=product_id,proto3" json:"product_id,omitempty"`
+	UserId              string                 `protobuf:"bytes,3,opt,name=user_id,proto3" json:"user_id,omitempty"`
+	OrderId             *string                `protobuf:"bytes,4,opt,name=order_id,proto3,oneof" json:"order_id,omitempty"`
+	Rating              int32                  `protobuf:"varint,5,opt,name=rating,proto3" json:"rating,omitempty"`
+	Title               *string                `protobuf:"bytes,6,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	ReviewText          *string                `protobuf:"bytes,7,opt,name=review_text,proto3,oneof" json:"review_text,omitempty"`
+	Status              string                 `protobuf:"bytes,8,opt,name=status,proto3" json:"status,omitempty"`
+	IsVerifiedPurchase  bool                   `protobuf:"varint,9,opt,name=is_verified_purchase,proto3" json:"is_verified_purchase,omitempty"`
+	HelpfulCount        int32                  `protobuf:"varint,10,opt,name=helpful_count,proto3" json:"helpful_count,omitempty"`
+	ReportedCount       int32                  `protobuf:"varint,11,opt,name=reported_count,proto3" json:"reported_count,omitempty"`
+	AdminResponse       *string                `protobuf:"bytes,12,opt,name=admin_response,proto3,oneof" json:"admin_response,omitempty"`
+	AdminResponseAt     *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=admin_response_at,proto3,oneof" json:"admin_response_at,omitempty"`
+	Images              []*ReviewImage         `protobuf:"bytes,14,rep,name=images,proto3" json:"images,omitempty"`
+	UserName            string                 `protobuf:"bytes,15,opt,name=user_name,proto3" json:"user_name,omitempty"`
+	MarkedHelpfulByUser bool                   `protobuf:"varint,16,opt,name=marked_helpful_by_user,proto3" json:"marked_helpful_by_user,omitempty"`
+	CreatedAt           *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=created_at,proto3" json:"created_at,omitempty"`
+	UpdatedAt           *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=updated_at,proto3" json:"updated_at,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *Review) Reset() {
+	*x = Review{}
+	mi := &file_http_v3_products_proto_msgTypes[105]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Review) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Review) ProtoMessage() {}
+
+func (x *Review) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[105]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Review.ProtoReflect.Descriptor instead.
+func (*Review) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{105}
+}
+
+func (x *Review) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+func (x *Review) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *Review) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *Review) GetOrderId() string {
+	if x != nil && x.OrderId != nil {
+		return *x.OrderId
+	}
+	return ""
+}
+
+func (x *Review) GetRating() int32 {
+	if x != nil {
+		return x.Rating
+	}
+	return 0
+}
+
+func (x *Review) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *Review) GetReviewText() string {
+	if x != nil && x.ReviewText != nil {
+		return *x.ReviewText
+	}
+	return ""
+}
+
+func (x *Review) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Review) GetIsVerifiedPurchase() bool {
+	if x != nil {
+		return x.IsVerifiedPurchase
+	}
+	return false
+}
+
+func (x *Review) GetHelpfulCount() int32 {
+	if x != nil {
+		return x.HelpfulCount
+	}
+	return 0
+}
+
+func (x *Review) GetReportedCount() int32 {
+	if x != nil {
+		return x.ReportedCount
+	}
+	return 0
+}
+
+func (x *Review) GetAdminResponse() string {
+	if x != nil && x.AdminResponse != nil {
+		return *x.AdminResponse
+	}
+	return ""
+}
+
+func (x *Review) GetAdminResponseAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AdminResponseAt
+	}
+	return nil
+}
+
+func (x *Review) GetImages() []*ReviewImage {
+	if x != nil {
+		return x.Images
+	}
+	return nil
+}
+
+func (x *Review) GetUserName() string {
+	if x != nil {
+		return x.UserName
+	}
+	return ""
+}
+
+func (x *Review) GetMarkedHelpfulByUser() bool {
+	if x != nil {
+		return x.MarkedHelpfulByUser
+	}
+	return false
+}
+
+func (x *Review) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Review) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+type ReviewImage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ImageId       string                 `protobuf:"bytes,1,opt,name=image_id,proto3" json:"image_id,omitempty"`
+	ReviewId      string                 `protobuf:"bytes,2,opt,name=review_id,proto3" json:"review_id,omitempty"`
+	ImageUrl      string                 `protobuf:"bytes,3,opt,name=image_url,proto3" json:"image_url,omitempty"`
+	DisplayOrder  int32                  `protobuf:"varint,4,opt,name=display_order,proto3" json:"display_order,omitempty"`
+	Width         *int32                 `protobuf:"varint,5,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Height        *int32                 `protobuf:"varint,6,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReviewImage) Reset() {
+	*x = ReviewImage{}
+	mi := &file_http_v3_products_proto_msgTypes[106]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReviewImage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReviewImage) ProtoMessage() {}
+
+func (x *ReviewImage) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[106]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReviewImage.ProtoReflect.Descriptor instead.
+func (*ReviewImage) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{106}
+}
+
+func (x *ReviewImage) GetImageId() string {
+	if x != nil {
+		return x.ImageId
+	}
+	return ""
+}
+
+func (x *ReviewImage) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+func (x *ReviewImage) GetImageUrl() string {
+	if x != nil {
+		return x.ImageUrl
+	}
+	return ""
+}
+
+func (x *ReviewImage) GetDisplayOrder() int32 {
+	if x != nil {
+		return x.DisplayOrder
+	}
+	return 0
+}
+
+func (x *ReviewImage) GetWidth() int32 {
+	if x != nil && x.Width != nil {
+		return *x.Width
+	}
+	return 0
+}
+
+func (x *ReviewImage) GetHeight() int32 {
+	if x != nil && x.Height != nil {
+		return *x.Height
+	}
+	return 0
+}
+
+type ProductRatingSummary struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProductId     string                 `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty"`
+	AverageRating float64                `protobuf:"fixed64,2,opt,name=average_rating,proto3" json:"average_rating,omitempty"`
+	TotalReviews  int32                  `protobuf:"varint,3,opt,name=total_reviews,proto3" json:"total_reviews,omitempty"`
+	TotalRatings  int32                  `protobuf:"varint,4,opt,name=total_ratings,proto3" json:"total_ratings,omitempty"`
+	Rating_5Count int32                  `protobuf:"varint,5,opt,name=rating_5_count,proto3" json:"rating_5_count,omitempty"`
+	Rating_4Count int32                  `protobuf:"varint,6,opt,name=rating_4_count,proto3" json:"rating_4_count,omitempty"`
+	Rating_3Count int32                  `protobuf:"varint,7,opt,name=rating_3_count,proto3" json:"rating_3_count,omitempty"`
+	Rating_2Count int32                  `protobuf:"varint,8,opt,name=rating_2_count,proto3" json:"rating_2_count,omitempty"`
+	Rating_1Count int32                  `protobuf:"varint,9,opt,name=rating_1_count,proto3" json:"rating_1_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductRatingSummary) Reset() {
+	*x = ProductRatingSummary{}
+	mi := &file_http_v3_products_proto_msgTypes[107]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductRatingSummary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductRatingSummary) ProtoMessage() {}
+
+func (x *ProductRatingSummary) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[107]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductRatingSummary.ProtoReflect.Descriptor instead.
+func (*ProductRatingSummary) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{107}
+}
+
+func (x *ProductRatingSummary) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *ProductRatingSummary) GetAverageRating() float64 {
+	if x != nil {
+		return x.AverageRating
+	}
+	return 0
+}
+
+func (x *ProductRatingSummary) GetTotalReviews() int32 {
+	if x != nil {
+		return x.TotalReviews
+	}
+	return 0
+}
+
+func (x *ProductRatingSummary) GetTotalRatings() int32 {
+	if x != nil {
+		return x.TotalRatings
+	}
+	return 0
+}
+
+func (x *ProductRatingSummary) GetRating_5Count() int32 {
+	if x != nil {
+		return x.Rating_5Count
+	}
+	return 0
+}
+
+func (x *ProductRatingSummary) GetRating_4Count() int32 {
+	if x != nil {
+		return x.Rating_4Count
+	}
+	return 0
+}
+
+func (x *ProductRatingSummary) GetRating_3Count() int32 {
+	if x != nil {
+		return x.Rating_3Count
+	}
+	return 0
+}
+
+func (x *ProductRatingSummary) GetRating_2Count() int32 {
+	if x != nil {
+		return x.Rating_2Count
+	}
+	return 0
+}
+
+func (x *ProductRatingSummary) GetRating_1Count() int32 {
+	if x != nil {
+		return x.Rating_1Count
+	}
+	return 0
+}
+
+type CreateReviewRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ProductId string `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"`
+	 
+	Rating int32 `protobuf:"varint,2,opt,name=rating,proto3" json:"rating,omitempty" validate:"required,min=1,max=5"`
+	 
+	Title *string `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty" validate:"omitempty,min=3,max=200"`
+	 
+	ReviewText    *string `protobuf:"bytes,4,opt,name=review_text,proto3,oneof" json:"review_text,omitempty" validate:"omitempty,min=10,max=5000"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateReviewRequest) Reset() {
+	*x = CreateReviewRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[108]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateReviewRequest) ProtoMessage() {}
+
+func (x *CreateReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[108]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateReviewRequest.ProtoReflect.Descriptor instead.
+func (*CreateReviewRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{108}
+}
+
+func (x *CreateReviewRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *CreateReviewRequest) GetRating() int32 {
+	if x != nil {
+		return x.Rating
+	}
+	return 0
+}
+
+func (x *CreateReviewRequest) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *CreateReviewRequest) GetReviewText() string {
+	if x != nil && x.ReviewText != nil {
+		return *x.ReviewText
+	}
+	return ""
+}
+
+type CreateReviewResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Review        *Review                `protobuf:"bytes,3,opt,name=review,proto3" json:"review,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateReviewResponse) Reset() {
+	*x = CreateReviewResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[109]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateReviewResponse) ProtoMessage() {}
+
+func (x *CreateReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[109]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateReviewResponse.ProtoReflect.Descriptor instead.
+func (*CreateReviewResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{109}
+}
+
+func (x *CreateReviewResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *CreateReviewResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *CreateReviewResponse) GetReview() *Review {
+	if x != nil {
+		return x.Review
+	}
+	return nil
+}
+
+type GetProductReviewsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ProductId     string `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"`
+	Page          int32  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32  `protobuf:"varint,3,opt,name=page_size,proto3" json:"page_size,omitempty"`
+	RatingFilter  *int32 `protobuf:"varint,4,opt,name=rating_filter,proto3,oneof" json:"rating_filter,omitempty"`
+	SortBy        string `protobuf:"bytes,5,opt,name=sort_by,proto3" json:"sort_by,omitempty"` // newest, highest_rated, most_helpful
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductReviewsRequest) Reset() {
+	*x = GetProductReviewsRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[110]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductReviewsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductReviewsRequest) ProtoMessage() {}
+
+func (x *GetProductReviewsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[110]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductReviewsRequest.ProtoReflect.Descriptor instead.
+func (*GetProductReviewsRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{110}
+}
+
+func (x *GetProductReviewsRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *GetProductReviewsRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetProductReviewsRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *GetProductReviewsRequest) GetRatingFilter() int32 {
+	if x != nil && x.RatingFilter != nil {
+		return *x.RatingFilter
+	}
+	return 0
+}
+
+func (x *GetProductReviewsRequest) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+type GetProductReviewsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Reviews       []*Review              `protobuf:"bytes,3,rep,name=reviews,proto3" json:"reviews,omitempty"`
+	Pagination    *Pagination            `protobuf:"bytes,4,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductReviewsResponse) Reset() {
+	*x = GetProductReviewsResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[111]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductReviewsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductReviewsResponse) ProtoMessage() {}
+
+func (x *GetProductReviewsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[111]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductReviewsResponse.ProtoReflect.Descriptor instead.
+func (*GetProductReviewsResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{111}
+}
+
+func (x *GetProductReviewsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetProductReviewsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetProductReviewsResponse) GetReviews() []*Review {
+	if x != nil {
+		return x.Reviews
+	}
+	return nil
+}
+
+func (x *GetProductReviewsResponse) GetPagination() *Pagination {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
+type GetProductRatingRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ProductId     string `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductRatingRequest) Reset() {
+	*x = GetProductRatingRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[112]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductRatingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductRatingRequest) ProtoMessage() {}
+
+func (x *GetProductRatingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[112]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductRatingRequest.ProtoReflect.Descriptor instead.
+func (*GetProductRatingRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{112}
+}
+
+func (x *GetProductRatingRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+type GetProductRatingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	RatingSummary *ProductRatingSummary  `protobuf:"bytes,3,opt,name=rating_summary,proto3" json:"rating_summary,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductRatingResponse) Reset() {
+	*x = GetProductRatingResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[113]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductRatingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductRatingResponse) ProtoMessage() {}
+
+func (x *GetProductRatingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[113]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductRatingResponse.ProtoReflect.Descriptor instead.
+func (*GetProductRatingResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{113}
+}
+
+func (x *GetProductRatingResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetProductRatingResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetProductRatingResponse) GetRatingSummary() *ProductRatingSummary {
+	if x != nil {
+		return x.RatingSummary
+	}
+	return nil
+}
+
+type GetUserReviewForProductRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ProductId     string `protobuf:"bytes,1,opt,name=product_id,proto3" json:"product_id,omitempty" validate:"required"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserReviewForProductRequest) Reset() {
+	*x = GetUserReviewForProductRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[114]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserReviewForProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserReviewForProductRequest) ProtoMessage() {}
+
+func (x *GetUserReviewForProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[114]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserReviewForProductRequest.ProtoReflect.Descriptor instead.
+func (*GetUserReviewForProductRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{114}
+}
+
+func (x *GetUserReviewForProductRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+type GetUserReviewForProductResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	HasReviewed   bool                   `protobuf:"varint,3,opt,name=has_reviewed,proto3" json:"has_reviewed,omitempty"`
+	Review        *Review                `protobuf:"bytes,4,opt,name=review,proto3,oneof" json:"review,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserReviewForProductResponse) Reset() {
+	*x = GetUserReviewForProductResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[115]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserReviewForProductResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserReviewForProductResponse) ProtoMessage() {}
+
+func (x *GetUserReviewForProductResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[115]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserReviewForProductResponse.ProtoReflect.Descriptor instead.
+func (*GetUserReviewForProductResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{115}
+}
+
+func (x *GetUserReviewForProductResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetUserReviewForProductResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetUserReviewForProductResponse) GetHasReviewed() bool {
+	if x != nil {
+		return x.HasReviewed
+	}
+	return false
+}
+
+func (x *GetUserReviewForProductResponse) GetReview() *Review {
+	if x != nil {
+		return x.Review
+	}
+	return nil
+}
+
+type UpdateReviewRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewId string `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty" validate:"required"`
+	 
+	Rating        int32   `protobuf:"varint,2,opt,name=rating,proto3" json:"rating,omitempty" validate:"required,min=1,max=5"`
+	Title         *string `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	ReviewText    *string `protobuf:"bytes,4,opt,name=review_text,proto3,oneof" json:"review_text,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateReviewRequest) Reset() {
+	*x = UpdateReviewRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[116]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateReviewRequest) ProtoMessage() {}
+
+func (x *UpdateReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[116]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateReviewRequest.ProtoReflect.Descriptor instead.
+func (*UpdateReviewRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{116}
+}
+
+func (x *UpdateReviewRequest) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+func (x *UpdateReviewRequest) GetRating() int32 {
+	if x != nil {
+		return x.Rating
+	}
+	return 0
+}
+
+func (x *UpdateReviewRequest) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *UpdateReviewRequest) GetReviewText() string {
+	if x != nil && x.ReviewText != nil {
+		return *x.ReviewText
+	}
+	return ""
+}
+
+type UpdateReviewResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Review        *Review                `protobuf:"bytes,3,opt,name=review,proto3" json:"review,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateReviewResponse) Reset() {
+	*x = UpdateReviewResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[117]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateReviewResponse) ProtoMessage() {}
+
+func (x *UpdateReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[117]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateReviewResponse.ProtoReflect.Descriptor instead.
+func (*UpdateReviewResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{117}
+}
+
+func (x *UpdateReviewResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *UpdateReviewResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *UpdateReviewResponse) GetReview() *Review {
+	if x != nil {
+		return x.Review
+	}
+	return nil
+}
+
+type DeleteReviewRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewId      string `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty" validate:"required"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteReviewRequest) Reset() {
+	*x = DeleteReviewRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[118]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteReviewRequest) ProtoMessage() {}
+
+func (x *DeleteReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[118]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteReviewRequest.ProtoReflect.Descriptor instead.
+func (*DeleteReviewRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{118}
+}
+
+func (x *DeleteReviewRequest) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+type DeleteReviewResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteReviewResponse) Reset() {
+	*x = DeleteReviewResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[119]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteReviewResponse) ProtoMessage() {}
+
+func (x *DeleteReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[119]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteReviewResponse.ProtoReflect.Descriptor instead.
+func (*DeleteReviewResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{119}
+}
+
+func (x *DeleteReviewResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *DeleteReviewResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type MarkReviewHelpfulRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewId      string `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty" validate:"required"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MarkReviewHelpfulRequest) Reset() {
+	*x = MarkReviewHelpfulRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[120]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MarkReviewHelpfulRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MarkReviewHelpfulRequest) ProtoMessage() {}
+
+func (x *MarkReviewHelpfulRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[120]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MarkReviewHelpfulRequest.ProtoReflect.Descriptor instead.
+func (*MarkReviewHelpfulRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{120}
+}
+
+func (x *MarkReviewHelpfulRequest) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+type MarkReviewHelpfulResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	HelpfulCount  int32                  `protobuf:"varint,3,opt,name=helpful_count,proto3" json:"helpful_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MarkReviewHelpfulResponse) Reset() {
+	*x = MarkReviewHelpfulResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[121]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MarkReviewHelpfulResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MarkReviewHelpfulResponse) ProtoMessage() {}
+
+func (x *MarkReviewHelpfulResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[121]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MarkReviewHelpfulResponse.ProtoReflect.Descriptor instead.
+func (*MarkReviewHelpfulResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{121}
+}
+
+func (x *MarkReviewHelpfulResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *MarkReviewHelpfulResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *MarkReviewHelpfulResponse) GetHelpfulCount() int32 {
+	if x != nil {
+		return x.HelpfulCount
+	}
+	return 0
+}
+
+type UploadReviewImagesRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewId      string `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty" validate:"required"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UploadReviewImagesRequest) Reset() {
+	*x = UploadReviewImagesRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[122]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UploadReviewImagesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadReviewImagesRequest) ProtoMessage() {}
+
+func (x *UploadReviewImagesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[122]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadReviewImagesRequest.ProtoReflect.Descriptor instead.
+func (*UploadReviewImagesRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{122}
+}
+
+func (x *UploadReviewImagesRequest) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+type UploadReviewImagesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Images        []*ReviewImage         `protobuf:"bytes,3,rep,name=images,proto3" json:"images,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UploadReviewImagesResponse) Reset() {
+	*x = UploadReviewImagesResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[123]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UploadReviewImagesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadReviewImagesResponse) ProtoMessage() {}
+
+func (x *UploadReviewImagesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[123]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadReviewImagesResponse.ProtoReflect.Descriptor instead.
+func (*UploadReviewImagesResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{123}
+}
+
+func (x *UploadReviewImagesResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *UploadReviewImagesResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *UploadReviewImagesResponse) GetImages() []*ReviewImage {
+	if x != nil {
+		return x.Images
+	}
+	return nil
+}
+
+// Admin Messages
+type AdminGetReviewsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,proto3" json:"page_size,omitempty"`
+	Status        *string                `protobuf:"bytes,3,opt,name=status,proto3,oneof" json:"status,omitempty"`
+	ProductId     *string                `protobuf:"bytes,4,opt,name=product_id,proto3,oneof" json:"product_id,omitempty"`
+	SortBy        string                 `protobuf:"bytes,5,opt,name=sort_by,proto3" json:"sort_by,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminGetReviewsRequest) Reset() {
+	*x = AdminGetReviewsRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[124]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminGetReviewsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminGetReviewsRequest) ProtoMessage() {}
+
+func (x *AdminGetReviewsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[124]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminGetReviewsRequest.ProtoReflect.Descriptor instead.
+func (*AdminGetReviewsRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{124}
+}
+
+func (x *AdminGetReviewsRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *AdminGetReviewsRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *AdminGetReviewsRequest) GetStatus() string {
+	if x != nil && x.Status != nil {
+		return *x.Status
+	}
+	return ""
+}
+
+func (x *AdminGetReviewsRequest) GetProductId() string {
+	if x != nil && x.ProductId != nil {
+		return *x.ProductId
+	}
+	return ""
+}
+
+func (x *AdminGetReviewsRequest) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+type AdminGetReviewsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Reviews       []*Review              `protobuf:"bytes,3,rep,name=reviews,proto3" json:"reviews,omitempty"`
+	Pagination    *Pagination            `protobuf:"bytes,4,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminGetReviewsResponse) Reset() {
+	*x = AdminGetReviewsResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[125]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminGetReviewsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminGetReviewsResponse) ProtoMessage() {}
+
+func (x *AdminGetReviewsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[125]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminGetReviewsResponse.ProtoReflect.Descriptor instead.
+func (*AdminGetReviewsResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{125}
+}
+
+func (x *AdminGetReviewsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AdminGetReviewsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *AdminGetReviewsResponse) GetReviews() []*Review {
+	if x != nil {
+		return x.Reviews
+	}
+	return nil
+}
+
+func (x *AdminGetReviewsResponse) GetPagination() *Pagination {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
+type AdminApproveReviewRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewId      string `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty" validate:"required"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminApproveReviewRequest) Reset() {
+	*x = AdminApproveReviewRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[126]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminApproveReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminApproveReviewRequest) ProtoMessage() {}
+
+func (x *AdminApproveReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[126]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminApproveReviewRequest.ProtoReflect.Descriptor instead.
+func (*AdminApproveReviewRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{126}
+}
+
+func (x *AdminApproveReviewRequest) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+type AdminApproveReviewResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminApproveReviewResponse) Reset() {
+	*x = AdminApproveReviewResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[127]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminApproveReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminApproveReviewResponse) ProtoMessage() {}
+
+func (x *AdminApproveReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[127]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminApproveReviewResponse.ProtoReflect.Descriptor instead.
+func (*AdminApproveReviewResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{127}
+}
+
+func (x *AdminApproveReviewResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AdminApproveReviewResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type AdminRejectReviewRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewId      string  `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty" validate:"required"`
+	Reason        *string `protobuf:"bytes,2,opt,name=reason,proto3,oneof" json:"reason,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminRejectReviewRequest) Reset() {
+	*x = AdminRejectReviewRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[128]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminRejectReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminRejectReviewRequest) ProtoMessage() {}
+
+func (x *AdminRejectReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[128]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminRejectReviewRequest.ProtoReflect.Descriptor instead.
+func (*AdminRejectReviewRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{128}
+}
+
+func (x *AdminRejectReviewRequest) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+func (x *AdminRejectReviewRequest) GetReason() string {
+	if x != nil && x.Reason != nil {
+		return *x.Reason
+	}
+	return ""
+}
+
+type AdminRejectReviewResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminRejectReviewResponse) Reset() {
+	*x = AdminRejectReviewResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[129]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminRejectReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminRejectReviewResponse) ProtoMessage() {}
+
+func (x *AdminRejectReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[129]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminRejectReviewResponse.ProtoReflect.Descriptor instead.
+func (*AdminRejectReviewResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{129}
+}
+
+func (x *AdminRejectReviewResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AdminRejectReviewResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type AdminDeleteReviewRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewId      string `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty" validate:"required"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminDeleteReviewRequest) Reset() {
+	*x = AdminDeleteReviewRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[130]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminDeleteReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminDeleteReviewRequest) ProtoMessage() {}
+
+func (x *AdminDeleteReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[130]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminDeleteReviewRequest.ProtoReflect.Descriptor instead.
+func (*AdminDeleteReviewRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{130}
+}
+
+func (x *AdminDeleteReviewRequest) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+type AdminDeleteReviewResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminDeleteReviewResponse) Reset() {
+	*x = AdminDeleteReviewResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[131]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminDeleteReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminDeleteReviewResponse) ProtoMessage() {}
+
+func (x *AdminDeleteReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[131]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminDeleteReviewResponse.ProtoReflect.Descriptor instead.
+func (*AdminDeleteReviewResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{131}
+}
+
+func (x *AdminDeleteReviewResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AdminDeleteReviewResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type AdminRespondToReviewRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewId string `protobuf:"bytes,1,opt,name=review_id,proto3" json:"review_id,omitempty" validate:"required"`
+	 
+	Response      string `protobuf:"bytes,2,opt,name=response,proto3" json:"response,omitempty" validate:"required,min=10,max=1000"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminRespondToReviewRequest) Reset() {
+	*x = AdminRespondToReviewRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[132]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminRespondToReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminRespondToReviewRequest) ProtoMessage() {}
+
+func (x *AdminRespondToReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[132]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminRespondToReviewRequest.ProtoReflect.Descriptor instead.
+func (*AdminRespondToReviewRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{132}
+}
+
+func (x *AdminRespondToReviewRequest) GetReviewId() string {
+	if x != nil {
+		return x.ReviewId
+	}
+	return ""
+}
+
+func (x *AdminRespondToReviewRequest) GetResponse() string {
+	if x != nil {
+		return x.Response
+	}
+	return ""
+}
+
+type AdminRespondToReviewResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminRespondToReviewResponse) Reset() {
+	*x = AdminRespondToReviewResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[133]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminRespondToReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminRespondToReviewResponse) ProtoMessage() {}
+
+func (x *AdminRespondToReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[133]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminRespondToReviewResponse.ProtoReflect.Descriptor instead.
+func (*AdminRespondToReviewResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{133}
+}
+
+func (x *AdminRespondToReviewResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AdminRespondToReviewResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type AdminBulkApproveReviewsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	 
+	ReviewIds     []string `protobuf:"bytes,1,rep,name=review_ids,proto3" json:"review_ids,omitempty" validate:"required,min=1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminBulkApproveReviewsRequest) Reset() {
+	*x = AdminBulkApproveReviewsRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[134]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminBulkApproveReviewsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminBulkApproveReviewsRequest) ProtoMessage() {}
+
+func (x *AdminBulkApproveReviewsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[134]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminBulkApproveReviewsRequest.ProtoReflect.Descriptor instead.
+func (*AdminBulkApproveReviewsRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{134}
+}
+
+func (x *AdminBulkApproveReviewsRequest) GetReviewIds() []string {
+	if x != nil {
+		return x.ReviewIds
+	}
+	return nil
+}
+
+type AdminBulkApproveReviewsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	ApprovedCount int32                  `protobuf:"varint,3,opt,name=approved_count,proto3" json:"approved_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminBulkApproveReviewsResponse) Reset() {
+	*x = AdminBulkApproveReviewsResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[135]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminBulkApproveReviewsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminBulkApproveReviewsResponse) ProtoMessage() {}
+
+func (x *AdminBulkApproveReviewsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[135]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminBulkApproveReviewsResponse.ProtoReflect.Descriptor instead.
+func (*AdminBulkApproveReviewsResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{135}
+}
+
+func (x *AdminBulkApproveReviewsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AdminBulkApproveReviewsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *AdminBulkApproveReviewsResponse) GetApprovedCount() int32 {
+	if x != nil {
+		return x.ApprovedCount
+	}
+	return 0
+}
+
+type AdminGetReviewAnalyticsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProductId     *string                `protobuf:"bytes,1,opt,name=product_id,proto3,oneof" json:"product_id,omitempty"`
+	StartDate     *string                `protobuf:"bytes,2,opt,name=start_date,proto3,oneof" json:"start_date,omitempty"`
+	EndDate       *string                `protobuf:"bytes,3,opt,name=end_date,proto3,oneof" json:"end_date,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminGetReviewAnalyticsRequest) Reset() {
+	*x = AdminGetReviewAnalyticsRequest{}
+	mi := &file_http_v3_products_proto_msgTypes[136]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminGetReviewAnalyticsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminGetReviewAnalyticsRequest) ProtoMessage() {}
+
+func (x *AdminGetReviewAnalyticsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[136]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminGetReviewAnalyticsRequest.ProtoReflect.Descriptor instead.
+func (*AdminGetReviewAnalyticsRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{136}
+}
+
+func (x *AdminGetReviewAnalyticsRequest) GetProductId() string {
+	if x != nil && x.ProductId != nil {
+		return *x.ProductId
+	}
+	return ""
+}
+
+func (x *AdminGetReviewAnalyticsRequest) GetStartDate() string {
+	if x != nil && x.StartDate != nil {
+		return *x.StartDate
+	}
+	return ""
+}
+
+func (x *AdminGetReviewAnalyticsRequest) GetEndDate() string {
+	if x != nil && x.EndDate != nil {
+		return *x.EndDate
+	}
+	return ""
+}
+
+type AdminGetReviewAnalyticsResponse struct {
+	state                   protoimpl.MessageState `protogen:"open.v1"`
+	Success                 bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message                 string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	TotalReviews            int32                  `protobuf:"varint,3,opt,name=total_reviews,proto3" json:"total_reviews,omitempty"`
+	PendingReviews          int32                  `protobuf:"varint,4,opt,name=pending_reviews,proto3" json:"pending_reviews,omitempty"`
+	ApprovedReviews         int32                  `protobuf:"varint,5,opt,name=approved_reviews,proto3" json:"approved_reviews,omitempty"`
+	RejectedReviews         int32                  `protobuf:"varint,6,opt,name=rejected_reviews,proto3" json:"rejected_reviews,omitempty"`
+	AverageRating           float64                `protobuf:"fixed64,7,opt,name=average_rating,proto3" json:"average_rating,omitempty"`
+	RatingDistribution      map[string]int32       `protobuf:"bytes,8,rep,name=rating_distribution,proto3" json:"rating_distribution,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	ReviewsWithImages       int32                  `protobuf:"varint,9,opt,name=reviews_with_images,proto3" json:"reviews_with_images,omitempty"`
+	VerifiedPurchaseReviews int32                  `protobuf:"varint,10,opt,name=verified_purchase_reviews,proto3" json:"verified_purchase_reviews,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *AdminGetReviewAnalyticsResponse) Reset() {
+	*x = AdminGetReviewAnalyticsResponse{}
+	mi := &file_http_v3_products_proto_msgTypes[137]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminGetReviewAnalyticsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminGetReviewAnalyticsResponse) ProtoMessage() {}
+
+func (x *AdminGetReviewAnalyticsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_products_proto_msgTypes[137]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminGetReviewAnalyticsResponse.ProtoReflect.Descriptor instead.
+func (*AdminGetReviewAnalyticsResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_products_proto_rawDescGZIP(), []int{137}
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetTotalReviews() int32 {
+	if x != nil {
+		return x.TotalReviews
+	}
+	return 0
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetPendingReviews() int32 {
+	if x != nil {
+		return x.PendingReviews
+	}
+	return 0
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetApprovedReviews() int32 {
+	if x != nil {
+		return x.ApprovedReviews
+	}
+	return 0
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetRejectedReviews() int32 {
+	if x != nil {
+		return x.RejectedReviews
+	}
+	return 0
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetAverageRating() float64 {
+	if x != nil {
+		return x.AverageRating
+	}
+	return 0
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetRatingDistribution() map[string]int32 {
+	if x != nil {
+		return x.RatingDistribution
+	}
+	return nil
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetReviewsWithImages() int32 {
+	if x != nil {
+		return x.ReviewsWithImages
+	}
+	return 0
+}
+
+func (x *AdminGetReviewAnalyticsResponse) GetVerifiedPurchaseReviews() int32 {
+	if x != nil {
+		return x.VerifiedPurchaseReviews
+	}
+	return 0
 }
 
 var File_http_v3_products_proto protoreflect.FileDescriptor
@@ -5292,20 +8894,22 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"product_id\x18\x01 \x01(\tR\n" +
 	"product_id\"1\n" +
 	"\x15DeleteProductResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"\x88\x02\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"\xad\x02\n" +
 	"\x13ListProductsRequest\x12%\n" +
 	"\vcategory_id\x18\x01 \x01(\tH\x00R\vcategory_id\x88\x01\x01\x12\x1b\n" +
 	"\x06status\x18\x02 \x01(\tH\x01R\x06status\x88\x01\x01\x12!\n" +
 	"\tprice_min\x18\x03 \x01(\x01H\x02R\tprice_min\x88\x01\x01\x12!\n" +
 	"\tprice_max\x18\x04 \x01(\x01H\x03R\tprice_max\x88\x01\x01\x12\x12\n" +
 	"\x04page\x18\x05 \x01(\x05R\x04page\x12\x1c\n" +
-	"\tpage_size\x18\x06 \x01(\x05R\tpage_sizeB\x0e\n" +
+	"\tpage_size\x18\x06 \x01(\x05R\tpage_size\x12\x19\n" +
+	"\x05query\x18\a \x01(\tH\x04R\x05query\x88\x01\x01B\x0e\n" +
 	"\f_category_idB\t\n" +
 	"\a_statusB\f\n" +
 	"\n" +
 	"_price_minB\f\n" +
 	"\n" +
-	"_price_max\"\xbb\x01\n" +
+	"_price_maxB\b\n" +
+	"\x06_query\"\xbb\x01\n" +
 	"\x14ListProductsResponse\x12@\n" +
 	"\bproducts\x18\x01 \x03(\v2$.smart_kart.products.http.v3.ProductR\bproducts\x12G\n" +
 	"\n" +
@@ -5492,7 +9096,51 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x0ereservation_id\x18\x02 \x01(\tR\x0ereservation_id\"I\n" +
 	"\x14ReleaseStockResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x17\n" +
-	"\amessage\x18\x02 \x01(\tR\x06errors\"<\n" +
+	"\amessage\x18\x02 \x01(\tR\x06errors\"J\n" +
+	"\x17GetLowStockCountRequest\x12!\n" +
+	"\tthreshold\x18\x01 \x01(\x05H\x00R\tthreshold\x88\x01\x01B\f\n" +
+	"\n" +
+	"_threshold\"h\n" +
+	"\x18GetLowStockCountResponse\x12\x14\n" +
+	"\x05count\x18\x01 \x01(\x03R\x05count\x12\x1c\n" +
+	"\tthreshold\x18\x02 \x01(\x05R\tthreshold\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"\x9c\x01\n" +
+	"\fCategoryStat\x12 \n" +
+	"\vcategory_id\x18\x01 \x01(\tR\vcategory_id\x12$\n" +
+	"\rcategory_name\x18\x02 \x01(\tR\rcategory_name\x12$\n" +
+	"\rproduct_count\x18\x03 \x01(\x03R\rproduct_count\x12\x1e\n" +
+	"\n" +
+	"percentage\x18\x04 \x01(\x01R\n" +
+	"percentage\"\x1a\n" +
+	"\x18GetDashboardStatsRequest\"\xb0\x03\n" +
+	"\x19GetDashboardStatsResponse\x12&\n" +
+	"\x0etotal_products\x18\x01 \x01(\x03R\x0etotal_products\x12(\n" +
+	"\x0flow_stock_count\x18\x02 \x01(\x03R\x0flow_stock_count\x12.\n" +
+	"\x12out_of_stock_count\x18\x03 \x01(\x03R\x12out_of_stock_count\x12(\n" +
+	"\x0finventory_value\x18\x04 \x01(\x01R\x0finventory_value\x12*\n" +
+	"\x10potential_profit\x18\x05 \x01(\x01R\x10potential_profit\x12&\n" +
+	"\x0eaverage_margin\x18\x06 \x01(\x01R\x0eaverage_margin\x12Q\n" +
+	"\x0ecategory_stats\x18\a \x03(\v2).smart_kart.products.http.v3.CategoryStatR\x0ecategory_stats\x12&\n" +
+	"\x0ecurrent_profit\x18\b \x01(\x01R\x0ecurrent_profit\x12\x18\n" +
+	"\amessage\x18\t \x01(\tR\amessage\"<\n" +
+	"\x18GetProductPricingRequest\x12 \n" +
+	"\vproduct_ids\x18\x01 \x03(\tR\vproduct_ids\"\xfd\x01\n" +
+	"\x19GetProductPricingResponse\x12]\n" +
+	"\apricing\x18\x01 \x03(\v2C.smart_kart.products.http.v3.GetProductPricingResponse.PricingEntryR\apricing\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x1ag\n" +
+	"\fPricingEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12A\n" +
+	"\x05value\x18\x02 \x01(\v2+.smart_kart.products.http.v3.ProductPricingR\x05value:\x028\x01\"\xa4\x01\n" +
+	"\x0eProductPricing\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\x12$\n" +
+	"\rselling_price\x18\x02 \x01(\x01R\rselling_price\x12\x1e\n" +
+	"\n" +
+	"cost_price\x18\x03 \x01(\x01R\n" +
+	"cost_price\x12\x10\n" +
+	"\x03mrp\x18\x04 \x01(\x01R\x03mrp\x12\x1a\n" +
+	"\btax_rate\x18\x05 \x01(\x01R\btax_rate\"<\n" +
 	"\x1aUploadProductImagesRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
@@ -5668,7 +9316,313 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\b_section\"\x8b\x01\n" +
 	"\x1bUploadCarouselImageResponse\x12R\n" +
 	"\x0ecarousel_image\x18\x01 \x01(\v2*.smart_kart.products.http.v3.CarouselImageR\x0ecarousel_image\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xd0,\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xf4\x01\n" +
+	"\bWishlist\x12 \n" +
+	"\vwishlist_id\x18\x01 \x01(\tR\vwishlist_id\x12\x1d\n" +
+	"\auser_id\x18\x02 \x01(\tH\x00R\auser_id\x88\x01\x01\x12?\n" +
+	"\x05items\x18\x03 \x03(\v2).smart_kart.products.http.v3.WishlistItemR\x05items\x12\x1e\n" +
+	"\n" +
+	"item_count\x18\x04 \x01(\x05R\n" +
+	"item_count\x12:\n" +
+	"\n" +
+	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"created_atB\n" +
+	"\n" +
+	"\b_user_id\"\xc8\x05\n" +
+	"\fWishlistItem\x12*\n" +
+	"\x10wishlist_item_id\x18\x01 \x01(\tR\x10wishlist_item_id\x12 \n" +
+	"\vwishlist_id\x18\x02 \x01(\tR\vwishlist_id\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x03 \x01(\tR\n" +
+	"product_id\x12\"\n" +
+	"\fproduct_name\x18\x04 \x01(\tR\fproduct_name\x12\x14\n" +
+	"\x05price\x18\x05 \x01(\x01R\x05price\x12!\n" +
+	"\timage_url\x18\x06 \x01(\tH\x00R\timage_url\x88\x01\x01\x12\"\n" +
+	"\fstock_status\x18\a \x01(\tR\fstock_status\x12.\n" +
+	"\x12available_quantity\x18\b \x01(\x05R\x12available_quantity\x126\n" +
+	"\badded_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\badded_at\x121\n" +
+	"\x11price_at_addition\x18\n" +
+	" \x01(\x01H\x01R\x11price_at_addition\x88\x01\x01\x12K\n" +
+	"\x10last_price_check\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x02R\x10last_price_check\x88\x01\x01\x125\n" +
+	"\x13price_change_amount\x18\f \x01(\x01H\x03R\x13price_change_amount\x88\x01\x01\x12=\n" +
+	"\x17price_change_percentage\x18\r \x01(\x01H\x04R\x17price_change_percentage\x88\x01\x01B\f\n" +
+	"\n" +
+	"_image_urlB\x14\n" +
+	"\x12_price_at_additionB\x13\n" +
+	"\x11_last_price_checkB\x16\n" +
+	"\x14_price_change_amountB\x1a\n" +
+	"\x18_price_change_percentage\"\x8f\x02\n" +
+	"\x12GetWishlistRequest\x12#\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tH\x00R\n" +
+	"session_id\x88\x01\x01\x12\x1d\n" +
+	"\asort_by\x18\x02 \x01(\tH\x01R\asort_by\x88\x01\x01\x12!\n" +
+	"\tmin_price\x18\x03 \x01(\x01H\x02R\tmin_price\x88\x01\x01\x12!\n" +
+	"\tmax_price\x18\x04 \x01(\x01H\x03R\tmax_price\x88\x01\x01\x12'\n" +
+	"\fsearch_query\x18\x05 \x01(\tH\x04R\fsearch_query\x88\x01\x01B\r\n" +
+	"\v_session_idB\n" +
+	"\n" +
+	"\b_sort_byB\f\n" +
+	"\n" +
+	"_min_priceB\f\n" +
+	"\n" +
+	"_max_priceB\x0f\n" +
+	"\r_search_query\"r\n" +
+	"\x13GetWishlistResponse\x12A\n" +
+	"\bwishlist\x18\x01 \x01(\v2%.smart_kart.products.http.v3.WishlistR\bwishlist\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"j\n" +
+	"\x14AddToWishlistRequest\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\x12#\n" +
+	"\n" +
+	"session_id\x18\x02 \x01(\tH\x00R\n" +
+	"session_id\x88\x01\x01B\r\n" +
+	"\v_session_id\"\x8a\x01\n" +
+	"\x15AddToWishlistResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
+	"\x04item\x18\x03 \x01(\v2).smart_kart.products.http.v3.WishlistItemR\x04item\"G\n" +
+	"\x19RemoveFromWishlistRequest\x12*\n" +
+	"\x10wishlist_item_id\x18\x01 \x01(\tR\x10wishlist_item_id\"P\n" +
+	"\x1aRemoveFromWishlistResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"J\n" +
+	"\x14ClearWishlistRequest\x12#\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tH\x00R\n" +
+	"session_id\x88\x01\x01B\r\n" +
+	"\v_session_id\"K\n" +
+	"\x15ClearWishlistResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"i\n" +
+	"\x13IsInWishlistRequest\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\x12#\n" +
+	"\n" +
+	"session_id\x18\x02 \x01(\tH\x00R\n" +
+	"session_id\x88\x01\x01B\r\n" +
+	"\v_session_id\"~\n" +
+	"\x14IsInWishlistResponse\x12 \n" +
+	"\vin_wishlist\x18\x01 \x01(\bR\vin_wishlist\x12/\n" +
+	"\x10wishlist_item_id\x18\x02 \x01(\tH\x00R\x10wishlist_item_id\x88\x01\x01B\x13\n" +
+	"\x11_wishlist_item_id\"6\n" +
+	"\x14MergeWishlistRequest\x12\x1e\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\n" +
+	"session_id\"o\n" +
+	"\x15MergeWishlistResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\"\n" +
+	"\fmerged_items\x18\x03 \x01(\x05R\fmerged_items\"[\n" +
+	"\x11MoveToCartRequest\x12*\n" +
+	"\x10wishlist_item_id\x18\x01 \x01(\tR\x10wishlist_item_id\x12\x1a\n" +
+	"\bquantity\x18\x02 \x01(\x05R\bquantity\"H\n" +
+	"\x12MoveToCartResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xd1\x06\n" +
+	"\x06Review\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x02 \x01(\tR\n" +
+	"product_id\x12\x18\n" +
+	"\auser_id\x18\x03 \x01(\tR\auser_id\x12\x1f\n" +
+	"\border_id\x18\x04 \x01(\tH\x00R\border_id\x88\x01\x01\x12\x16\n" +
+	"\x06rating\x18\x05 \x01(\x05R\x06rating\x12\x19\n" +
+	"\x05title\x18\x06 \x01(\tH\x01R\x05title\x88\x01\x01\x12%\n" +
+	"\vreview_text\x18\a \x01(\tH\x02R\vreview_text\x88\x01\x01\x12\x16\n" +
+	"\x06status\x18\b \x01(\tR\x06status\x122\n" +
+	"\x14is_verified_purchase\x18\t \x01(\bR\x14is_verified_purchase\x12$\n" +
+	"\rhelpful_count\x18\n" +
+	" \x01(\x05R\rhelpful_count\x12&\n" +
+	"\x0ereported_count\x18\v \x01(\x05R\x0ereported_count\x12+\n" +
+	"\x0eadmin_response\x18\f \x01(\tH\x03R\x0eadmin_response\x88\x01\x01\x12M\n" +
+	"\x11admin_response_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x11admin_response_at\x88\x01\x01\x12@\n" +
+	"\x06images\x18\x0e \x03(\v2(.smart_kart.products.http.v3.ReviewImageR\x06images\x12\x1c\n" +
+	"\tuser_name\x18\x0f \x01(\tR\tuser_name\x126\n" +
+	"\x16marked_helpful_by_user\x18\x10 \x01(\bR\x16marked_helpful_by_user\x12:\n" +
+	"\n" +
+	"created_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"created_at\x12:\n" +
+	"\n" +
+	"updated_at\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"updated_atB\v\n" +
+	"\t_order_idB\b\n" +
+	"\x06_titleB\x0e\n" +
+	"\f_review_textB\x11\n" +
+	"\x0f_admin_responseB\x14\n" +
+	"\x12_admin_response_at\"\xd8\x01\n" +
+	"\vReviewImage\x12\x1a\n" +
+	"\bimage_id\x18\x01 \x01(\tR\bimage_id\x12\x1c\n" +
+	"\treview_id\x18\x02 \x01(\tR\treview_id\x12\x1c\n" +
+	"\timage_url\x18\x03 \x01(\tR\timage_url\x12$\n" +
+	"\rdisplay_order\x18\x04 \x01(\x05R\rdisplay_order\x12\x19\n" +
+	"\x05width\x18\x05 \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\x06 \x01(\x05H\x01R\x06height\x88\x01\x01B\b\n" +
+	"\x06_widthB\t\n" +
+	"\a_height\"\xf2\x02\n" +
+	"\x14ProductRatingSummary\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\x12&\n" +
+	"\x0eaverage_rating\x18\x02 \x01(\x01R\x0eaverage_rating\x12$\n" +
+	"\rtotal_reviews\x18\x03 \x01(\x05R\rtotal_reviews\x12$\n" +
+	"\rtotal_ratings\x18\x04 \x01(\x05R\rtotal_ratings\x12&\n" +
+	"\x0erating_5_count\x18\x05 \x01(\x05R\x0erating_5_count\x12&\n" +
+	"\x0erating_4_count\x18\x06 \x01(\x05R\x0erating_4_count\x12&\n" +
+	"\x0erating_3_count\x18\a \x01(\x05R\x0erating_3_count\x12&\n" +
+	"\x0erating_2_count\x18\b \x01(\x05R\x0erating_2_count\x12&\n" +
+	"\x0erating_1_count\x18\t \x01(\x05R\x0erating_1_count\"\xa9\x01\n" +
+	"\x13CreateReviewRequest\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\x12\x16\n" +
+	"\x06rating\x18\x02 \x01(\x05R\x06rating\x12\x19\n" +
+	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12%\n" +
+	"\vreview_text\x18\x04 \x01(\tH\x01R\vreview_text\x88\x01\x01B\b\n" +
+	"\x06_titleB\x0e\n" +
+	"\f_review_text\"\x87\x01\n" +
+	"\x14CreateReviewResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\x06review\x18\x03 \x01(\v2#.smart_kart.products.http.v3.ReviewR\x06review\"\xc3\x01\n" +
+	"\x18GetProductReviewsRequest\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1c\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\tpage_size\x12)\n" +
+	"\rrating_filter\x18\x04 \x01(\x05H\x00R\rrating_filter\x88\x01\x01\x12\x18\n" +
+	"\asort_by\x18\x05 \x01(\tR\asort_byB\x10\n" +
+	"\x0e_rating_filter\"\xd7\x01\n" +
+	"\x19GetProductReviewsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
+	"\areviews\x18\x03 \x03(\v2#.smart_kart.products.http.v3.ReviewR\areviews\x12G\n" +
+	"\n" +
+	"pagination\x18\x04 \x01(\v2'.smart_kart.products.http.v3.PaginationR\n" +
+	"pagination\"9\n" +
+	"\x17GetProductRatingRequest\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\"\xa9\x01\n" +
+	"\x18GetProductRatingResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12Y\n" +
+	"\x0erating_summary\x18\x03 \x01(\v21.smart_kart.products.http.v3.ProductRatingSummaryR\x0erating_summary\"@\n" +
+	"\x1eGetUserReviewForProductRequest\x12\x1e\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\n" +
+	"product_id\"\xc6\x01\n" +
+	"\x1fGetUserReviewForProductResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\"\n" +
+	"\fhas_reviewed\x18\x03 \x01(\bR\fhas_reviewed\x12@\n" +
+	"\x06review\x18\x04 \x01(\v2#.smart_kart.products.http.v3.ReviewH\x00R\x06review\x88\x01\x01B\t\n" +
+	"\a_review\"\xa7\x01\n" +
+	"\x13UpdateReviewRequest\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\x12\x16\n" +
+	"\x06rating\x18\x02 \x01(\x05R\x06rating\x12\x19\n" +
+	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12%\n" +
+	"\vreview_text\x18\x04 \x01(\tH\x01R\vreview_text\x88\x01\x01B\b\n" +
+	"\x06_titleB\x0e\n" +
+	"\f_review_text\"\x87\x01\n" +
+	"\x14UpdateReviewResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\x06review\x18\x03 \x01(\v2#.smart_kart.products.http.v3.ReviewR\x06review\"3\n" +
+	"\x13DeleteReviewRequest\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\"J\n" +
+	"\x14DeleteReviewResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"8\n" +
+	"\x18MarkReviewHelpfulRequest\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\"u\n" +
+	"\x19MarkReviewHelpfulResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12$\n" +
+	"\rhelpful_count\x18\x03 \x01(\x05R\rhelpful_count\"9\n" +
+	"\x19UploadReviewImagesRequest\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\"\x92\x01\n" +
+	"\x1aUploadReviewImagesResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12@\n" +
+	"\x06images\x18\x03 \x03(\v2(.smart_kart.products.http.v3.ReviewImageR\x06images\"\xc0\x01\n" +
+	"\x16AdminGetReviewsRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1c\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\tpage_size\x12\x1b\n" +
+	"\x06status\x18\x03 \x01(\tH\x00R\x06status\x88\x01\x01\x12#\n" +
+	"\n" +
+	"product_id\x18\x04 \x01(\tH\x01R\n" +
+	"product_id\x88\x01\x01\x12\x18\n" +
+	"\asort_by\x18\x05 \x01(\tR\asort_byB\t\n" +
+	"\a_statusB\r\n" +
+	"\v_product_id\"\xd5\x01\n" +
+	"\x17AdminGetReviewsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
+	"\areviews\x18\x03 \x03(\v2#.smart_kart.products.http.v3.ReviewR\areviews\x12G\n" +
+	"\n" +
+	"pagination\x18\x04 \x01(\v2'.smart_kart.products.http.v3.PaginationR\n" +
+	"pagination\"9\n" +
+	"\x19AdminApproveReviewRequest\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\"P\n" +
+	"\x1aAdminApproveReviewResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"`\n" +
+	"\x18AdminRejectReviewRequest\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\x12\x1b\n" +
+	"\x06reason\x18\x02 \x01(\tH\x00R\x06reason\x88\x01\x01B\t\n" +
+	"\a_reason\"O\n" +
+	"\x19AdminRejectReviewResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"8\n" +
+	"\x18AdminDeleteReviewRequest\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\"O\n" +
+	"\x19AdminDeleteReviewResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"W\n" +
+	"\x1bAdminRespondToReviewRequest\x12\x1c\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\x12\x1a\n" +
+	"\bresponse\x18\x02 \x01(\tR\bresponse\"R\n" +
+	"\x1cAdminRespondToReviewResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"@\n" +
+	"\x1eAdminBulkApproveReviewsRequest\x12\x1e\n" +
+	"\n" +
+	"review_ids\x18\x01 \x03(\tR\n" +
+	"review_ids\"}\n" +
+	"\x1fAdminBulkApproveReviewsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12&\n" +
+	"\x0eapproved_count\x18\x03 \x01(\x05R\x0eapproved_count\"\xb6\x01\n" +
+	"\x1eAdminGetReviewAnalyticsRequest\x12#\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tH\x00R\n" +
+	"product_id\x88\x01\x01\x12#\n" +
+	"\n" +
+	"start_date\x18\x02 \x01(\tH\x01R\n" +
+	"start_date\x88\x01\x01\x12\x1f\n" +
+	"\bend_date\x18\x03 \x01(\tH\x02R\bend_date\x88\x01\x01B\r\n" +
+	"\v_product_idB\r\n" +
+	"\v_start_dateB\v\n" +
+	"\t_end_date\"\xe5\x04\n" +
+	"\x1fAdminGetReviewAnalyticsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12$\n" +
+	"\rtotal_reviews\x18\x03 \x01(\x05R\rtotal_reviews\x12(\n" +
+	"\x0fpending_reviews\x18\x04 \x01(\x05R\x0fpending_reviews\x12*\n" +
+	"\x10approved_reviews\x18\x05 \x01(\x05R\x10approved_reviews\x12*\n" +
+	"\x10rejected_reviews\x18\x06 \x01(\x05R\x10rejected_reviews\x12&\n" +
+	"\x0eaverage_rating\x18\a \x01(\x01R\x0eaverage_rating\x12\x86\x01\n" +
+	"\x13rating_distribution\x18\b \x03(\v2T.smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntryR\x13rating_distribution\x120\n" +
+	"\x13reviews_with_images\x18\t \x01(\x05R\x13reviews_with_images\x12<\n" +
+	"\x19verified_purchase_reviews\x18\n" +
+	" \x01(\x05R\x19verified_purchase_reviews\x1aE\n" +
+	"\x17RatingDistributionEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x012\xc0M\n" +
 	"\x13ProductsHTTPService\x12\x8f\x01\n" +
 	"\rCreateProduct\x121.smart_kart.products.http.v3.CreateProductRequest\x1a2.smart_kart.products.http.v3.CreateProductResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v3/products\x12\x90\x01\n" +
 	"\n" +
@@ -5690,7 +9644,10 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\n" +
 	"CheckStock\x12..smart_kart.products.http.v3.CheckStockRequest\x1a/.smart_kart.products.http.v3.CheckStockResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v3/inventory/check\x12\x95\x01\n" +
 	"\fReserveStock\x120.smart_kart.products.http.v3.ReserveStockRequest\x1a1.smart_kart.products.http.v3.ReserveStockResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/inventory/reserve\x12\x95\x01\n" +
-	"\fReleaseStock\x120.smart_kart.products.http.v3.ReleaseStockRequest\x1a1.smart_kart.products.http.v3.ReleaseStockResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/inventory/release\x12\xbc\x01\n" +
+	"\fReleaseStock\x120.smart_kart.products.http.v3.ReleaseStockRequest\x1a1.smart_kart.products.http.v3.ReleaseStockResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/inventory/release\x12\xa6\x01\n" +
+	"\x10GetLowStockCount\x124.smart_kart.products.http.v3.GetLowStockCountRequest\x1a5.smart_kart.products.http.v3.GetLowStockCountResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v3/inventory/low-stock-count\x12\x9f\x01\n" +
+	"\x11GetDashboardStats\x125.smart_kart.products.http.v3.GetDashboardStatsRequest\x1a6.smart_kart.products.http.v3.GetDashboardStatsResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v3/dashboard/stats\x12\xa3\x01\n" +
+	"\x11GetProductPricing\x125.smart_kart.products.http.v3.GetProductPricingRequest\x1a6.smart_kart.products.http.v3.GetProductPricingResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v3/products/pricing\x12\xbc\x01\n" +
 	"\x13UploadProductImages\x127.smart_kart.products.http.v3.UploadProductImagesRequest\x1a8.smart_kart.products.http.v3.UploadProductImagesResponse\"2\x82\xd3\xe4\x93\x02,:\x01*\"'/v3/products/{product_id}/images/upload\x12\xa9\x01\n" +
 	"\x10GetProductImages\x124.smart_kart.products.http.v3.GetProductImagesRequest\x1a5.smart_kart.products.http.v3.GetProductImagesResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v3/products/{product_id}/images\x12\xc0\x01\n" +
 	"\x14ReorderProductImages\x128.smart_kart.products.http.v3.ReorderProductImagesRequest\x1a9.smart_kart.products.http.v3.ReorderProductImagesResponse\"3\x82\xd3\xe4\x93\x02-:\x01*\x1a(/v3/products/{product_id}/images/reorder\x12\xbc\x01\n" +
@@ -5705,7 +9662,30 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x13UpdateCarouselImage\x127.smart_kart.products.http.v3.UpdateCarouselImageRequest\x1a8.smart_kart.products.http.v3.UpdateCarouselImageResponse\",\x82\xd3\xe4\x93\x02&:\x01*\x1a!/v3/carousel-images/{carousel_id}\x12\xb3\x01\n" +
 	"\x13DeleteCarouselImage\x127.smart_kart.products.http.v3.DeleteCarouselImageRequest\x1a8.smart_kart.products.http.v3.DeleteCarouselImageResponse\")\x82\xd3\xe4\x93\x02#*!/v3/carousel-images/{carousel_id}\x12\xb6\x01\n" +
 	"\x15ReorderCarouselImages\x129.smart_kart.products.http.v3.ReorderCarouselImagesRequest\x1a:.smart_kart.products.http.v3.ReorderCarouselImagesResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\x1a\x1b/v3/carousel-images/reorder\x12\xaf\x01\n" +
-	"\x13UploadCarouselImage\x127.smart_kart.products.http.v3.UploadCarouselImageRequest\x1a8.smart_kart.products.http.v3.UploadCarouselImageResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/carousel-images/uploadB\xfb\x01\n" +
+	"\x13UploadCarouselImage\x127.smart_kart.products.http.v3.UploadCarouselImageRequest\x1a8.smart_kart.products.http.v3.UploadCarouselImageResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/carousel-images/upload\x12\x86\x01\n" +
+	"\vGetWishlist\x12/.smart_kart.products.http.v3.GetWishlistRequest\x1a0.smart_kart.products.http.v3.GetWishlistResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v3/wishlist\x12\x93\x01\n" +
+	"\rAddToWishlist\x121.smart_kart.products.http.v3.AddToWishlistRequest\x1a2.smart_kart.products.http.v3.AddToWishlistResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v3/wishlist/add\x12\xb4\x01\n" +
+	"\x12RemoveFromWishlist\x126.smart_kart.products.http.v3.RemoveFromWishlistRequest\x1a7.smart_kart.products.http.v3.RemoveFromWishlistResponse\"-\x82\xd3\xe4\x93\x02'*%/v3/wishlist/items/{wishlist_item_id}\x12\x8c\x01\n" +
+	"\rClearWishlist\x121.smart_kart.products.http.v3.ClearWishlistRequest\x1a2.smart_kart.products.http.v3.ClearWishlistResponse\"\x14\x82\xd3\xe4\x93\x02\x0e*\f/v3/wishlist\x12\x9c\x01\n" +
+	"\fIsInWishlist\x120.smart_kart.products.http.v3.IsInWishlistRequest\x1a1.smart_kart.products.http.v3.IsInWishlistResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/v3/wishlist/check/{product_id}\x12\x95\x01\n" +
+	"\rMergeWishlist\x121.smart_kart.products.http.v3.MergeWishlistRequest\x1a2.smart_kart.products.http.v3.MergeWishlistResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v3/wishlist/merge\x12\x93\x01\n" +
+	"\n" +
+	"MoveToCart\x12..smart_kart.products.http.v3.MoveToCartRequest\x1a/.smart_kart.products.http.v3.MoveToCartResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v3/wishlist/move-to-cart\x12\xa1\x01\n" +
+	"\fCreateReview\x120.smart_kart.products.http.v3.CreateReviewRequest\x1a1.smart_kart.products.http.v3.CreateReviewResponse\",\x82\xd3\xe4\x93\x02&:\x01*\"!/v3/products/{product_id}/reviews\x12\xad\x01\n" +
+	"\x11GetProductReviews\x125.smart_kart.products.http.v3.GetProductReviewsRequest\x1a6.smart_kart.products.http.v3.GetProductReviewsResponse\")\x82\xd3\xe4\x93\x02#\x12!/v3/products/{product_id}/reviews\x12\xa9\x01\n" +
+	"\x10GetProductRating\x124.smart_kart.products.http.v3.GetProductRatingRequest\x1a5.smart_kart.products.http.v3.GetProductRatingResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v3/products/{product_id}/rating\x12\xc1\x01\n" +
+	"\x17GetUserReviewForProduct\x12;.smart_kart.products.http.v3.GetUserReviewForProductRequest\x1a<.smart_kart.products.http.v3.GetUserReviewForProductResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v3/products/{product_id}/my-review\x12\x97\x01\n" +
+	"\fUpdateReview\x120.smart_kart.products.http.v3.UpdateReviewRequest\x1a1.smart_kart.products.http.v3.UpdateReviewResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\x1a\x17/v3/reviews/{review_id}\x12\x94\x01\n" +
+	"\fDeleteReview\x120.smart_kart.products.http.v3.DeleteReviewRequest\x1a1.smart_kart.products.http.v3.DeleteReviewResponse\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/v3/reviews/{review_id}\x12\xae\x01\n" +
+	"\x11MarkReviewHelpful\x125.smart_kart.products.http.v3.MarkReviewHelpfulRequest\x1a6.smart_kart.products.http.v3.MarkReviewHelpfulResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v3/reviews/{review_id}/helpful\x12\xb0\x01\n" +
+	"\x12UploadReviewImages\x126.smart_kart.products.http.v3.UploadReviewImagesRequest\x1a7.smart_kart.products.http.v3.UploadReviewImagesResponse\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/v3/reviews/{review_id}/images\x12\x97\x01\n" +
+	"\x0fAdminGetReviews\x123.smart_kart.products.http.v3.AdminGetReviewsRequest\x1a4.smart_kart.products.http.v3.AdminGetReviewsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v3/admin/reviews\x12\xb7\x01\n" +
+	"\x12AdminApproveReview\x126.smart_kart.products.http.v3.AdminApproveReviewRequest\x1a7.smart_kart.products.http.v3.AdminApproveReviewResponse\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/v3/admin/reviews/{review_id}/approve\x12\xb3\x01\n" +
+	"\x11AdminRejectReview\x125.smart_kart.products.http.v3.AdminRejectReviewRequest\x1a6.smart_kart.products.http.v3.AdminRejectReviewResponse\"/\x82\xd3\xe4\x93\x02):\x01*\"$/v3/admin/reviews/{review_id}/reject\x12\xa9\x01\n" +
+	"\x11AdminDeleteReview\x125.smart_kart.products.http.v3.AdminDeleteReviewRequest\x1a6.smart_kart.products.http.v3.AdminDeleteReviewResponse\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/v3/admin/reviews/{review_id}\x12\xbd\x01\n" +
+	"\x14AdminRespondToReview\x128.smart_kart.products.http.v3.AdminRespondToReviewRequest\x1a9.smart_kart.products.http.v3.AdminRespondToReviewResponse\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/v3/admin/reviews/{review_id}/respond\x12\xbf\x01\n" +
+	"\x17AdminBulkApproveReviews\x12;.smart_kart.products.http.v3.AdminBulkApproveReviewsRequest\x1a<.smart_kart.products.http.v3.AdminBulkApproveReviewsResponse\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/v3/admin/reviews/bulk-approve\x12\xb9\x01\n" +
+	"\x17AdminGetReviewAnalytics\x12;.smart_kart.products.http.v3.AdminGetReviewAnalyticsRequest\x1a<.smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v3/admin/reviews/analyticsB\xfb\x01\n" +
 	"\x1fcom.smart_kart.products.http.v3B\rProductsProtoP\x01Z>github.com/smart-kart/proto/gen/go/products/http/v3;productsv3\xa2\x02\x03SPH\xaa\x02\x1aSmartKart.Products.Http.V3\xca\x02\x1aSmartKart\\Products\\Http\\V3\xe2\x02&SmartKart\\Products\\Http\\V3\\GPBMetadata\xea\x02\x1dSmartKart::Products::Http::V3b\x06proto3"
 
 var (
@@ -5720,7 +9700,7 @@ func file_http_v3_products_proto_rawDescGZIP() []byte {
 	return file_http_v3_products_proto_rawDescData
 }
 
-var file_http_v3_products_proto_msgTypes = make([]protoimpl.MessageInfo, 81)
+var file_http_v3_products_proto_msgTypes = make([]protoimpl.MessageInfo, 140)
 var file_http_v3_products_proto_goTypes = []any{
 	(*Pagination)(nil),                      // 0: smart_kart.products.http.v3.Pagination
 	(*ProductImage)(nil),                    // 1: smart_kart.products.http.v3.ProductImage
@@ -5768,170 +9748,302 @@ var file_http_v3_products_proto_goTypes = []any{
 	(*ReserveStockResponse)(nil),            // 43: smart_kart.products.http.v3.ReserveStockResponse
 	(*ReleaseStockRequest)(nil),             // 44: smart_kart.products.http.v3.ReleaseStockRequest
 	(*ReleaseStockResponse)(nil),            // 45: smart_kart.products.http.v3.ReleaseStockResponse
-	(*UploadProductImagesRequest)(nil),      // 46: smart_kart.products.http.v3.UploadProductImagesRequest
-	(*UploadProductImagesResponse)(nil),     // 47: smart_kart.products.http.v3.UploadProductImagesResponse
-	(*GetProductImagesRequest)(nil),         // 48: smart_kart.products.http.v3.GetProductImagesRequest
-	(*GetProductImagesResponse)(nil),        // 49: smart_kart.products.http.v3.GetProductImagesResponse
-	(*ImageOrder)(nil),                      // 50: smart_kart.products.http.v3.ImageOrder
-	(*ReorderProductImagesRequest)(nil),     // 51: smart_kart.products.http.v3.ReorderProductImagesRequest
-	(*ReorderProductImagesResponse)(nil),    // 52: smart_kart.products.http.v3.ReorderProductImagesResponse
-	(*SetPrimaryImageRequest)(nil),          // 53: smart_kart.products.http.v3.SetPrimaryImageRequest
-	(*SetPrimaryImageResponse)(nil),         // 54: smart_kart.products.http.v3.SetPrimaryImageResponse
-	(*DeleteProductImageRequest)(nil),       // 55: smart_kart.products.http.v3.DeleteProductImageRequest
-	(*DeleteProductImageResponse)(nil),      // 56: smart_kart.products.http.v3.DeleteProductImageResponse
-	(*FeaturedProduct)(nil),                 // 57: smart_kart.products.http.v3.FeaturedProduct
-	(*ListFeaturedProductsRequest)(nil),     // 58: smart_kart.products.http.v3.ListFeaturedProductsRequest
-	(*ListFeaturedProductsResponse)(nil),    // 59: smart_kart.products.http.v3.ListFeaturedProductsResponse
-	(*AddFeaturedProductRequest)(nil),       // 60: smart_kart.products.http.v3.AddFeaturedProductRequest
-	(*AddFeaturedProductResponse)(nil),      // 61: smart_kart.products.http.v3.AddFeaturedProductResponse
-	(*RemoveFeaturedProductRequest)(nil),    // 62: smart_kart.products.http.v3.RemoveFeaturedProductRequest
-	(*RemoveFeaturedProductResponse)(nil),   // 63: smart_kart.products.http.v3.RemoveFeaturedProductResponse
-	(*ReorderFeaturedProductsRequest)(nil),  // 64: smart_kart.products.http.v3.ReorderFeaturedProductsRequest
-	(*FeaturedOrder)(nil),                   // 65: smart_kart.products.http.v3.FeaturedOrder
-	(*ReorderFeaturedProductsResponse)(nil), // 66: smart_kart.products.http.v3.ReorderFeaturedProductsResponse
-	(*CarouselImage)(nil),                   // 67: smart_kart.products.http.v3.CarouselImage
-	(*ListCarouselImagesRequest)(nil),       // 68: smart_kart.products.http.v3.ListCarouselImagesRequest
-	(*ListCarouselImagesResponse)(nil),      // 69: smart_kart.products.http.v3.ListCarouselImagesResponse
-	(*CreateCarouselImageRequest)(nil),      // 70: smart_kart.products.http.v3.CreateCarouselImageRequest
-	(*CreateCarouselImageResponse)(nil),     // 71: smart_kart.products.http.v3.CreateCarouselImageResponse
-	(*UpdateCarouselImageRequest)(nil),      // 72: smart_kart.products.http.v3.UpdateCarouselImageRequest
-	(*UpdateCarouselImageResponse)(nil),     // 73: smart_kart.products.http.v3.UpdateCarouselImageResponse
-	(*DeleteCarouselImageRequest)(nil),      // 74: smart_kart.products.http.v3.DeleteCarouselImageRequest
-	(*DeleteCarouselImageResponse)(nil),     // 75: smart_kart.products.http.v3.DeleteCarouselImageResponse
-	(*ReorderCarouselImagesRequest)(nil),    // 76: smart_kart.products.http.v3.ReorderCarouselImagesRequest
-	(*CarouselOrder)(nil),                   // 77: smart_kart.products.http.v3.CarouselOrder
-	(*ReorderCarouselImagesResponse)(nil),   // 78: smart_kart.products.http.v3.ReorderCarouselImagesResponse
-	(*UploadCarouselImageRequest)(nil),      // 79: smart_kart.products.http.v3.UploadCarouselImageRequest
-	(*UploadCarouselImageResponse)(nil),     // 80: smart_kart.products.http.v3.UploadCarouselImageResponse
-	(*timestamppb.Timestamp)(nil),           // 81: google.protobuf.Timestamp
+	(*GetLowStockCountRequest)(nil),         // 46: smart_kart.products.http.v3.GetLowStockCountRequest
+	(*GetLowStockCountResponse)(nil),        // 47: smart_kart.products.http.v3.GetLowStockCountResponse
+	(*CategoryStat)(nil),                    // 48: smart_kart.products.http.v3.CategoryStat
+	(*GetDashboardStatsRequest)(nil),        // 49: smart_kart.products.http.v3.GetDashboardStatsRequest
+	(*GetDashboardStatsResponse)(nil),       // 50: smart_kart.products.http.v3.GetDashboardStatsResponse
+	(*GetProductPricingRequest)(nil),        // 51: smart_kart.products.http.v3.GetProductPricingRequest
+	(*GetProductPricingResponse)(nil),       // 52: smart_kart.products.http.v3.GetProductPricingResponse
+	(*ProductPricing)(nil),                  // 53: smart_kart.products.http.v3.ProductPricing
+	(*UploadProductImagesRequest)(nil),      // 54: smart_kart.products.http.v3.UploadProductImagesRequest
+	(*UploadProductImagesResponse)(nil),     // 55: smart_kart.products.http.v3.UploadProductImagesResponse
+	(*GetProductImagesRequest)(nil),         // 56: smart_kart.products.http.v3.GetProductImagesRequest
+	(*GetProductImagesResponse)(nil),        // 57: smart_kart.products.http.v3.GetProductImagesResponse
+	(*ImageOrder)(nil),                      // 58: smart_kart.products.http.v3.ImageOrder
+	(*ReorderProductImagesRequest)(nil),     // 59: smart_kart.products.http.v3.ReorderProductImagesRequest
+	(*ReorderProductImagesResponse)(nil),    // 60: smart_kart.products.http.v3.ReorderProductImagesResponse
+	(*SetPrimaryImageRequest)(nil),          // 61: smart_kart.products.http.v3.SetPrimaryImageRequest
+	(*SetPrimaryImageResponse)(nil),         // 62: smart_kart.products.http.v3.SetPrimaryImageResponse
+	(*DeleteProductImageRequest)(nil),       // 63: smart_kart.products.http.v3.DeleteProductImageRequest
+	(*DeleteProductImageResponse)(nil),      // 64: smart_kart.products.http.v3.DeleteProductImageResponse
+	(*FeaturedProduct)(nil),                 // 65: smart_kart.products.http.v3.FeaturedProduct
+	(*ListFeaturedProductsRequest)(nil),     // 66: smart_kart.products.http.v3.ListFeaturedProductsRequest
+	(*ListFeaturedProductsResponse)(nil),    // 67: smart_kart.products.http.v3.ListFeaturedProductsResponse
+	(*AddFeaturedProductRequest)(nil),       // 68: smart_kart.products.http.v3.AddFeaturedProductRequest
+	(*AddFeaturedProductResponse)(nil),      // 69: smart_kart.products.http.v3.AddFeaturedProductResponse
+	(*RemoveFeaturedProductRequest)(nil),    // 70: smart_kart.products.http.v3.RemoveFeaturedProductRequest
+	(*RemoveFeaturedProductResponse)(nil),   // 71: smart_kart.products.http.v3.RemoveFeaturedProductResponse
+	(*ReorderFeaturedProductsRequest)(nil),  // 72: smart_kart.products.http.v3.ReorderFeaturedProductsRequest
+	(*FeaturedOrder)(nil),                   // 73: smart_kart.products.http.v3.FeaturedOrder
+	(*ReorderFeaturedProductsResponse)(nil), // 74: smart_kart.products.http.v3.ReorderFeaturedProductsResponse
+	(*CarouselImage)(nil),                   // 75: smart_kart.products.http.v3.CarouselImage
+	(*ListCarouselImagesRequest)(nil),       // 76: smart_kart.products.http.v3.ListCarouselImagesRequest
+	(*ListCarouselImagesResponse)(nil),      // 77: smart_kart.products.http.v3.ListCarouselImagesResponse
+	(*CreateCarouselImageRequest)(nil),      // 78: smart_kart.products.http.v3.CreateCarouselImageRequest
+	(*CreateCarouselImageResponse)(nil),     // 79: smart_kart.products.http.v3.CreateCarouselImageResponse
+	(*UpdateCarouselImageRequest)(nil),      // 80: smart_kart.products.http.v3.UpdateCarouselImageRequest
+	(*UpdateCarouselImageResponse)(nil),     // 81: smart_kart.products.http.v3.UpdateCarouselImageResponse
+	(*DeleteCarouselImageRequest)(nil),      // 82: smart_kart.products.http.v3.DeleteCarouselImageRequest
+	(*DeleteCarouselImageResponse)(nil),     // 83: smart_kart.products.http.v3.DeleteCarouselImageResponse
+	(*ReorderCarouselImagesRequest)(nil),    // 84: smart_kart.products.http.v3.ReorderCarouselImagesRequest
+	(*CarouselOrder)(nil),                   // 85: smart_kart.products.http.v3.CarouselOrder
+	(*ReorderCarouselImagesResponse)(nil),   // 86: smart_kart.products.http.v3.ReorderCarouselImagesResponse
+	(*UploadCarouselImageRequest)(nil),      // 87: smart_kart.products.http.v3.UploadCarouselImageRequest
+	(*UploadCarouselImageResponse)(nil),     // 88: smart_kart.products.http.v3.UploadCarouselImageResponse
+	(*Wishlist)(nil),                        // 89: smart_kart.products.http.v3.Wishlist
+	(*WishlistItem)(nil),                    // 90: smart_kart.products.http.v3.WishlistItem
+	(*GetWishlistRequest)(nil),              // 91: smart_kart.products.http.v3.GetWishlistRequest
+	(*GetWishlistResponse)(nil),             // 92: smart_kart.products.http.v3.GetWishlistResponse
+	(*AddToWishlistRequest)(nil),            // 93: smart_kart.products.http.v3.AddToWishlistRequest
+	(*AddToWishlistResponse)(nil),           // 94: smart_kart.products.http.v3.AddToWishlistResponse
+	(*RemoveFromWishlistRequest)(nil),       // 95: smart_kart.products.http.v3.RemoveFromWishlistRequest
+	(*RemoveFromWishlistResponse)(nil),      // 96: smart_kart.products.http.v3.RemoveFromWishlistResponse
+	(*ClearWishlistRequest)(nil),            // 97: smart_kart.products.http.v3.ClearWishlistRequest
+	(*ClearWishlistResponse)(nil),           // 98: smart_kart.products.http.v3.ClearWishlistResponse
+	(*IsInWishlistRequest)(nil),             // 99: smart_kart.products.http.v3.IsInWishlistRequest
+	(*IsInWishlistResponse)(nil),            // 100: smart_kart.products.http.v3.IsInWishlistResponse
+	(*MergeWishlistRequest)(nil),            // 101: smart_kart.products.http.v3.MergeWishlistRequest
+	(*MergeWishlistResponse)(nil),           // 102: smart_kart.products.http.v3.MergeWishlistResponse
+	(*MoveToCartRequest)(nil),               // 103: smart_kart.products.http.v3.MoveToCartRequest
+	(*MoveToCartResponse)(nil),              // 104: smart_kart.products.http.v3.MoveToCartResponse
+	(*Review)(nil),                          // 105: smart_kart.products.http.v3.Review
+	(*ReviewImage)(nil),                     // 106: smart_kart.products.http.v3.ReviewImage
+	(*ProductRatingSummary)(nil),            // 107: smart_kart.products.http.v3.ProductRatingSummary
+	(*CreateReviewRequest)(nil),             // 108: smart_kart.products.http.v3.CreateReviewRequest
+	(*CreateReviewResponse)(nil),            // 109: smart_kart.products.http.v3.CreateReviewResponse
+	(*GetProductReviewsRequest)(nil),        // 110: smart_kart.products.http.v3.GetProductReviewsRequest
+	(*GetProductReviewsResponse)(nil),       // 111: smart_kart.products.http.v3.GetProductReviewsResponse
+	(*GetProductRatingRequest)(nil),         // 112: smart_kart.products.http.v3.GetProductRatingRequest
+	(*GetProductRatingResponse)(nil),        // 113: smart_kart.products.http.v3.GetProductRatingResponse
+	(*GetUserReviewForProductRequest)(nil),  // 114: smart_kart.products.http.v3.GetUserReviewForProductRequest
+	(*GetUserReviewForProductResponse)(nil), // 115: smart_kart.products.http.v3.GetUserReviewForProductResponse
+	(*UpdateReviewRequest)(nil),             // 116: smart_kart.products.http.v3.UpdateReviewRequest
+	(*UpdateReviewResponse)(nil),            // 117: smart_kart.products.http.v3.UpdateReviewResponse
+	(*DeleteReviewRequest)(nil),             // 118: smart_kart.products.http.v3.DeleteReviewRequest
+	(*DeleteReviewResponse)(nil),            // 119: smart_kart.products.http.v3.DeleteReviewResponse
+	(*MarkReviewHelpfulRequest)(nil),        // 120: smart_kart.products.http.v3.MarkReviewHelpfulRequest
+	(*MarkReviewHelpfulResponse)(nil),       // 121: smart_kart.products.http.v3.MarkReviewHelpfulResponse
+	(*UploadReviewImagesRequest)(nil),       // 122: smart_kart.products.http.v3.UploadReviewImagesRequest
+	(*UploadReviewImagesResponse)(nil),      // 123: smart_kart.products.http.v3.UploadReviewImagesResponse
+	(*AdminGetReviewsRequest)(nil),          // 124: smart_kart.products.http.v3.AdminGetReviewsRequest
+	(*AdminGetReviewsResponse)(nil),         // 125: smart_kart.products.http.v3.AdminGetReviewsResponse
+	(*AdminApproveReviewRequest)(nil),       // 126: smart_kart.products.http.v3.AdminApproveReviewRequest
+	(*AdminApproveReviewResponse)(nil),      // 127: smart_kart.products.http.v3.AdminApproveReviewResponse
+	(*AdminRejectReviewRequest)(nil),        // 128: smart_kart.products.http.v3.AdminRejectReviewRequest
+	(*AdminRejectReviewResponse)(nil),       // 129: smart_kart.products.http.v3.AdminRejectReviewResponse
+	(*AdminDeleteReviewRequest)(nil),        // 130: smart_kart.products.http.v3.AdminDeleteReviewRequest
+	(*AdminDeleteReviewResponse)(nil),       // 131: smart_kart.products.http.v3.AdminDeleteReviewResponse
+	(*AdminRespondToReviewRequest)(nil),     // 132: smart_kart.products.http.v3.AdminRespondToReviewRequest
+	(*AdminRespondToReviewResponse)(nil),    // 133: smart_kart.products.http.v3.AdminRespondToReviewResponse
+	(*AdminBulkApproveReviewsRequest)(nil),  // 134: smart_kart.products.http.v3.AdminBulkApproveReviewsRequest
+	(*AdminBulkApproveReviewsResponse)(nil), // 135: smart_kart.products.http.v3.AdminBulkApproveReviewsResponse
+	(*AdminGetReviewAnalyticsRequest)(nil),  // 136: smart_kart.products.http.v3.AdminGetReviewAnalyticsRequest
+	(*AdminGetReviewAnalyticsResponse)(nil), // 137: smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse
+	nil,                                     // 138: smart_kart.products.http.v3.GetProductPricingResponse.PricingEntry
+	nil,                                     // 139: smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntry
+	(*timestamppb.Timestamp)(nil),           // 140: google.protobuf.Timestamp
 }
 var file_http_v3_products_proto_depIdxs = []int32{
-	81, // 0: smart_kart.products.http.v3.ProductImage.created_at:type_name -> google.protobuf.Timestamp
-	81, // 1: smart_kart.products.http.v3.ProductImage.updated_at:type_name -> google.protobuf.Timestamp
-	81, // 2: smart_kart.products.http.v3.Product.created_at:type_name -> google.protobuf.Timestamp
-	81, // 3: smart_kart.products.http.v3.Product.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 4: smart_kart.products.http.v3.Product.images:type_name -> smart_kart.products.http.v3.ProductImage
-	2,  // 5: smart_kart.products.http.v3.CreateProductResponse.product:type_name -> smart_kart.products.http.v3.Product
-	2,  // 6: smart_kart.products.http.v3.GetProductResponse.product:type_name -> smart_kart.products.http.v3.Product
-	2,  // 7: smart_kart.products.http.v3.UpdateProductResponse.product:type_name -> smart_kart.products.http.v3.Product
-	2,  // 8: smart_kart.products.http.v3.ListProductsResponse.products:type_name -> smart_kart.products.http.v3.Product
-	0,  // 9: smart_kart.products.http.v3.ListProductsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
-	2,  // 10: smart_kart.products.http.v3.SearchProductsResponse.products:type_name -> smart_kart.products.http.v3.Product
-	0,  // 11: smart_kart.products.http.v3.SearchProductsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
-	2,  // 12: smart_kart.products.http.v3.UpdateProductStatusResponse.product:type_name -> smart_kart.products.http.v3.Product
-	2,  // 13: smart_kart.products.http.v3.GetProductBySKUResponse.product:type_name -> smart_kart.products.http.v3.Product
-	81, // 14: smart_kart.products.http.v3.Category.created_at:type_name -> google.protobuf.Timestamp
-	81, // 15: smart_kart.products.http.v3.Category.updated_at:type_name -> google.protobuf.Timestamp
-	19, // 16: smart_kart.products.http.v3.Category.subcategories:type_name -> smart_kart.products.http.v3.Category
-	19, // 17: smart_kart.products.http.v3.CreateCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
-	19, // 18: smart_kart.products.http.v3.GetCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
-	19, // 19: smart_kart.products.http.v3.UpdateCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
-	19, // 20: smart_kart.products.http.v3.ListCategoriesResponse.categories:type_name -> smart_kart.products.http.v3.Category
-	0,  // 21: smart_kart.products.http.v3.ListCategoriesResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
-	81, // 22: smart_kart.products.http.v3.Inventory.last_restocked_at:type_name -> google.protobuf.Timestamp
-	81, // 23: smart_kart.products.http.v3.Inventory.created_at:type_name -> google.protobuf.Timestamp
-	81, // 24: smart_kart.products.http.v3.Inventory.updated_at:type_name -> google.protobuf.Timestamp
-	30, // 25: smart_kart.products.http.v3.UpdateInventoryResponse.inventory:type_name -> smart_kart.products.http.v3.Inventory
-	30, // 26: smart_kart.products.http.v3.GetInventoryResponse.inventory:type_name -> smart_kart.products.http.v3.Inventory
-	35, // 27: smart_kart.products.http.v3.BulkUpdateInventoryRequest.updates:type_name -> smart_kart.products.http.v3.InventoryUpdate
-	30, // 28: smart_kart.products.http.v3.BulkUpdateInventoryResponse.inventories:type_name -> smart_kart.products.http.v3.Inventory
-	38, // 29: smart_kart.products.http.v3.CheckStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
-	40, // 30: smart_kart.products.http.v3.CheckStockResponse.items:type_name -> smart_kart.products.http.v3.StockAvailability
-	38, // 31: smart_kart.products.http.v3.ReserveStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
-	38, // 32: smart_kart.products.http.v3.ReleaseStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
-	1,  // 33: smart_kart.products.http.v3.UploadProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
-	1,  // 34: smart_kart.products.http.v3.GetProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
-	50, // 35: smart_kart.products.http.v3.ReorderProductImagesRequest.orders:type_name -> smart_kart.products.http.v3.ImageOrder
-	1,  // 36: smart_kart.products.http.v3.ReorderProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
-	1,  // 37: smart_kart.products.http.v3.SetPrimaryImageResponse.image:type_name -> smart_kart.products.http.v3.ProductImage
-	81, // 38: smart_kart.products.http.v3.FeaturedProduct.created_at:type_name -> google.protobuf.Timestamp
-	81, // 39: smart_kart.products.http.v3.FeaturedProduct.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 40: smart_kart.products.http.v3.FeaturedProduct.product:type_name -> smart_kart.products.http.v3.Product
-	57, // 41: smart_kart.products.http.v3.ListFeaturedProductsResponse.featured_products:type_name -> smart_kart.products.http.v3.FeaturedProduct
-	57, // 42: smart_kart.products.http.v3.AddFeaturedProductResponse.featured_product:type_name -> smart_kart.products.http.v3.FeaturedProduct
-	65, // 43: smart_kart.products.http.v3.ReorderFeaturedProductsRequest.orders:type_name -> smart_kart.products.http.v3.FeaturedOrder
-	57, // 44: smart_kart.products.http.v3.ReorderFeaturedProductsResponse.featured_products:type_name -> smart_kart.products.http.v3.FeaturedProduct
-	81, // 45: smart_kart.products.http.v3.CarouselImage.created_at:type_name -> google.protobuf.Timestamp
-	81, // 46: smart_kart.products.http.v3.CarouselImage.updated_at:type_name -> google.protobuf.Timestamp
-	67, // 47: smart_kart.products.http.v3.ListCarouselImagesResponse.carousel_images:type_name -> smart_kart.products.http.v3.CarouselImage
-	67, // 48: smart_kart.products.http.v3.CreateCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
-	67, // 49: smart_kart.products.http.v3.UpdateCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
-	77, // 50: smart_kart.products.http.v3.ReorderCarouselImagesRequest.orders:type_name -> smart_kart.products.http.v3.CarouselOrder
-	67, // 51: smart_kart.products.http.v3.ReorderCarouselImagesResponse.carousel_images:type_name -> smart_kart.products.http.v3.CarouselImage
-	67, // 52: smart_kart.products.http.v3.UploadCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
-	3,  // 53: smart_kart.products.http.v3.ProductsHTTPService.CreateProduct:input_type -> smart_kart.products.http.v3.CreateProductRequest
-	5,  // 54: smart_kart.products.http.v3.ProductsHTTPService.GetProduct:input_type -> smart_kart.products.http.v3.GetProductRequest
-	7,  // 55: smart_kart.products.http.v3.ProductsHTTPService.UpdateProduct:input_type -> smart_kart.products.http.v3.UpdateProductRequest
-	9,  // 56: smart_kart.products.http.v3.ProductsHTTPService.DeleteProduct:input_type -> smart_kart.products.http.v3.DeleteProductRequest
-	11, // 57: smart_kart.products.http.v3.ProductsHTTPService.ListProducts:input_type -> smart_kart.products.http.v3.ListProductsRequest
-	13, // 58: smart_kart.products.http.v3.ProductsHTTPService.SearchProducts:input_type -> smart_kart.products.http.v3.SearchProductsRequest
-	15, // 59: smart_kart.products.http.v3.ProductsHTTPService.UpdateProductStatus:input_type -> smart_kart.products.http.v3.UpdateProductStatusRequest
-	17, // 60: smart_kart.products.http.v3.ProductsHTTPService.GetProductBySKU:input_type -> smart_kart.products.http.v3.GetProductBySKURequest
-	20, // 61: smart_kart.products.http.v3.ProductsHTTPService.CreateCategory:input_type -> smart_kart.products.http.v3.CreateCategoryRequest
-	22, // 62: smart_kart.products.http.v3.ProductsHTTPService.GetCategory:input_type -> smart_kart.products.http.v3.GetCategoryRequest
-	24, // 63: smart_kart.products.http.v3.ProductsHTTPService.UpdateCategory:input_type -> smart_kart.products.http.v3.UpdateCategoryRequest
-	26, // 64: smart_kart.products.http.v3.ProductsHTTPService.DeleteCategory:input_type -> smart_kart.products.http.v3.DeleteCategoryRequest
-	28, // 65: smart_kart.products.http.v3.ProductsHTTPService.ListCategories:input_type -> smart_kart.products.http.v3.ListCategoriesRequest
-	31, // 66: smart_kart.products.http.v3.ProductsHTTPService.UpdateInventory:input_type -> smart_kart.products.http.v3.UpdateInventoryRequest
-	33, // 67: smart_kart.products.http.v3.ProductsHTTPService.GetInventory:input_type -> smart_kart.products.http.v3.GetInventoryRequest
-	36, // 68: smart_kart.products.http.v3.ProductsHTTPService.BulkUpdateInventory:input_type -> smart_kart.products.http.v3.BulkUpdateInventoryRequest
-	39, // 69: smart_kart.products.http.v3.ProductsHTTPService.CheckStock:input_type -> smart_kart.products.http.v3.CheckStockRequest
-	42, // 70: smart_kart.products.http.v3.ProductsHTTPService.ReserveStock:input_type -> smart_kart.products.http.v3.ReserveStockRequest
-	44, // 71: smart_kart.products.http.v3.ProductsHTTPService.ReleaseStock:input_type -> smart_kart.products.http.v3.ReleaseStockRequest
-	46, // 72: smart_kart.products.http.v3.ProductsHTTPService.UploadProductImages:input_type -> smart_kart.products.http.v3.UploadProductImagesRequest
-	48, // 73: smart_kart.products.http.v3.ProductsHTTPService.GetProductImages:input_type -> smart_kart.products.http.v3.GetProductImagesRequest
-	51, // 74: smart_kart.products.http.v3.ProductsHTTPService.ReorderProductImages:input_type -> smart_kart.products.http.v3.ReorderProductImagesRequest
-	53, // 75: smart_kart.products.http.v3.ProductsHTTPService.SetPrimaryImage:input_type -> smart_kart.products.http.v3.SetPrimaryImageRequest
-	55, // 76: smart_kart.products.http.v3.ProductsHTTPService.DeleteProductImage:input_type -> smart_kart.products.http.v3.DeleteProductImageRequest
-	58, // 77: smart_kart.products.http.v3.ProductsHTTPService.ListFeaturedProducts:input_type -> smart_kart.products.http.v3.ListFeaturedProductsRequest
-	60, // 78: smart_kart.products.http.v3.ProductsHTTPService.AddFeaturedProduct:input_type -> smart_kart.products.http.v3.AddFeaturedProductRequest
-	62, // 79: smart_kart.products.http.v3.ProductsHTTPService.RemoveFeaturedProduct:input_type -> smart_kart.products.http.v3.RemoveFeaturedProductRequest
-	64, // 80: smart_kart.products.http.v3.ProductsHTTPService.ReorderFeaturedProducts:input_type -> smart_kart.products.http.v3.ReorderFeaturedProductsRequest
-	68, // 81: smart_kart.products.http.v3.ProductsHTTPService.ListCarouselImages:input_type -> smart_kart.products.http.v3.ListCarouselImagesRequest
-	70, // 82: smart_kart.products.http.v3.ProductsHTTPService.CreateCarouselImage:input_type -> smart_kart.products.http.v3.CreateCarouselImageRequest
-	72, // 83: smart_kart.products.http.v3.ProductsHTTPService.UpdateCarouselImage:input_type -> smart_kart.products.http.v3.UpdateCarouselImageRequest
-	74, // 84: smart_kart.products.http.v3.ProductsHTTPService.DeleteCarouselImage:input_type -> smart_kart.products.http.v3.DeleteCarouselImageRequest
-	76, // 85: smart_kart.products.http.v3.ProductsHTTPService.ReorderCarouselImages:input_type -> smart_kart.products.http.v3.ReorderCarouselImagesRequest
-	79, // 86: smart_kart.products.http.v3.ProductsHTTPService.UploadCarouselImage:input_type -> smart_kart.products.http.v3.UploadCarouselImageRequest
-	4,  // 87: smart_kart.products.http.v3.ProductsHTTPService.CreateProduct:output_type -> smart_kart.products.http.v3.CreateProductResponse
-	6,  // 88: smart_kart.products.http.v3.ProductsHTTPService.GetProduct:output_type -> smart_kart.products.http.v3.GetProductResponse
-	8,  // 89: smart_kart.products.http.v3.ProductsHTTPService.UpdateProduct:output_type -> smart_kart.products.http.v3.UpdateProductResponse
-	10, // 90: smart_kart.products.http.v3.ProductsHTTPService.DeleteProduct:output_type -> smart_kart.products.http.v3.DeleteProductResponse
-	12, // 91: smart_kart.products.http.v3.ProductsHTTPService.ListProducts:output_type -> smart_kart.products.http.v3.ListProductsResponse
-	14, // 92: smart_kart.products.http.v3.ProductsHTTPService.SearchProducts:output_type -> smart_kart.products.http.v3.SearchProductsResponse
-	16, // 93: smart_kart.products.http.v3.ProductsHTTPService.UpdateProductStatus:output_type -> smart_kart.products.http.v3.UpdateProductStatusResponse
-	18, // 94: smart_kart.products.http.v3.ProductsHTTPService.GetProductBySKU:output_type -> smart_kart.products.http.v3.GetProductBySKUResponse
-	21, // 95: smart_kart.products.http.v3.ProductsHTTPService.CreateCategory:output_type -> smart_kart.products.http.v3.CreateCategoryResponse
-	23, // 96: smart_kart.products.http.v3.ProductsHTTPService.GetCategory:output_type -> smart_kart.products.http.v3.GetCategoryResponse
-	25, // 97: smart_kart.products.http.v3.ProductsHTTPService.UpdateCategory:output_type -> smart_kart.products.http.v3.UpdateCategoryResponse
-	27, // 98: smart_kart.products.http.v3.ProductsHTTPService.DeleteCategory:output_type -> smart_kart.products.http.v3.DeleteCategoryResponse
-	29, // 99: smart_kart.products.http.v3.ProductsHTTPService.ListCategories:output_type -> smart_kart.products.http.v3.ListCategoriesResponse
-	32, // 100: smart_kart.products.http.v3.ProductsHTTPService.UpdateInventory:output_type -> smart_kart.products.http.v3.UpdateInventoryResponse
-	34, // 101: smart_kart.products.http.v3.ProductsHTTPService.GetInventory:output_type -> smart_kart.products.http.v3.GetInventoryResponse
-	37, // 102: smart_kart.products.http.v3.ProductsHTTPService.BulkUpdateInventory:output_type -> smart_kart.products.http.v3.BulkUpdateInventoryResponse
-	41, // 103: smart_kart.products.http.v3.ProductsHTTPService.CheckStock:output_type -> smart_kart.products.http.v3.CheckStockResponse
-	43, // 104: smart_kart.products.http.v3.ProductsHTTPService.ReserveStock:output_type -> smart_kart.products.http.v3.ReserveStockResponse
-	45, // 105: smart_kart.products.http.v3.ProductsHTTPService.ReleaseStock:output_type -> smart_kart.products.http.v3.ReleaseStockResponse
-	47, // 106: smart_kart.products.http.v3.ProductsHTTPService.UploadProductImages:output_type -> smart_kart.products.http.v3.UploadProductImagesResponse
-	49, // 107: smart_kart.products.http.v3.ProductsHTTPService.GetProductImages:output_type -> smart_kart.products.http.v3.GetProductImagesResponse
-	52, // 108: smart_kart.products.http.v3.ProductsHTTPService.ReorderProductImages:output_type -> smart_kart.products.http.v3.ReorderProductImagesResponse
-	54, // 109: smart_kart.products.http.v3.ProductsHTTPService.SetPrimaryImage:output_type -> smart_kart.products.http.v3.SetPrimaryImageResponse
-	56, // 110: smart_kart.products.http.v3.ProductsHTTPService.DeleteProductImage:output_type -> smart_kart.products.http.v3.DeleteProductImageResponse
-	59, // 111: smart_kart.products.http.v3.ProductsHTTPService.ListFeaturedProducts:output_type -> smart_kart.products.http.v3.ListFeaturedProductsResponse
-	61, // 112: smart_kart.products.http.v3.ProductsHTTPService.AddFeaturedProduct:output_type -> smart_kart.products.http.v3.AddFeaturedProductResponse
-	63, // 113: smart_kart.products.http.v3.ProductsHTTPService.RemoveFeaturedProduct:output_type -> smart_kart.products.http.v3.RemoveFeaturedProductResponse
-	66, // 114: smart_kart.products.http.v3.ProductsHTTPService.ReorderFeaturedProducts:output_type -> smart_kart.products.http.v3.ReorderFeaturedProductsResponse
-	69, // 115: smart_kart.products.http.v3.ProductsHTTPService.ListCarouselImages:output_type -> smart_kart.products.http.v3.ListCarouselImagesResponse
-	71, // 116: smart_kart.products.http.v3.ProductsHTTPService.CreateCarouselImage:output_type -> smart_kart.products.http.v3.CreateCarouselImageResponse
-	73, // 117: smart_kart.products.http.v3.ProductsHTTPService.UpdateCarouselImage:output_type -> smart_kart.products.http.v3.UpdateCarouselImageResponse
-	75, // 118: smart_kart.products.http.v3.ProductsHTTPService.DeleteCarouselImage:output_type -> smart_kart.products.http.v3.DeleteCarouselImageResponse
-	78, // 119: smart_kart.products.http.v3.ProductsHTTPService.ReorderCarouselImages:output_type -> smart_kart.products.http.v3.ReorderCarouselImagesResponse
-	80, // 120: smart_kart.products.http.v3.ProductsHTTPService.UploadCarouselImage:output_type -> smart_kart.products.http.v3.UploadCarouselImageResponse
-	87, // [87:121] is the sub-list for method output_type
-	53, // [53:87] is the sub-list for method input_type
-	53, // [53:53] is the sub-list for extension type_name
-	53, // [53:53] is the sub-list for extension extendee
-	0,  // [0:53] is the sub-list for field type_name
+	140, // 0: smart_kart.products.http.v3.ProductImage.created_at:type_name -> google.protobuf.Timestamp
+	140, // 1: smart_kart.products.http.v3.ProductImage.updated_at:type_name -> google.protobuf.Timestamp
+	140, // 2: smart_kart.products.http.v3.Product.created_at:type_name -> google.protobuf.Timestamp
+	140, // 3: smart_kart.products.http.v3.Product.updated_at:type_name -> google.protobuf.Timestamp
+	1,   // 4: smart_kart.products.http.v3.Product.images:type_name -> smart_kart.products.http.v3.ProductImage
+	2,   // 5: smart_kart.products.http.v3.CreateProductResponse.product:type_name -> smart_kart.products.http.v3.Product
+	2,   // 6: smart_kart.products.http.v3.GetProductResponse.product:type_name -> smart_kart.products.http.v3.Product
+	2,   // 7: smart_kart.products.http.v3.UpdateProductResponse.product:type_name -> smart_kart.products.http.v3.Product
+	2,   // 8: smart_kart.products.http.v3.ListProductsResponse.products:type_name -> smart_kart.products.http.v3.Product
+	0,   // 9: smart_kart.products.http.v3.ListProductsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
+	2,   // 10: smart_kart.products.http.v3.SearchProductsResponse.products:type_name -> smart_kart.products.http.v3.Product
+	0,   // 11: smart_kart.products.http.v3.SearchProductsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
+	2,   // 12: smart_kart.products.http.v3.UpdateProductStatusResponse.product:type_name -> smart_kart.products.http.v3.Product
+	2,   // 13: smart_kart.products.http.v3.GetProductBySKUResponse.product:type_name -> smart_kart.products.http.v3.Product
+	140, // 14: smart_kart.products.http.v3.Category.created_at:type_name -> google.protobuf.Timestamp
+	140, // 15: smart_kart.products.http.v3.Category.updated_at:type_name -> google.protobuf.Timestamp
+	19,  // 16: smart_kart.products.http.v3.Category.subcategories:type_name -> smart_kart.products.http.v3.Category
+	19,  // 17: smart_kart.products.http.v3.CreateCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
+	19,  // 18: smart_kart.products.http.v3.GetCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
+	19,  // 19: smart_kart.products.http.v3.UpdateCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
+	19,  // 20: smart_kart.products.http.v3.ListCategoriesResponse.categories:type_name -> smart_kart.products.http.v3.Category
+	0,   // 21: smart_kart.products.http.v3.ListCategoriesResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
+	140, // 22: smart_kart.products.http.v3.Inventory.last_restocked_at:type_name -> google.protobuf.Timestamp
+	140, // 23: smart_kart.products.http.v3.Inventory.created_at:type_name -> google.protobuf.Timestamp
+	140, // 24: smart_kart.products.http.v3.Inventory.updated_at:type_name -> google.protobuf.Timestamp
+	30,  // 25: smart_kart.products.http.v3.UpdateInventoryResponse.inventory:type_name -> smart_kart.products.http.v3.Inventory
+	30,  // 26: smart_kart.products.http.v3.GetInventoryResponse.inventory:type_name -> smart_kart.products.http.v3.Inventory
+	35,  // 27: smart_kart.products.http.v3.BulkUpdateInventoryRequest.updates:type_name -> smart_kart.products.http.v3.InventoryUpdate
+	30,  // 28: smart_kart.products.http.v3.BulkUpdateInventoryResponse.inventories:type_name -> smart_kart.products.http.v3.Inventory
+	38,  // 29: smart_kart.products.http.v3.CheckStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
+	40,  // 30: smart_kart.products.http.v3.CheckStockResponse.items:type_name -> smart_kart.products.http.v3.StockAvailability
+	38,  // 31: smart_kart.products.http.v3.ReserveStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
+	38,  // 32: smart_kart.products.http.v3.ReleaseStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
+	48,  // 33: smart_kart.products.http.v3.GetDashboardStatsResponse.category_stats:type_name -> smart_kart.products.http.v3.CategoryStat
+	138, // 34: smart_kart.products.http.v3.GetProductPricingResponse.pricing:type_name -> smart_kart.products.http.v3.GetProductPricingResponse.PricingEntry
+	1,   // 35: smart_kart.products.http.v3.UploadProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
+	1,   // 36: smart_kart.products.http.v3.GetProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
+	58,  // 37: smart_kart.products.http.v3.ReorderProductImagesRequest.orders:type_name -> smart_kart.products.http.v3.ImageOrder
+	1,   // 38: smart_kart.products.http.v3.ReorderProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
+	1,   // 39: smart_kart.products.http.v3.SetPrimaryImageResponse.image:type_name -> smart_kart.products.http.v3.ProductImage
+	140, // 40: smart_kart.products.http.v3.FeaturedProduct.created_at:type_name -> google.protobuf.Timestamp
+	140, // 41: smart_kart.products.http.v3.FeaturedProduct.updated_at:type_name -> google.protobuf.Timestamp
+	2,   // 42: smart_kart.products.http.v3.FeaturedProduct.product:type_name -> smart_kart.products.http.v3.Product
+	65,  // 43: smart_kart.products.http.v3.ListFeaturedProductsResponse.featured_products:type_name -> smart_kart.products.http.v3.FeaturedProduct
+	65,  // 44: smart_kart.products.http.v3.AddFeaturedProductResponse.featured_product:type_name -> smart_kart.products.http.v3.FeaturedProduct
+	73,  // 45: smart_kart.products.http.v3.ReorderFeaturedProductsRequest.orders:type_name -> smart_kart.products.http.v3.FeaturedOrder
+	65,  // 46: smart_kart.products.http.v3.ReorderFeaturedProductsResponse.featured_products:type_name -> smart_kart.products.http.v3.FeaturedProduct
+	140, // 47: smart_kart.products.http.v3.CarouselImage.created_at:type_name -> google.protobuf.Timestamp
+	140, // 48: smart_kart.products.http.v3.CarouselImage.updated_at:type_name -> google.protobuf.Timestamp
+	75,  // 49: smart_kart.products.http.v3.ListCarouselImagesResponse.carousel_images:type_name -> smart_kart.products.http.v3.CarouselImage
+	75,  // 50: smart_kart.products.http.v3.CreateCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
+	75,  // 51: smart_kart.products.http.v3.UpdateCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
+	85,  // 52: smart_kart.products.http.v3.ReorderCarouselImagesRequest.orders:type_name -> smart_kart.products.http.v3.CarouselOrder
+	75,  // 53: smart_kart.products.http.v3.ReorderCarouselImagesResponse.carousel_images:type_name -> smart_kart.products.http.v3.CarouselImage
+	75,  // 54: smart_kart.products.http.v3.UploadCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
+	90,  // 55: smart_kart.products.http.v3.Wishlist.items:type_name -> smart_kart.products.http.v3.WishlistItem
+	140, // 56: smart_kart.products.http.v3.Wishlist.created_at:type_name -> google.protobuf.Timestamp
+	140, // 57: smart_kart.products.http.v3.WishlistItem.added_at:type_name -> google.protobuf.Timestamp
+	140, // 58: smart_kart.products.http.v3.WishlistItem.last_price_check:type_name -> google.protobuf.Timestamp
+	89,  // 59: smart_kart.products.http.v3.GetWishlistResponse.wishlist:type_name -> smart_kart.products.http.v3.Wishlist
+	90,  // 60: smart_kart.products.http.v3.AddToWishlistResponse.item:type_name -> smart_kart.products.http.v3.WishlistItem
+	140, // 61: smart_kart.products.http.v3.Review.admin_response_at:type_name -> google.protobuf.Timestamp
+	106, // 62: smart_kart.products.http.v3.Review.images:type_name -> smart_kart.products.http.v3.ReviewImage
+	140, // 63: smart_kart.products.http.v3.Review.created_at:type_name -> google.protobuf.Timestamp
+	140, // 64: smart_kart.products.http.v3.Review.updated_at:type_name -> google.protobuf.Timestamp
+	105, // 65: smart_kart.products.http.v3.CreateReviewResponse.review:type_name -> smart_kart.products.http.v3.Review
+	105, // 66: smart_kart.products.http.v3.GetProductReviewsResponse.reviews:type_name -> smart_kart.products.http.v3.Review
+	0,   // 67: smart_kart.products.http.v3.GetProductReviewsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
+	107, // 68: smart_kart.products.http.v3.GetProductRatingResponse.rating_summary:type_name -> smart_kart.products.http.v3.ProductRatingSummary
+	105, // 69: smart_kart.products.http.v3.GetUserReviewForProductResponse.review:type_name -> smart_kart.products.http.v3.Review
+	105, // 70: smart_kart.products.http.v3.UpdateReviewResponse.review:type_name -> smart_kart.products.http.v3.Review
+	106, // 71: smart_kart.products.http.v3.UploadReviewImagesResponse.images:type_name -> smart_kart.products.http.v3.ReviewImage
+	105, // 72: smart_kart.products.http.v3.AdminGetReviewsResponse.reviews:type_name -> smart_kart.products.http.v3.Review
+	0,   // 73: smart_kart.products.http.v3.AdminGetReviewsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
+	139, // 74: smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse.rating_distribution:type_name -> smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntry
+	53,  // 75: smart_kart.products.http.v3.GetProductPricingResponse.PricingEntry.value:type_name -> smart_kart.products.http.v3.ProductPricing
+	3,   // 76: smart_kart.products.http.v3.ProductsHTTPService.CreateProduct:input_type -> smart_kart.products.http.v3.CreateProductRequest
+	5,   // 77: smart_kart.products.http.v3.ProductsHTTPService.GetProduct:input_type -> smart_kart.products.http.v3.GetProductRequest
+	7,   // 78: smart_kart.products.http.v3.ProductsHTTPService.UpdateProduct:input_type -> smart_kart.products.http.v3.UpdateProductRequest
+	9,   // 79: smart_kart.products.http.v3.ProductsHTTPService.DeleteProduct:input_type -> smart_kart.products.http.v3.DeleteProductRequest
+	11,  // 80: smart_kart.products.http.v3.ProductsHTTPService.ListProducts:input_type -> smart_kart.products.http.v3.ListProductsRequest
+	13,  // 81: smart_kart.products.http.v3.ProductsHTTPService.SearchProducts:input_type -> smart_kart.products.http.v3.SearchProductsRequest
+	15,  // 82: smart_kart.products.http.v3.ProductsHTTPService.UpdateProductStatus:input_type -> smart_kart.products.http.v3.UpdateProductStatusRequest
+	17,  // 83: smart_kart.products.http.v3.ProductsHTTPService.GetProductBySKU:input_type -> smart_kart.products.http.v3.GetProductBySKURequest
+	20,  // 84: smart_kart.products.http.v3.ProductsHTTPService.CreateCategory:input_type -> smart_kart.products.http.v3.CreateCategoryRequest
+	22,  // 85: smart_kart.products.http.v3.ProductsHTTPService.GetCategory:input_type -> smart_kart.products.http.v3.GetCategoryRequest
+	24,  // 86: smart_kart.products.http.v3.ProductsHTTPService.UpdateCategory:input_type -> smart_kart.products.http.v3.UpdateCategoryRequest
+	26,  // 87: smart_kart.products.http.v3.ProductsHTTPService.DeleteCategory:input_type -> smart_kart.products.http.v3.DeleteCategoryRequest
+	28,  // 88: smart_kart.products.http.v3.ProductsHTTPService.ListCategories:input_type -> smart_kart.products.http.v3.ListCategoriesRequest
+	31,  // 89: smart_kart.products.http.v3.ProductsHTTPService.UpdateInventory:input_type -> smart_kart.products.http.v3.UpdateInventoryRequest
+	33,  // 90: smart_kart.products.http.v3.ProductsHTTPService.GetInventory:input_type -> smart_kart.products.http.v3.GetInventoryRequest
+	36,  // 91: smart_kart.products.http.v3.ProductsHTTPService.BulkUpdateInventory:input_type -> smart_kart.products.http.v3.BulkUpdateInventoryRequest
+	39,  // 92: smart_kart.products.http.v3.ProductsHTTPService.CheckStock:input_type -> smart_kart.products.http.v3.CheckStockRequest
+	42,  // 93: smart_kart.products.http.v3.ProductsHTTPService.ReserveStock:input_type -> smart_kart.products.http.v3.ReserveStockRequest
+	44,  // 94: smart_kart.products.http.v3.ProductsHTTPService.ReleaseStock:input_type -> smart_kart.products.http.v3.ReleaseStockRequest
+	46,  // 95: smart_kart.products.http.v3.ProductsHTTPService.GetLowStockCount:input_type -> smart_kart.products.http.v3.GetLowStockCountRequest
+	49,  // 96: smart_kart.products.http.v3.ProductsHTTPService.GetDashboardStats:input_type -> smart_kart.products.http.v3.GetDashboardStatsRequest
+	51,  // 97: smart_kart.products.http.v3.ProductsHTTPService.GetProductPricing:input_type -> smart_kart.products.http.v3.GetProductPricingRequest
+	54,  // 98: smart_kart.products.http.v3.ProductsHTTPService.UploadProductImages:input_type -> smart_kart.products.http.v3.UploadProductImagesRequest
+	56,  // 99: smart_kart.products.http.v3.ProductsHTTPService.GetProductImages:input_type -> smart_kart.products.http.v3.GetProductImagesRequest
+	59,  // 100: smart_kart.products.http.v3.ProductsHTTPService.ReorderProductImages:input_type -> smart_kart.products.http.v3.ReorderProductImagesRequest
+	61,  // 101: smart_kart.products.http.v3.ProductsHTTPService.SetPrimaryImage:input_type -> smart_kart.products.http.v3.SetPrimaryImageRequest
+	63,  // 102: smart_kart.products.http.v3.ProductsHTTPService.DeleteProductImage:input_type -> smart_kart.products.http.v3.DeleteProductImageRequest
+	66,  // 103: smart_kart.products.http.v3.ProductsHTTPService.ListFeaturedProducts:input_type -> smart_kart.products.http.v3.ListFeaturedProductsRequest
+	68,  // 104: smart_kart.products.http.v3.ProductsHTTPService.AddFeaturedProduct:input_type -> smart_kart.products.http.v3.AddFeaturedProductRequest
+	70,  // 105: smart_kart.products.http.v3.ProductsHTTPService.RemoveFeaturedProduct:input_type -> smart_kart.products.http.v3.RemoveFeaturedProductRequest
+	72,  // 106: smart_kart.products.http.v3.ProductsHTTPService.ReorderFeaturedProducts:input_type -> smart_kart.products.http.v3.ReorderFeaturedProductsRequest
+	76,  // 107: smart_kart.products.http.v3.ProductsHTTPService.ListCarouselImages:input_type -> smart_kart.products.http.v3.ListCarouselImagesRequest
+	78,  // 108: smart_kart.products.http.v3.ProductsHTTPService.CreateCarouselImage:input_type -> smart_kart.products.http.v3.CreateCarouselImageRequest
+	80,  // 109: smart_kart.products.http.v3.ProductsHTTPService.UpdateCarouselImage:input_type -> smart_kart.products.http.v3.UpdateCarouselImageRequest
+	82,  // 110: smart_kart.products.http.v3.ProductsHTTPService.DeleteCarouselImage:input_type -> smart_kart.products.http.v3.DeleteCarouselImageRequest
+	84,  // 111: smart_kart.products.http.v3.ProductsHTTPService.ReorderCarouselImages:input_type -> smart_kart.products.http.v3.ReorderCarouselImagesRequest
+	87,  // 112: smart_kart.products.http.v3.ProductsHTTPService.UploadCarouselImage:input_type -> smart_kart.products.http.v3.UploadCarouselImageRequest
+	91,  // 113: smart_kart.products.http.v3.ProductsHTTPService.GetWishlist:input_type -> smart_kart.products.http.v3.GetWishlistRequest
+	93,  // 114: smart_kart.products.http.v3.ProductsHTTPService.AddToWishlist:input_type -> smart_kart.products.http.v3.AddToWishlistRequest
+	95,  // 115: smart_kart.products.http.v3.ProductsHTTPService.RemoveFromWishlist:input_type -> smart_kart.products.http.v3.RemoveFromWishlistRequest
+	97,  // 116: smart_kart.products.http.v3.ProductsHTTPService.ClearWishlist:input_type -> smart_kart.products.http.v3.ClearWishlistRequest
+	99,  // 117: smart_kart.products.http.v3.ProductsHTTPService.IsInWishlist:input_type -> smart_kart.products.http.v3.IsInWishlistRequest
+	101, // 118: smart_kart.products.http.v3.ProductsHTTPService.MergeWishlist:input_type -> smart_kart.products.http.v3.MergeWishlistRequest
+	103, // 119: smart_kart.products.http.v3.ProductsHTTPService.MoveToCart:input_type -> smart_kart.products.http.v3.MoveToCartRequest
+	108, // 120: smart_kart.products.http.v3.ProductsHTTPService.CreateReview:input_type -> smart_kart.products.http.v3.CreateReviewRequest
+	110, // 121: smart_kart.products.http.v3.ProductsHTTPService.GetProductReviews:input_type -> smart_kart.products.http.v3.GetProductReviewsRequest
+	112, // 122: smart_kart.products.http.v3.ProductsHTTPService.GetProductRating:input_type -> smart_kart.products.http.v3.GetProductRatingRequest
+	114, // 123: smart_kart.products.http.v3.ProductsHTTPService.GetUserReviewForProduct:input_type -> smart_kart.products.http.v3.GetUserReviewForProductRequest
+	116, // 124: smart_kart.products.http.v3.ProductsHTTPService.UpdateReview:input_type -> smart_kart.products.http.v3.UpdateReviewRequest
+	118, // 125: smart_kart.products.http.v3.ProductsHTTPService.DeleteReview:input_type -> smart_kart.products.http.v3.DeleteReviewRequest
+	120, // 126: smart_kart.products.http.v3.ProductsHTTPService.MarkReviewHelpful:input_type -> smart_kart.products.http.v3.MarkReviewHelpfulRequest
+	122, // 127: smart_kart.products.http.v3.ProductsHTTPService.UploadReviewImages:input_type -> smart_kart.products.http.v3.UploadReviewImagesRequest
+	124, // 128: smart_kart.products.http.v3.ProductsHTTPService.AdminGetReviews:input_type -> smart_kart.products.http.v3.AdminGetReviewsRequest
+	126, // 129: smart_kart.products.http.v3.ProductsHTTPService.AdminApproveReview:input_type -> smart_kart.products.http.v3.AdminApproveReviewRequest
+	128, // 130: smart_kart.products.http.v3.ProductsHTTPService.AdminRejectReview:input_type -> smart_kart.products.http.v3.AdminRejectReviewRequest
+	130, // 131: smart_kart.products.http.v3.ProductsHTTPService.AdminDeleteReview:input_type -> smart_kart.products.http.v3.AdminDeleteReviewRequest
+	132, // 132: smart_kart.products.http.v3.ProductsHTTPService.AdminRespondToReview:input_type -> smart_kart.products.http.v3.AdminRespondToReviewRequest
+	134, // 133: smart_kart.products.http.v3.ProductsHTTPService.AdminBulkApproveReviews:input_type -> smart_kart.products.http.v3.AdminBulkApproveReviewsRequest
+	136, // 134: smart_kart.products.http.v3.ProductsHTTPService.AdminGetReviewAnalytics:input_type -> smart_kart.products.http.v3.AdminGetReviewAnalyticsRequest
+	4,   // 135: smart_kart.products.http.v3.ProductsHTTPService.CreateProduct:output_type -> smart_kart.products.http.v3.CreateProductResponse
+	6,   // 136: smart_kart.products.http.v3.ProductsHTTPService.GetProduct:output_type -> smart_kart.products.http.v3.GetProductResponse
+	8,   // 137: smart_kart.products.http.v3.ProductsHTTPService.UpdateProduct:output_type -> smart_kart.products.http.v3.UpdateProductResponse
+	10,  // 138: smart_kart.products.http.v3.ProductsHTTPService.DeleteProduct:output_type -> smart_kart.products.http.v3.DeleteProductResponse
+	12,  // 139: smart_kart.products.http.v3.ProductsHTTPService.ListProducts:output_type -> smart_kart.products.http.v3.ListProductsResponse
+	14,  // 140: smart_kart.products.http.v3.ProductsHTTPService.SearchProducts:output_type -> smart_kart.products.http.v3.SearchProductsResponse
+	16,  // 141: smart_kart.products.http.v3.ProductsHTTPService.UpdateProductStatus:output_type -> smart_kart.products.http.v3.UpdateProductStatusResponse
+	18,  // 142: smart_kart.products.http.v3.ProductsHTTPService.GetProductBySKU:output_type -> smart_kart.products.http.v3.GetProductBySKUResponse
+	21,  // 143: smart_kart.products.http.v3.ProductsHTTPService.CreateCategory:output_type -> smart_kart.products.http.v3.CreateCategoryResponse
+	23,  // 144: smart_kart.products.http.v3.ProductsHTTPService.GetCategory:output_type -> smart_kart.products.http.v3.GetCategoryResponse
+	25,  // 145: smart_kart.products.http.v3.ProductsHTTPService.UpdateCategory:output_type -> smart_kart.products.http.v3.UpdateCategoryResponse
+	27,  // 146: smart_kart.products.http.v3.ProductsHTTPService.DeleteCategory:output_type -> smart_kart.products.http.v3.DeleteCategoryResponse
+	29,  // 147: smart_kart.products.http.v3.ProductsHTTPService.ListCategories:output_type -> smart_kart.products.http.v3.ListCategoriesResponse
+	32,  // 148: smart_kart.products.http.v3.ProductsHTTPService.UpdateInventory:output_type -> smart_kart.products.http.v3.UpdateInventoryResponse
+	34,  // 149: smart_kart.products.http.v3.ProductsHTTPService.GetInventory:output_type -> smart_kart.products.http.v3.GetInventoryResponse
+	37,  // 150: smart_kart.products.http.v3.ProductsHTTPService.BulkUpdateInventory:output_type -> smart_kart.products.http.v3.BulkUpdateInventoryResponse
+	41,  // 151: smart_kart.products.http.v3.ProductsHTTPService.CheckStock:output_type -> smart_kart.products.http.v3.CheckStockResponse
+	43,  // 152: smart_kart.products.http.v3.ProductsHTTPService.ReserveStock:output_type -> smart_kart.products.http.v3.ReserveStockResponse
+	45,  // 153: smart_kart.products.http.v3.ProductsHTTPService.ReleaseStock:output_type -> smart_kart.products.http.v3.ReleaseStockResponse
+	47,  // 154: smart_kart.products.http.v3.ProductsHTTPService.GetLowStockCount:output_type -> smart_kart.products.http.v3.GetLowStockCountResponse
+	50,  // 155: smart_kart.products.http.v3.ProductsHTTPService.GetDashboardStats:output_type -> smart_kart.products.http.v3.GetDashboardStatsResponse
+	52,  // 156: smart_kart.products.http.v3.ProductsHTTPService.GetProductPricing:output_type -> smart_kart.products.http.v3.GetProductPricingResponse
+	55,  // 157: smart_kart.products.http.v3.ProductsHTTPService.UploadProductImages:output_type -> smart_kart.products.http.v3.UploadProductImagesResponse
+	57,  // 158: smart_kart.products.http.v3.ProductsHTTPService.GetProductImages:output_type -> smart_kart.products.http.v3.GetProductImagesResponse
+	60,  // 159: smart_kart.products.http.v3.ProductsHTTPService.ReorderProductImages:output_type -> smart_kart.products.http.v3.ReorderProductImagesResponse
+	62,  // 160: smart_kart.products.http.v3.ProductsHTTPService.SetPrimaryImage:output_type -> smart_kart.products.http.v3.SetPrimaryImageResponse
+	64,  // 161: smart_kart.products.http.v3.ProductsHTTPService.DeleteProductImage:output_type -> smart_kart.products.http.v3.DeleteProductImageResponse
+	67,  // 162: smart_kart.products.http.v3.ProductsHTTPService.ListFeaturedProducts:output_type -> smart_kart.products.http.v3.ListFeaturedProductsResponse
+	69,  // 163: smart_kart.products.http.v3.ProductsHTTPService.AddFeaturedProduct:output_type -> smart_kart.products.http.v3.AddFeaturedProductResponse
+	71,  // 164: smart_kart.products.http.v3.ProductsHTTPService.RemoveFeaturedProduct:output_type -> smart_kart.products.http.v3.RemoveFeaturedProductResponse
+	74,  // 165: smart_kart.products.http.v3.ProductsHTTPService.ReorderFeaturedProducts:output_type -> smart_kart.products.http.v3.ReorderFeaturedProductsResponse
+	77,  // 166: smart_kart.products.http.v3.ProductsHTTPService.ListCarouselImages:output_type -> smart_kart.products.http.v3.ListCarouselImagesResponse
+	79,  // 167: smart_kart.products.http.v3.ProductsHTTPService.CreateCarouselImage:output_type -> smart_kart.products.http.v3.CreateCarouselImageResponse
+	81,  // 168: smart_kart.products.http.v3.ProductsHTTPService.UpdateCarouselImage:output_type -> smart_kart.products.http.v3.UpdateCarouselImageResponse
+	83,  // 169: smart_kart.products.http.v3.ProductsHTTPService.DeleteCarouselImage:output_type -> smart_kart.products.http.v3.DeleteCarouselImageResponse
+	86,  // 170: smart_kart.products.http.v3.ProductsHTTPService.ReorderCarouselImages:output_type -> smart_kart.products.http.v3.ReorderCarouselImagesResponse
+	88,  // 171: smart_kart.products.http.v3.ProductsHTTPService.UploadCarouselImage:output_type -> smart_kart.products.http.v3.UploadCarouselImageResponse
+	92,  // 172: smart_kart.products.http.v3.ProductsHTTPService.GetWishlist:output_type -> smart_kart.products.http.v3.GetWishlistResponse
+	94,  // 173: smart_kart.products.http.v3.ProductsHTTPService.AddToWishlist:output_type -> smart_kart.products.http.v3.AddToWishlistResponse
+	96,  // 174: smart_kart.products.http.v3.ProductsHTTPService.RemoveFromWishlist:output_type -> smart_kart.products.http.v3.RemoveFromWishlistResponse
+	98,  // 175: smart_kart.products.http.v3.ProductsHTTPService.ClearWishlist:output_type -> smart_kart.products.http.v3.ClearWishlistResponse
+	100, // 176: smart_kart.products.http.v3.ProductsHTTPService.IsInWishlist:output_type -> smart_kart.products.http.v3.IsInWishlistResponse
+	102, // 177: smart_kart.products.http.v3.ProductsHTTPService.MergeWishlist:output_type -> smart_kart.products.http.v3.MergeWishlistResponse
+	104, // 178: smart_kart.products.http.v3.ProductsHTTPService.MoveToCart:output_type -> smart_kart.products.http.v3.MoveToCartResponse
+	109, // 179: smart_kart.products.http.v3.ProductsHTTPService.CreateReview:output_type -> smart_kart.products.http.v3.CreateReviewResponse
+	111, // 180: smart_kart.products.http.v3.ProductsHTTPService.GetProductReviews:output_type -> smart_kart.products.http.v3.GetProductReviewsResponse
+	113, // 181: smart_kart.products.http.v3.ProductsHTTPService.GetProductRating:output_type -> smart_kart.products.http.v3.GetProductRatingResponse
+	115, // 182: smart_kart.products.http.v3.ProductsHTTPService.GetUserReviewForProduct:output_type -> smart_kart.products.http.v3.GetUserReviewForProductResponse
+	117, // 183: smart_kart.products.http.v3.ProductsHTTPService.UpdateReview:output_type -> smart_kart.products.http.v3.UpdateReviewResponse
+	119, // 184: smart_kart.products.http.v3.ProductsHTTPService.DeleteReview:output_type -> smart_kart.products.http.v3.DeleteReviewResponse
+	121, // 185: smart_kart.products.http.v3.ProductsHTTPService.MarkReviewHelpful:output_type -> smart_kart.products.http.v3.MarkReviewHelpfulResponse
+	123, // 186: smart_kart.products.http.v3.ProductsHTTPService.UploadReviewImages:output_type -> smart_kart.products.http.v3.UploadReviewImagesResponse
+	125, // 187: smart_kart.products.http.v3.ProductsHTTPService.AdminGetReviews:output_type -> smart_kart.products.http.v3.AdminGetReviewsResponse
+	127, // 188: smart_kart.products.http.v3.ProductsHTTPService.AdminApproveReview:output_type -> smart_kart.products.http.v3.AdminApproveReviewResponse
+	129, // 189: smart_kart.products.http.v3.ProductsHTTPService.AdminRejectReview:output_type -> smart_kart.products.http.v3.AdminRejectReviewResponse
+	131, // 190: smart_kart.products.http.v3.ProductsHTTPService.AdminDeleteReview:output_type -> smart_kart.products.http.v3.AdminDeleteReviewResponse
+	133, // 191: smart_kart.products.http.v3.ProductsHTTPService.AdminRespondToReview:output_type -> smart_kart.products.http.v3.AdminRespondToReviewResponse
+	135, // 192: smart_kart.products.http.v3.ProductsHTTPService.AdminBulkApproveReviews:output_type -> smart_kart.products.http.v3.AdminBulkApproveReviewsResponse
+	137, // 193: smart_kart.products.http.v3.ProductsHTTPService.AdminGetReviewAnalytics:output_type -> smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse
+	135, // [135:194] is the sub-list for method output_type
+	76,  // [76:135] is the sub-list for method input_type
+	76,  // [76:76] is the sub-list for extension type_name
+	76,  // [76:76] is the sub-list for extension extendee
+	0,   // [0:76] is the sub-list for field type_name
 }
 
 func init() { file_http_v3_products_proto_init() }
@@ -5951,20 +10063,37 @@ func file_http_v3_products_proto_init() {
 	file_http_v3_products_proto_msgTypes[28].OneofWrappers = []any{}
 	file_http_v3_products_proto_msgTypes[30].OneofWrappers = []any{}
 	file_http_v3_products_proto_msgTypes[31].OneofWrappers = []any{}
-	file_http_v3_products_proto_msgTypes[57].OneofWrappers = []any{}
-	file_http_v3_products_proto_msgTypes[58].OneofWrappers = []any{}
-	file_http_v3_products_proto_msgTypes[60].OneofWrappers = []any{}
-	file_http_v3_products_proto_msgTypes[67].OneofWrappers = []any{}
-	file_http_v3_products_proto_msgTypes[70].OneofWrappers = []any{}
-	file_http_v3_products_proto_msgTypes[72].OneofWrappers = []any{}
-	file_http_v3_products_proto_msgTypes[79].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[46].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[65].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[66].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[68].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[75].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[78].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[80].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[87].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[89].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[90].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[91].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[93].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[97].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[99].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[100].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[105].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[106].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[108].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[110].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[115].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[116].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[124].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[128].OneofWrappers = []any{}
+	file_http_v3_products_proto_msgTypes[136].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_http_v3_products_proto_rawDesc), len(file_http_v3_products_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   81,
+			NumMessages:   140,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -8,6 +8,8 @@ modules:
     name: buf.build/smart-kart/error
   - path: orders
     name: buf.build/smart-kart/orders
+  - path: payments
+    name: buf.build/smart-kart/payments
   - path: products
     name: buf.build/smart-kart/products
 lint:

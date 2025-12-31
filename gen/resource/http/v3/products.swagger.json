@@ -16,6 +16,200 @@
     "application/json"
   ],
   "paths": {
+    "/v3/admin/reviews": {
+      "get": {
+        "summary": "Get all reviews with filters (admin only)",
+        "operationId": "ProductsHTTPService_AdminGetReviews",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/admin/reviews/analytics": {
+      "get": {
+        "summary": "Get review analytics (admin)",
+        "operationId": "ProductsHTTPService_AdminGetReviewAnalytics",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/admin/reviews/bulk-approve": {
+      "post": {
+        "summary": "Bulk approve reviews (admin)",
+        "operationId": "ProductsHTTPService_AdminBulkApproveReviews",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdminBulkApproveReviewsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/admin/reviews/{review_id}": {
+      "delete": {
+        "summary": "Delete review (admin)",
+        "operationId": "ProductsHTTPService_AdminDeleteReview",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "review_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/admin/reviews/{review_id}/approve": {
+      "post": {
+        "summary": "Approve review (admin)",
+        "operationId": "ProductsHTTPService_AdminApproveReview",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "review_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdminApproveReviewBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/admin/reviews/{review_id}/reject": {
+      "post": {
+        "summary": "Reject review (admin)",
+        "operationId": "ProductsHTTPService_AdminRejectReview",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "review_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdminRejectReviewBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/admin/reviews/{review_id}/respond": {
+      "post": {
+        "summary": "Admin respond to review",
+        "operationId": "ProductsHTTPService_AdminRespondToReview",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "review_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdminRespondToReviewBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
     "/v3/carousel-images": {
       "get": {
         "summary": "Carousel Image operations",
@@ -245,6 +439,16 @@
         ]
       }
     },
+    "/v3/dashboard/stats": {
+      "get": {
+        "summary": "Dashboard operations",
+        "operationId": "ProductsHTTPService_GetDashboardStats",
+        "responses": {},
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
     "/v3/featured-products": {
       "get": {
         "summary": "Featured Product operations",
@@ -355,6 +559,25 @@
             "schema": {
               "$ref": "#/definitions/CheckStockRequest"
             }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/inventory/low-stock-count": {
+      "get": {
+        "operationId": "ProductsHTTPService_GetLowStockCount",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "threshold",
+            "description": "@gotags: validate:\"omitempty,gte=0\"\n\nDefault 10 if not provided",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -487,6 +710,13 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "query",
+            "description": "Search query for product name/SKU",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -504,6 +734,26 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/CreateProductRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/pricing": {
+      "post": {
+        "summary": "Pricing operations (for profit calculations)",
+        "operationId": "ProductsHTTPService_GetProductPricing",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetProductPricingRequest"
             }
           }
         ],
@@ -755,6 +1005,116 @@
         ]
       }
     },
+    "/v3/products/{product_id}/my-review": {
+      "get": {
+        "summary": "Get user's review for a product (check if already reviewed)",
+        "operationId": "ProductsHTTPService_GetUserReviewForProduct",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/{product_id}/rating": {
+      "get": {
+        "summary": "Get product ratings summary (public)",
+        "operationId": "ProductsHTTPService_GetProductRating",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/products/{product_id}/reviews": {
+      "get": {
+        "summary": "Get reviews for a product (paginated, public)",
+        "operationId": "ProductsHTTPService_GetProductReviews",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "rating_filter",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort_by",
+            "description": "newest, highest_rated, most_helpful",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "post": {
+        "summary": "Submit a review/rating (requires authentication)",
+        "operationId": "ProductsHTTPService_CreateReview",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateReviewBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
     "/v3/products/{product_id}/status": {
       "patch": {
         "operationId": "ProductsHTTPService_UpdateProductStatus",
@@ -773,6 +1133,272 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/UpdateProductStatusBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/reviews/{review_id}": {
+      "delete": {
+        "summary": "Delete user's own review",
+        "operationId": "ProductsHTTPService_DeleteReview",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "review_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "put": {
+        "summary": "Update user's own review",
+        "operationId": "ProductsHTTPService_UpdateReview",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "review_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateReviewBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/reviews/{review_id}/helpful": {
+      "post": {
+        "summary": "Mark review as helpful",
+        "operationId": "ProductsHTTPService_MarkReviewHelpful",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "review_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MarkReviewHelpfulBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/reviews/{review_id}/images": {
+      "post": {
+        "summary": "Upload review images (multipart form data)\nNote: Actual file upload is handled via multipart/form-data in HTTP handler",
+        "operationId": "ProductsHTTPService_UploadReviewImages",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "review_id",
+            "description": "@gotags: validate:\"required\"\n\nNote: Actual file upload is handled via multipart/form-data in HTTP handler\n This message is used for the gRPC endpoint definition only\n The custom HTTP handler bypasses this and handles multipart directly",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UploadReviewImagesBody"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/wishlist": {
+      "get": {
+        "summary": "Get user's wishlist (authenticated or guest)",
+        "operationId": "ProductsHTTPService_GetWishlist",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "session_id",
+            "description": "For guest users",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort_by",
+            "description": "Sorting options\n\nValues: \"recently_added\" (default), \"price_asc\", \"price_desc\", \"name_asc\", \"best_offers\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "min_price",
+            "description": "Filter options",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "max_price",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "search_query",
+            "description": "Search by product name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      },
+      "delete": {
+        "summary": "Clear entire wishlist",
+        "operationId": "ProductsHTTPService_ClearWishlist",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/wishlist/add": {
+      "post": {
+        "summary": "Add product to wishlist",
+        "operationId": "ProductsHTTPService_AddToWishlist",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddToWishlistRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/wishlist/check/{product_id}": {
+      "get": {
+        "summary": "Check if product is in wishlist",
+        "operationId": "ProductsHTTPService_IsInWishlist",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "product_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/wishlist/items/{wishlist_item_id}": {
+      "delete": {
+        "summary": "Remove product from wishlist",
+        "operationId": "ProductsHTTPService_RemoveFromWishlist",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "wishlist_item_id",
+            "description": "@gotags: validate:\"required\"",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/wishlist/merge": {
+      "post": {
+        "summary": "Merge guest wishlist to authenticated user (called on login)",
+        "operationId": "ProductsHTTPService_MergeWishlist",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MergeWishlistRequest"
+            }
+          }
+        ],
+        "tags": [
+          "smart_kart.products.http.v3.ProductsHTTPService"
+        ]
+      }
+    },
+    "/v3/wishlist/move-to-cart": {
+      "post": {
+        "summary": "Move wishlist item to cart",
+        "operationId": "ProductsHTTPService_MoveToCart",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MoveToCartRequest"
             }
           }
         ],
@@ -814,6 +1440,193 @@
       "properties": {
         "featured_product": {
           "$ref": "#/definitions/FeaturedProduct"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "AddToWishlistRequest": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "session_id": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "For guest users"
+        }
+      }
+    },
+    "AddToWishlistResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/WishlistItem"
+        }
+      }
+    },
+    "AdminApproveReviewBody": {
+      "type": "object"
+    },
+    "AdminApproveReviewResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminBulkApproveReviewsRequest": {
+      "type": "object",
+      "properties": {
+        "review_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "@gotags: validate:\"required,min=1\""
+        }
+      }
+    },
+    "AdminBulkApproveReviewsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "approved_count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AdminDeleteReviewResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminGetReviewAnalyticsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "total_reviews": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pending_reviews": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "approved_reviews": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rejected_reviews": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "average_rating": {
+          "type": "number",
+          "format": "double"
+        },
+        "rating_distribution": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "reviews_with_images": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "verified_purchase_reviews": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AdminGetReviewsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "reviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Review"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/v3.Pagination"
+        }
+      }
+    },
+    "AdminRejectReviewBody": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "AdminRejectReviewResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminRespondToReviewBody": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "title": "@gotags: validate:\"required,min=10,max=1000\""
+        }
+      }
+    },
+    "AdminRespondToReviewResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
         },
         "message": {
           "type": "string"
@@ -948,6 +1761,25 @@
         }
       }
     },
+    "CategoryStat": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "string"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "product_count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "percentage": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "CheckStockRequest": {
       "type": "object",
       "properties": {
@@ -975,6 +1807,17 @@
           }
         },
         "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "ClearWishlistResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
           "type": "string"
         }
       }
@@ -1136,6 +1979,40 @@
         }
       }
     },
+    "CreateReviewBody": {
+      "type": "object",
+      "properties": {
+        "rating": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@gotags: validate:\"required,min=1,max=5\""
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"omitempty,min=3,max=200\""
+        },
+        "review_text": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "@gotags: validate:\"omitempty,min=10,max=5000\""
+        }
+      }
+    },
+    "CreateReviewResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "review": {
+          "$ref": "#/definitions/Review"
+        }
+      }
+    },
     "DeleteCarouselImageResponse": {
       "type": "object",
       "properties": {
@@ -1163,6 +2040,17 @@
     "DeleteProductResponse": {
       "type": "object",
       "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteReviewResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
         "message": {
           "type": "string"
         }
@@ -1233,6 +2121,50 @@
         }
       }
     },
+    "GetDashboardStatsResponse": {
+      "type": "object",
+      "properties": {
+        "total_products": {
+          "type": "string",
+          "format": "int64"
+        },
+        "low_stock_count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "out_of_stock_count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "inventory_value": {
+          "type": "number",
+          "format": "double"
+        },
+        "potential_profit": {
+          "type": "number",
+          "format": "double"
+        },
+        "average_margin": {
+          "type": "number",
+          "format": "double"
+        },
+        "category_stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/CategoryStat"
+          }
+        },
+        "current_profit": {
+          "type": "number",
+          "format": "double",
+          "title": "Profit from sold items (last 30 days)"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "GetInventoryResponse": {
       "type": "object",
       "properties": {
@@ -1240,6 +2172,22 @@
           "$ref": "#/definitions/Inventory"
         },
         "errors": {
+          "type": "string"
+        }
+      }
+    },
+    "GetLowStockCountResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "threshold": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
           "type": "string"
         }
       }
@@ -1270,11 +2218,102 @@
         }
       }
     },
+    "GetProductPricingRequest": {
+      "type": "object",
+      "properties": {
+        "product_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Pricing messages for profit calculations"
+    },
+    "GetProductPricingResponse": {
+      "type": "object",
+      "properties": {
+        "pricing": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ProductPricing"
+          },
+          "title": "product_id -\u003e pricing"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "GetProductRatingResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "rating_summary": {
+          "$ref": "#/definitions/ProductRatingSummary"
+        }
+      }
+    },
     "GetProductResponse": {
       "type": "object",
       "properties": {
         "product": {
           "$ref": "#/definitions/Product"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "GetProductReviewsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "reviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Review"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/v3.Pagination"
+        }
+      }
+    },
+    "GetUserReviewForProductResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "has_reviewed": {
+          "type": "boolean"
+        },
+        "review": {
+          "$ref": "#/definitions/Review",
+          "x-nullable": true
+        }
+      }
+    },
+    "GetWishlistResponse": {
+      "type": "object",
+      "properties": {
+        "wishlist": {
+          "$ref": "#/definitions/Wishlist"
         },
         "message": {
           "type": "string"
@@ -1360,6 +2399,18 @@
         }
       }
     },
+    "IsInWishlistResponse": {
+      "type": "object",
+      "properties": {
+        "in_wishlist": {
+          "type": "boolean"
+        },
+        "wishlist_item_id": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
     "ListCarouselImagesResponse": {
       "type": "object",
       "properties": {
@@ -1420,6 +2471,74 @@
         },
         "pagination": {
           "$ref": "#/definitions/v3.Pagination"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "MarkReviewHelpfulBody": {
+      "type": "object"
+    },
+    "MarkReviewHelpfulResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "helpful_count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "MergeWishlistRequest": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "description": "Guest session to merge",
+          "title": "@gotags: validate:\"required\""
+        }
+      }
+    },
+    "MergeWishlistResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "merged_items": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "MoveToCartRequest": {
+      "type": "object",
+      "properties": {
+        "wishlist_item_id": {
+          "type": "string",
+          "title": "@gotags: validate:\"required\""
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Default 1"
+        }
+      }
+    },
+    "MoveToCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
         },
         "message": {
           "type": "string"
@@ -1574,6 +2693,70 @@
         }
       }
     },
+    "ProductPricing": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string"
+        },
+        "selling_price": {
+          "type": "number",
+          "format": "double"
+        },
+        "cost_price": {
+          "type": "number",
+          "format": "double"
+        },
+        "mrp": {
+          "type": "number",
+          "format": "double"
+        },
+        "tax_rate": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "ProductRatingSummary": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string"
+        },
+        "average_rating": {
+          "type": "number",
+          "format": "double"
+        },
+        "total_reviews": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_ratings": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rating_5_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rating_4_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rating_3_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rating_2_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rating_1_count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "ReleaseStockRequest": {
       "type": "object",
       "properties": {
@@ -1605,6 +2788,17 @@
     "RemoveFeaturedProductResponse": {
       "type": "object",
       "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "RemoveFromWishlistResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
         "message": {
           "type": "string"
         }
@@ -1731,6 +2925,108 @@
         },
         "errors": {
           "type": "string"
+        }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "properties": {
+        "review_id": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "order_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "rating": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "review_text": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string"
+        },
+        "is_verified_purchase": {
+          "type": "boolean"
+        },
+        "helpful_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "reported_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "admin_response": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "admin_response_at": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ReviewImage"
+          }
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "marked_helpful_by_user": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ReviewImage": {
+      "type": "object",
+      "properties": {
+        "image_id": {
+          "type": "string"
+        },
+        "review_id": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "display_order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
         }
       }
     },
@@ -2007,6 +3303,38 @@
         }
       }
     },
+    "UpdateReviewBody": {
+      "type": "object",
+      "properties": {
+        "rating": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@gotags: validate:\"required,min=1,max=5\""
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "review_text": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "UpdateReviewResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "review": {
+          "$ref": "#/definitions/Review"
+        }
+      }
+    },
     "UploadCarouselImageRequest": {
       "type": "object",
       "properties": {
@@ -2043,6 +3371,113 @@
         },
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "UploadReviewImagesBody": {
+      "type": "object"
+    },
+    "UploadReviewImagesResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ReviewImage"
+          }
+        }
+      }
+    },
+    "Wishlist": {
+      "type": "object",
+      "properties": {
+        "wishlist_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/WishlistItem"
+          }
+        },
+        "item_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "WishlistItem": {
+      "type": "object",
+      "properties": {
+        "wishlist_item_id": {
+          "type": "string"
+        },
+        "wishlist_id": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "product_name": {
+          "type": "string",
+          "title": "Enriched product data (joined from products table)"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "image_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "stock_status": {
+          "type": "string",
+          "title": "in_stock, out_of_stock, low_stock"
+        },
+        "available_quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "added_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "price_at_addition": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "title": "Price tracking fields (Phase 4)"
+        },
+        "last_price_check": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "price_change_amount": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
+        },
+        "price_change_percentage": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true
         }
       }
     },

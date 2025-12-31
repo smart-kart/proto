@@ -1,0 +1,653 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "http/v3/payments.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "payments.http.v3.PaymentsService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v3/admin/payments/stats": {
+      "get": {
+        "summary": "GetPaymentStats retrieves payment statistics",
+        "operationId": "PaymentsService_GetPaymentStats",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "startDate",
+            "description": "Optional: YYYY-MM-DD",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "description": "Optional: YYYY-MM-DD",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    },
+    "/v3/admin/refunds": {
+      "get": {
+        "summary": "ListRefunds retrieves all refunds with optional filters",
+        "operationId": "PaymentsService_ListRefunds",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "orderId",
+            "description": "Optional: filter by order",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "description": "Optional: filter by status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "startDate",
+            "description": "Optional: filter by date range",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      },
+      "post": {
+        "summary": "CreateRefund initiates a refund for a payment",
+        "operationId": "PaymentsService_CreateRefund",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateRefundRequest"
+            }
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    },
+    "/v3/admin/refunds/items": {
+      "post": {
+        "summary": "CreateItemRefund initiates a refund for specific order items",
+        "operationId": "PaymentsService_CreateItemRefund",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateItemRefundRequest"
+            }
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    },
+    "/v3/admin/refunds/{refundId}": {
+      "get": {
+        "summary": "GetRefund retrieves refund details",
+        "operationId": "PaymentsService_GetRefund",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "refundId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    },
+    "/v3/payments/order/{orderId}": {
+      "get": {
+        "summary": "GetPaymentByOrder retrieves payment details by order ID",
+        "operationId": "PaymentsService_GetPaymentByOrder",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    },
+    "/v3/payments/orders": {
+      "post": {
+        "summary": "CreatePaymentOrder creates a Razorpay order for payment",
+        "operationId": "PaymentsService_CreatePaymentOrder",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreatePaymentOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    },
+    "/v3/payments/verify": {
+      "post": {
+        "summary": "VerifyPayment verifies payment signature after successful payment",
+        "operationId": "PaymentsService_VerifyPayment",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VerifyPaymentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    },
+    "/v3/payments/{paymentId}": {
+      "get": {
+        "summary": "GetPayment retrieves payment details by payment ID",
+        "operationId": "PaymentsService_GetPayment",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    },
+    "/v3/webhooks/razorpay": {
+      "post": {
+        "summary": "HandleWebhook processes Razorpay webhook events",
+        "operationId": "PaymentsService_HandleWebhook",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WebhookRequest"
+            }
+          }
+        ],
+        "tags": [
+          "payments.http.v3.PaymentsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "CreateItemRefundRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "title": "Order ID"
+        },
+        "orderItemIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Array of order item IDs to refund"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double",
+          "title": "Total refund amount"
+        },
+        "reason": {
+          "type": "string",
+          "title": "Reason for refund"
+        },
+        "reasonCategory": {
+          "type": "string",
+          "description": "Category: changed_mind, found_better_price, etc."
+        },
+        "speed": {
+          "type": "string",
+          "title": "\"normal\" or \"optimum\""
+        }
+      }
+    },
+    "CreatePaymentOrderRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        }
+      }
+    },
+    "CreatePaymentOrderResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "paymentId": {
+          "type": "string",
+          "title": "Our internal payment ID"
+        },
+        "razorpayOrderId": {
+          "type": "string",
+          "title": "Razorpay order ID"
+        },
+        "razorpayKeyId": {
+          "type": "string",
+          "title": "Razorpay public key for frontend"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double",
+          "title": "Amount in INR"
+        },
+        "currency": {
+          "type": "string",
+          "title": "INR"
+        }
+      }
+    },
+    "CreateRefundRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double",
+          "title": "Amount to refund (must be \u003c= payment amount)"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "speed": {
+          "type": "string",
+          "title": "normal, optimum"
+        }
+      }
+    },
+    "CreateRefundResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "refund": {
+          "$ref": "#/definitions/Refund"
+        }
+      }
+    },
+    "GetPaymentByOrderResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "payment": {
+          "$ref": "#/definitions/Payment"
+        }
+      }
+    },
+    "GetPaymentResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "payment": {
+          "$ref": "#/definitions/Payment"
+        }
+      }
+    },
+    "GetPaymentStatsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "totalPayments": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Totals"
+        },
+        "totalAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "successfulPayments": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "failedPayments": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalRefunds": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Refunds"
+        },
+        "totalRefundAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "successRate": {
+          "type": "number",
+          "format": "double",
+          "description": "Percentage",
+          "title": "Success rate"
+        }
+      }
+    },
+    "GetRefundResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "refund": {
+          "$ref": "#/definitions/Refund"
+        }
+      }
+    },
+    "ListRefundsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "refunds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Refund"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Payment": {
+      "type": "object",
+      "properties": {
+        "paymentId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "title": "pending, authorized, captured, failed, refunded"
+        },
+        "razorpayOrderId": {
+          "type": "string",
+          "title": "Razorpay references"
+        },
+        "razorpayPaymentId": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "description": "card, upi, netbanking, wallet",
+          "title": "Payment details"
+        },
+        "bank": {
+          "type": "string"
+        },
+        "wallet": {
+          "type": "string"
+        },
+        "vpa": {
+          "type": "string",
+          "title": "UPI VPA"
+        },
+        "cardLast4": {
+          "type": "string"
+        },
+        "cardNetwork": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string",
+          "title": "Error info (if failed)"
+        },
+        "errorDescription": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Timestamps"
+        },
+        "capturedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "failedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "Payment represents a payment record"
+    },
+    "Refund": {
+      "type": "object",
+      "properties": {
+        "refundId": {
+          "type": "string"
+        },
+        "paymentId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "status": {
+          "type": "string",
+          "title": "pending, processed, failed"
+        },
+        "razorpayRefundId": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "speed": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string",
+          "title": "Error info (if failed)"
+        },
+        "errorDescription": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Timestamps"
+        },
+        "processedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "initiatedBy": {
+          "type": "string",
+          "title": "Admin who initiated"
+        }
+      },
+      "title": "Refund represents a refund record"
+    },
+    "VerifyPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        },
+        "razorpayOrderId": {
+          "type": "string"
+        },
+        "razorpayPaymentId": {
+          "type": "string"
+        },
+        "razorpaySignature": {
+          "type": "string"
+        }
+      }
+    },
+    "VerifyPaymentResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "payment": {
+          "$ref": "#/definitions/Payment"
+        }
+      }
+    },
+    "WebhookRequest": {
+      "type": "object",
+      "properties": {
+        "payload": {
+          "type": "string",
+          "format": "byte",
+          "title": "Raw JSON payload from Razorpay"
+        }
+      }
+    },
+    "WebhookResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
