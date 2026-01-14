@@ -48,6 +48,14 @@ const (
 	OrdersService_DeactivateCoupon_FullMethodName         = "/orders.http.v3.OrdersService/DeactivateCoupon"
 	OrdersService_DeleteCoupon_FullMethodName             = "/orders.http.v3.OrdersService/DeleteCoupon"
 	OrdersService_GetCouponUsageHistory_FullMethodName    = "/orders.http.v3.OrdersService/GetCouponUsageHistory"
+	OrdersService_CreateShipment_FullMethodName           = "/orders.http.v3.OrdersService/CreateShipment"
+	OrdersService_GetShipment_FullMethodName              = "/orders.http.v3.OrdersService/GetShipment"
+	OrdersService_GetShipmentTracking_FullMethodName      = "/orders.http.v3.OrdersService/GetShipmentTracking"
+	OrdersService_HandleShippingWebhook_FullMethodName    = "/orders.http.v3.OrdersService/HandleShippingWebhook"
+	OrdersService_SchedulePickup_FullMethodName           = "/orders.http.v3.OrdersService/SchedulePickup"
+	OrdersService_DownloadShippingLabel_FullMethodName    = "/orders.http.v3.OrdersService/DownloadShippingLabel"
+	OrdersService_CreateOrUpdateTracking_FullMethodName   = "/orders.http.v3.OrdersService/CreateOrUpdateTracking"
+	OrdersService_AddTrackingEvent_FullMethodName         = "/orders.http.v3.OrdersService/AddTrackingEvent"
 	OrdersService_GetProductSalesAnalytics_FullMethodName = "/orders.http.v3.OrdersService/GetProductSalesAnalytics"
 	OrdersService_HasPurchasedProduct_FullMethodName      = "/orders.http.v3.OrdersService/HasPurchasedProduct"
 )
@@ -94,6 +102,18 @@ type OrdersServiceClient interface {
 	DeactivateCoupon(ctx context.Context, in *DeactivateCouponRequest, opts ...grpc.CallOption) (*DeactivateCouponResponse, error)
 	DeleteCoupon(ctx context.Context, in *DeleteCouponRequest, opts ...grpc.CallOption) (*DeleteCouponResponse, error)
 	GetCouponUsageHistory(ctx context.Context, in *GetCouponUsageHistoryRequest, opts ...grpc.CallOption) (*GetCouponUsageHistoryResponse, error)
+	// Shipment Management
+	CreateShipment(ctx context.Context, in *CreateShipmentRequest, opts ...grpc.CallOption) (*CreateShipmentResponse, error)
+	GetShipment(ctx context.Context, in *GetShipmentRequest, opts ...grpc.CallOption) (*GetShipmentResponse, error)
+	GetShipmentTracking(ctx context.Context, in *GetShipmentTrackingRequest, opts ...grpc.CallOption) (*GetShipmentTrackingResponse, error)
+	HandleShippingWebhook(ctx context.Context, in *ShippingWebhookRequest, opts ...grpc.CallOption) (*ShippingWebhookResponse, error)
+	// Admin only
+	SchedulePickup(ctx context.Context, in *SchedulePickupRequest, opts ...grpc.CallOption) (*SchedulePickupResponse, error)
+	DownloadShippingLabel(ctx context.Context, in *DownloadShippingLabelRequest, opts ...grpc.CallOption) (*DownloadShippingLabelResponse, error)
+	// Admin: Create or update tracking information manually
+	CreateOrUpdateTracking(ctx context.Context, in *CreateOrUpdateTrackingRequest, opts ...grpc.CallOption) (*CreateOrUpdateTrackingResponse, error)
+	// Admin: Add tracking event manually
+	AddTrackingEvent(ctx context.Context, in *AddTrackingEventRequest, opts ...grpc.CallOption) (*AddTrackingEventResponse, error)
 	// Analytics (Admin)
 	GetProductSalesAnalytics(ctx context.Context, in *GetProductSalesAnalyticsRequest, opts ...grpc.CallOption) (*GetProductSalesAnalyticsResponse, error)
 	// Verified Purchase Check (for Review System)
@@ -398,6 +418,86 @@ func (c *ordersServiceClient) GetCouponUsageHistory(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *ordersServiceClient) CreateShipment(ctx context.Context, in *CreateShipmentRequest, opts ...grpc.CallOption) (*CreateShipmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateShipmentResponse)
+	err := c.cc.Invoke(ctx, OrdersService_CreateShipment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) GetShipment(ctx context.Context, in *GetShipmentRequest, opts ...grpc.CallOption) (*GetShipmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetShipmentResponse)
+	err := c.cc.Invoke(ctx, OrdersService_GetShipment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) GetShipmentTracking(ctx context.Context, in *GetShipmentTrackingRequest, opts ...grpc.CallOption) (*GetShipmentTrackingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetShipmentTrackingResponse)
+	err := c.cc.Invoke(ctx, OrdersService_GetShipmentTracking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) HandleShippingWebhook(ctx context.Context, in *ShippingWebhookRequest, opts ...grpc.CallOption) (*ShippingWebhookResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShippingWebhookResponse)
+	err := c.cc.Invoke(ctx, OrdersService_HandleShippingWebhook_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) SchedulePickup(ctx context.Context, in *SchedulePickupRequest, opts ...grpc.CallOption) (*SchedulePickupResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SchedulePickupResponse)
+	err := c.cc.Invoke(ctx, OrdersService_SchedulePickup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) DownloadShippingLabel(ctx context.Context, in *DownloadShippingLabelRequest, opts ...grpc.CallOption) (*DownloadShippingLabelResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DownloadShippingLabelResponse)
+	err := c.cc.Invoke(ctx, OrdersService_DownloadShippingLabel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) CreateOrUpdateTracking(ctx context.Context, in *CreateOrUpdateTrackingRequest, opts ...grpc.CallOption) (*CreateOrUpdateTrackingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateOrUpdateTrackingResponse)
+	err := c.cc.Invoke(ctx, OrdersService_CreateOrUpdateTracking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ordersServiceClient) AddTrackingEvent(ctx context.Context, in *AddTrackingEventRequest, opts ...grpc.CallOption) (*AddTrackingEventResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddTrackingEventResponse)
+	err := c.cc.Invoke(ctx, OrdersService_AddTrackingEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ordersServiceClient) GetProductSalesAnalytics(ctx context.Context, in *GetProductSalesAnalyticsRequest, opts ...grpc.CallOption) (*GetProductSalesAnalyticsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetProductSalesAnalyticsResponse)
@@ -460,6 +560,18 @@ type OrdersServiceServer interface {
 	DeactivateCoupon(context.Context, *DeactivateCouponRequest) (*DeactivateCouponResponse, error)
 	DeleteCoupon(context.Context, *DeleteCouponRequest) (*DeleteCouponResponse, error)
 	GetCouponUsageHistory(context.Context, *GetCouponUsageHistoryRequest) (*GetCouponUsageHistoryResponse, error)
+	// Shipment Management
+	CreateShipment(context.Context, *CreateShipmentRequest) (*CreateShipmentResponse, error)
+	GetShipment(context.Context, *GetShipmentRequest) (*GetShipmentResponse, error)
+	GetShipmentTracking(context.Context, *GetShipmentTrackingRequest) (*GetShipmentTrackingResponse, error)
+	HandleShippingWebhook(context.Context, *ShippingWebhookRequest) (*ShippingWebhookResponse, error)
+	// Admin only
+	SchedulePickup(context.Context, *SchedulePickupRequest) (*SchedulePickupResponse, error)
+	DownloadShippingLabel(context.Context, *DownloadShippingLabelRequest) (*DownloadShippingLabelResponse, error)
+	// Admin: Create or update tracking information manually
+	CreateOrUpdateTracking(context.Context, *CreateOrUpdateTrackingRequest) (*CreateOrUpdateTrackingResponse, error)
+	// Admin: Add tracking event manually
+	AddTrackingEvent(context.Context, *AddTrackingEventRequest) (*AddTrackingEventResponse, error)
 	// Analytics (Admin)
 	GetProductSalesAnalytics(context.Context, *GetProductSalesAnalyticsRequest) (*GetProductSalesAnalyticsResponse, error)
 	// Verified Purchase Check (for Review System)
@@ -560,6 +672,30 @@ func (UnimplementedOrdersServiceServer) DeleteCoupon(context.Context, *DeleteCou
 }
 func (UnimplementedOrdersServiceServer) GetCouponUsageHistory(context.Context, *GetCouponUsageHistoryRequest) (*GetCouponUsageHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCouponUsageHistory not implemented")
+}
+func (UnimplementedOrdersServiceServer) CreateShipment(context.Context, *CreateShipmentRequest) (*CreateShipmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateShipment not implemented")
+}
+func (UnimplementedOrdersServiceServer) GetShipment(context.Context, *GetShipmentRequest) (*GetShipmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShipment not implemented")
+}
+func (UnimplementedOrdersServiceServer) GetShipmentTracking(context.Context, *GetShipmentTrackingRequest) (*GetShipmentTrackingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShipmentTracking not implemented")
+}
+func (UnimplementedOrdersServiceServer) HandleShippingWebhook(context.Context, *ShippingWebhookRequest) (*ShippingWebhookResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HandleShippingWebhook not implemented")
+}
+func (UnimplementedOrdersServiceServer) SchedulePickup(context.Context, *SchedulePickupRequest) (*SchedulePickupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchedulePickup not implemented")
+}
+func (UnimplementedOrdersServiceServer) DownloadShippingLabel(context.Context, *DownloadShippingLabelRequest) (*DownloadShippingLabelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DownloadShippingLabel not implemented")
+}
+func (UnimplementedOrdersServiceServer) CreateOrUpdateTracking(context.Context, *CreateOrUpdateTrackingRequest) (*CreateOrUpdateTrackingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrUpdateTracking not implemented")
+}
+func (UnimplementedOrdersServiceServer) AddTrackingEvent(context.Context, *AddTrackingEventRequest) (*AddTrackingEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTrackingEvent not implemented")
 }
 func (UnimplementedOrdersServiceServer) GetProductSalesAnalytics(context.Context, *GetProductSalesAnalyticsRequest) (*GetProductSalesAnalyticsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProductSalesAnalytics not implemented")
@@ -1110,6 +1246,150 @@ func _OrdersService_GetCouponUsageHistory_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrdersService_CreateShipment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateShipmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).CreateShipment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_CreateShipment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).CreateShipment(ctx, req.(*CreateShipmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_GetShipment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetShipmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).GetShipment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_GetShipment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).GetShipment(ctx, req.(*GetShipmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_GetShipmentTracking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetShipmentTrackingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).GetShipmentTracking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_GetShipmentTracking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).GetShipmentTracking(ctx, req.(*GetShipmentTrackingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_HandleShippingWebhook_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShippingWebhookRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).HandleShippingWebhook(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_HandleShippingWebhook_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).HandleShippingWebhook(ctx, req.(*ShippingWebhookRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_SchedulePickup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SchedulePickupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).SchedulePickup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_SchedulePickup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).SchedulePickup(ctx, req.(*SchedulePickupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_DownloadShippingLabel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DownloadShippingLabelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).DownloadShippingLabel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_DownloadShippingLabel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).DownloadShippingLabel(ctx, req.(*DownloadShippingLabelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_CreateOrUpdateTracking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrUpdateTrackingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).CreateOrUpdateTracking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_CreateOrUpdateTracking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).CreateOrUpdateTracking(ctx, req.(*CreateOrUpdateTrackingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrdersService_AddTrackingEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTrackingEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrdersServiceServer).AddTrackingEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrdersService_AddTrackingEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrdersServiceServer).AddTrackingEvent(ctx, req.(*AddTrackingEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _OrdersService_GetProductSalesAnalytics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetProductSalesAnalyticsRequest)
 	if err := dec(in); err != nil {
@@ -1268,6 +1548,38 @@ var OrdersService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCouponUsageHistory",
 			Handler:    _OrdersService_GetCouponUsageHistory_Handler,
+		},
+		{
+			MethodName: "CreateShipment",
+			Handler:    _OrdersService_CreateShipment_Handler,
+		},
+		{
+			MethodName: "GetShipment",
+			Handler:    _OrdersService_GetShipment_Handler,
+		},
+		{
+			MethodName: "GetShipmentTracking",
+			Handler:    _OrdersService_GetShipmentTracking_Handler,
+		},
+		{
+			MethodName: "HandleShippingWebhook",
+			Handler:    _OrdersService_HandleShippingWebhook_Handler,
+		},
+		{
+			MethodName: "SchedulePickup",
+			Handler:    _OrdersService_SchedulePickup_Handler,
+		},
+		{
+			MethodName: "DownloadShippingLabel",
+			Handler:    _OrdersService_DownloadShippingLabel_Handler,
+		},
+		{
+			MethodName: "CreateOrUpdateTracking",
+			Handler:    _OrdersService_CreateOrUpdateTracking_Handler,
+		},
+		{
+			MethodName: "AddTrackingEvent",
+			Handler:    _OrdersService_AddTrackingEvent_Handler,
 		},
 		{
 			MethodName: "GetProductSalesAnalytics",

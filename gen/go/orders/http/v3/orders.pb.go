@@ -4896,6 +4896,1272 @@ func (x *HasPurchasedProductResponse) GetOrderId() string {
 	return ""
 }
 
+type CreateShipmentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,proto3" json:"order_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateShipmentRequest) Reset() {
+	*x = CreateShipmentRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[71]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateShipmentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateShipmentRequest) ProtoMessage() {}
+
+func (x *CreateShipmentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[71]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateShipmentRequest.ProtoReflect.Descriptor instead.
+func (*CreateShipmentRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{71}
+}
+
+func (x *CreateShipmentRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+type CreateShipmentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Shipment      *Shipment              `protobuf:"bytes,3,opt,name=shipment,proto3" json:"shipment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateShipmentResponse) Reset() {
+	*x = CreateShipmentResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[72]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateShipmentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateShipmentResponse) ProtoMessage() {}
+
+func (x *CreateShipmentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[72]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateShipmentResponse.ProtoReflect.Descriptor instead.
+func (*CreateShipmentResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{72}
+}
+
+func (x *CreateShipmentResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *CreateShipmentResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *CreateShipmentResponse) GetShipment() *Shipment {
+	if x != nil {
+		return x.Shipment
+	}
+	return nil
+}
+
+type GetShipmentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,proto3" json:"order_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetShipmentRequest) Reset() {
+	*x = GetShipmentRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[73]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetShipmentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetShipmentRequest) ProtoMessage() {}
+
+func (x *GetShipmentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[73]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetShipmentRequest.ProtoReflect.Descriptor instead.
+func (*GetShipmentRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{73}
+}
+
+func (x *GetShipmentRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+type GetShipmentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Shipment      *Shipment              `protobuf:"bytes,3,opt,name=shipment,proto3" json:"shipment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetShipmentResponse) Reset() {
+	*x = GetShipmentResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[74]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetShipmentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetShipmentResponse) ProtoMessage() {}
+
+func (x *GetShipmentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[74]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetShipmentResponse.ProtoReflect.Descriptor instead.
+func (*GetShipmentResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{74}
+}
+
+func (x *GetShipmentResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetShipmentResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetShipmentResponse) GetShipment() *Shipment {
+	if x != nil {
+		return x.Shipment
+	}
+	return nil
+}
+
+type GetShipmentTrackingRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,proto3" json:"order_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetShipmentTrackingRequest) Reset() {
+	*x = GetShipmentTrackingRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[75]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetShipmentTrackingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetShipmentTrackingRequest) ProtoMessage() {}
+
+func (x *GetShipmentTrackingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[75]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetShipmentTrackingRequest.ProtoReflect.Descriptor instead.
+func (*GetShipmentTrackingRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{75}
+}
+
+func (x *GetShipmentTrackingRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+type GetShipmentTrackingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Shipment      *Shipment              `protobuf:"bytes,3,opt,name=shipment,proto3" json:"shipment,omitempty"`
+	Events        []*ShipmentEvent       `protobuf:"bytes,4,rep,name=events,proto3" json:"events,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetShipmentTrackingResponse) Reset() {
+	*x = GetShipmentTrackingResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[76]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetShipmentTrackingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetShipmentTrackingResponse) ProtoMessage() {}
+
+func (x *GetShipmentTrackingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[76]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetShipmentTrackingResponse.ProtoReflect.Descriptor instead.
+func (*GetShipmentTrackingResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{76}
+}
+
+func (x *GetShipmentTrackingResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetShipmentTrackingResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetShipmentTrackingResponse) GetShipment() *Shipment {
+	if x != nil {
+		return x.Shipment
+	}
+	return nil
+}
+
+func (x *GetShipmentTrackingResponse) GetEvents() []*ShipmentEvent {
+	if x != nil {
+		return x.Events
+	}
+	return nil
+}
+
+type ShippingWebhookRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Payload       []byte                 `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ShippingWebhookRequest) Reset() {
+	*x = ShippingWebhookRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[77]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ShippingWebhookRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ShippingWebhookRequest) ProtoMessage() {}
+
+func (x *ShippingWebhookRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[77]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ShippingWebhookRequest.ProtoReflect.Descriptor instead.
+func (*ShippingWebhookRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{77}
+}
+
+func (x *ShippingWebhookRequest) GetPayload() []byte {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+type ShippingWebhookResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ShippingWebhookResponse) Reset() {
+	*x = ShippingWebhookResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[78]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ShippingWebhookResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ShippingWebhookResponse) ProtoMessage() {}
+
+func (x *ShippingWebhookResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[78]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ShippingWebhookResponse.ProtoReflect.Descriptor instead.
+func (*ShippingWebhookResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{78}
+}
+
+func (x *ShippingWebhookResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *ShippingWebhookResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type SchedulePickupRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ShipmentId    string                 `protobuf:"bytes,1,opt,name=shipment_id,proto3" json:"shipment_id,omitempty"`
+	PickupDate    *string                `protobuf:"bytes,2,opt,name=pickup_date,proto3,oneof" json:"pickup_date,omitempty"` // YYYY-MM-DD, defaults to tomorrow
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SchedulePickupRequest) Reset() {
+	*x = SchedulePickupRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[79]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SchedulePickupRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SchedulePickupRequest) ProtoMessage() {}
+
+func (x *SchedulePickupRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[79]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SchedulePickupRequest.ProtoReflect.Descriptor instead.
+func (*SchedulePickupRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{79}
+}
+
+func (x *SchedulePickupRequest) GetShipmentId() string {
+	if x != nil {
+		return x.ShipmentId
+	}
+	return ""
+}
+
+func (x *SchedulePickupRequest) GetPickupDate() string {
+	if x != nil && x.PickupDate != nil {
+		return *x.PickupDate
+	}
+	return ""
+}
+
+type SchedulePickupResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	Success             bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message             string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	PickupTokenNumber   string                 `protobuf:"bytes,3,opt,name=pickup_token_number,proto3" json:"pickup_token_number,omitempty"`
+	PickupScheduledDate string                 `protobuf:"bytes,4,opt,name=pickup_scheduled_date,proto3" json:"pickup_scheduled_date,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *SchedulePickupResponse) Reset() {
+	*x = SchedulePickupResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[80]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SchedulePickupResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SchedulePickupResponse) ProtoMessage() {}
+
+func (x *SchedulePickupResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[80]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SchedulePickupResponse.ProtoReflect.Descriptor instead.
+func (*SchedulePickupResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{80}
+}
+
+func (x *SchedulePickupResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *SchedulePickupResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *SchedulePickupResponse) GetPickupTokenNumber() string {
+	if x != nil {
+		return x.PickupTokenNumber
+	}
+	return ""
+}
+
+func (x *SchedulePickupResponse) GetPickupScheduledDate() string {
+	if x != nil {
+		return x.PickupScheduledDate
+	}
+	return ""
+}
+
+type DownloadShippingLabelRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ShipmentId    string                 `protobuf:"bytes,1,opt,name=shipment_id,proto3" json:"shipment_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DownloadShippingLabelRequest) Reset() {
+	*x = DownloadShippingLabelRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[81]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DownloadShippingLabelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DownloadShippingLabelRequest) ProtoMessage() {}
+
+func (x *DownloadShippingLabelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[81]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DownloadShippingLabelRequest.ProtoReflect.Descriptor instead.
+func (*DownloadShippingLabelRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{81}
+}
+
+func (x *DownloadShippingLabelRequest) GetShipmentId() string {
+	if x != nil {
+		return x.ShipmentId
+	}
+	return ""
+}
+
+type DownloadShippingLabelResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	LabelUrl      string                 `protobuf:"bytes,3,opt,name=label_url,proto3" json:"label_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DownloadShippingLabelResponse) Reset() {
+	*x = DownloadShippingLabelResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[82]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DownloadShippingLabelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DownloadShippingLabelResponse) ProtoMessage() {}
+
+func (x *DownloadShippingLabelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[82]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DownloadShippingLabelResponse.ProtoReflect.Descriptor instead.
+func (*DownloadShippingLabelResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{82}
+}
+
+func (x *DownloadShippingLabelResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *DownloadShippingLabelResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *DownloadShippingLabelResponse) GetLabelUrl() string {
+	if x != nil {
+		return x.LabelUrl
+	}
+	return ""
+}
+
+type Shipment struct {
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	Id                    int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	ShipmentId            string                 `protobuf:"bytes,2,opt,name=shipment_id,proto3" json:"shipment_id,omitempty"`
+	OrderId               string                 `protobuf:"bytes,3,opt,name=order_id,proto3" json:"order_id,omitempty"`
+	CourierName           string                 `protobuf:"bytes,4,opt,name=courier_name,proto3" json:"courier_name,omitempty"`
+	TrackingNumber        *string                `protobuf:"bytes,5,opt,name=tracking_number,proto3,oneof" json:"tracking_number,omitempty"`
+	Status                string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	EstimatedDeliveryDate *string                `protobuf:"bytes,7,opt,name=estimated_delivery_date,proto3,oneof" json:"estimated_delivery_date,omitempty"`
+	ActualDeliveryDate    *string                `protobuf:"bytes,8,opt,name=actual_delivery_date,proto3,oneof" json:"actual_delivery_date,omitempty"`
+	WeightGrams           int32                  `protobuf:"varint,9,opt,name=weight_grams,proto3" json:"weight_grams,omitempty"`
+	ShippingCharges       float64                `protobuf:"fixed64,10,opt,name=shipping_charges,proto3" json:"shipping_charges,omitempty"`
+	CodCharges            float64                `protobuf:"fixed64,11,opt,name=cod_charges,proto3" json:"cod_charges,omitempty"`
+	TotalCharges          float64                `protobuf:"fixed64,12,opt,name=total_charges,proto3" json:"total_charges,omitempty"`
+	LabelUrl              *string                `protobuf:"bytes,13,opt,name=label_url,proto3,oneof" json:"label_url,omitempty"`
+	PickupScheduledDate   *string                `protobuf:"bytes,14,opt,name=pickup_scheduled_date,proto3,oneof" json:"pickup_scheduled_date,omitempty"`
+	PickupTokenNumber     *string                `protobuf:"bytes,15,opt,name=pickup_token_number,proto3,oneof" json:"pickup_token_number,omitempty"`
+	PickupStatus          *string                `protobuf:"bytes,16,opt,name=pickup_status,proto3,oneof" json:"pickup_status,omitempty"`
+	CreatedAt             string                 `protobuf:"bytes,17,opt,name=created_at,proto3" json:"created_at,omitempty"`
+	UpdatedAt             string                 `protobuf:"bytes,18,opt,name=updated_at,proto3" json:"updated_at,omitempty"`
+	PickedUpAt            *string                `protobuf:"bytes,19,opt,name=picked_up_at,proto3,oneof" json:"picked_up_at,omitempty"`
+	InTransitAt           *string                `protobuf:"bytes,20,opt,name=in_transit_at,proto3,oneof" json:"in_transit_at,omitempty"`
+	OutForDeliveryAt      *string                `protobuf:"bytes,21,opt,name=out_for_delivery_at,proto3,oneof" json:"out_for_delivery_at,omitempty"`
+	DeliveredAt           *string                `protobuf:"bytes,22,opt,name=delivered_at,proto3,oneof" json:"delivered_at,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *Shipment) Reset() {
+	*x = Shipment{}
+	mi := &file_http_v3_orders_proto_msgTypes[83]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Shipment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Shipment) ProtoMessage() {}
+
+func (x *Shipment) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[83]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Shipment.ProtoReflect.Descriptor instead.
+func (*Shipment) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{83}
+}
+
+func (x *Shipment) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Shipment) GetShipmentId() string {
+	if x != nil {
+		return x.ShipmentId
+	}
+	return ""
+}
+
+func (x *Shipment) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *Shipment) GetCourierName() string {
+	if x != nil {
+		return x.CourierName
+	}
+	return ""
+}
+
+func (x *Shipment) GetTrackingNumber() string {
+	if x != nil && x.TrackingNumber != nil {
+		return *x.TrackingNumber
+	}
+	return ""
+}
+
+func (x *Shipment) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Shipment) GetEstimatedDeliveryDate() string {
+	if x != nil && x.EstimatedDeliveryDate != nil {
+		return *x.EstimatedDeliveryDate
+	}
+	return ""
+}
+
+func (x *Shipment) GetActualDeliveryDate() string {
+	if x != nil && x.ActualDeliveryDate != nil {
+		return *x.ActualDeliveryDate
+	}
+	return ""
+}
+
+func (x *Shipment) GetWeightGrams() int32 {
+	if x != nil {
+		return x.WeightGrams
+	}
+	return 0
+}
+
+func (x *Shipment) GetShippingCharges() float64 {
+	if x != nil {
+		return x.ShippingCharges
+	}
+	return 0
+}
+
+func (x *Shipment) GetCodCharges() float64 {
+	if x != nil {
+		return x.CodCharges
+	}
+	return 0
+}
+
+func (x *Shipment) GetTotalCharges() float64 {
+	if x != nil {
+		return x.TotalCharges
+	}
+	return 0
+}
+
+func (x *Shipment) GetLabelUrl() string {
+	if x != nil && x.LabelUrl != nil {
+		return *x.LabelUrl
+	}
+	return ""
+}
+
+func (x *Shipment) GetPickupScheduledDate() string {
+	if x != nil && x.PickupScheduledDate != nil {
+		return *x.PickupScheduledDate
+	}
+	return ""
+}
+
+func (x *Shipment) GetPickupTokenNumber() string {
+	if x != nil && x.PickupTokenNumber != nil {
+		return *x.PickupTokenNumber
+	}
+	return ""
+}
+
+func (x *Shipment) GetPickupStatus() string {
+	if x != nil && x.PickupStatus != nil {
+		return *x.PickupStatus
+	}
+	return ""
+}
+
+func (x *Shipment) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *Shipment) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
+func (x *Shipment) GetPickedUpAt() string {
+	if x != nil && x.PickedUpAt != nil {
+		return *x.PickedUpAt
+	}
+	return ""
+}
+
+func (x *Shipment) GetInTransitAt() string {
+	if x != nil && x.InTransitAt != nil {
+		return *x.InTransitAt
+	}
+	return ""
+}
+
+func (x *Shipment) GetOutForDeliveryAt() string {
+	if x != nil && x.OutForDeliveryAt != nil {
+		return *x.OutForDeliveryAt
+	}
+	return ""
+}
+
+func (x *Shipment) GetDeliveredAt() string {
+	if x != nil && x.DeliveredAt != nil {
+		return *x.DeliveredAt
+	}
+	return ""
+}
+
+type ShipmentEvent struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	EventType        string                 `protobuf:"bytes,1,opt,name=event_type,proto3" json:"event_type,omitempty"`
+	Status           string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	Location         *string                `protobuf:"bytes,3,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	Description      *string                `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	EventTime        string                 `protobuf:"bytes,5,opt,name=event_time,proto3" json:"event_time,omitempty"`
+	IsException      bool                   `protobuf:"varint,6,opt,name=is_exception,proto3" json:"is_exception,omitempty"`
+	ExceptionCode    *string                `protobuf:"bytes,7,opt,name=exception_code,proto3,oneof" json:"exception_code,omitempty"`
+	ExceptionMessage *string                `protobuf:"bytes,8,opt,name=exception_message,proto3,oneof" json:"exception_message,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ShipmentEvent) Reset() {
+	*x = ShipmentEvent{}
+	mi := &file_http_v3_orders_proto_msgTypes[84]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ShipmentEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ShipmentEvent) ProtoMessage() {}
+
+func (x *ShipmentEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[84]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ShipmentEvent.ProtoReflect.Descriptor instead.
+func (*ShipmentEvent) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{84}
+}
+
+func (x *ShipmentEvent) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *ShipmentEvent) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *ShipmentEvent) GetLocation() string {
+	if x != nil && x.Location != nil {
+		return *x.Location
+	}
+	return ""
+}
+
+func (x *ShipmentEvent) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
+func (x *ShipmentEvent) GetEventTime() string {
+	if x != nil {
+		return x.EventTime
+	}
+	return ""
+}
+
+func (x *ShipmentEvent) GetIsException() bool {
+	if x != nil {
+		return x.IsException
+	}
+	return false
+}
+
+func (x *ShipmentEvent) GetExceptionCode() string {
+	if x != nil && x.ExceptionCode != nil {
+		return *x.ExceptionCode
+	}
+	return ""
+}
+
+func (x *ShipmentEvent) GetExceptionMessage() string {
+	if x != nil && x.ExceptionMessage != nil {
+		return *x.ExceptionMessage
+	}
+	return ""
+}
+
+// Admin: Create or update tracking information manually
+type CreateOrUpdateTrackingRequest struct {
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	OrderId               string                 `protobuf:"bytes,1,opt,name=order_id,proto3" json:"order_id,omitempty"`
+	TrackingNumber        string                 `protobuf:"bytes,2,opt,name=tracking_number,proto3" json:"tracking_number,omitempty"`
+	CourierName           string                 `protobuf:"bytes,3,opt,name=courier_name,proto3" json:"courier_name,omitempty"`
+	EstimatedDeliveryDate string                 `protobuf:"bytes,4,opt,name=estimated_delivery_date,proto3" json:"estimated_delivery_date,omitempty"` // Format: YYYY-MM-DD
+	Status                string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`                                   // pending, pickup_scheduled, picked_up, in_transit, out_for_delivery, delivered
+	WeightGrams           int32                  `protobuf:"varint,6,opt,name=weight_grams,proto3" json:"weight_grams,omitempty"`
+	ShippingCharges       float64                `protobuf:"fixed64,7,opt,name=shipping_charges,proto3" json:"shipping_charges,omitempty"`
+	TrackingUrl           *string                `protobuf:"bytes,8,opt,name=tracking_url,proto3,oneof" json:"tracking_url,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *CreateOrUpdateTrackingRequest) Reset() {
+	*x = CreateOrUpdateTrackingRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[85]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateOrUpdateTrackingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateOrUpdateTrackingRequest) ProtoMessage() {}
+
+func (x *CreateOrUpdateTrackingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[85]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateOrUpdateTrackingRequest.ProtoReflect.Descriptor instead.
+func (*CreateOrUpdateTrackingRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{85}
+}
+
+func (x *CreateOrUpdateTrackingRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *CreateOrUpdateTrackingRequest) GetTrackingNumber() string {
+	if x != nil {
+		return x.TrackingNumber
+	}
+	return ""
+}
+
+func (x *CreateOrUpdateTrackingRequest) GetCourierName() string {
+	if x != nil {
+		return x.CourierName
+	}
+	return ""
+}
+
+func (x *CreateOrUpdateTrackingRequest) GetEstimatedDeliveryDate() string {
+	if x != nil {
+		return x.EstimatedDeliveryDate
+	}
+	return ""
+}
+
+func (x *CreateOrUpdateTrackingRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *CreateOrUpdateTrackingRequest) GetWeightGrams() int32 {
+	if x != nil {
+		return x.WeightGrams
+	}
+	return 0
+}
+
+func (x *CreateOrUpdateTrackingRequest) GetShippingCharges() float64 {
+	if x != nil {
+		return x.ShippingCharges
+	}
+	return 0
+}
+
+func (x *CreateOrUpdateTrackingRequest) GetTrackingUrl() string {
+	if x != nil && x.TrackingUrl != nil {
+		return *x.TrackingUrl
+	}
+	return ""
+}
+
+type CreateOrUpdateTrackingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Shipment      *Shipment              `protobuf:"bytes,3,opt,name=shipment,proto3" json:"shipment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateOrUpdateTrackingResponse) Reset() {
+	*x = CreateOrUpdateTrackingResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[86]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateOrUpdateTrackingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateOrUpdateTrackingResponse) ProtoMessage() {}
+
+func (x *CreateOrUpdateTrackingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[86]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateOrUpdateTrackingResponse.ProtoReflect.Descriptor instead.
+func (*CreateOrUpdateTrackingResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{86}
+}
+
+func (x *CreateOrUpdateTrackingResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *CreateOrUpdateTrackingResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *CreateOrUpdateTrackingResponse) GetShipment() *Shipment {
+	if x != nil {
+		return x.Shipment
+	}
+	return nil
+}
+
+// Admin: Add tracking event manually
+type AddTrackingEventRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OrderId          string                 `protobuf:"bytes,1,opt,name=order_id,proto3" json:"order_id,omitempty"`
+	EventType        string                 `protobuf:"bytes,2,opt,name=event_type,proto3" json:"event_type,omitempty"`
+	Status           string                 `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	Description      string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	IsException      bool                   `protobuf:"varint,5,opt,name=is_exception,proto3" json:"is_exception,omitempty"`
+	Location         *string                `protobuf:"bytes,6,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	ExceptionMessage *string                `protobuf:"bytes,7,opt,name=exception_message,proto3,oneof" json:"exception_message,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *AddTrackingEventRequest) Reset() {
+	*x = AddTrackingEventRequest{}
+	mi := &file_http_v3_orders_proto_msgTypes[87]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddTrackingEventRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddTrackingEventRequest) ProtoMessage() {}
+
+func (x *AddTrackingEventRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[87]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddTrackingEventRequest.ProtoReflect.Descriptor instead.
+func (*AddTrackingEventRequest) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{87}
+}
+
+func (x *AddTrackingEventRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *AddTrackingEventRequest) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *AddTrackingEventRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *AddTrackingEventRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *AddTrackingEventRequest) GetIsException() bool {
+	if x != nil {
+		return x.IsException
+	}
+	return false
+}
+
+func (x *AddTrackingEventRequest) GetLocation() string {
+	if x != nil && x.Location != nil {
+		return *x.Location
+	}
+	return ""
+}
+
+func (x *AddTrackingEventRequest) GetExceptionMessage() string {
+	if x != nil && x.ExceptionMessage != nil {
+		return *x.ExceptionMessage
+	}
+	return ""
+}
+
+type AddTrackingEventResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Event         *ShipmentEvent         `protobuf:"bytes,3,opt,name=event,proto3" json:"event,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddTrackingEventResponse) Reset() {
+	*x = AddTrackingEventResponse{}
+	mi := &file_http_v3_orders_proto_msgTypes[88]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddTrackingEventResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddTrackingEventResponse) ProtoMessage() {}
+
+func (x *AddTrackingEventResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v3_orders_proto_msgTypes[88]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddTrackingEventResponse.ProtoReflect.Descriptor instead.
+func (*AddTrackingEventResponse) Descriptor() ([]byte, []int) {
+	return file_http_v3_orders_proto_rawDescGZIP(), []int{88}
+}
+
+func (x *AddTrackingEventResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AddTrackingEventResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *AddTrackingEventResponse) GetEvent() *ShipmentEvent {
+	if x != nil {
+		return x.Event
+	}
+	return nil
+}
+
 var File_http_v3_orders_proto protoreflect.FileDescriptor
 
 const file_http_v3_orders_proto_rawDesc = "" +
@@ -5362,7 +6628,134 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12$\n" +
 	"\rhas_purchased\x18\x03 \x01(\bR\rhas_purchased\x12\x1f\n" +
 	"\border_id\x18\x04 \x01(\tH\x00R\border_id\x88\x01\x01B\v\n" +
-	"\t_order_id2\x8b \n" +
+	"\t_order_id\"3\n" +
+	"\x15CreateShipmentRequest\x12\x1a\n" +
+	"\border_id\x18\x01 \x01(\tR\border_id\"\x82\x01\n" +
+	"\x16CreateShipmentResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x124\n" +
+	"\bshipment\x18\x03 \x01(\v2\x18.orders.http.v3.ShipmentR\bshipment\"0\n" +
+	"\x12GetShipmentRequest\x12\x1a\n" +
+	"\border_id\x18\x01 \x01(\tR\border_id\"\x7f\n" +
+	"\x13GetShipmentResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x124\n" +
+	"\bshipment\x18\x03 \x01(\v2\x18.orders.http.v3.ShipmentR\bshipment\"8\n" +
+	"\x1aGetShipmentTrackingRequest\x12\x1a\n" +
+	"\border_id\x18\x01 \x01(\tR\border_id\"\xbe\x01\n" +
+	"\x1bGetShipmentTrackingResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x124\n" +
+	"\bshipment\x18\x03 \x01(\v2\x18.orders.http.v3.ShipmentR\bshipment\x125\n" +
+	"\x06events\x18\x04 \x03(\v2\x1d.orders.http.v3.ShipmentEventR\x06events\"2\n" +
+	"\x16ShippingWebhookRequest\x12\x18\n" +
+	"\apayload\x18\x01 \x01(\fR\apayload\"M\n" +
+	"\x17ShippingWebhookResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"p\n" +
+	"\x15SchedulePickupRequest\x12 \n" +
+	"\vshipment_id\x18\x01 \x01(\tR\vshipment_id\x12%\n" +
+	"\vpickup_date\x18\x02 \x01(\tH\x00R\vpickup_date\x88\x01\x01B\x0e\n" +
+	"\f_pickup_date\"\xb4\x01\n" +
+	"\x16SchedulePickupResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x120\n" +
+	"\x13pickup_token_number\x18\x03 \x01(\tR\x13pickup_token_number\x124\n" +
+	"\x15pickup_scheduled_date\x18\x04 \x01(\tR\x15pickup_scheduled_date\"@\n" +
+	"\x1cDownloadShippingLabelRequest\x12 \n" +
+	"\vshipment_id\x18\x01 \x01(\tR\vshipment_id\"q\n" +
+	"\x1dDownloadShippingLabelResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
+	"\tlabel_url\x18\x03 \x01(\tR\tlabel_url\"\xee\b\n" +
+	"\bShipment\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12 \n" +
+	"\vshipment_id\x18\x02 \x01(\tR\vshipment_id\x12\x1a\n" +
+	"\border_id\x18\x03 \x01(\tR\border_id\x12\"\n" +
+	"\fcourier_name\x18\x04 \x01(\tR\fcourier_name\x12-\n" +
+	"\x0ftracking_number\x18\x05 \x01(\tH\x00R\x0ftracking_number\x88\x01\x01\x12\x16\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12=\n" +
+	"\x17estimated_delivery_date\x18\a \x01(\tH\x01R\x17estimated_delivery_date\x88\x01\x01\x127\n" +
+	"\x14actual_delivery_date\x18\b \x01(\tH\x02R\x14actual_delivery_date\x88\x01\x01\x12\"\n" +
+	"\fweight_grams\x18\t \x01(\x05R\fweight_grams\x12*\n" +
+	"\x10shipping_charges\x18\n" +
+	" \x01(\x01R\x10shipping_charges\x12 \n" +
+	"\vcod_charges\x18\v \x01(\x01R\vcod_charges\x12$\n" +
+	"\rtotal_charges\x18\f \x01(\x01R\rtotal_charges\x12!\n" +
+	"\tlabel_url\x18\r \x01(\tH\x03R\tlabel_url\x88\x01\x01\x129\n" +
+	"\x15pickup_scheduled_date\x18\x0e \x01(\tH\x04R\x15pickup_scheduled_date\x88\x01\x01\x125\n" +
+	"\x13pickup_token_number\x18\x0f \x01(\tH\x05R\x13pickup_token_number\x88\x01\x01\x12)\n" +
+	"\rpickup_status\x18\x10 \x01(\tH\x06R\rpickup_status\x88\x01\x01\x12\x1e\n" +
+	"\n" +
+	"created_at\x18\x11 \x01(\tR\n" +
+	"created_at\x12\x1e\n" +
+	"\n" +
+	"updated_at\x18\x12 \x01(\tR\n" +
+	"updated_at\x12'\n" +
+	"\fpicked_up_at\x18\x13 \x01(\tH\aR\fpicked_up_at\x88\x01\x01\x12)\n" +
+	"\rin_transit_at\x18\x14 \x01(\tH\bR\rin_transit_at\x88\x01\x01\x125\n" +
+	"\x13out_for_delivery_at\x18\x15 \x01(\tH\tR\x13out_for_delivery_at\x88\x01\x01\x12'\n" +
+	"\fdelivered_at\x18\x16 \x01(\tH\n" +
+	"R\fdelivered_at\x88\x01\x01B\x12\n" +
+	"\x10_tracking_numberB\x1a\n" +
+	"\x18_estimated_delivery_dateB\x17\n" +
+	"\x15_actual_delivery_dateB\f\n" +
+	"\n" +
+	"_label_urlB\x18\n" +
+	"\x16_pickup_scheduled_dateB\x16\n" +
+	"\x14_pickup_token_numberB\x10\n" +
+	"\x0e_pickup_statusB\x0f\n" +
+	"\r_picked_up_atB\x10\n" +
+	"\x0e_in_transit_atB\x16\n" +
+	"\x14_out_for_delivery_atB\x0f\n" +
+	"\r_delivered_at\"\xf9\x02\n" +
+	"\rShipmentEvent\x12\x1e\n" +
+	"\n" +
+	"event_type\x18\x01 \x01(\tR\n" +
+	"event_type\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12\x1f\n" +
+	"\blocation\x18\x03 \x01(\tH\x00R\blocation\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x04 \x01(\tH\x01R\vdescription\x88\x01\x01\x12\x1e\n" +
+	"\n" +
+	"event_time\x18\x05 \x01(\tR\n" +
+	"event_time\x12\"\n" +
+	"\fis_exception\x18\x06 \x01(\bR\fis_exception\x12+\n" +
+	"\x0eexception_code\x18\a \x01(\tH\x02R\x0eexception_code\x88\x01\x01\x121\n" +
+	"\x11exception_message\x18\b \x01(\tH\x03R\x11exception_message\x88\x01\x01B\v\n" +
+	"\t_locationB\x0e\n" +
+	"\f_descriptionB\x11\n" +
+	"\x0f_exception_codeB\x14\n" +
+	"\x12_exception_message\"\xe5\x02\n" +
+	"\x1dCreateOrUpdateTrackingRequest\x12\x1a\n" +
+	"\border_id\x18\x01 \x01(\tR\border_id\x12(\n" +
+	"\x0ftracking_number\x18\x02 \x01(\tR\x0ftracking_number\x12\"\n" +
+	"\fcourier_name\x18\x03 \x01(\tR\fcourier_name\x128\n" +
+	"\x17estimated_delivery_date\x18\x04 \x01(\tR\x17estimated_delivery_date\x12\x16\n" +
+	"\x06status\x18\x05 \x01(\tR\x06status\x12\"\n" +
+	"\fweight_grams\x18\x06 \x01(\x05R\fweight_grams\x12*\n" +
+	"\x10shipping_charges\x18\a \x01(\x01R\x10shipping_charges\x12'\n" +
+	"\ftracking_url\x18\b \x01(\tH\x00R\ftracking_url\x88\x01\x01B\x0f\n" +
+	"\r_tracking_url\"\x8a\x01\n" +
+	"\x1eCreateOrUpdateTrackingResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x124\n" +
+	"\bshipment\x18\x03 \x01(\v2\x18.orders.http.v3.ShipmentR\bshipment\"\xaa\x02\n" +
+	"\x17AddTrackingEventRequest\x12\x1a\n" +
+	"\border_id\x18\x01 \x01(\tR\border_id\x12\x1e\n" +
+	"\n" +
+	"event_type\x18\x02 \x01(\tR\n" +
+	"event_type\x12\x16\n" +
+	"\x06status\x18\x03 \x01(\tR\x06status\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\"\n" +
+	"\fis_exception\x18\x05 \x01(\bR\fis_exception\x12\x1f\n" +
+	"\blocation\x18\x06 \x01(\tH\x00R\blocation\x88\x01\x01\x121\n" +
+	"\x11exception_message\x18\a \x01(\tH\x01R\x11exception_message\x88\x01\x01B\v\n" +
+	"\t_locationB\x14\n" +
+	"\x12_exception_message\"\x83\x01\n" +
+	"\x18AddTrackingEventResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x123\n" +
+	"\x05event\x18\x03 \x01(\v2\x1d.orders.http.v3.ShipmentEventR\x05event2\xc6)\n" +
 	"\rOrdersService\x12i\n" +
 	"\tAddToCart\x12 .orders.http.v3.AddToCartRequest\x1a!.orders.http.v3.AddToCartResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v3/cart/add\x12\\\n" +
 	"\aGetCart\x12\x1e.orders.http.v3.GetCartRequest\x1a\x1f.orders.http.v3.GetCartResponse\"\x10\x82\xd3\xe4\x93\x02\n" +
@@ -5397,7 +6790,15 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\fUpdateCoupon\x12#.orders.http.v3.UpdateCouponRequest\x1a$.orders.http.v3.UpdateCouponResponse\"(\x82\xd3\xe4\x93\x02\":\x01*\x1a\x1d/v3/admin/coupons/{coupon_id}\x12\x97\x01\n" +
 	"\x10DeactivateCoupon\x12'.orders.http.v3.DeactivateCouponRequest\x1a(.orders.http.v3.DeactivateCouponResponse\"0\x82\xd3\xe4\x93\x02*\"(/v3/admin/coupons/{coupon_id}/deactivate\x12\x80\x01\n" +
 	"\fDeleteCoupon\x12#.orders.http.v3.DeleteCouponRequest\x1a$.orders.http.v3.DeleteCouponResponse\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/v3/admin/coupons/{coupon_id}\x12\xa1\x01\n" +
-	"\x15GetCouponUsageHistory\x12,.orders.http.v3.GetCouponUsageHistoryRequest\x1a-.orders.http.v3.GetCouponUsageHistoryResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v3/admin/coupons/{coupon_id}/usage\x12\xa8\x01\n" +
+	"\x15GetCouponUsageHistory\x12,.orders.http.v3.GetCouponUsageHistoryRequest\x1a-.orders.http.v3.GetCouponUsageHistoryResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v3/admin/coupons/{coupon_id}/usage\x12\x92\x01\n" +
+	"\x0eCreateShipment\x12%.orders.http.v3.CreateShipmentRequest\x1a&.orders.http.v3.CreateShipmentResponse\"1\x82\xd3\xe4\x93\x02+:\x01*\"&/v3/orders/{order_id}/shipments/create\x12~\n" +
+	"\vGetShipment\x12\".orders.http.v3.GetShipmentRequest\x1a#.orders.http.v3.GetShipmentResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/v3/orders/{order_id}/shipment\x12\x96\x01\n" +
+	"\x13GetShipmentTracking\x12*.orders.http.v3.GetShipmentTrackingRequest\x1a+.orders.http.v3.GetShipmentTrackingResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/v3/orders/{order_id}/tracking\x12\x8c\x01\n" +
+	"\x15HandleShippingWebhook\x12&.orders.http.v3.ShippingWebhookRequest\x1a'.orders.http.v3.ShippingWebhookResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/webhooks/shiprocket\x12\x8e\x01\n" +
+	"\x0eSchedulePickup\x12%.orders.http.v3.SchedulePickupRequest\x1a&.orders.http.v3.SchedulePickupResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v3/shipments/{shipment_id}/pickup\x12\x9f\x01\n" +
+	"\x15DownloadShippingLabel\x12,.orders.http.v3.DownloadShippingLabelRequest\x1a-.orders.http.v3.DownloadShippingLabelResponse\")\x82\xd3\xe4\x93\x02#\x12!/v3/shipments/{shipment_id}/label\x12\xa8\x01\n" +
+	"\x16CreateOrUpdateTracking\x12-.orders.http.v3.CreateOrUpdateTrackingRequest\x1a..orders.http.v3.CreateOrUpdateTrackingResponse\"/\x82\xd3\xe4\x93\x02):\x01*\"$/v3/admin/orders/{order_id}/tracking\x12\x9d\x01\n" +
+	"\x10AddTrackingEvent\x12'.orders.http.v3.AddTrackingEventRequest\x1a(.orders.http.v3.AddTrackingEventResponse\"6\x82\xd3\xe4\x93\x020:\x01*\"+/v3/admin/orders/{order_id}/tracking/events\x12\xa8\x01\n" +
 	"\x18GetProductSalesAnalytics\x12/.orders.http.v3.GetProductSalesAnalyticsRequest\x1a0.orders.http.v3.GetProductSalesAnalyticsResponse\")\x82\xd3\xe4\x93\x02#\x12!/v3/admin/analytics/product-sales\x12\x9f\x01\n" +
 	"\x13HasPurchasedProduct\x12*.orders.http.v3.HasPurchasedProductRequest\x1a+.orders.http.v3.HasPurchasedProductResponse\"/\x82\xd3\xe4\x93\x02)\x12'/v3/orders/verify-purchase/{product_id}B\xb7\x01\n" +
 	"\x12com.orders.http.v3B\vOrdersProtoP\x01Z:github.com/smart-kart/proto/gen/go/orders/http/v3;ordersv3\xa2\x02\x03OHX\xaa\x02\x0eOrders.Http.V3\xca\x02\x0eOrders\\Http\\V3\xe2\x02\x1aOrders\\Http\\V3\\GPBMetadata\xea\x02\x10Orders::Http::V3b\x06proto3"
@@ -5414,7 +6815,7 @@ func file_http_v3_orders_proto_rawDescGZIP() []byte {
 	return file_http_v3_orders_proto_rawDescData
 }
 
-var file_http_v3_orders_proto_msgTypes = make([]protoimpl.MessageInfo, 71)
+var file_http_v3_orders_proto_msgTypes = make([]protoimpl.MessageInfo, 89)
 var file_http_v3_orders_proto_goTypes = []any{
 	(*AddToCartRequest)(nil),                 // 0: orders.http.v3.AddToCartRequest
 	(*AddToCartResponse)(nil),                // 1: orders.http.v3.AddToCartResponse
@@ -5487,7 +6888,25 @@ var file_http_v3_orders_proto_goTypes = []any{
 	(*CancellationSummary)(nil),              // 68: orders.http.v3.CancellationSummary
 	(*HasPurchasedProductRequest)(nil),       // 69: orders.http.v3.HasPurchasedProductRequest
 	(*HasPurchasedProductResponse)(nil),      // 70: orders.http.v3.HasPurchasedProductResponse
-	(*timestamppb.Timestamp)(nil),            // 71: google.protobuf.Timestamp
+	(*CreateShipmentRequest)(nil),            // 71: orders.http.v3.CreateShipmentRequest
+	(*CreateShipmentResponse)(nil),           // 72: orders.http.v3.CreateShipmentResponse
+	(*GetShipmentRequest)(nil),               // 73: orders.http.v3.GetShipmentRequest
+	(*GetShipmentResponse)(nil),              // 74: orders.http.v3.GetShipmentResponse
+	(*GetShipmentTrackingRequest)(nil),       // 75: orders.http.v3.GetShipmentTrackingRequest
+	(*GetShipmentTrackingResponse)(nil),      // 76: orders.http.v3.GetShipmentTrackingResponse
+	(*ShippingWebhookRequest)(nil),           // 77: orders.http.v3.ShippingWebhookRequest
+	(*ShippingWebhookResponse)(nil),          // 78: orders.http.v3.ShippingWebhookResponse
+	(*SchedulePickupRequest)(nil),            // 79: orders.http.v3.SchedulePickupRequest
+	(*SchedulePickupResponse)(nil),           // 80: orders.http.v3.SchedulePickupResponse
+	(*DownloadShippingLabelRequest)(nil),     // 81: orders.http.v3.DownloadShippingLabelRequest
+	(*DownloadShippingLabelResponse)(nil),    // 82: orders.http.v3.DownloadShippingLabelResponse
+	(*Shipment)(nil),                         // 83: orders.http.v3.Shipment
+	(*ShipmentEvent)(nil),                    // 84: orders.http.v3.ShipmentEvent
+	(*CreateOrUpdateTrackingRequest)(nil),    // 85: orders.http.v3.CreateOrUpdateTrackingRequest
+	(*CreateOrUpdateTrackingResponse)(nil),   // 86: orders.http.v3.CreateOrUpdateTrackingResponse
+	(*AddTrackingEventRequest)(nil),          // 87: orders.http.v3.AddTrackingEventRequest
+	(*AddTrackingEventResponse)(nil),         // 88: orders.http.v3.AddTrackingEventResponse
+	(*timestamppb.Timestamp)(nil),            // 89: google.protobuf.Timestamp
 }
 var file_http_v3_orders_proto_depIdxs = []int32{
 	35, // 0: orders.http.v3.AddToCartResponse.cart_item:type_name -> orders.http.v3.CartItem
@@ -5504,104 +6923,126 @@ var file_http_v3_orders_proto_depIdxs = []int32{
 	36, // 11: orders.http.v3.UpdateOrderStatusResponse.order:type_name -> orders.http.v3.Order
 	36, // 12: orders.http.v3.UpdatePaymentStatusResponse.order:type_name -> orders.http.v3.Order
 	35, // 13: orders.http.v3.Cart.items:type_name -> orders.http.v3.CartItem
-	71, // 14: orders.http.v3.Cart.created_at:type_name -> google.protobuf.Timestamp
-	71, // 15: orders.http.v3.Cart.updated_at:type_name -> google.protobuf.Timestamp
-	71, // 16: orders.http.v3.CartItem.added_at:type_name -> google.protobuf.Timestamp
+	89, // 14: orders.http.v3.Cart.created_at:type_name -> google.protobuf.Timestamp
+	89, // 15: orders.http.v3.Cart.updated_at:type_name -> google.protobuf.Timestamp
+	89, // 16: orders.http.v3.CartItem.added_at:type_name -> google.protobuf.Timestamp
 	37, // 17: orders.http.v3.Order.items:type_name -> orders.http.v3.OrderItem
-	71, // 18: orders.http.v3.Order.order_date:type_name -> google.protobuf.Timestamp
-	71, // 19: orders.http.v3.Order.confirmed_at:type_name -> google.protobuf.Timestamp
-	71, // 20: orders.http.v3.Order.shipped_at:type_name -> google.protobuf.Timestamp
-	71, // 21: orders.http.v3.Order.delivered_at:type_name -> google.protobuf.Timestamp
-	71, // 22: orders.http.v3.Order.cancelled_at:type_name -> google.protobuf.Timestamp
+	89, // 18: orders.http.v3.Order.order_date:type_name -> google.protobuf.Timestamp
+	89, // 19: orders.http.v3.Order.confirmed_at:type_name -> google.protobuf.Timestamp
+	89, // 20: orders.http.v3.Order.shipped_at:type_name -> google.protobuf.Timestamp
+	89, // 21: orders.http.v3.Order.delivered_at:type_name -> google.protobuf.Timestamp
+	89, // 22: orders.http.v3.Order.cancelled_at:type_name -> google.protobuf.Timestamp
 	58, // 23: orders.http.v3.ValidateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
 	34, // 24: orders.http.v3.ApplyCouponResponse.cart:type_name -> orders.http.v3.Cart
 	34, // 25: orders.http.v3.RemoveCouponResponse.cart:type_name -> orders.http.v3.Cart
-	71, // 26: orders.http.v3.CreateCouponRequest.valid_from:type_name -> google.protobuf.Timestamp
-	71, // 27: orders.http.v3.CreateCouponRequest.valid_until:type_name -> google.protobuf.Timestamp
+	89, // 26: orders.http.v3.CreateCouponRequest.valid_from:type_name -> google.protobuf.Timestamp
+	89, // 27: orders.http.v3.CreateCouponRequest.valid_until:type_name -> google.protobuf.Timestamp
 	58, // 28: orders.http.v3.CreateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
 	58, // 29: orders.http.v3.GetCouponResponse.coupon:type_name -> orders.http.v3.Coupon
 	58, // 30: orders.http.v3.ListCouponsResponse.coupons:type_name -> orders.http.v3.Coupon
-	71, // 31: orders.http.v3.UpdateCouponRequest.valid_from:type_name -> google.protobuf.Timestamp
-	71, // 32: orders.http.v3.UpdateCouponRequest.valid_until:type_name -> google.protobuf.Timestamp
+	89, // 31: orders.http.v3.UpdateCouponRequest.valid_from:type_name -> google.protobuf.Timestamp
+	89, // 32: orders.http.v3.UpdateCouponRequest.valid_until:type_name -> google.protobuf.Timestamp
 	58, // 33: orders.http.v3.UpdateCouponResponse.coupon:type_name -> orders.http.v3.Coupon
 	59, // 34: orders.http.v3.GetCouponUsageHistoryResponse.usages:type_name -> orders.http.v3.CouponUsage
-	71, // 35: orders.http.v3.Coupon.valid_from:type_name -> google.protobuf.Timestamp
-	71, // 36: orders.http.v3.Coupon.valid_until:type_name -> google.protobuf.Timestamp
-	71, // 37: orders.http.v3.Coupon.created_at:type_name -> google.protobuf.Timestamp
-	71, // 38: orders.http.v3.Coupon.updated_at:type_name -> google.protobuf.Timestamp
-	71, // 39: orders.http.v3.CouponUsage.used_at:type_name -> google.protobuf.Timestamp
+	89, // 35: orders.http.v3.Coupon.valid_from:type_name -> google.protobuf.Timestamp
+	89, // 36: orders.http.v3.Coupon.valid_until:type_name -> google.protobuf.Timestamp
+	89, // 37: orders.http.v3.Coupon.created_at:type_name -> google.protobuf.Timestamp
+	89, // 38: orders.http.v3.Coupon.updated_at:type_name -> google.protobuf.Timestamp
+	89, // 39: orders.http.v3.CouponUsage.used_at:type_name -> google.protobuf.Timestamp
 	62, // 40: orders.http.v3.GetAvailableCouponsResponse.coupons:type_name -> orders.http.v3.AvailableCoupon
 	65, // 41: orders.http.v3.GetProductSalesAnalyticsResponse.products:type_name -> orders.http.v3.ProductSalesData
 	36, // 42: orders.http.v3.CancelOrderItemsResponse.order:type_name -> orders.http.v3.Order
 	37, // 43: orders.http.v3.CancelOrderItemsResponse.cancelled_items:type_name -> orders.http.v3.OrderItem
 	68, // 44: orders.http.v3.CancelOrderItemsResponse.summary:type_name -> orders.http.v3.CancellationSummary
-	0,  // 45: orders.http.v3.OrdersService.AddToCart:input_type -> orders.http.v3.AddToCartRequest
-	2,  // 46: orders.http.v3.OrdersService.GetCart:input_type -> orders.http.v3.GetCartRequest
-	4,  // 47: orders.http.v3.OrdersService.UpdateCartItem:input_type -> orders.http.v3.UpdateCartItemRequest
-	6,  // 48: orders.http.v3.OrdersService.RemoveFromCart:input_type -> orders.http.v3.RemoveFromCartRequest
-	8,  // 49: orders.http.v3.OrdersService.ClearCart:input_type -> orders.http.v3.ClearCartRequest
-	10, // 50: orders.http.v3.OrdersService.GetGuestCart:input_type -> orders.http.v3.GetGuestCartRequest
-	12, // 51: orders.http.v3.OrdersService.AddToGuestCart:input_type -> orders.http.v3.AddToGuestCartRequest
-	14, // 52: orders.http.v3.OrdersService.UpdateGuestCartItem:input_type -> orders.http.v3.UpdateGuestCartItemRequest
-	16, // 53: orders.http.v3.OrdersService.RemoveFromGuestCart:input_type -> orders.http.v3.RemoveFromGuestCartRequest
-	18, // 54: orders.http.v3.OrdersService.ClearGuestCart:input_type -> orders.http.v3.ClearGuestCartRequest
-	20, // 55: orders.http.v3.OrdersService.MergeGuestCart:input_type -> orders.http.v3.MergeGuestCartRequest
-	22, // 56: orders.http.v3.OrdersService.CreateOrder:input_type -> orders.http.v3.CreateOrderRequest
-	24, // 57: orders.http.v3.OrdersService.GetOrder:input_type -> orders.http.v3.GetOrderRequest
-	26, // 58: orders.http.v3.OrdersService.ListOrders:input_type -> orders.http.v3.ListOrdersRequest
-	28, // 59: orders.http.v3.OrdersService.CancelOrder:input_type -> orders.http.v3.CancelOrderRequest
-	66, // 60: orders.http.v3.OrdersService.CancelOrderItems:input_type -> orders.http.v3.CancelOrderItemsRequest
-	30, // 61: orders.http.v3.OrdersService.UpdateOrderStatus:input_type -> orders.http.v3.UpdateOrderStatusRequest
-	32, // 62: orders.http.v3.OrdersService.UpdatePaymentStatus:input_type -> orders.http.v3.UpdatePaymentStatusRequest
-	38, // 63: orders.http.v3.OrdersService.ValidateCoupon:input_type -> orders.http.v3.ValidateCouponRequest
-	40, // 64: orders.http.v3.OrdersService.ApplyCoupon:input_type -> orders.http.v3.ApplyCouponRequest
-	42, // 65: orders.http.v3.OrdersService.RemoveCoupon:input_type -> orders.http.v3.RemoveCouponRequest
-	60, // 66: orders.http.v3.OrdersService.GetAvailableCoupons:input_type -> orders.http.v3.GetAvailableCouponsRequest
-	44, // 67: orders.http.v3.OrdersService.CreateCoupon:input_type -> orders.http.v3.CreateCouponRequest
-	46, // 68: orders.http.v3.OrdersService.GetCoupon:input_type -> orders.http.v3.GetCouponRequest
-	48, // 69: orders.http.v3.OrdersService.ListCoupons:input_type -> orders.http.v3.ListCouponsRequest
-	50, // 70: orders.http.v3.OrdersService.UpdateCoupon:input_type -> orders.http.v3.UpdateCouponRequest
-	52, // 71: orders.http.v3.OrdersService.DeactivateCoupon:input_type -> orders.http.v3.DeactivateCouponRequest
-	54, // 72: orders.http.v3.OrdersService.DeleteCoupon:input_type -> orders.http.v3.DeleteCouponRequest
-	56, // 73: orders.http.v3.OrdersService.GetCouponUsageHistory:input_type -> orders.http.v3.GetCouponUsageHistoryRequest
-	63, // 74: orders.http.v3.OrdersService.GetProductSalesAnalytics:input_type -> orders.http.v3.GetProductSalesAnalyticsRequest
-	69, // 75: orders.http.v3.OrdersService.HasPurchasedProduct:input_type -> orders.http.v3.HasPurchasedProductRequest
-	1,  // 76: orders.http.v3.OrdersService.AddToCart:output_type -> orders.http.v3.AddToCartResponse
-	3,  // 77: orders.http.v3.OrdersService.GetCart:output_type -> orders.http.v3.GetCartResponse
-	5,  // 78: orders.http.v3.OrdersService.UpdateCartItem:output_type -> orders.http.v3.UpdateCartItemResponse
-	7,  // 79: orders.http.v3.OrdersService.RemoveFromCart:output_type -> orders.http.v3.RemoveFromCartResponse
-	9,  // 80: orders.http.v3.OrdersService.ClearCart:output_type -> orders.http.v3.ClearCartResponse
-	11, // 81: orders.http.v3.OrdersService.GetGuestCart:output_type -> orders.http.v3.GetGuestCartResponse
-	13, // 82: orders.http.v3.OrdersService.AddToGuestCart:output_type -> orders.http.v3.AddToGuestCartResponse
-	15, // 83: orders.http.v3.OrdersService.UpdateGuestCartItem:output_type -> orders.http.v3.UpdateGuestCartItemResponse
-	17, // 84: orders.http.v3.OrdersService.RemoveFromGuestCart:output_type -> orders.http.v3.RemoveFromGuestCartResponse
-	19, // 85: orders.http.v3.OrdersService.ClearGuestCart:output_type -> orders.http.v3.ClearGuestCartResponse
-	21, // 86: orders.http.v3.OrdersService.MergeGuestCart:output_type -> orders.http.v3.MergeGuestCartResponse
-	23, // 87: orders.http.v3.OrdersService.CreateOrder:output_type -> orders.http.v3.CreateOrderResponse
-	25, // 88: orders.http.v3.OrdersService.GetOrder:output_type -> orders.http.v3.GetOrderResponse
-	27, // 89: orders.http.v3.OrdersService.ListOrders:output_type -> orders.http.v3.ListOrdersResponse
-	29, // 90: orders.http.v3.OrdersService.CancelOrder:output_type -> orders.http.v3.CancelOrderResponse
-	67, // 91: orders.http.v3.OrdersService.CancelOrderItems:output_type -> orders.http.v3.CancelOrderItemsResponse
-	31, // 92: orders.http.v3.OrdersService.UpdateOrderStatus:output_type -> orders.http.v3.UpdateOrderStatusResponse
-	33, // 93: orders.http.v3.OrdersService.UpdatePaymentStatus:output_type -> orders.http.v3.UpdatePaymentStatusResponse
-	39, // 94: orders.http.v3.OrdersService.ValidateCoupon:output_type -> orders.http.v3.ValidateCouponResponse
-	41, // 95: orders.http.v3.OrdersService.ApplyCoupon:output_type -> orders.http.v3.ApplyCouponResponse
-	43, // 96: orders.http.v3.OrdersService.RemoveCoupon:output_type -> orders.http.v3.RemoveCouponResponse
-	61, // 97: orders.http.v3.OrdersService.GetAvailableCoupons:output_type -> orders.http.v3.GetAvailableCouponsResponse
-	45, // 98: orders.http.v3.OrdersService.CreateCoupon:output_type -> orders.http.v3.CreateCouponResponse
-	47, // 99: orders.http.v3.OrdersService.GetCoupon:output_type -> orders.http.v3.GetCouponResponse
-	49, // 100: orders.http.v3.OrdersService.ListCoupons:output_type -> orders.http.v3.ListCouponsResponse
-	51, // 101: orders.http.v3.OrdersService.UpdateCoupon:output_type -> orders.http.v3.UpdateCouponResponse
-	53, // 102: orders.http.v3.OrdersService.DeactivateCoupon:output_type -> orders.http.v3.DeactivateCouponResponse
-	55, // 103: orders.http.v3.OrdersService.DeleteCoupon:output_type -> orders.http.v3.DeleteCouponResponse
-	57, // 104: orders.http.v3.OrdersService.GetCouponUsageHistory:output_type -> orders.http.v3.GetCouponUsageHistoryResponse
-	64, // 105: orders.http.v3.OrdersService.GetProductSalesAnalytics:output_type -> orders.http.v3.GetProductSalesAnalyticsResponse
-	70, // 106: orders.http.v3.OrdersService.HasPurchasedProduct:output_type -> orders.http.v3.HasPurchasedProductResponse
-	76, // [76:107] is the sub-list for method output_type
-	45, // [45:76] is the sub-list for method input_type
-	45, // [45:45] is the sub-list for extension type_name
-	45, // [45:45] is the sub-list for extension extendee
-	0,  // [0:45] is the sub-list for field type_name
+	83, // 45: orders.http.v3.CreateShipmentResponse.shipment:type_name -> orders.http.v3.Shipment
+	83, // 46: orders.http.v3.GetShipmentResponse.shipment:type_name -> orders.http.v3.Shipment
+	83, // 47: orders.http.v3.GetShipmentTrackingResponse.shipment:type_name -> orders.http.v3.Shipment
+	84, // 48: orders.http.v3.GetShipmentTrackingResponse.events:type_name -> orders.http.v3.ShipmentEvent
+	83, // 49: orders.http.v3.CreateOrUpdateTrackingResponse.shipment:type_name -> orders.http.v3.Shipment
+	84, // 50: orders.http.v3.AddTrackingEventResponse.event:type_name -> orders.http.v3.ShipmentEvent
+	0,  // 51: orders.http.v3.OrdersService.AddToCart:input_type -> orders.http.v3.AddToCartRequest
+	2,  // 52: orders.http.v3.OrdersService.GetCart:input_type -> orders.http.v3.GetCartRequest
+	4,  // 53: orders.http.v3.OrdersService.UpdateCartItem:input_type -> orders.http.v3.UpdateCartItemRequest
+	6,  // 54: orders.http.v3.OrdersService.RemoveFromCart:input_type -> orders.http.v3.RemoveFromCartRequest
+	8,  // 55: orders.http.v3.OrdersService.ClearCart:input_type -> orders.http.v3.ClearCartRequest
+	10, // 56: orders.http.v3.OrdersService.GetGuestCart:input_type -> orders.http.v3.GetGuestCartRequest
+	12, // 57: orders.http.v3.OrdersService.AddToGuestCart:input_type -> orders.http.v3.AddToGuestCartRequest
+	14, // 58: orders.http.v3.OrdersService.UpdateGuestCartItem:input_type -> orders.http.v3.UpdateGuestCartItemRequest
+	16, // 59: orders.http.v3.OrdersService.RemoveFromGuestCart:input_type -> orders.http.v3.RemoveFromGuestCartRequest
+	18, // 60: orders.http.v3.OrdersService.ClearGuestCart:input_type -> orders.http.v3.ClearGuestCartRequest
+	20, // 61: orders.http.v3.OrdersService.MergeGuestCart:input_type -> orders.http.v3.MergeGuestCartRequest
+	22, // 62: orders.http.v3.OrdersService.CreateOrder:input_type -> orders.http.v3.CreateOrderRequest
+	24, // 63: orders.http.v3.OrdersService.GetOrder:input_type -> orders.http.v3.GetOrderRequest
+	26, // 64: orders.http.v3.OrdersService.ListOrders:input_type -> orders.http.v3.ListOrdersRequest
+	28, // 65: orders.http.v3.OrdersService.CancelOrder:input_type -> orders.http.v3.CancelOrderRequest
+	66, // 66: orders.http.v3.OrdersService.CancelOrderItems:input_type -> orders.http.v3.CancelOrderItemsRequest
+	30, // 67: orders.http.v3.OrdersService.UpdateOrderStatus:input_type -> orders.http.v3.UpdateOrderStatusRequest
+	32, // 68: orders.http.v3.OrdersService.UpdatePaymentStatus:input_type -> orders.http.v3.UpdatePaymentStatusRequest
+	38, // 69: orders.http.v3.OrdersService.ValidateCoupon:input_type -> orders.http.v3.ValidateCouponRequest
+	40, // 70: orders.http.v3.OrdersService.ApplyCoupon:input_type -> orders.http.v3.ApplyCouponRequest
+	42, // 71: orders.http.v3.OrdersService.RemoveCoupon:input_type -> orders.http.v3.RemoveCouponRequest
+	60, // 72: orders.http.v3.OrdersService.GetAvailableCoupons:input_type -> orders.http.v3.GetAvailableCouponsRequest
+	44, // 73: orders.http.v3.OrdersService.CreateCoupon:input_type -> orders.http.v3.CreateCouponRequest
+	46, // 74: orders.http.v3.OrdersService.GetCoupon:input_type -> orders.http.v3.GetCouponRequest
+	48, // 75: orders.http.v3.OrdersService.ListCoupons:input_type -> orders.http.v3.ListCouponsRequest
+	50, // 76: orders.http.v3.OrdersService.UpdateCoupon:input_type -> orders.http.v3.UpdateCouponRequest
+	52, // 77: orders.http.v3.OrdersService.DeactivateCoupon:input_type -> orders.http.v3.DeactivateCouponRequest
+	54, // 78: orders.http.v3.OrdersService.DeleteCoupon:input_type -> orders.http.v3.DeleteCouponRequest
+	56, // 79: orders.http.v3.OrdersService.GetCouponUsageHistory:input_type -> orders.http.v3.GetCouponUsageHistoryRequest
+	71, // 80: orders.http.v3.OrdersService.CreateShipment:input_type -> orders.http.v3.CreateShipmentRequest
+	73, // 81: orders.http.v3.OrdersService.GetShipment:input_type -> orders.http.v3.GetShipmentRequest
+	75, // 82: orders.http.v3.OrdersService.GetShipmentTracking:input_type -> orders.http.v3.GetShipmentTrackingRequest
+	77, // 83: orders.http.v3.OrdersService.HandleShippingWebhook:input_type -> orders.http.v3.ShippingWebhookRequest
+	79, // 84: orders.http.v3.OrdersService.SchedulePickup:input_type -> orders.http.v3.SchedulePickupRequest
+	81, // 85: orders.http.v3.OrdersService.DownloadShippingLabel:input_type -> orders.http.v3.DownloadShippingLabelRequest
+	85, // 86: orders.http.v3.OrdersService.CreateOrUpdateTracking:input_type -> orders.http.v3.CreateOrUpdateTrackingRequest
+	87, // 87: orders.http.v3.OrdersService.AddTrackingEvent:input_type -> orders.http.v3.AddTrackingEventRequest
+	63, // 88: orders.http.v3.OrdersService.GetProductSalesAnalytics:input_type -> orders.http.v3.GetProductSalesAnalyticsRequest
+	69, // 89: orders.http.v3.OrdersService.HasPurchasedProduct:input_type -> orders.http.v3.HasPurchasedProductRequest
+	1,  // 90: orders.http.v3.OrdersService.AddToCart:output_type -> orders.http.v3.AddToCartResponse
+	3,  // 91: orders.http.v3.OrdersService.GetCart:output_type -> orders.http.v3.GetCartResponse
+	5,  // 92: orders.http.v3.OrdersService.UpdateCartItem:output_type -> orders.http.v3.UpdateCartItemResponse
+	7,  // 93: orders.http.v3.OrdersService.RemoveFromCart:output_type -> orders.http.v3.RemoveFromCartResponse
+	9,  // 94: orders.http.v3.OrdersService.ClearCart:output_type -> orders.http.v3.ClearCartResponse
+	11, // 95: orders.http.v3.OrdersService.GetGuestCart:output_type -> orders.http.v3.GetGuestCartResponse
+	13, // 96: orders.http.v3.OrdersService.AddToGuestCart:output_type -> orders.http.v3.AddToGuestCartResponse
+	15, // 97: orders.http.v3.OrdersService.UpdateGuestCartItem:output_type -> orders.http.v3.UpdateGuestCartItemResponse
+	17, // 98: orders.http.v3.OrdersService.RemoveFromGuestCart:output_type -> orders.http.v3.RemoveFromGuestCartResponse
+	19, // 99: orders.http.v3.OrdersService.ClearGuestCart:output_type -> orders.http.v3.ClearGuestCartResponse
+	21, // 100: orders.http.v3.OrdersService.MergeGuestCart:output_type -> orders.http.v3.MergeGuestCartResponse
+	23, // 101: orders.http.v3.OrdersService.CreateOrder:output_type -> orders.http.v3.CreateOrderResponse
+	25, // 102: orders.http.v3.OrdersService.GetOrder:output_type -> orders.http.v3.GetOrderResponse
+	27, // 103: orders.http.v3.OrdersService.ListOrders:output_type -> orders.http.v3.ListOrdersResponse
+	29, // 104: orders.http.v3.OrdersService.CancelOrder:output_type -> orders.http.v3.CancelOrderResponse
+	67, // 105: orders.http.v3.OrdersService.CancelOrderItems:output_type -> orders.http.v3.CancelOrderItemsResponse
+	31, // 106: orders.http.v3.OrdersService.UpdateOrderStatus:output_type -> orders.http.v3.UpdateOrderStatusResponse
+	33, // 107: orders.http.v3.OrdersService.UpdatePaymentStatus:output_type -> orders.http.v3.UpdatePaymentStatusResponse
+	39, // 108: orders.http.v3.OrdersService.ValidateCoupon:output_type -> orders.http.v3.ValidateCouponResponse
+	41, // 109: orders.http.v3.OrdersService.ApplyCoupon:output_type -> orders.http.v3.ApplyCouponResponse
+	43, // 110: orders.http.v3.OrdersService.RemoveCoupon:output_type -> orders.http.v3.RemoveCouponResponse
+	61, // 111: orders.http.v3.OrdersService.GetAvailableCoupons:output_type -> orders.http.v3.GetAvailableCouponsResponse
+	45, // 112: orders.http.v3.OrdersService.CreateCoupon:output_type -> orders.http.v3.CreateCouponResponse
+	47, // 113: orders.http.v3.OrdersService.GetCoupon:output_type -> orders.http.v3.GetCouponResponse
+	49, // 114: orders.http.v3.OrdersService.ListCoupons:output_type -> orders.http.v3.ListCouponsResponse
+	51, // 115: orders.http.v3.OrdersService.UpdateCoupon:output_type -> orders.http.v3.UpdateCouponResponse
+	53, // 116: orders.http.v3.OrdersService.DeactivateCoupon:output_type -> orders.http.v3.DeactivateCouponResponse
+	55, // 117: orders.http.v3.OrdersService.DeleteCoupon:output_type -> orders.http.v3.DeleteCouponResponse
+	57, // 118: orders.http.v3.OrdersService.GetCouponUsageHistory:output_type -> orders.http.v3.GetCouponUsageHistoryResponse
+	72, // 119: orders.http.v3.OrdersService.CreateShipment:output_type -> orders.http.v3.CreateShipmentResponse
+	74, // 120: orders.http.v3.OrdersService.GetShipment:output_type -> orders.http.v3.GetShipmentResponse
+	76, // 121: orders.http.v3.OrdersService.GetShipmentTracking:output_type -> orders.http.v3.GetShipmentTrackingResponse
+	78, // 122: orders.http.v3.OrdersService.HandleShippingWebhook:output_type -> orders.http.v3.ShippingWebhookResponse
+	80, // 123: orders.http.v3.OrdersService.SchedulePickup:output_type -> orders.http.v3.SchedulePickupResponse
+	82, // 124: orders.http.v3.OrdersService.DownloadShippingLabel:output_type -> orders.http.v3.DownloadShippingLabelResponse
+	86, // 125: orders.http.v3.OrdersService.CreateOrUpdateTracking:output_type -> orders.http.v3.CreateOrUpdateTrackingResponse
+	88, // 126: orders.http.v3.OrdersService.AddTrackingEvent:output_type -> orders.http.v3.AddTrackingEventResponse
+	64, // 127: orders.http.v3.OrdersService.GetProductSalesAnalytics:output_type -> orders.http.v3.GetProductSalesAnalyticsResponse
+	70, // 128: orders.http.v3.OrdersService.HasPurchasedProduct:output_type -> orders.http.v3.HasPurchasedProductResponse
+	90, // [90:129] is the sub-list for method output_type
+	51, // [51:90] is the sub-list for method input_type
+	51, // [51:51] is the sub-list for extension type_name
+	51, // [51:51] is the sub-list for extension extendee
+	0,  // [0:51] is the sub-list for field type_name
 }
 
 func init() { file_http_v3_orders_proto_init() }
@@ -5624,13 +7065,18 @@ func file_http_v3_orders_proto_init() {
 	file_http_v3_orders_proto_msgTypes[62].OneofWrappers = []any{}
 	file_http_v3_orders_proto_msgTypes[63].OneofWrappers = []any{}
 	file_http_v3_orders_proto_msgTypes[70].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[79].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[83].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[84].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[85].OneofWrappers = []any{}
+	file_http_v3_orders_proto_msgTypes[87].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_http_v3_orders_proto_rawDesc), len(file_http_v3_orders_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   71,
+			NumMessages:   89,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

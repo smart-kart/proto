@@ -216,6 +216,58 @@
         ]
       }
     },
+    "/v3/admin/orders/{order_id}/tracking": {
+      "post": {
+        "summary": "Admin: Create or update tracking information manually",
+        "operationId": "OrdersService_CreateOrUpdateTracking",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateOrUpdateTrackingBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/admin/orders/{order_id}/tracking/events": {
+      "post": {
+        "summary": "Admin: Add tracking event manually",
+        "operationId": "OrdersService_AddTrackingEvent",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTrackingEventBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
     "/v3/cart": {
       "get": {
         "operationId": "OrdersService_GetCart",
@@ -632,6 +684,128 @@
           "orders.http.v3.OrdersService"
         ]
       }
+    },
+    "/v3/orders/{order_id}/shipment": {
+      "get": {
+        "operationId": "OrdersService_GetShipment",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/orders/{order_id}/shipments/create": {
+      "post": {
+        "summary": "Shipment Management",
+        "operationId": "OrdersService_CreateShipment",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateShipmentBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/orders/{order_id}/tracking": {
+      "get": {
+        "operationId": "OrdersService_GetShipmentTracking",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/shipments/{shipment_id}/label": {
+      "get": {
+        "operationId": "OrdersService_DownloadShippingLabel",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "shipment_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/shipments/{shipment_id}/pickup": {
+      "post": {
+        "summary": "Admin only",
+        "operationId": "OrdersService_SchedulePickup",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "shipment_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SchedulePickupBody"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
+    },
+    "/v3/webhooks/shiprocket": {
+      "post": {
+        "operationId": "OrdersService_HandleShippingWebhook",
+        "responses": {},
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShippingWebhookRequest"
+            }
+          }
+        ],
+        "tags": [
+          "orders.http.v3.OrdersService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -684,6 +858,46 @@
         },
         "cartItem": {
           "$ref": "#/definitions/CartItem"
+        }
+      }
+    },
+    "AddTrackingEventBody": {
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "is_exception": {
+          "type": "boolean"
+        },
+        "location": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "exception_message": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "title": "Admin: Add tracking event manually"
+    },
+    "AddTrackingEventResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "event": {
+          "$ref": "#/definitions/ShipmentEvent"
         }
       }
     },
@@ -1187,6 +1401,52 @@
         }
       }
     },
+    "CreateOrUpdateTrackingBody": {
+      "type": "object",
+      "properties": {
+        "tracking_number": {
+          "type": "string"
+        },
+        "courier_name": {
+          "type": "string"
+        },
+        "estimated_delivery_date": {
+          "type": "string",
+          "title": "Format: YYYY-MM-DD"
+        },
+        "status": {
+          "type": "string",
+          "title": "pending, pickup_scheduled, picked_up, in_transit, out_for_delivery, delivered"
+        },
+        "weight_grams": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shipping_charges": {
+          "type": "number",
+          "format": "double"
+        },
+        "tracking_url": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "title": "Admin: Create or update tracking information manually"
+    },
+    "CreateOrUpdateTrackingResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "shipment": {
+          "$ref": "#/definitions/Shipment"
+        }
+      }
+    },
     "CreateOrderRequest": {
       "type": "object",
       "properties": {
@@ -1221,6 +1481,23 @@
         }
       }
     },
+    "CreateShipmentBody": {
+      "type": "object"
+    },
+    "CreateShipmentResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "shipment": {
+          "$ref": "#/definitions/Shipment"
+        }
+      }
+    },
     "DeactivateCouponResponse": {
       "type": "object",
       "properties": {
@@ -1239,6 +1516,20 @@
           "type": "boolean"
         },
         "message": {
+          "type": "string"
+        }
+      }
+    },
+    "DownloadShippingLabelResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "label_url": {
           "type": "string"
         }
       }
@@ -1387,6 +1678,41 @@
         "totalOrders": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "GetShipmentResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "shipment": {
+          "$ref": "#/definitions/Shipment"
+        }
+      }
+    },
+    "GetShipmentTrackingResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "shipment": {
+          "$ref": "#/definitions/Shipment"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ShipmentEvent"
+          }
         }
       }
     },
@@ -1682,6 +2008,173 @@
       }
     },
     "RemoveFromGuestCartResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "SchedulePickupBody": {
+      "type": "object",
+      "properties": {
+        "pickup_date": {
+          "type": "string",
+          "x-nullable": true,
+          "title": "YYYY-MM-DD, defaults to tomorrow"
+        }
+      }
+    },
+    "SchedulePickupResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "pickup_token_number": {
+          "type": "string"
+        },
+        "pickup_scheduled_date": {
+          "type": "string"
+        }
+      }
+    },
+    "Shipment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shipment_id": {
+          "type": "string"
+        },
+        "order_id": {
+          "type": "string"
+        },
+        "courier_name": {
+          "type": "string"
+        },
+        "tracking_number": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string"
+        },
+        "estimated_delivery_date": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "actual_delivery_date": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "weight_grams": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shipping_charges": {
+          "type": "number",
+          "format": "double"
+        },
+        "cod_charges": {
+          "type": "number",
+          "format": "double"
+        },
+        "total_charges": {
+          "type": "number",
+          "format": "double"
+        },
+        "label_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "pickup_scheduled_date": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "pickup_token_number": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "pickup_status": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "picked_up_at": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "in_transit_at": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "out_for_delivery_at": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "delivered_at": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "ShipmentEvent": {
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "event_time": {
+          "type": "string"
+        },
+        "is_exception": {
+          "type": "boolean"
+        },
+        "exception_code": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "exception_message": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "ShippingWebhookRequest": {
+      "type": "object",
+      "properties": {
+        "payload": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "ShippingWebhookResponse": {
       "type": "object",
       "properties": {
         "success": {

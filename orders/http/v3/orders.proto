@@ -204,6 +204,63 @@ service OrdersService {
     };
   }
 
+  // Shipment Management
+  rpc CreateShipment(CreateShipmentRequest) returns (CreateShipmentResponse) {
+    option (google.api.http) = {
+      post: "/v3/orders/{order_id}/shipments/create"
+      body: "*"
+    };
+  }
+
+  rpc GetShipment(GetShipmentRequest) returns (GetShipmentResponse) {
+    option (google.api.http) = {
+      get: "/v3/orders/{order_id}/shipment"
+    };
+  }
+
+  rpc GetShipmentTracking(GetShipmentTrackingRequest) returns (GetShipmentTrackingResponse) {
+    option (google.api.http) = {
+      get: "/v3/orders/{order_id}/tracking"
+    };
+  }
+
+  rpc HandleShippingWebhook(ShippingWebhookRequest) returns (ShippingWebhookResponse) {
+    option (google.api.http) = {
+      post: "/v3/webhooks/shiprocket"
+      body: "*"
+    };
+  }
+
+  // Admin only
+  rpc SchedulePickup(SchedulePickupRequest) returns (SchedulePickupResponse) {
+    option (google.api.http) = {
+      post: "/v3/shipments/{shipment_id}/pickup"
+      body: "*"
+    };
+  }
+
+  rpc DownloadShippingLabel(DownloadShippingLabelRequest) returns (DownloadShippingLabelResponse) {
+    option (google.api.http) = {
+      get: "/v3/shipments/{shipment_id}/label"
+    };
+  }
+
+  // Admin: Create or update tracking information manually
+  rpc CreateOrUpdateTracking(CreateOrUpdateTrackingRequest) returns (CreateOrUpdateTrackingResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/orders/{order_id}/tracking"
+      body: "*"
+    };
+  }
+
+  // Admin: Add tracking event manually
+  rpc AddTrackingEvent(AddTrackingEventRequest) returns (AddTrackingEventResponse) {
+    option (google.api.http) = {
+      post: "/v3/admin/orders/{order_id}/tracking/events"
+      body: "*"
+    };
+  }
+
   // Analytics (Admin)
   rpc GetProductSalesAnalytics(GetProductSalesAnalyticsRequest) returns (GetProductSalesAnalyticsResponse) {
     option (google.api.http) = {
@@ -785,4 +842,141 @@ message HasPurchasedProductResponse {
   string message = 2 [json_name = "message"];
   bool has_purchased = 3 [json_name = "has_purchased"];
   optional string order_id = 4 [json_name = "order_id"];  // For display
+}
+
+// ========================================
+// Shipment Messages
+// ========================================
+
+message CreateShipmentRequest {
+  string order_id = 1 [json_name = "order_id"];
+}
+
+message CreateShipmentResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Shipment shipment = 3 [json_name = "shipment"];
+}
+
+message GetShipmentRequest {
+  string order_id = 1 [json_name = "order_id"];
+}
+
+message GetShipmentResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Shipment shipment = 3 [json_name = "shipment"];
+}
+
+message GetShipmentTrackingRequest {
+  string order_id = 1 [json_name = "order_id"];
+}
+
+message GetShipmentTrackingResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Shipment shipment = 3 [json_name = "shipment"];
+  repeated ShipmentEvent events = 4 [json_name = "events"];
+}
+
+message ShippingWebhookRequest {
+  bytes payload = 1 [json_name = "payload"];
+}
+
+message ShippingWebhookResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+message SchedulePickupRequest {
+  string shipment_id = 1 [json_name = "shipment_id"];
+  optional string pickup_date = 2 [json_name = "pickup_date"]; // YYYY-MM-DD, defaults to tomorrow
+}
+
+message SchedulePickupResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  string pickup_token_number = 3 [json_name = "pickup_token_number"];
+  string pickup_scheduled_date = 4 [json_name = "pickup_scheduled_date"];
+}
+
+message DownloadShippingLabelRequest {
+  string shipment_id = 1 [json_name = "shipment_id"];
+}
+
+message DownloadShippingLabelResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  string label_url = 3 [json_name = "label_url"];
+}
+
+message Shipment {
+  int32 id = 1 [json_name = "id"];
+  string shipment_id = 2 [json_name = "shipment_id"];
+  string order_id = 3 [json_name = "order_id"];
+  string courier_name = 4 [json_name = "courier_name"];
+  optional string tracking_number = 5 [json_name = "tracking_number"];
+  string status = 6 [json_name = "status"];
+  optional string estimated_delivery_date = 7 [json_name = "estimated_delivery_date"];
+  optional string actual_delivery_date = 8 [json_name = "actual_delivery_date"];
+  int32 weight_grams = 9 [json_name = "weight_grams"];
+  double shipping_charges = 10 [json_name = "shipping_charges"];
+  double cod_charges = 11 [json_name = "cod_charges"];
+  double total_charges = 12 [json_name = "total_charges"];
+  optional string label_url = 13 [json_name = "label_url"];
+  optional string pickup_scheduled_date = 14 [json_name = "pickup_scheduled_date"];
+  optional string pickup_token_number = 15 [json_name = "pickup_token_number"];
+  optional string pickup_status = 16 [json_name = "pickup_status"];
+  string created_at = 17 [json_name = "created_at"];
+  string updated_at = 18 [json_name = "updated_at"];
+  optional string picked_up_at = 19 [json_name = "picked_up_at"];
+  optional string in_transit_at = 20 [json_name = "in_transit_at"];
+  optional string out_for_delivery_at = 21 [json_name = "out_for_delivery_at"];
+  optional string delivered_at = 22 [json_name = "delivered_at"];
+}
+
+message ShipmentEvent {
+  string event_type = 1 [json_name = "event_type"];
+  string status = 2 [json_name = "status"];
+  optional string location = 3 [json_name = "location"];
+  optional string description = 4 [json_name = "description"];
+  string event_time = 5 [json_name = "event_time"];
+  bool is_exception = 6 [json_name = "is_exception"];
+  optional string exception_code = 7 [json_name = "exception_code"];
+  optional string exception_message = 8 [json_name = "exception_message"];
+}
+
+// Admin: Create or update tracking information manually
+message CreateOrUpdateTrackingRequest {
+  string order_id = 1 [json_name = "order_id"];
+  string tracking_number = 2 [json_name = "tracking_number"];
+  string courier_name = 3 [json_name = "courier_name"];
+  string estimated_delivery_date = 4 [json_name = "estimated_delivery_date"];  // Format: YYYY-MM-DD
+  string status = 5 [json_name = "status"];  // pending, pickup_scheduled, picked_up, in_transit, out_for_delivery, delivered
+  int32 weight_grams = 6 [json_name = "weight_grams"];
+  double shipping_charges = 7 [json_name = "shipping_charges"];
+  optional string tracking_url = 8 [json_name = "tracking_url"];
+}
+
+message CreateOrUpdateTrackingResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  Shipment shipment = 3 [json_name = "shipment"];
+}
+
+// Admin: Add tracking event manually
+message AddTrackingEventRequest {
+  string order_id = 1 [json_name = "order_id"];
+  string event_type = 2 [json_name = "event_type"];
+  string status = 3 [json_name = "status"];
+  string description = 4 [json_name = "description"];
+  bool is_exception = 5 [json_name = "is_exception"];
+  optional string location = 6 [json_name = "location"];
+  optional string exception_message = 7 [json_name = "exception_message"];
+}
+
+message AddTrackingEventResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+  ShipmentEvent event = 3 [json_name = "event"];
 }
