@@ -1726,8 +1726,8 @@ const file_http_v3_payments_proto_rawDesc = "" +
 	"\x10CreateItemRefund\x12).payments.http.v3.CreateItemRefundRequest\x1a&.payments.http.v3.CreateRefundResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/admin/refunds/items\x12{\n" +
 	"\tGetRefund\x12\".payments.http.v3.GetRefundRequest\x1a#.payments.http.v3.GetRefundResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v3/admin/refunds/{refund_id}\x12u\n" +
 	"\vListRefunds\x12$.payments.http.v3.ListRefundsRequest\x1a%.payments.http.v3.ListRefundsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v3/admin/refunds\x12\x88\x01\n" +
-	"\x0fGetPaymentStats\x12(.payments.http.v3.GetPaymentStatsRequest\x1a).payments.http.v3.GetPaymentStatsResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v3/admin/payments/statsB\xc7\x01\n" +
-	"\x14com.payments.http.v3B\rPaymentsProtoP\x01Z>github.com/smart-kart/proto/gen/go/payments/http/v3;paymentsv3\xa2\x02\x03PHX\xaa\x02\x10Payments.Http.V3\xca\x02\x10Payments\\Http\\V3\xe2\x02\x1cPayments\\Http\\V3\\GPBMetadata\xea\x02\x12Payments::Http::V3b\x06proto3"
+	"\x0fGetPaymentStats\x12(.payments.http.v3.GetPaymentStatsRequest\x1a).payments.http.v3.GetPaymentStatsResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v3/admin/payments/statsB\xc9\x01\n" +
+	"\x14com.payments.http.v3B\rPaymentsProtoP\x01Z@github.com/cozy-hub-app/proto/gen/go/payments/http/v3;paymentsv3\xa2\x02\x03PHX\xaa\x02\x10Payments.Http.V3\xca\x02\x10Payments\\Http\\V3\xe2\x02\x1cPayments\\Http\\V3\\GPBMetadata\xea\x02\x12Payments::Http::V3b\x06proto3"
 
 var (
 	file_http_v3_payments_proto_rawDescOnce sync.Once

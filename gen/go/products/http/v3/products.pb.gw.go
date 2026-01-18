@@ -2099,7 +2099,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateProduct", runtime.WithHTTPPathPattern("/v3/products"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CreateProduct", runtime.WithHTTPPathPattern("/v3/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2119,7 +2119,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2139,7 +2139,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2159,7 +2159,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2179,7 +2179,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListProducts", runtime.WithHTTPPathPattern("/v3/products"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ListProducts", runtime.WithHTTPPathPattern("/v3/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2199,7 +2199,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/SearchProducts", runtime.WithHTTPPathPattern("/v3/products/search"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/SearchProducts", runtime.WithHTTPPathPattern("/v3/products/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2219,7 +2219,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateProductStatus", runtime.WithHTTPPathPattern("/v3/products/{product_id}/status"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateProductStatus", runtime.WithHTTPPathPattern("/v3/products/{product_id}/status"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2239,7 +2239,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductBySKU", runtime.WithHTTPPathPattern("/v3/products/sku/{sku}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductBySKU", runtime.WithHTTPPathPattern("/v3/products/sku/{sku}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2259,7 +2259,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateCategory", runtime.WithHTTPPathPattern("/v3/categories"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CreateCategory", runtime.WithHTTPPathPattern("/v3/categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2279,7 +2279,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2299,7 +2299,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2319,7 +2319,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2339,7 +2339,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListCategories", runtime.WithHTTPPathPattern("/v3/categories"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ListCategories", runtime.WithHTTPPathPattern("/v3/categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2359,7 +2359,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateInventory", runtime.WithHTTPPathPattern("/v3/inventory/{product_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateInventory", runtime.WithHTTPPathPattern("/v3/inventory/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2379,7 +2379,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetInventory", runtime.WithHTTPPathPattern("/v3/inventory/{product_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetInventory", runtime.WithHTTPPathPattern("/v3/inventory/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2399,7 +2399,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/BulkUpdateInventory", runtime.WithHTTPPathPattern("/v3/inventory/bulk"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/BulkUpdateInventory", runtime.WithHTTPPathPattern("/v3/inventory/bulk"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2419,7 +2419,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CheckStock", runtime.WithHTTPPathPattern("/v3/inventory/check"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CheckStock", runtime.WithHTTPPathPattern("/v3/inventory/check"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2439,7 +2439,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReserveStock", runtime.WithHTTPPathPattern("/v3/inventory/reserve"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReserveStock", runtime.WithHTTPPathPattern("/v3/inventory/reserve"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2459,7 +2459,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReleaseStock", runtime.WithHTTPPathPattern("/v3/inventory/release"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReleaseStock", runtime.WithHTTPPathPattern("/v3/inventory/release"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2479,7 +2479,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetLowStockCount", runtime.WithHTTPPathPattern("/v3/inventory/low-stock-count"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetLowStockCount", runtime.WithHTTPPathPattern("/v3/inventory/low-stock-count"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2499,7 +2499,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetDashboardStats", runtime.WithHTTPPathPattern("/v3/dashboard/stats"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetDashboardStats", runtime.WithHTTPPathPattern("/v3/dashboard/stats"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2519,7 +2519,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductPricing", runtime.WithHTTPPathPattern("/v3/products/pricing"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductPricing", runtime.WithHTTPPathPattern("/v3/products/pricing"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2539,7 +2539,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/upload"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UploadProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2559,7 +2559,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2579,7 +2579,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/reorder"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReorderProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/reorder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2599,7 +2599,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/SetPrimaryImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}/primary"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/SetPrimaryImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}/primary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2619,7 +2619,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProductImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteProductImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2639,7 +2639,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ListFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2659,7 +2659,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AddFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AddFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2679,7 +2679,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/RemoveFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products/{featured_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/RemoveFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products/{featured_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2699,7 +2699,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products/reorder"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReorderFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products/reorder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2719,7 +2719,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ListCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2739,7 +2739,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CreateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2759,7 +2759,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2779,7 +2779,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2799,7 +2799,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images/reorder"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReorderCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images/reorder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2819,7 +2819,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/upload"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UploadCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2839,7 +2839,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetWishlist", runtime.WithHTTPPathPattern("/v3/wishlist"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetWishlist", runtime.WithHTTPPathPattern("/v3/wishlist"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2859,7 +2859,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AddToWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/add"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AddToWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2879,7 +2879,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/RemoveFromWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/items/{wishlist_item_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/RemoveFromWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/items/{wishlist_item_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2899,7 +2899,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ClearWishlist", runtime.WithHTTPPathPattern("/v3/wishlist"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ClearWishlist", runtime.WithHTTPPathPattern("/v3/wishlist"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2919,7 +2919,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/IsInWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/check/{product_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/IsInWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/check/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2939,7 +2939,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/MergeWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/merge"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/MergeWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/merge"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2959,7 +2959,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/MoveToCart", runtime.WithHTTPPathPattern("/v3/wishlist/move-to-cart"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/MoveToCart", runtime.WithHTTPPathPattern("/v3/wishlist/move-to-cart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2979,7 +2979,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateReview", runtime.WithHTTPPathPattern("/v3/products/{product_id}/reviews"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CreateReview", runtime.WithHTTPPathPattern("/v3/products/{product_id}/reviews"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2999,7 +2999,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductReviews", runtime.WithHTTPPathPattern("/v3/products/{product_id}/reviews"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductReviews", runtime.WithHTTPPathPattern("/v3/products/{product_id}/reviews"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3019,7 +3019,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductRating", runtime.WithHTTPPathPattern("/v3/products/{product_id}/rating"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductRating", runtime.WithHTTPPathPattern("/v3/products/{product_id}/rating"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3039,7 +3039,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetUserReviewForProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}/my-review"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetUserReviewForProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}/my-review"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3059,7 +3059,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateReview", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateReview", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3079,7 +3079,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteReview", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteReview", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3099,7 +3099,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/MarkReviewHelpful", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}/helpful"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/MarkReviewHelpful", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}/helpful"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3119,7 +3119,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadReviewImages", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}/images"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UploadReviewImages", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}/images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3139,7 +3139,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminGetReviews", runtime.WithHTTPPathPattern("/v3/admin/reviews"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminGetReviews", runtime.WithHTTPPathPattern("/v3/admin/reviews"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3159,7 +3159,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminApproveReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/approve"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminApproveReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/approve"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3179,7 +3179,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminRejectReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/reject"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminRejectReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/reject"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3199,7 +3199,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminDeleteReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminDeleteReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3219,7 +3219,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminRespondToReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/respond"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminRespondToReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/respond"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3239,7 +3239,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminBulkApproveReviews", runtime.WithHTTPPathPattern("/v3/admin/reviews/bulk-approve"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminBulkApproveReviews", runtime.WithHTTPPathPattern("/v3/admin/reviews/bulk-approve"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3259,7 +3259,7 @@ func RegisterProductsHTTPServiceHandlerServer(ctx context.Context, mux *runtime.
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminGetReviewAnalytics", runtime.WithHTTPPathPattern("/v3/admin/reviews/analytics"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminGetReviewAnalytics", runtime.WithHTTPPathPattern("/v3/admin/reviews/analytics"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3317,7 +3317,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateProduct", runtime.WithHTTPPathPattern("/v3/products"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CreateProduct", runtime.WithHTTPPathPattern("/v3/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3334,7 +3334,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3351,7 +3351,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3368,7 +3368,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3385,7 +3385,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListProducts", runtime.WithHTTPPathPattern("/v3/products"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ListProducts", runtime.WithHTTPPathPattern("/v3/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3402,7 +3402,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/SearchProducts", runtime.WithHTTPPathPattern("/v3/products/search"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/SearchProducts", runtime.WithHTTPPathPattern("/v3/products/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3419,7 +3419,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateProductStatus", runtime.WithHTTPPathPattern("/v3/products/{product_id}/status"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateProductStatus", runtime.WithHTTPPathPattern("/v3/products/{product_id}/status"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3436,7 +3436,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductBySKU", runtime.WithHTTPPathPattern("/v3/products/sku/{sku}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductBySKU", runtime.WithHTTPPathPattern("/v3/products/sku/{sku}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3453,7 +3453,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateCategory", runtime.WithHTTPPathPattern("/v3/categories"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CreateCategory", runtime.WithHTTPPathPattern("/v3/categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3470,7 +3470,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3487,7 +3487,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3504,7 +3504,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteCategory", runtime.WithHTTPPathPattern("/v3/categories/{category_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3521,7 +3521,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListCategories", runtime.WithHTTPPathPattern("/v3/categories"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ListCategories", runtime.WithHTTPPathPattern("/v3/categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3538,7 +3538,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateInventory", runtime.WithHTTPPathPattern("/v3/inventory/{product_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateInventory", runtime.WithHTTPPathPattern("/v3/inventory/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3555,7 +3555,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetInventory", runtime.WithHTTPPathPattern("/v3/inventory/{product_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetInventory", runtime.WithHTTPPathPattern("/v3/inventory/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3572,7 +3572,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/BulkUpdateInventory", runtime.WithHTTPPathPattern("/v3/inventory/bulk"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/BulkUpdateInventory", runtime.WithHTTPPathPattern("/v3/inventory/bulk"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3589,7 +3589,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CheckStock", runtime.WithHTTPPathPattern("/v3/inventory/check"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CheckStock", runtime.WithHTTPPathPattern("/v3/inventory/check"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3606,7 +3606,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReserveStock", runtime.WithHTTPPathPattern("/v3/inventory/reserve"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReserveStock", runtime.WithHTTPPathPattern("/v3/inventory/reserve"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3623,7 +3623,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReleaseStock", runtime.WithHTTPPathPattern("/v3/inventory/release"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReleaseStock", runtime.WithHTTPPathPattern("/v3/inventory/release"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3640,7 +3640,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetLowStockCount", runtime.WithHTTPPathPattern("/v3/inventory/low-stock-count"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetLowStockCount", runtime.WithHTTPPathPattern("/v3/inventory/low-stock-count"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3657,7 +3657,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetDashboardStats", runtime.WithHTTPPathPattern("/v3/dashboard/stats"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetDashboardStats", runtime.WithHTTPPathPattern("/v3/dashboard/stats"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3674,7 +3674,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductPricing", runtime.WithHTTPPathPattern("/v3/products/pricing"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductPricing", runtime.WithHTTPPathPattern("/v3/products/pricing"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3691,7 +3691,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/upload"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UploadProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3708,7 +3708,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3725,7 +3725,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/reorder"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReorderProductImages", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/reorder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3742,7 +3742,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/SetPrimaryImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}/primary"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/SetPrimaryImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}/primary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3759,7 +3759,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteProductImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteProductImage", runtime.WithHTTPPathPattern("/v3/products/{product_id}/images/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3776,7 +3776,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ListFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3793,7 +3793,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AddFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AddFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3810,7 +3810,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/RemoveFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products/{featured_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/RemoveFeaturedProduct", runtime.WithHTTPPathPattern("/v3/featured-products/{featured_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3827,7 +3827,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products/reorder"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReorderFeaturedProducts", runtime.WithHTTPPathPattern("/v3/featured-products/reorder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3844,7 +3844,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ListCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ListCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3861,7 +3861,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CreateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3878,7 +3878,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3895,7 +3895,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/{carousel_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3912,7 +3912,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ReorderCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images/reorder"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ReorderCarouselImages", runtime.WithHTTPPathPattern("/v3/carousel-images/reorder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3929,7 +3929,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/upload"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UploadCarouselImage", runtime.WithHTTPPathPattern("/v3/carousel-images/upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3946,7 +3946,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetWishlist", runtime.WithHTTPPathPattern("/v3/wishlist"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetWishlist", runtime.WithHTTPPathPattern("/v3/wishlist"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3963,7 +3963,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AddToWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/add"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AddToWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3980,7 +3980,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/RemoveFromWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/items/{wishlist_item_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/RemoveFromWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/items/{wishlist_item_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3997,7 +3997,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/ClearWishlist", runtime.WithHTTPPathPattern("/v3/wishlist"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/ClearWishlist", runtime.WithHTTPPathPattern("/v3/wishlist"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4014,7 +4014,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/IsInWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/check/{product_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/IsInWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/check/{product_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4031,7 +4031,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/MergeWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/merge"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/MergeWishlist", runtime.WithHTTPPathPattern("/v3/wishlist/merge"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4048,7 +4048,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/MoveToCart", runtime.WithHTTPPathPattern("/v3/wishlist/move-to-cart"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/MoveToCart", runtime.WithHTTPPathPattern("/v3/wishlist/move-to-cart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4065,7 +4065,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/CreateReview", runtime.WithHTTPPathPattern("/v3/products/{product_id}/reviews"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/CreateReview", runtime.WithHTTPPathPattern("/v3/products/{product_id}/reviews"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4082,7 +4082,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductReviews", runtime.WithHTTPPathPattern("/v3/products/{product_id}/reviews"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductReviews", runtime.WithHTTPPathPattern("/v3/products/{product_id}/reviews"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4099,7 +4099,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetProductRating", runtime.WithHTTPPathPattern("/v3/products/{product_id}/rating"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetProductRating", runtime.WithHTTPPathPattern("/v3/products/{product_id}/rating"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4116,7 +4116,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/GetUserReviewForProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}/my-review"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/GetUserReviewForProduct", runtime.WithHTTPPathPattern("/v3/products/{product_id}/my-review"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4133,7 +4133,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UpdateReview", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UpdateReview", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4150,7 +4150,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/DeleteReview", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/DeleteReview", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4167,7 +4167,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/MarkReviewHelpful", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}/helpful"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/MarkReviewHelpful", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}/helpful"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4184,7 +4184,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/UploadReviewImages", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}/images"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/UploadReviewImages", runtime.WithHTTPPathPattern("/v3/reviews/{review_id}/images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4201,7 +4201,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminGetReviews", runtime.WithHTTPPathPattern("/v3/admin/reviews"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminGetReviews", runtime.WithHTTPPathPattern("/v3/admin/reviews"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4218,7 +4218,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminApproveReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/approve"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminApproveReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/approve"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4235,7 +4235,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminRejectReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/reject"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminRejectReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/reject"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4252,7 +4252,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminDeleteReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminDeleteReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4269,7 +4269,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminRespondToReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/respond"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminRespondToReview", runtime.WithHTTPPathPattern("/v3/admin/reviews/{review_id}/respond"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4286,7 +4286,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminBulkApproveReviews", runtime.WithHTTPPathPattern("/v3/admin/reviews/bulk-approve"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminBulkApproveReviews", runtime.WithHTTPPathPattern("/v3/admin/reviews/bulk-approve"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4303,7 +4303,7 @@ func RegisterProductsHTTPServiceHandlerClient(ctx context.Context, mux *runtime.
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.products.http.v3.ProductsHTTPService/AdminGetReviewAnalytics", runtime.WithHTTPPathPattern("/v3/admin/reviews/analytics"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.products.http.v3.ProductsHTTPService/AdminGetReviewAnalytics", runtime.WithHTTPPathPattern("/v3/admin/reviews/analytics"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

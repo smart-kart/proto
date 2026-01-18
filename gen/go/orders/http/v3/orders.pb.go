@@ -6800,8 +6800,8 @@ const file_http_v3_orders_proto_rawDesc = "" +
 	"\x16CreateOrUpdateTracking\x12-.orders.http.v3.CreateOrUpdateTrackingRequest\x1a..orders.http.v3.CreateOrUpdateTrackingResponse\"/\x82\xd3\xe4\x93\x02):\x01*\"$/v3/admin/orders/{order_id}/tracking\x12\x9d\x01\n" +
 	"\x10AddTrackingEvent\x12'.orders.http.v3.AddTrackingEventRequest\x1a(.orders.http.v3.AddTrackingEventResponse\"6\x82\xd3\xe4\x93\x020:\x01*\"+/v3/admin/orders/{order_id}/tracking/events\x12\xa8\x01\n" +
 	"\x18GetProductSalesAnalytics\x12/.orders.http.v3.GetProductSalesAnalyticsRequest\x1a0.orders.http.v3.GetProductSalesAnalyticsResponse\")\x82\xd3\xe4\x93\x02#\x12!/v3/admin/analytics/product-sales\x12\x9f\x01\n" +
-	"\x13HasPurchasedProduct\x12*.orders.http.v3.HasPurchasedProductRequest\x1a+.orders.http.v3.HasPurchasedProductResponse\"/\x82\xd3\xe4\x93\x02)\x12'/v3/orders/verify-purchase/{product_id}B\xb7\x01\n" +
-	"\x12com.orders.http.v3B\vOrdersProtoP\x01Z:github.com/smart-kart/proto/gen/go/orders/http/v3;ordersv3\xa2\x02\x03OHX\xaa\x02\x0eOrders.Http.V3\xca\x02\x0eOrders\\Http\\V3\xe2\x02\x1aOrders\\Http\\V3\\GPBMetadata\xea\x02\x10Orders::Http::V3b\x06proto3"
+	"\x13HasPurchasedProduct\x12*.orders.http.v3.HasPurchasedProductRequest\x1a+.orders.http.v3.HasPurchasedProductResponse\"/\x82\xd3\xe4\x93\x02)\x12'/v3/orders/verify-purchase/{product_id}B\xb9\x01\n" +
+	"\x12com.orders.http.v3B\vOrdersProtoP\x01Z<github.com/cozy-hub-app/proto/gen/go/orders/http/v3;ordersv3\xa2\x02\x03OHX\xaa\x02\x0eOrders.Http.V3\xca\x02\x0eOrders\\Http\\V3\xe2\x02\x1aOrders\\Http\\V3\\GPBMetadata\xea\x02\x10Orders::Http::V3b\x06proto3"
 
 var (
 	file_http_v3_orders_proto_rawDescOnce sync.Once

@@ -337,8 +337,8 @@ const file_response_proto_rawDesc = "" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x1f\n" +
 	"\vtotal_pages\x18\x04 \x01(\x05R\n" +
-	"totalPagesB\x93\x01\n" +
-	"\fcom.proto.v1B\rResponseProtoP\x01Z3github.com/smart-kart/proto/gen/go/proto/v1;protov1\xa2\x02\x03PXX\xaa\x02\bProto.V1\xca\x02\bProto\\V1\xe2\x02\x14Proto\\V1\\GPBMetadata\xea\x02\tProto::V1b\x06proto3"
+	"totalPagesB\x95\x01\n" +
+	"\fcom.proto.v1B\rResponseProtoP\x01Z5github.com/cozy-hub-app/proto/gen/go/proto/v1;protov1\xa2\x02\x03PXX\xaa\x02\bProto.V1\xca\x02\bProto\\V1\xe2\x02\x14Proto\\V1\\GPBMetadata\xea\x02\tProto::V1b\x06proto3"
 
 var (
 	file_response_proto_rawDescOnce sync.Once

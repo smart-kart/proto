@@ -3413,7 +3413,7 @@ var File_http_v3_account_proto protoreflect.FileDescriptor
 
 const file_http_v3_account_proto_rawDesc = "" +
 	"\n" +
-	"\x15http/v3/account.proto\x12\x1asmart_kart.account.http.v3\x1a\x1cgoogle/api/annotations.proto\"Z\n" +
+	"\x15http/v3/account.proto\x12\x18cozy_hub.account.http.v3\x1a\x1cgoogle/api/annotations.proto\"Z\n" +
 	"\x15LoginWithPhoneRequest\x12\"\n" +
 	"\fphone_number\x18\x01 \x01(\tR\fphone_number\x12\x15\n" +
 	"\x03otp\x18\x02 \x01(\tH\x00R\x03otp\x88\x01\x01B\x06\n" +
@@ -3457,42 +3457,42 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"token_type\"V\n" +
 	"\x10LoginUserRequest\x12&\n" +
 	"\x0eemail_or_phone\x18\x01 \x01(\tR\x0eemail_or_phone\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xc5\x01\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xc1\x01\n" +
 	"\x11LoginUserResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\x12<\n" +
-	"\x05token\x18\x02 \x01(\v2!.smart_kart.account.http.v3.TokenH\x00R\x05token\x88\x01\x01\x12B\n" +
-	"\aaccount\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AccountH\x01R\aaccount\x88\x01\x01B\b\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12:\n" +
+	"\x05token\x18\x02 \x01(\v2\x1f.cozy_hub.account.http.v3.TokenH\x00R\x05token\x88\x01\x01\x12@\n" +
+	"\aaccount\x18\x03 \x01(\v2!.cozy_hub.account.http.v3.AccountH\x01R\aaccount\x88\x01\x01B\b\n" +
 	"\x06_tokenB\n" +
 	"\n" +
 	"\b_account\"M\n" +
 	"\x11GoogleAuthRequest\x12\x1a\n" +
 	"\bid_token\x18\x01 \x01(\tR\bid_token\x12\x1c\n" +
-	"\tis_signup\x18\x02 \x01(\bR\tis_signup\"\xc6\x01\n" +
+	"\tis_signup\x18\x02 \x01(\bR\tis_signup\"\xc2\x01\n" +
 	"\x12GoogleAuthResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\x12B\n" +
-	"\aaccount\x18\x02 \x01(\v2#.smart_kart.account.http.v3.AccountH\x00R\aaccount\x88\x01\x01\x12<\n" +
-	"\x05token\x18\x03 \x01(\v2!.smart_kart.account.http.v3.TokenH\x01R\x05token\x88\x01\x01B\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12@\n" +
+	"\aaccount\x18\x02 \x01(\v2!.cozy_hub.account.http.v3.AccountH\x00R\aaccount\x88\x01\x01\x12:\n" +
+	"\x05token\x18\x03 \x01(\v2\x1f.cozy_hub.account.http.v3.TokenH\x01R\x05token\x88\x01\x01B\n" +
 	"\n" +
 	"\b_accountB\b\n" +
 	"\x06_token\"h\n" +
 	"\x18LinkGoogleAccountRequest\x12\x1a\n" +
 	"\bid_token\x18\x01 \x01(\tR\bid_token\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\"\xcd\x01\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\"\xc9\x01\n" +
 	"\x19LinkGoogleAccountResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\x12B\n" +
-	"\aaccount\x18\x02 \x01(\v2#.smart_kart.account.http.v3.AccountH\x00R\aaccount\x88\x01\x01\x12<\n" +
-	"\x05token\x18\x03 \x01(\v2!.smart_kart.account.http.v3.TokenH\x01R\x05token\x88\x01\x01B\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12@\n" +
+	"\aaccount\x18\x02 \x01(\v2!.cozy_hub.account.http.v3.AccountH\x00R\aaccount\x88\x01\x01\x12:\n" +
+	"\x05token\x18\x03 \x01(\v2\x1f.cozy_hub.account.http.v3.TokenH\x01R\x05token\x88\x01\x01B\n" +
 	"\n" +
 	"\b_accountB\b\n" +
 	"\x06_token\"E\n" +
 	"\x11AdminLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xe8\x01\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xe4\x01\n" +
 	"\x12AdminLoginResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\x12<\n" +
-	"\x05token\x18\x02 \x01(\v2!.smart_kart.account.http.v3.TokenH\x00R\x05token\x88\x01\x01\x12B\n" +
-	"\aaccount\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AccountH\x01R\aaccount\x88\x01\x01\x12 \n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12:\n" +
+	"\x05token\x18\x02 \x01(\v2\x1f.cozy_hub.account.http.v3.TokenH\x00R\x05token\x88\x01\x01\x12@\n" +
+	"\aaccount\x18\x03 \x01(\v2!.cozy_hub.account.http.v3.AccountH\x01R\aaccount\x88\x01\x01\x12 \n" +
 	"\vpermissions\x18\x04 \x03(\tR\vpermissionsB\b\n" +
 	"\x06_tokenB\n" +
 	"\n" +
@@ -3509,10 +3509,10 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\n" +
 	"_full_nameB\x0f\n" +
 	"\r_old_passwordB\x0f\n" +
-	"\r_new_password\"~\n" +
+	"\r_new_password\"|\n" +
 	"\x12ConfigUserResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\x12B\n" +
-	"\aaccount\x18\x02 \x01(\v2#.smart_kart.account.http.v3.AccountH\x00R\aaccount\x88\x01\x01B\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12@\n" +
+	"\aaccount\x18\x02 \x01(\v2!.cozy_hub.account.http.v3.AccountH\x00R\aaccount\x88\x01\x01B\n" +
 	"\n" +
 	"\b_account\"5\n" +
 	"\x14DeleteAccountRequest\x12\x1d\n" +
@@ -3527,9 +3527,9 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\rstatus_filter\x18\x03 \x01(\tH\x00R\fstatusFilter\x88\x01\x01\x12)\n" +
 	"\x0euser_id_filter\x18\x04 \x01(\tH\x01R\fuserIdFilter\x88\x01\x01B\x10\n" +
 	"\x0e_status_filterB\x11\n" +
-	"\x0f_user_id_filter\"\xa6\x01\n" +
-	"\x14ListAccountsResponse\x12?\n" +
-	"\baccounts\x18\x01 \x03(\v2#.smart_kart.account.http.v3.AccountR\baccounts\x12\x1f\n" +
+	"\x0f_user_id_filter\"\xa4\x01\n" +
+	"\x14ListAccountsResponse\x12=\n" +
+	"\baccounts\x18\x01 \x03(\v2!.cozy_hub.account.http.v3.AccountR\baccounts\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
@@ -3555,9 +3555,9 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"*\n" +
 	"\x0eGetUserRequest\x12\x18\n" +
-	"\auser_id\x18\x01 \x01(\tR\auser_id\"j\n" +
-	"\x0fGetUserResponse\x12=\n" +
-	"\aaccount\x18\x01 \x01(\v2#.smart_kart.account.http.v3.AccountR\aaccount\x12\x18\n" +
+	"\auser_id\x18\x01 \x01(\tR\auser_id\"h\n" +
+	"\x0fGetUserResponse\x12;\n" +
+	"\aaccount\x18\x01 \x01(\v2!.cozy_hub.account.http.v3.AccountR\aaccount\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"w\n" +
 	"\rLogoutRequest\x12\x1d\n" +
 	"\auser_id\x18\x01 \x01(\tH\x00R\auser_id\x88\x01\x01\x12)\n" +
@@ -3569,9 +3569,9 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\";\n" +
 	"\x13RefreshTokenRequest\x12$\n" +
-	"\rrefresh_token\x18\x01 \x01(\tR\rrefresh_token\"i\n" +
-	"\x14RefreshTokenResponse\x127\n" +
-	"\x05token\x18\x01 \x01(\v2!.smart_kart.account.http.v3.TokenR\x05token\x12\x18\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\rrefresh_token\"g\n" +
+	"\x14RefreshTokenResponse\x125\n" +
+	"\x05token\x18\x01 \x01(\v2\x1f.cozy_hub.account.http.v3.TokenR\x05token\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\x0e\n" +
 	"\fEmptyRequest\"Y\n" +
 	"\x1aRefreshTokenSilentResponse\x12!\n" +
@@ -3594,11 +3594,11 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\x1bCompleteRegistrationRequest\x12$\n" +
 	"\rsession_token\x18\x01 \x01(\tR\rsession_token\x12\x1c\n" +
 	"\tfull_name\x18\x02 \x01(\tR\tfull_name\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\"\xb0\x01\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\"\xac\x01\n" +
 	"\x1cCompleteRegistrationResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\x12=\n" +
-	"\aaccount\x18\x02 \x01(\v2#.smart_kart.account.http.v3.AccountR\aaccount\x127\n" +
-	"\x05token\x18\x03 \x01(\v2!.smart_kart.account.http.v3.TokenR\x05token\"\xd7\x03\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12;\n" +
+	"\aaccount\x18\x02 \x01(\v2!.cozy_hub.account.http.v3.AccountR\aaccount\x125\n" +
+	"\x05token\x18\x03 \x01(\v2\x1f.cozy_hub.account.http.v3.TokenR\x05token\"\xd7\x03\n" +
 	"\aAddress\x12\x1e\n" +
 	"\n" +
 	"address_id\x18\x01 \x01(\tR\n" +
@@ -3638,26 +3638,26 @@ const file_http_v3_account_proto_rawDesc = "" +
 	" \x01(\tR\faddress_type\x12\x1e\n" +
 	"\n" +
 	"is_default\x18\v \x01(\bR\n" +
-	"is_default\"\x87\x01\n" +
+	"is_default\"\x85\x01\n" +
 	"\x12AddAddressResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
-	"\aaddress\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AddressR\aaddress\"3\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\aaddress\x18\x03 \x01(\v2!.cozy_hub.account.http.v3.AddressR\aaddress\"3\n" +
 	"\x11GetAddressRequest\x12\x1e\n" +
 	"\n" +
 	"address_id\x18\x01 \x01(\tR\n" +
-	"address_id\"\x87\x01\n" +
+	"address_id\"\x85\x01\n" +
 	"\x12GetAddressResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
-	"\aaddress\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AddressR\aaddress\"P\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\aaddress\x18\x03 \x01(\v2!.cozy_hub.account.http.v3.AddressR\aaddress\"P\n" +
 	"\x14ListAddressesRequest\x12'\n" +
 	"\faddress_type\x18\x01 \x01(\tH\x00R\faddress_type\x88\x01\x01B\x0f\n" +
-	"\r_address_type\"\xb0\x01\n" +
+	"\r_address_type\"\xae\x01\n" +
 	"\x15ListAddressesResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12A\n" +
-	"\taddresses\x18\x03 \x03(\v2#.smart_kart.account.http.v3.AddressR\taddresses\x12 \n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12?\n" +
+	"\taddresses\x18\x03 \x03(\v2!.cozy_hub.account.http.v3.AddressR\taddresses\x12 \n" +
 	"\vtotal_count\x18\x04 \x01(\x05R\vtotal_count\"\x8a\x03\n" +
 	"\x14UpdateAddressRequest\x12\x1e\n" +
 	"\n" +
@@ -3676,11 +3676,11 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\faddress_type\x18\v \x01(\tR\faddress_type\x12\x1e\n" +
 	"\n" +
 	"is_default\x18\f \x01(\bR\n" +
-	"is_default\"\x8a\x01\n" +
+	"is_default\"\x88\x01\n" +
 	"\x15UpdateAddressResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
-	"\aaddress\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AddressR\aaddress\"6\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\aaddress\x18\x03 \x01(\v2!.cozy_hub.account.http.v3.AddressR\aaddress\"6\n" +
 	"\x14DeleteAddressRequest\x12\x1e\n" +
 	"\n" +
 	"address_id\x18\x01 \x01(\tR\n" +
@@ -3691,43 +3691,43 @@ const file_http_v3_account_proto_rawDesc = "" +
 	"\x18SetDefaultAddressRequest\x12\x1e\n" +
 	"\n" +
 	"address_id\x18\x01 \x01(\tR\n" +
-	"address_id\"\x8e\x01\n" +
+	"address_id\"\x8c\x01\n" +
 	"\x19SetDefaultAddressResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
-	"\aaddress\x18\x03 \x01(\v2#.smart_kart.account.http.v3.AddressR\aaddress2\xe6\x1e\n" +
-	"\x12AccountHTTPService\x12\xb0\x01\n" +
-	"\x14InitiateRegistration\x127.smart_kart.account.http.v3.InitiateRegistrationRequest\x1a8.smart_kart.account.http.v3.InitiateRegistrationResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/user/register/initiate\x12\xb5\x01\n" +
-	"\x15VerifyRegistrationOTP\x128.smart_kart.account.http.v3.VerifyRegistrationOTPRequest\x1a9.smart_kart.account.http.v3.VerifyRegistrationOTPResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v3/user/register/verify-otp\x12\xb0\x01\n" +
-	"\x14CompleteRegistration\x127.smart_kart.account.http.v3.CompleteRegistrationRequest\x1a8.smart_kart.account.http.v3.CompleteRegistrationResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/user/register/complete\x12\x83\x01\n" +
-	"\tLoginUser\x12,.smart_kart.account.http.v3.LoginUserRequest\x1a-.smart_kart.account.http.v3.LoginUserResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v3/user/login\x12\x98\x01\n" +
-	"\x0eLoginWithPhone\x121.smart_kart.account.http.v3.LoginWithPhoneRequest\x1a-.smart_kart.account.http.v3.LoginUserResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v3/user/login-with-phone\x12\x8c\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\aaddress\x18\x03 \x01(\v2!.cozy_hub.account.http.v3.AddressR\aaddress2\x81\x1e\n" +
+	"\x12AccountHTTPService\x12\xac\x01\n" +
+	"\x14InitiateRegistration\x125.cozy_hub.account.http.v3.InitiateRegistrationRequest\x1a6.cozy_hub.account.http.v3.InitiateRegistrationResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/user/register/initiate\x12\xb1\x01\n" +
+	"\x15VerifyRegistrationOTP\x126.cozy_hub.account.http.v3.VerifyRegistrationOTPRequest\x1a7.cozy_hub.account.http.v3.VerifyRegistrationOTPResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v3/user/register/verify-otp\x12\xac\x01\n" +
+	"\x14CompleteRegistration\x125.cozy_hub.account.http.v3.CompleteRegistrationRequest\x1a6.cozy_hub.account.http.v3.CompleteRegistrationResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/user/register/complete\x12\x7f\n" +
+	"\tLoginUser\x12*.cozy_hub.account.http.v3.LoginUserRequest\x1a+.cozy_hub.account.http.v3.LoginUserResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v3/user/login\x12\x94\x01\n" +
+	"\x0eLoginWithPhone\x12/.cozy_hub.account.http.v3.LoginWithPhoneRequest\x1a+.cozy_hub.account.http.v3.LoginUserResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v3/user/login-with-phone\x12\x88\x01\n" +
 	"\n" +
-	"GoogleAuth\x12-.smart_kart.account.http.v3.GoogleAuthRequest\x1a..smart_kart.account.http.v3.GoogleAuthResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v3/user/google-auth\x12\xa1\x01\n" +
-	"\x11LinkGoogleAccount\x124.smart_kart.account.http.v3.LinkGoogleAccountRequest\x1a5.smart_kart.account.http.v3.LinkGoogleAccountResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v3/user/link-google\x12\x87\x01\n" +
+	"GoogleAuth\x12+.cozy_hub.account.http.v3.GoogleAuthRequest\x1a,.cozy_hub.account.http.v3.GoogleAuthResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v3/user/google-auth\x12\x9d\x01\n" +
+	"\x11LinkGoogleAccount\x122.cozy_hub.account.http.v3.LinkGoogleAccountRequest\x1a3.cozy_hub.account.http.v3.LinkGoogleAccountResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v3/user/link-google\x12\x83\x01\n" +
 	"\n" +
-	"AdminLogin\x12-.smart_kart.account.http.v3.AdminLoginRequest\x1a..smart_kart.account.http.v3.AdminLoginResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v3/admin/login\x12\x91\x01\n" +
+	"AdminLogin\x12+.cozy_hub.account.http.v3.AdminLoginRequest\x1a,.cozy_hub.account.http.v3.AdminLoginResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v3/admin/login\x12\x8d\x01\n" +
 	"\n" +
-	"ConfigUser\x12-.smart_kart.account.http.v3.ConfigUserRequest\x1a..smart_kart.account.http.v3.ConfigUserResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v3/user/config/{user_id}\x12\xbc\x01\n" +
-	"\x15SendVerificationEmail\x128.smart_kart.account.http.v3.SendVerificationEmailRequest\x1a9.smart_kart.account.http.v3.SendVerificationEmailResponse\".\x82\xd3\xe4\x93\x02(:\x01*\"#/v3/account/send-verification-email\x12\x93\x01\n" +
-	"\vVerifyEmail\x12..smart_kart.account.http.v3.VerifyEmailRequest\x1a/.smart_kart.account.http.v3.VerifyEmailResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/account/verify-email\x12\xb4\x01\n" +
-	"\x13SendVerificationSMS\x126.smart_kart.account.http.v3.SendVerificationSMSRequest\x1a7.smart_kart.account.http.v3.SendVerificationSMSResponse\",\x82\xd3\xe4\x93\x02&:\x01*\"!/v3/account/send-verification-sms\x12\x93\x01\n" +
-	"\vVerifyPhone\x12..smart_kart.account.http.v3.VerifyPhoneRequest\x1a/.smart_kart.account.http.v3.VerifyPhoneResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/account/verify-phone\x12\x9c\x01\n" +
-	"\x0eForgetPassword\x121.smart_kart.account.http.v3.ForgetPasswordRequest\x1a2.smart_kart.account.http.v3.ForgetPasswordResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/user/forgot-password\x12\x98\x01\n" +
-	"\rResetPassword\x120.smart_kart.account.http.v3.ResetPasswordRequest\x1a1.smart_kart.account.http.v3.ResetPasswordResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/reset-password\x12~\n" +
-	"\aGetUser\x12*.smart_kart.account.http.v3.GetUserRequest\x1a+.smart_kart.account.http.v3.GetUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v3/user/{user_id}\x12{\n" +
-	"\x06Logout\x12).smart_kart.account.http.v3.LogoutRequest\x1a*.smart_kart.account.http.v3.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v3/user/logout\x12\x94\x01\n" +
-	"\fRefreshToken\x12/.smart_kart.account.http.v3.RefreshTokenRequest\x1a0.smart_kart.account.http.v3.RefreshTokenResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v3/user/refresh-token\x12\x9a\x01\n" +
-	"\x12RefreshTokenSilent\x12(.smart_kart.account.http.v3.EmptyRequest\x1a6.smart_kart.account.http.v3.RefreshTokenSilentResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/refresh-silent\x12\x8a\x01\n" +
+	"ConfigUser\x12+.cozy_hub.account.http.v3.ConfigUserRequest\x1a,.cozy_hub.account.http.v3.ConfigUserResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v3/user/config/{user_id}\x12\xb8\x01\n" +
+	"\x15SendVerificationEmail\x126.cozy_hub.account.http.v3.SendVerificationEmailRequest\x1a7.cozy_hub.account.http.v3.SendVerificationEmailResponse\".\x82\xd3\xe4\x93\x02(:\x01*\"#/v3/account/send-verification-email\x12\x8f\x01\n" +
+	"\vVerifyEmail\x12,.cozy_hub.account.http.v3.VerifyEmailRequest\x1a-.cozy_hub.account.http.v3.VerifyEmailResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/account/verify-email\x12\xb0\x01\n" +
+	"\x13SendVerificationSMS\x124.cozy_hub.account.http.v3.SendVerificationSMSRequest\x1a5.cozy_hub.account.http.v3.SendVerificationSMSResponse\",\x82\xd3\xe4\x93\x02&:\x01*\"!/v3/account/send-verification-sms\x12\x8f\x01\n" +
+	"\vVerifyPhone\x12,.cozy_hub.account.http.v3.VerifyPhoneRequest\x1a-.cozy_hub.account.http.v3.VerifyPhoneResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/account/verify-phone\x12\x98\x01\n" +
+	"\x0eForgetPassword\x12/.cozy_hub.account.http.v3.ForgetPasswordRequest\x1a0.cozy_hub.account.http.v3.ForgetPasswordResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v3/user/forgot-password\x12\x94\x01\n" +
+	"\rResetPassword\x12..cozy_hub.account.http.v3.ResetPasswordRequest\x1a/.cozy_hub.account.http.v3.ResetPasswordResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/reset-password\x12z\n" +
+	"\aGetUser\x12(.cozy_hub.account.http.v3.GetUserRequest\x1a).cozy_hub.account.http.v3.GetUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v3/user/{user_id}\x12w\n" +
+	"\x06Logout\x12'.cozy_hub.account.http.v3.LogoutRequest\x1a(.cozy_hub.account.http.v3.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v3/user/logout\x12\x90\x01\n" +
+	"\fRefreshToken\x12-.cozy_hub.account.http.v3.RefreshTokenRequest\x1a..cozy_hub.account.http.v3.RefreshTokenResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v3/user/refresh-token\x12\x96\x01\n" +
+	"\x12RefreshTokenSilent\x12&.cozy_hub.account.http.v3.EmptyRequest\x1a4.cozy_hub.account.http.v3.RefreshTokenSilentResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v3/user/refresh-silent\x12\x86\x01\n" +
 	"\n" +
-	"AddAddress\x12-.smart_kart.account.http.v3.AddAddressRequest\x1a..smart_kart.account.http.v3.AddAddressResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v3/user/addresses\x12\x94\x01\n" +
+	"AddAddress\x12+.cozy_hub.account.http.v3.AddAddressRequest\x1a,.cozy_hub.account.http.v3.AddAddressResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v3/user/addresses\x12\x90\x01\n" +
 	"\n" +
-	"GetAddress\x12-.smart_kart.account.http.v3.GetAddressRequest\x1a..smart_kart.account.http.v3.GetAddressResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/v3/user/addresses/{address_id}\x12\x90\x01\n" +
-	"\rListAddresses\x120.smart_kart.account.http.v3.ListAddressesRequest\x1a1.smart_kart.account.http.v3.ListAddressesResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v3/user/addresses\x12\xa0\x01\n" +
-	"\rUpdateAddress\x120.smart_kart.account.http.v3.UpdateAddressRequest\x1a1.smart_kart.account.http.v3.UpdateAddressResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\x1a\x1f/v3/user/addresses/{address_id}\x12\x9d\x01\n" +
-	"\rDeleteAddress\x120.smart_kart.account.http.v3.DeleteAddressRequest\x1a1.smart_kart.account.http.v3.DeleteAddressResponse\"'\x82\xd3\xe4\x93\x02!*\x1f/v3/user/addresses/{address_id}\x12\xb8\x01\n" +
-	"\x11SetDefaultAddress\x124.smart_kart.account.http.v3.SetDefaultAddressRequest\x1a5.smart_kart.account.http.v3.SetDefaultAddressResponse\"6\x82\xd3\xe4\x93\x020:\x01*\x1a+/v3/user/addresses/{address_id}/set-defaultB\xf3\x01\n" +
-	"\x1ecom.smart_kart.account.http.v3B\fAccountProtoP\x01Z<github.com/smart-kart/proto/gen/go/account/http/v3;accountv3\xa2\x02\x03SAH\xaa\x02\x19SmartKart.Account.Http.V3\xca\x02\x19SmartKart\\Account\\Http\\V3\xe2\x02%SmartKart\\Account\\Http\\V3\\GPBMetadata\xea\x02\x1cSmartKart::Account::Http::V3b\x06proto3"
+	"GetAddress\x12+.cozy_hub.account.http.v3.GetAddressRequest\x1a,.cozy_hub.account.http.v3.GetAddressResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/v3/user/addresses/{address_id}\x12\x8c\x01\n" +
+	"\rListAddresses\x12..cozy_hub.account.http.v3.ListAddressesRequest\x1a/.cozy_hub.account.http.v3.ListAddressesResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v3/user/addresses\x12\x9c\x01\n" +
+	"\rUpdateAddress\x12..cozy_hub.account.http.v3.UpdateAddressRequest\x1a/.cozy_hub.account.http.v3.UpdateAddressResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\x1a\x1f/v3/user/addresses/{address_id}\x12\x99\x01\n" +
+	"\rDeleteAddress\x12..cozy_hub.account.http.v3.DeleteAddressRequest\x1a/.cozy_hub.account.http.v3.DeleteAddressResponse\"'\x82\xd3\xe4\x93\x02!*\x1f/v3/user/addresses/{address_id}\x12\xb4\x01\n" +
+	"\x11SetDefaultAddress\x122.cozy_hub.account.http.v3.SetDefaultAddressRequest\x1a3.cozy_hub.account.http.v3.SetDefaultAddressResponse\"6\x82\xd3\xe4\x93\x020:\x01*\x1a+/v3/user/addresses/{address_id}/set-defaultB\xeb\x01\n" +
+	"\x1ccom.cozy_hub.account.http.v3B\fAccountProtoP\x01Z>github.com/cozy-hub-app/proto/gen/go/account/http/v3;accountv3\xa2\x02\x03CAH\xaa\x02\x17CozyHub.Account.Http.V3\xca\x02\x17CozyHub\\Account\\Http\\V3\xe2\x02#CozyHub\\Account\\Http\\V3\\GPBMetadata\xea\x02\x1aCozyHub::Account::Http::V3b\x06proto3"
 
 var (
 	file_http_v3_account_proto_rawDescOnce sync.Once
@@ -3743,133 +3743,133 @@ func file_http_v3_account_proto_rawDescGZIP() []byte {
 
 var file_http_v3_account_proto_msgTypes = make([]protoimpl.MessageInfo, 56)
 var file_http_v3_account_proto_goTypes = []any{
-	(*LoginWithPhoneRequest)(nil),         // 0: smart_kart.account.http.v3.LoginWithPhoneRequest
-	(*ForgetPasswordRequest)(nil),         // 1: smart_kart.account.http.v3.ForgetPasswordRequest
-	(*ForgetPasswordResponse)(nil),        // 2: smart_kart.account.http.v3.ForgetPasswordResponse
-	(*ResetPasswordRequest)(nil),          // 3: smart_kart.account.http.v3.ResetPasswordRequest
-	(*ResetPasswordResponse)(nil),         // 4: smart_kart.account.http.v3.ResetPasswordResponse
-	(*Account)(nil),                       // 5: smart_kart.account.http.v3.Account
-	(*Token)(nil),                         // 6: smart_kart.account.http.v3.Token
-	(*LoginUserRequest)(nil),              // 7: smart_kart.account.http.v3.LoginUserRequest
-	(*LoginUserResponse)(nil),             // 8: smart_kart.account.http.v3.LoginUserResponse
-	(*GoogleAuthRequest)(nil),             // 9: smart_kart.account.http.v3.GoogleAuthRequest
-	(*GoogleAuthResponse)(nil),            // 10: smart_kart.account.http.v3.GoogleAuthResponse
-	(*LinkGoogleAccountRequest)(nil),      // 11: smart_kart.account.http.v3.LinkGoogleAccountRequest
-	(*LinkGoogleAccountResponse)(nil),     // 12: smart_kart.account.http.v3.LinkGoogleAccountResponse
-	(*AdminLoginRequest)(nil),             // 13: smart_kart.account.http.v3.AdminLoginRequest
-	(*AdminLoginResponse)(nil),            // 14: smart_kart.account.http.v3.AdminLoginResponse
-	(*ConfigUserRequest)(nil),             // 15: smart_kart.account.http.v3.ConfigUserRequest
-	(*ConfigUserResponse)(nil),            // 16: smart_kart.account.http.v3.ConfigUserResponse
-	(*DeleteAccountRequest)(nil),          // 17: smart_kart.account.http.v3.DeleteAccountRequest
-	(*DeleteAccountResponse)(nil),         // 18: smart_kart.account.http.v3.DeleteAccountResponse
-	(*ListAccountsRequest)(nil),           // 19: smart_kart.account.http.v3.ListAccountsRequest
-	(*ListAccountsResponse)(nil),          // 20: smart_kart.account.http.v3.ListAccountsResponse
-	(*SendVerificationEmailRequest)(nil),  // 21: smart_kart.account.http.v3.SendVerificationEmailRequest
-	(*SendVerificationEmailResponse)(nil), // 22: smart_kart.account.http.v3.SendVerificationEmailResponse
-	(*VerifyEmailRequest)(nil),            // 23: smart_kart.account.http.v3.VerifyEmailRequest
-	(*VerifyEmailResponse)(nil),           // 24: smart_kart.account.http.v3.VerifyEmailResponse
-	(*SendVerificationSMSRequest)(nil),    // 25: smart_kart.account.http.v3.SendVerificationSMSRequest
-	(*SendVerificationSMSResponse)(nil),   // 26: smart_kart.account.http.v3.SendVerificationSMSResponse
-	(*VerifyPhoneRequest)(nil),            // 27: smart_kart.account.http.v3.VerifyPhoneRequest
-	(*VerifyPhoneResponse)(nil),           // 28: smart_kart.account.http.v3.VerifyPhoneResponse
-	(*GetUserRequest)(nil),                // 29: smart_kart.account.http.v3.GetUserRequest
-	(*GetUserResponse)(nil),               // 30: smart_kart.account.http.v3.GetUserResponse
-	(*LogoutRequest)(nil),                 // 31: smart_kart.account.http.v3.LogoutRequest
-	(*LogoutResponse)(nil),                // 32: smart_kart.account.http.v3.LogoutResponse
-	(*RefreshTokenRequest)(nil),           // 33: smart_kart.account.http.v3.RefreshTokenRequest
-	(*RefreshTokenResponse)(nil),          // 34: smart_kart.account.http.v3.RefreshTokenResponse
-	(*EmptyRequest)(nil),                  // 35: smart_kart.account.http.v3.EmptyRequest
-	(*RefreshTokenSilentResponse)(nil),    // 36: smart_kart.account.http.v3.RefreshTokenSilentResponse
-	(*InitiateRegistrationRequest)(nil),   // 37: smart_kart.account.http.v3.InitiateRegistrationRequest
-	(*InitiateRegistrationResponse)(nil),  // 38: smart_kart.account.http.v3.InitiateRegistrationResponse
-	(*VerifyRegistrationOTPRequest)(nil),  // 39: smart_kart.account.http.v3.VerifyRegistrationOTPRequest
-	(*VerifyRegistrationOTPResponse)(nil), // 40: smart_kart.account.http.v3.VerifyRegistrationOTPResponse
-	(*CompleteRegistrationRequest)(nil),   // 41: smart_kart.account.http.v3.CompleteRegistrationRequest
-	(*CompleteRegistrationResponse)(nil),  // 42: smart_kart.account.http.v3.CompleteRegistrationResponse
-	(*Address)(nil),                       // 43: smart_kart.account.http.v3.Address
-	(*AddAddressRequest)(nil),             // 44: smart_kart.account.http.v3.AddAddressRequest
-	(*AddAddressResponse)(nil),            // 45: smart_kart.account.http.v3.AddAddressResponse
-	(*GetAddressRequest)(nil),             // 46: smart_kart.account.http.v3.GetAddressRequest
-	(*GetAddressResponse)(nil),            // 47: smart_kart.account.http.v3.GetAddressResponse
-	(*ListAddressesRequest)(nil),          // 48: smart_kart.account.http.v3.ListAddressesRequest
-	(*ListAddressesResponse)(nil),         // 49: smart_kart.account.http.v3.ListAddressesResponse
-	(*UpdateAddressRequest)(nil),          // 50: smart_kart.account.http.v3.UpdateAddressRequest
-	(*UpdateAddressResponse)(nil),         // 51: smart_kart.account.http.v3.UpdateAddressResponse
-	(*DeleteAddressRequest)(nil),          // 52: smart_kart.account.http.v3.DeleteAddressRequest
-	(*DeleteAddressResponse)(nil),         // 53: smart_kart.account.http.v3.DeleteAddressResponse
-	(*SetDefaultAddressRequest)(nil),      // 54: smart_kart.account.http.v3.SetDefaultAddressRequest
-	(*SetDefaultAddressResponse)(nil),     // 55: smart_kart.account.http.v3.SetDefaultAddressResponse
+	(*LoginWithPhoneRequest)(nil),         // 0: cozy_hub.account.http.v3.LoginWithPhoneRequest
+	(*ForgetPasswordRequest)(nil),         // 1: cozy_hub.account.http.v3.ForgetPasswordRequest
+	(*ForgetPasswordResponse)(nil),        // 2: cozy_hub.account.http.v3.ForgetPasswordResponse
+	(*ResetPasswordRequest)(nil),          // 3: cozy_hub.account.http.v3.ResetPasswordRequest
+	(*ResetPasswordResponse)(nil),         // 4: cozy_hub.account.http.v3.ResetPasswordResponse
+	(*Account)(nil),                       // 5: cozy_hub.account.http.v3.Account
+	(*Token)(nil),                         // 6: cozy_hub.account.http.v3.Token
+	(*LoginUserRequest)(nil),              // 7: cozy_hub.account.http.v3.LoginUserRequest
+	(*LoginUserResponse)(nil),             // 8: cozy_hub.account.http.v3.LoginUserResponse
+	(*GoogleAuthRequest)(nil),             // 9: cozy_hub.account.http.v3.GoogleAuthRequest
+	(*GoogleAuthResponse)(nil),            // 10: cozy_hub.account.http.v3.GoogleAuthResponse
+	(*LinkGoogleAccountRequest)(nil),      // 11: cozy_hub.account.http.v3.LinkGoogleAccountRequest
+	(*LinkGoogleAccountResponse)(nil),     // 12: cozy_hub.account.http.v3.LinkGoogleAccountResponse
+	(*AdminLoginRequest)(nil),             // 13: cozy_hub.account.http.v3.AdminLoginRequest
+	(*AdminLoginResponse)(nil),            // 14: cozy_hub.account.http.v3.AdminLoginResponse
+	(*ConfigUserRequest)(nil),             // 15: cozy_hub.account.http.v3.ConfigUserRequest
+	(*ConfigUserResponse)(nil),            // 16: cozy_hub.account.http.v3.ConfigUserResponse
+	(*DeleteAccountRequest)(nil),          // 17: cozy_hub.account.http.v3.DeleteAccountRequest
+	(*DeleteAccountResponse)(nil),         // 18: cozy_hub.account.http.v3.DeleteAccountResponse
+	(*ListAccountsRequest)(nil),           // 19: cozy_hub.account.http.v3.ListAccountsRequest
+	(*ListAccountsResponse)(nil),          // 20: cozy_hub.account.http.v3.ListAccountsResponse
+	(*SendVerificationEmailRequest)(nil),  // 21: cozy_hub.account.http.v3.SendVerificationEmailRequest
+	(*SendVerificationEmailResponse)(nil), // 22: cozy_hub.account.http.v3.SendVerificationEmailResponse
+	(*VerifyEmailRequest)(nil),            // 23: cozy_hub.account.http.v3.VerifyEmailRequest
+	(*VerifyEmailResponse)(nil),           // 24: cozy_hub.account.http.v3.VerifyEmailResponse
+	(*SendVerificationSMSRequest)(nil),    // 25: cozy_hub.account.http.v3.SendVerificationSMSRequest
+	(*SendVerificationSMSResponse)(nil),   // 26: cozy_hub.account.http.v3.SendVerificationSMSResponse
+	(*VerifyPhoneRequest)(nil),            // 27: cozy_hub.account.http.v3.VerifyPhoneRequest
+	(*VerifyPhoneResponse)(nil),           // 28: cozy_hub.account.http.v3.VerifyPhoneResponse
+	(*GetUserRequest)(nil),                // 29: cozy_hub.account.http.v3.GetUserRequest
+	(*GetUserResponse)(nil),               // 30: cozy_hub.account.http.v3.GetUserResponse
+	(*LogoutRequest)(nil),                 // 31: cozy_hub.account.http.v3.LogoutRequest
+	(*LogoutResponse)(nil),                // 32: cozy_hub.account.http.v3.LogoutResponse
+	(*RefreshTokenRequest)(nil),           // 33: cozy_hub.account.http.v3.RefreshTokenRequest
+	(*RefreshTokenResponse)(nil),          // 34: cozy_hub.account.http.v3.RefreshTokenResponse
+	(*EmptyRequest)(nil),                  // 35: cozy_hub.account.http.v3.EmptyRequest
+	(*RefreshTokenSilentResponse)(nil),    // 36: cozy_hub.account.http.v3.RefreshTokenSilentResponse
+	(*InitiateRegistrationRequest)(nil),   // 37: cozy_hub.account.http.v3.InitiateRegistrationRequest
+	(*InitiateRegistrationResponse)(nil),  // 38: cozy_hub.account.http.v3.InitiateRegistrationResponse
+	(*VerifyRegistrationOTPRequest)(nil),  // 39: cozy_hub.account.http.v3.VerifyRegistrationOTPRequest
+	(*VerifyRegistrationOTPResponse)(nil), // 40: cozy_hub.account.http.v3.VerifyRegistrationOTPResponse
+	(*CompleteRegistrationRequest)(nil),   // 41: cozy_hub.account.http.v3.CompleteRegistrationRequest
+	(*CompleteRegistrationResponse)(nil),  // 42: cozy_hub.account.http.v3.CompleteRegistrationResponse
+	(*Address)(nil),                       // 43: cozy_hub.account.http.v3.Address
+	(*AddAddressRequest)(nil),             // 44: cozy_hub.account.http.v3.AddAddressRequest
+	(*AddAddressResponse)(nil),            // 45: cozy_hub.account.http.v3.AddAddressResponse
+	(*GetAddressRequest)(nil),             // 46: cozy_hub.account.http.v3.GetAddressRequest
+	(*GetAddressResponse)(nil),            // 47: cozy_hub.account.http.v3.GetAddressResponse
+	(*ListAddressesRequest)(nil),          // 48: cozy_hub.account.http.v3.ListAddressesRequest
+	(*ListAddressesResponse)(nil),         // 49: cozy_hub.account.http.v3.ListAddressesResponse
+	(*UpdateAddressRequest)(nil),          // 50: cozy_hub.account.http.v3.UpdateAddressRequest
+	(*UpdateAddressResponse)(nil),         // 51: cozy_hub.account.http.v3.UpdateAddressResponse
+	(*DeleteAddressRequest)(nil),          // 52: cozy_hub.account.http.v3.DeleteAddressRequest
+	(*DeleteAddressResponse)(nil),         // 53: cozy_hub.account.http.v3.DeleteAddressResponse
+	(*SetDefaultAddressRequest)(nil),      // 54: cozy_hub.account.http.v3.SetDefaultAddressRequest
+	(*SetDefaultAddressResponse)(nil),     // 55: cozy_hub.account.http.v3.SetDefaultAddressResponse
 }
 var file_http_v3_account_proto_depIdxs = []int32{
-	6,  // 0: smart_kart.account.http.v3.LoginUserResponse.token:type_name -> smart_kart.account.http.v3.Token
-	5,  // 1: smart_kart.account.http.v3.LoginUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	5,  // 2: smart_kart.account.http.v3.GoogleAuthResponse.account:type_name -> smart_kart.account.http.v3.Account
-	6,  // 3: smart_kart.account.http.v3.GoogleAuthResponse.token:type_name -> smart_kart.account.http.v3.Token
-	5,  // 4: smart_kart.account.http.v3.LinkGoogleAccountResponse.account:type_name -> smart_kart.account.http.v3.Account
-	6,  // 5: smart_kart.account.http.v3.LinkGoogleAccountResponse.token:type_name -> smart_kart.account.http.v3.Token
-	6,  // 6: smart_kart.account.http.v3.AdminLoginResponse.token:type_name -> smart_kart.account.http.v3.Token
-	5,  // 7: smart_kart.account.http.v3.AdminLoginResponse.account:type_name -> smart_kart.account.http.v3.Account
-	5,  // 8: smart_kart.account.http.v3.ConfigUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	5,  // 9: smart_kart.account.http.v3.ListAccountsResponse.accounts:type_name -> smart_kart.account.http.v3.Account
-	5,  // 10: smart_kart.account.http.v3.GetUserResponse.account:type_name -> smart_kart.account.http.v3.Account
-	6,  // 11: smart_kart.account.http.v3.RefreshTokenResponse.token:type_name -> smart_kart.account.http.v3.Token
-	5,  // 12: smart_kart.account.http.v3.CompleteRegistrationResponse.account:type_name -> smart_kart.account.http.v3.Account
-	6,  // 13: smart_kart.account.http.v3.CompleteRegistrationResponse.token:type_name -> smart_kart.account.http.v3.Token
-	43, // 14: smart_kart.account.http.v3.AddAddressResponse.address:type_name -> smart_kart.account.http.v3.Address
-	43, // 15: smart_kart.account.http.v3.GetAddressResponse.address:type_name -> smart_kart.account.http.v3.Address
-	43, // 16: smart_kart.account.http.v3.ListAddressesResponse.addresses:type_name -> smart_kart.account.http.v3.Address
-	43, // 17: smart_kart.account.http.v3.UpdateAddressResponse.address:type_name -> smart_kart.account.http.v3.Address
-	43, // 18: smart_kart.account.http.v3.SetDefaultAddressResponse.address:type_name -> smart_kart.account.http.v3.Address
-	37, // 19: smart_kart.account.http.v3.AccountHTTPService.InitiateRegistration:input_type -> smart_kart.account.http.v3.InitiateRegistrationRequest
-	39, // 20: smart_kart.account.http.v3.AccountHTTPService.VerifyRegistrationOTP:input_type -> smart_kart.account.http.v3.VerifyRegistrationOTPRequest
-	41, // 21: smart_kart.account.http.v3.AccountHTTPService.CompleteRegistration:input_type -> smart_kart.account.http.v3.CompleteRegistrationRequest
-	7,  // 22: smart_kart.account.http.v3.AccountHTTPService.LoginUser:input_type -> smart_kart.account.http.v3.LoginUserRequest
-	0,  // 23: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:input_type -> smart_kart.account.http.v3.LoginWithPhoneRequest
-	9,  // 24: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:input_type -> smart_kart.account.http.v3.GoogleAuthRequest
-	11, // 25: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:input_type -> smart_kart.account.http.v3.LinkGoogleAccountRequest
-	13, // 26: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:input_type -> smart_kart.account.http.v3.AdminLoginRequest
-	15, // 27: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:input_type -> smart_kart.account.http.v3.ConfigUserRequest
-	21, // 28: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:input_type -> smart_kart.account.http.v3.SendVerificationEmailRequest
-	23, // 29: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:input_type -> smart_kart.account.http.v3.VerifyEmailRequest
-	25, // 30: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:input_type -> smart_kart.account.http.v3.SendVerificationSMSRequest
-	27, // 31: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:input_type -> smart_kart.account.http.v3.VerifyPhoneRequest
-	1,  // 32: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:input_type -> smart_kart.account.http.v3.ForgetPasswordRequest
-	3,  // 33: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:input_type -> smart_kart.account.http.v3.ResetPasswordRequest
-	29, // 34: smart_kart.account.http.v3.AccountHTTPService.GetUser:input_type -> smart_kart.account.http.v3.GetUserRequest
-	31, // 35: smart_kart.account.http.v3.AccountHTTPService.Logout:input_type -> smart_kart.account.http.v3.LogoutRequest
-	33, // 36: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:input_type -> smart_kart.account.http.v3.RefreshTokenRequest
-	35, // 37: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:input_type -> smart_kart.account.http.v3.EmptyRequest
-	44, // 38: smart_kart.account.http.v3.AccountHTTPService.AddAddress:input_type -> smart_kart.account.http.v3.AddAddressRequest
-	46, // 39: smart_kart.account.http.v3.AccountHTTPService.GetAddress:input_type -> smart_kart.account.http.v3.GetAddressRequest
-	48, // 40: smart_kart.account.http.v3.AccountHTTPService.ListAddresses:input_type -> smart_kart.account.http.v3.ListAddressesRequest
-	50, // 41: smart_kart.account.http.v3.AccountHTTPService.UpdateAddress:input_type -> smart_kart.account.http.v3.UpdateAddressRequest
-	52, // 42: smart_kart.account.http.v3.AccountHTTPService.DeleteAddress:input_type -> smart_kart.account.http.v3.DeleteAddressRequest
-	54, // 43: smart_kart.account.http.v3.AccountHTTPService.SetDefaultAddress:input_type -> smart_kart.account.http.v3.SetDefaultAddressRequest
-	38, // 44: smart_kart.account.http.v3.AccountHTTPService.InitiateRegistration:output_type -> smart_kart.account.http.v3.InitiateRegistrationResponse
-	40, // 45: smart_kart.account.http.v3.AccountHTTPService.VerifyRegistrationOTP:output_type -> smart_kart.account.http.v3.VerifyRegistrationOTPResponse
-	42, // 46: smart_kart.account.http.v3.AccountHTTPService.CompleteRegistration:output_type -> smart_kart.account.http.v3.CompleteRegistrationResponse
-	8,  // 47: smart_kart.account.http.v3.AccountHTTPService.LoginUser:output_type -> smart_kart.account.http.v3.LoginUserResponse
-	8,  // 48: smart_kart.account.http.v3.AccountHTTPService.LoginWithPhone:output_type -> smart_kart.account.http.v3.LoginUserResponse
-	10, // 49: smart_kart.account.http.v3.AccountHTTPService.GoogleAuth:output_type -> smart_kart.account.http.v3.GoogleAuthResponse
-	12, // 50: smart_kart.account.http.v3.AccountHTTPService.LinkGoogleAccount:output_type -> smart_kart.account.http.v3.LinkGoogleAccountResponse
-	14, // 51: smart_kart.account.http.v3.AccountHTTPService.AdminLogin:output_type -> smart_kart.account.http.v3.AdminLoginResponse
-	16, // 52: smart_kart.account.http.v3.AccountHTTPService.ConfigUser:output_type -> smart_kart.account.http.v3.ConfigUserResponse
-	22, // 53: smart_kart.account.http.v3.AccountHTTPService.SendVerificationEmail:output_type -> smart_kart.account.http.v3.SendVerificationEmailResponse
-	24, // 54: smart_kart.account.http.v3.AccountHTTPService.VerifyEmail:output_type -> smart_kart.account.http.v3.VerifyEmailResponse
-	26, // 55: smart_kart.account.http.v3.AccountHTTPService.SendVerificationSMS:output_type -> smart_kart.account.http.v3.SendVerificationSMSResponse
-	28, // 56: smart_kart.account.http.v3.AccountHTTPService.VerifyPhone:output_type -> smart_kart.account.http.v3.VerifyPhoneResponse
-	2,  // 57: smart_kart.account.http.v3.AccountHTTPService.ForgetPassword:output_type -> smart_kart.account.http.v3.ForgetPasswordResponse
-	4,  // 58: smart_kart.account.http.v3.AccountHTTPService.ResetPassword:output_type -> smart_kart.account.http.v3.ResetPasswordResponse
-	30, // 59: smart_kart.account.http.v3.AccountHTTPService.GetUser:output_type -> smart_kart.account.http.v3.GetUserResponse
-	32, // 60: smart_kart.account.http.v3.AccountHTTPService.Logout:output_type -> smart_kart.account.http.v3.LogoutResponse
-	34, // 61: smart_kart.account.http.v3.AccountHTTPService.RefreshToken:output_type -> smart_kart.account.http.v3.RefreshTokenResponse
-	36, // 62: smart_kart.account.http.v3.AccountHTTPService.RefreshTokenSilent:output_type -> smart_kart.account.http.v3.RefreshTokenSilentResponse
-	45, // 63: smart_kart.account.http.v3.AccountHTTPService.AddAddress:output_type -> smart_kart.account.http.v3.AddAddressResponse
-	47, // 64: smart_kart.account.http.v3.AccountHTTPService.GetAddress:output_type -> smart_kart.account.http.v3.GetAddressResponse
-	49, // 65: smart_kart.account.http.v3.AccountHTTPService.ListAddresses:output_type -> smart_kart.account.http.v3.ListAddressesResponse
-	51, // 66: smart_kart.account.http.v3.AccountHTTPService.UpdateAddress:output_type -> smart_kart.account.http.v3.UpdateAddressResponse
-	53, // 67: smart_kart.account.http.v3.AccountHTTPService.DeleteAddress:output_type -> smart_kart.account.http.v3.DeleteAddressResponse
-	55, // 68: smart_kart.account.http.v3.AccountHTTPService.SetDefaultAddress:output_type -> smart_kart.account.http.v3.SetDefaultAddressResponse
+	6,  // 0: cozy_hub.account.http.v3.LoginUserResponse.token:type_name -> cozy_hub.account.http.v3.Token
+	5,  // 1: cozy_hub.account.http.v3.LoginUserResponse.account:type_name -> cozy_hub.account.http.v3.Account
+	5,  // 2: cozy_hub.account.http.v3.GoogleAuthResponse.account:type_name -> cozy_hub.account.http.v3.Account
+	6,  // 3: cozy_hub.account.http.v3.GoogleAuthResponse.token:type_name -> cozy_hub.account.http.v3.Token
+	5,  // 4: cozy_hub.account.http.v3.LinkGoogleAccountResponse.account:type_name -> cozy_hub.account.http.v3.Account
+	6,  // 5: cozy_hub.account.http.v3.LinkGoogleAccountResponse.token:type_name -> cozy_hub.account.http.v3.Token
+	6,  // 6: cozy_hub.account.http.v3.AdminLoginResponse.token:type_name -> cozy_hub.account.http.v3.Token
+	5,  // 7: cozy_hub.account.http.v3.AdminLoginResponse.account:type_name -> cozy_hub.account.http.v3.Account
+	5,  // 8: cozy_hub.account.http.v3.ConfigUserResponse.account:type_name -> cozy_hub.account.http.v3.Account
+	5,  // 9: cozy_hub.account.http.v3.ListAccountsResponse.accounts:type_name -> cozy_hub.account.http.v3.Account
+	5,  // 10: cozy_hub.account.http.v3.GetUserResponse.account:type_name -> cozy_hub.account.http.v3.Account
+	6,  // 11: cozy_hub.account.http.v3.RefreshTokenResponse.token:type_name -> cozy_hub.account.http.v3.Token
+	5,  // 12: cozy_hub.account.http.v3.CompleteRegistrationResponse.account:type_name -> cozy_hub.account.http.v3.Account
+	6,  // 13: cozy_hub.account.http.v3.CompleteRegistrationResponse.token:type_name -> cozy_hub.account.http.v3.Token
+	43, // 14: cozy_hub.account.http.v3.AddAddressResponse.address:type_name -> cozy_hub.account.http.v3.Address
+	43, // 15: cozy_hub.account.http.v3.GetAddressResponse.address:type_name -> cozy_hub.account.http.v3.Address
+	43, // 16: cozy_hub.account.http.v3.ListAddressesResponse.addresses:type_name -> cozy_hub.account.http.v3.Address
+	43, // 17: cozy_hub.account.http.v3.UpdateAddressResponse.address:type_name -> cozy_hub.account.http.v3.Address
+	43, // 18: cozy_hub.account.http.v3.SetDefaultAddressResponse.address:type_name -> cozy_hub.account.http.v3.Address
+	37, // 19: cozy_hub.account.http.v3.AccountHTTPService.InitiateRegistration:input_type -> cozy_hub.account.http.v3.InitiateRegistrationRequest
+	39, // 20: cozy_hub.account.http.v3.AccountHTTPService.VerifyRegistrationOTP:input_type -> cozy_hub.account.http.v3.VerifyRegistrationOTPRequest
+	41, // 21: cozy_hub.account.http.v3.AccountHTTPService.CompleteRegistration:input_type -> cozy_hub.account.http.v3.CompleteRegistrationRequest
+	7,  // 22: cozy_hub.account.http.v3.AccountHTTPService.LoginUser:input_type -> cozy_hub.account.http.v3.LoginUserRequest
+	0,  // 23: cozy_hub.account.http.v3.AccountHTTPService.LoginWithPhone:input_type -> cozy_hub.account.http.v3.LoginWithPhoneRequest
+	9,  // 24: cozy_hub.account.http.v3.AccountHTTPService.GoogleAuth:input_type -> cozy_hub.account.http.v3.GoogleAuthRequest
+	11, // 25: cozy_hub.account.http.v3.AccountHTTPService.LinkGoogleAccount:input_type -> cozy_hub.account.http.v3.LinkGoogleAccountRequest
+	13, // 26: cozy_hub.account.http.v3.AccountHTTPService.AdminLogin:input_type -> cozy_hub.account.http.v3.AdminLoginRequest
+	15, // 27: cozy_hub.account.http.v3.AccountHTTPService.ConfigUser:input_type -> cozy_hub.account.http.v3.ConfigUserRequest
+	21, // 28: cozy_hub.account.http.v3.AccountHTTPService.SendVerificationEmail:input_type -> cozy_hub.account.http.v3.SendVerificationEmailRequest
+	23, // 29: cozy_hub.account.http.v3.AccountHTTPService.VerifyEmail:input_type -> cozy_hub.account.http.v3.VerifyEmailRequest
+	25, // 30: cozy_hub.account.http.v3.AccountHTTPService.SendVerificationSMS:input_type -> cozy_hub.account.http.v3.SendVerificationSMSRequest
+	27, // 31: cozy_hub.account.http.v3.AccountHTTPService.VerifyPhone:input_type -> cozy_hub.account.http.v3.VerifyPhoneRequest
+	1,  // 32: cozy_hub.account.http.v3.AccountHTTPService.ForgetPassword:input_type -> cozy_hub.account.http.v3.ForgetPasswordRequest
+	3,  // 33: cozy_hub.account.http.v3.AccountHTTPService.ResetPassword:input_type -> cozy_hub.account.http.v3.ResetPasswordRequest
+	29, // 34: cozy_hub.account.http.v3.AccountHTTPService.GetUser:input_type -> cozy_hub.account.http.v3.GetUserRequest
+	31, // 35: cozy_hub.account.http.v3.AccountHTTPService.Logout:input_type -> cozy_hub.account.http.v3.LogoutRequest
+	33, // 36: cozy_hub.account.http.v3.AccountHTTPService.RefreshToken:input_type -> cozy_hub.account.http.v3.RefreshTokenRequest
+	35, // 37: cozy_hub.account.http.v3.AccountHTTPService.RefreshTokenSilent:input_type -> cozy_hub.account.http.v3.EmptyRequest
+	44, // 38: cozy_hub.account.http.v3.AccountHTTPService.AddAddress:input_type -> cozy_hub.account.http.v3.AddAddressRequest
+	46, // 39: cozy_hub.account.http.v3.AccountHTTPService.GetAddress:input_type -> cozy_hub.account.http.v3.GetAddressRequest
+	48, // 40: cozy_hub.account.http.v3.AccountHTTPService.ListAddresses:input_type -> cozy_hub.account.http.v3.ListAddressesRequest
+	50, // 41: cozy_hub.account.http.v3.AccountHTTPService.UpdateAddress:input_type -> cozy_hub.account.http.v3.UpdateAddressRequest
+	52, // 42: cozy_hub.account.http.v3.AccountHTTPService.DeleteAddress:input_type -> cozy_hub.account.http.v3.DeleteAddressRequest
+	54, // 43: cozy_hub.account.http.v3.AccountHTTPService.SetDefaultAddress:input_type -> cozy_hub.account.http.v3.SetDefaultAddressRequest
+	38, // 44: cozy_hub.account.http.v3.AccountHTTPService.InitiateRegistration:output_type -> cozy_hub.account.http.v3.InitiateRegistrationResponse
+	40, // 45: cozy_hub.account.http.v3.AccountHTTPService.VerifyRegistrationOTP:output_type -> cozy_hub.account.http.v3.VerifyRegistrationOTPResponse
+	42, // 46: cozy_hub.account.http.v3.AccountHTTPService.CompleteRegistration:output_type -> cozy_hub.account.http.v3.CompleteRegistrationResponse
+	8,  // 47: cozy_hub.account.http.v3.AccountHTTPService.LoginUser:output_type -> cozy_hub.account.http.v3.LoginUserResponse
+	8,  // 48: cozy_hub.account.http.v3.AccountHTTPService.LoginWithPhone:output_type -> cozy_hub.account.http.v3.LoginUserResponse
+	10, // 49: cozy_hub.account.http.v3.AccountHTTPService.GoogleAuth:output_type -> cozy_hub.account.http.v3.GoogleAuthResponse
+	12, // 50: cozy_hub.account.http.v3.AccountHTTPService.LinkGoogleAccount:output_type -> cozy_hub.account.http.v3.LinkGoogleAccountResponse
+	14, // 51: cozy_hub.account.http.v3.AccountHTTPService.AdminLogin:output_type -> cozy_hub.account.http.v3.AdminLoginResponse
+	16, // 52: cozy_hub.account.http.v3.AccountHTTPService.ConfigUser:output_type -> cozy_hub.account.http.v3.ConfigUserResponse
+	22, // 53: cozy_hub.account.http.v3.AccountHTTPService.SendVerificationEmail:output_type -> cozy_hub.account.http.v3.SendVerificationEmailResponse
+	24, // 54: cozy_hub.account.http.v3.AccountHTTPService.VerifyEmail:output_type -> cozy_hub.account.http.v3.VerifyEmailResponse
+	26, // 55: cozy_hub.account.http.v3.AccountHTTPService.SendVerificationSMS:output_type -> cozy_hub.account.http.v3.SendVerificationSMSResponse
+	28, // 56: cozy_hub.account.http.v3.AccountHTTPService.VerifyPhone:output_type -> cozy_hub.account.http.v3.VerifyPhoneResponse
+	2,  // 57: cozy_hub.account.http.v3.AccountHTTPService.ForgetPassword:output_type -> cozy_hub.account.http.v3.ForgetPasswordResponse
+	4,  // 58: cozy_hub.account.http.v3.AccountHTTPService.ResetPassword:output_type -> cozy_hub.account.http.v3.ResetPasswordResponse
+	30, // 59: cozy_hub.account.http.v3.AccountHTTPService.GetUser:output_type -> cozy_hub.account.http.v3.GetUserResponse
+	32, // 60: cozy_hub.account.http.v3.AccountHTTPService.Logout:output_type -> cozy_hub.account.http.v3.LogoutResponse
+	34, // 61: cozy_hub.account.http.v3.AccountHTTPService.RefreshToken:output_type -> cozy_hub.account.http.v3.RefreshTokenResponse
+	36, // 62: cozy_hub.account.http.v3.AccountHTTPService.RefreshTokenSilent:output_type -> cozy_hub.account.http.v3.RefreshTokenSilentResponse
+	45, // 63: cozy_hub.account.http.v3.AccountHTTPService.AddAddress:output_type -> cozy_hub.account.http.v3.AddAddressResponse
+	47, // 64: cozy_hub.account.http.v3.AccountHTTPService.GetAddress:output_type -> cozy_hub.account.http.v3.GetAddressResponse
+	49, // 65: cozy_hub.account.http.v3.AccountHTTPService.ListAddresses:output_type -> cozy_hub.account.http.v3.ListAddressesResponse
+	51, // 66: cozy_hub.account.http.v3.AccountHTTPService.UpdateAddress:output_type -> cozy_hub.account.http.v3.UpdateAddressResponse
+	53, // 67: cozy_hub.account.http.v3.AccountHTTPService.DeleteAddress:output_type -> cozy_hub.account.http.v3.DeleteAddressResponse
+	55, // 68: cozy_hub.account.http.v3.AccountHTTPService.SetDefaultAddress:output_type -> cozy_hub.account.http.v3.SetDefaultAddressResponse
 	44, // [44:69] is the sub-list for method output_type
 	19, // [19:44] is the sub-list for method input_type
 	19, // [19:19] is the sub-list for extension type_name

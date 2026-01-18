@@ -221,7 +221,7 @@ const file_proto_error_proto_rawDesc = "" +
 	"\tStrictErr\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x18\n" +
-	"\aremarks\x18\x03 \x01(\tR\aremarksB$Z\"github.com/smart-kart/proto/gen/gob\x06proto3"
+	"\aremarks\x18\x03 \x01(\tR\aremarksB$Z\"github.com/cozy-hub-app/proto/gen/gob\x06proto3"
 
 var (
 	file_proto_error_proto_rawDescOnce sync.Once

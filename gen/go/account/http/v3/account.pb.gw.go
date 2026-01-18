@@ -749,7 +749,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/InitiateRegistration", runtime.WithHTTPPathPattern("/v3/user/register/initiate"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/InitiateRegistration", runtime.WithHTTPPathPattern("/v3/user/register/initiate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -769,7 +769,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/VerifyRegistrationOTP", runtime.WithHTTPPathPattern("/v3/user/register/verify-otp"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/VerifyRegistrationOTP", runtime.WithHTTPPathPattern("/v3/user/register/verify-otp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -789,7 +789,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/CompleteRegistration", runtime.WithHTTPPathPattern("/v3/user/register/complete"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/CompleteRegistration", runtime.WithHTTPPathPattern("/v3/user/register/complete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -809,7 +809,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/LoginUser", runtime.WithHTTPPathPattern("/v3/user/login"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/LoginUser", runtime.WithHTTPPathPattern("/v3/user/login"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -829,7 +829,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/LoginWithPhone", runtime.WithHTTPPathPattern("/v3/user/login-with-phone"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/LoginWithPhone", runtime.WithHTTPPathPattern("/v3/user/login-with-phone"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -849,7 +849,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/GoogleAuth", runtime.WithHTTPPathPattern("/v3/user/google-auth"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/GoogleAuth", runtime.WithHTTPPathPattern("/v3/user/google-auth"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -869,7 +869,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/LinkGoogleAccount", runtime.WithHTTPPathPattern("/v3/user/link-google"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/LinkGoogleAccount", runtime.WithHTTPPathPattern("/v3/user/link-google"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -889,7 +889,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/AdminLogin", runtime.WithHTTPPathPattern("/v3/admin/login"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/AdminLogin", runtime.WithHTTPPathPattern("/v3/admin/login"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -909,7 +909,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/ConfigUser", runtime.WithHTTPPathPattern("/v3/user/config/{user_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/ConfigUser", runtime.WithHTTPPathPattern("/v3/user/config/{user_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -929,7 +929,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/SendVerificationEmail", runtime.WithHTTPPathPattern("/v3/account/send-verification-email"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/SendVerificationEmail", runtime.WithHTTPPathPattern("/v3/account/send-verification-email"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -949,7 +949,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/VerifyEmail", runtime.WithHTTPPathPattern("/v3/account/verify-email"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/VerifyEmail", runtime.WithHTTPPathPattern("/v3/account/verify-email"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -969,7 +969,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/SendVerificationSMS", runtime.WithHTTPPathPattern("/v3/account/send-verification-sms"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/SendVerificationSMS", runtime.WithHTTPPathPattern("/v3/account/send-verification-sms"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -989,7 +989,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/VerifyPhone", runtime.WithHTTPPathPattern("/v3/account/verify-phone"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/VerifyPhone", runtime.WithHTTPPathPattern("/v3/account/verify-phone"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1009,7 +1009,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/ForgetPassword", runtime.WithHTTPPathPattern("/v3/user/forgot-password"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/ForgetPassword", runtime.WithHTTPPathPattern("/v3/user/forgot-password"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1029,7 +1029,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/ResetPassword", runtime.WithHTTPPathPattern("/v3/user/reset-password"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/ResetPassword", runtime.WithHTTPPathPattern("/v3/user/reset-password"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1049,7 +1049,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/GetUser", runtime.WithHTTPPathPattern("/v3/user/{user_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/GetUser", runtime.WithHTTPPathPattern("/v3/user/{user_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1069,7 +1069,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/Logout", runtime.WithHTTPPathPattern("/v3/user/logout"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/Logout", runtime.WithHTTPPathPattern("/v3/user/logout"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1089,7 +1089,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/RefreshToken", runtime.WithHTTPPathPattern("/v3/user/refresh-token"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/RefreshToken", runtime.WithHTTPPathPattern("/v3/user/refresh-token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1109,7 +1109,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/RefreshTokenSilent", runtime.WithHTTPPathPattern("/v3/user/refresh-silent"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/RefreshTokenSilent", runtime.WithHTTPPathPattern("/v3/user/refresh-silent"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1129,7 +1129,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/AddAddress", runtime.WithHTTPPathPattern("/v3/user/addresses"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/AddAddress", runtime.WithHTTPPathPattern("/v3/user/addresses"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1149,7 +1149,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/GetAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/GetAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1169,7 +1169,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/ListAddresses", runtime.WithHTTPPathPattern("/v3/user/addresses"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/ListAddresses", runtime.WithHTTPPathPattern("/v3/user/addresses"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1189,7 +1189,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/UpdateAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/UpdateAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1209,7 +1209,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/DeleteAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/DeleteAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1229,7 +1229,7 @@ func RegisterAccountHTTPServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/SetDefaultAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}/set-default"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/SetDefaultAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}/set-default"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1287,7 +1287,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/InitiateRegistration", runtime.WithHTTPPathPattern("/v3/user/register/initiate"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/InitiateRegistration", runtime.WithHTTPPathPattern("/v3/user/register/initiate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1304,7 +1304,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/VerifyRegistrationOTP", runtime.WithHTTPPathPattern("/v3/user/register/verify-otp"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/VerifyRegistrationOTP", runtime.WithHTTPPathPattern("/v3/user/register/verify-otp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1321,7 +1321,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/CompleteRegistration", runtime.WithHTTPPathPattern("/v3/user/register/complete"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/CompleteRegistration", runtime.WithHTTPPathPattern("/v3/user/register/complete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1338,7 +1338,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/LoginUser", runtime.WithHTTPPathPattern("/v3/user/login"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/LoginUser", runtime.WithHTTPPathPattern("/v3/user/login"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1355,7 +1355,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/LoginWithPhone", runtime.WithHTTPPathPattern("/v3/user/login-with-phone"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/LoginWithPhone", runtime.WithHTTPPathPattern("/v3/user/login-with-phone"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1372,7 +1372,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/GoogleAuth", runtime.WithHTTPPathPattern("/v3/user/google-auth"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/GoogleAuth", runtime.WithHTTPPathPattern("/v3/user/google-auth"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1389,7 +1389,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/LinkGoogleAccount", runtime.WithHTTPPathPattern("/v3/user/link-google"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/LinkGoogleAccount", runtime.WithHTTPPathPattern("/v3/user/link-google"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1406,7 +1406,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/AdminLogin", runtime.WithHTTPPathPattern("/v3/admin/login"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/AdminLogin", runtime.WithHTTPPathPattern("/v3/admin/login"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1423,7 +1423,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/ConfigUser", runtime.WithHTTPPathPattern("/v3/user/config/{user_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/ConfigUser", runtime.WithHTTPPathPattern("/v3/user/config/{user_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1440,7 +1440,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/SendVerificationEmail", runtime.WithHTTPPathPattern("/v3/account/send-verification-email"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/SendVerificationEmail", runtime.WithHTTPPathPattern("/v3/account/send-verification-email"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1457,7 +1457,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/VerifyEmail", runtime.WithHTTPPathPattern("/v3/account/verify-email"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/VerifyEmail", runtime.WithHTTPPathPattern("/v3/account/verify-email"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1474,7 +1474,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/SendVerificationSMS", runtime.WithHTTPPathPattern("/v3/account/send-verification-sms"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/SendVerificationSMS", runtime.WithHTTPPathPattern("/v3/account/send-verification-sms"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1491,7 +1491,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/VerifyPhone", runtime.WithHTTPPathPattern("/v3/account/verify-phone"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/VerifyPhone", runtime.WithHTTPPathPattern("/v3/account/verify-phone"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1508,7 +1508,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/ForgetPassword", runtime.WithHTTPPathPattern("/v3/user/forgot-password"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/ForgetPassword", runtime.WithHTTPPathPattern("/v3/user/forgot-password"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1525,7 +1525,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/ResetPassword", runtime.WithHTTPPathPattern("/v3/user/reset-password"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/ResetPassword", runtime.WithHTTPPathPattern("/v3/user/reset-password"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1542,7 +1542,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/GetUser", runtime.WithHTTPPathPattern("/v3/user/{user_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/GetUser", runtime.WithHTTPPathPattern("/v3/user/{user_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1559,7 +1559,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/Logout", runtime.WithHTTPPathPattern("/v3/user/logout"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/Logout", runtime.WithHTTPPathPattern("/v3/user/logout"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1576,7 +1576,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/RefreshToken", runtime.WithHTTPPathPattern("/v3/user/refresh-token"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/RefreshToken", runtime.WithHTTPPathPattern("/v3/user/refresh-token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1593,7 +1593,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/RefreshTokenSilent", runtime.WithHTTPPathPattern("/v3/user/refresh-silent"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/RefreshTokenSilent", runtime.WithHTTPPathPattern("/v3/user/refresh-silent"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1610,7 +1610,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/AddAddress", runtime.WithHTTPPathPattern("/v3/user/addresses"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/AddAddress", runtime.WithHTTPPathPattern("/v3/user/addresses"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1627,7 +1627,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/GetAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/GetAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1644,7 +1644,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/ListAddresses", runtime.WithHTTPPathPattern("/v3/user/addresses"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/ListAddresses", runtime.WithHTTPPathPattern("/v3/user/addresses"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1661,7 +1661,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/UpdateAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/UpdateAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1678,7 +1678,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/DeleteAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/DeleteAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1695,7 +1695,7 @@ func RegisterAccountHTTPServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/smart_kart.account.http.v3.AccountHTTPService/SetDefaultAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}/set-default"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cozy_hub.account.http.v3.AccountHTTPService/SetDefaultAddress", runtime.WithHTTPPathPattern("/v3/user/addresses/{address_id}/set-default"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

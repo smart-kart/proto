@@ -1,6 +1,6 @@
-# Smart Kart Proto
+# Cozy Hub Proto
 
-This repository contains Protocol Buffer definitions for the Smart Kart services.
+This repository contains Protocol Buffer definitions for the Cozy Hub services.
 
 ## Structure
 
@@ -72,7 +72,7 @@ make clean
    ```yaml
    modules:
      - path: your-service
-       name: buf.build/smart-kart/your-service
+       name: buf.build/cozy-hub/your-service
    ```
 5. Run `make generate` to generate code
 
@@ -82,7 +82,7 @@ Generated code is placed in:
 - `gen/go/` - Go protobuf and gRPC code
 - `gen/resource/` - OpenAPI/Swagger specifications
 
-The generated code uses the module path: `github.com/smart-kart/proto/gen/go`
+The generated code uses the module path: `github.com/cozy-hub/proto/gen/go`
 
 ## Integration
 
@@ -90,8 +90,8 @@ To use the generated code in your Go services:
 
 ```go
 import (
-    accountv1 "github.com/smart-kart/proto/gen/go/account/grpc/v1"
-    accountv3 "github.com/smart-kart/proto/gen/go/account/http/v3"
+    accountv1 "github.com/cozy-hub/proto/gen/go/account/grpc/v1"
+    accountv3 "github.com/cozy-hub/proto/gen/go/account/http/v3"
 )
 ```
 

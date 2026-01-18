@@ -3,15 +3,15 @@ deps:
   - buf.build/googleapis/googleapis
 modules:
   - path: account
-    name: buf.build/smart-kart/account
+    name: buf.build/cozy-hub-app/account
   - path: error
-    name: buf.build/smart-kart/error
+    name: buf.build/cozy-hub-app/error
   - path: orders
-    name: buf.build/smart-kart/orders
+    name: buf.build/cozy-hub-app/orders
   - path: payments
-    name: buf.build/smart-kart/payments
+    name: buf.build/cozy-hub-app/payments
   - path: products
-    name: buf.build/smart-kart/products
+    name: buf.build/cozy-hub-app/products
 lint:
   use:
     - STANDARD

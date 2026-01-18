@@ -19,31 +19,31 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AccountHTTPService_InitiateRegistration_FullMethodName  = "/smart_kart.account.http.v3.AccountHTTPService/InitiateRegistration"
-	AccountHTTPService_VerifyRegistrationOTP_FullMethodName = "/smart_kart.account.http.v3.AccountHTTPService/VerifyRegistrationOTP"
-	AccountHTTPService_CompleteRegistration_FullMethodName  = "/smart_kart.account.http.v3.AccountHTTPService/CompleteRegistration"
-	AccountHTTPService_LoginUser_FullMethodName             = "/smart_kart.account.http.v3.AccountHTTPService/LoginUser"
-	AccountHTTPService_LoginWithPhone_FullMethodName        = "/smart_kart.account.http.v3.AccountHTTPService/LoginWithPhone"
-	AccountHTTPService_GoogleAuth_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/GoogleAuth"
-	AccountHTTPService_LinkGoogleAccount_FullMethodName     = "/smart_kart.account.http.v3.AccountHTTPService/LinkGoogleAccount"
-	AccountHTTPService_AdminLogin_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/AdminLogin"
-	AccountHTTPService_ConfigUser_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/ConfigUser"
-	AccountHTTPService_SendVerificationEmail_FullMethodName = "/smart_kart.account.http.v3.AccountHTTPService/SendVerificationEmail"
-	AccountHTTPService_VerifyEmail_FullMethodName           = "/smart_kart.account.http.v3.AccountHTTPService/VerifyEmail"
-	AccountHTTPService_SendVerificationSMS_FullMethodName   = "/smart_kart.account.http.v3.AccountHTTPService/SendVerificationSMS"
-	AccountHTTPService_VerifyPhone_FullMethodName           = "/smart_kart.account.http.v3.AccountHTTPService/VerifyPhone"
-	AccountHTTPService_ForgetPassword_FullMethodName        = "/smart_kart.account.http.v3.AccountHTTPService/ForgetPassword"
-	AccountHTTPService_ResetPassword_FullMethodName         = "/smart_kart.account.http.v3.AccountHTTPService/ResetPassword"
-	AccountHTTPService_GetUser_FullMethodName               = "/smart_kart.account.http.v3.AccountHTTPService/GetUser"
-	AccountHTTPService_Logout_FullMethodName                = "/smart_kart.account.http.v3.AccountHTTPService/Logout"
-	AccountHTTPService_RefreshToken_FullMethodName          = "/smart_kart.account.http.v3.AccountHTTPService/RefreshToken"
-	AccountHTTPService_RefreshTokenSilent_FullMethodName    = "/smart_kart.account.http.v3.AccountHTTPService/RefreshTokenSilent"
-	AccountHTTPService_AddAddress_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/AddAddress"
-	AccountHTTPService_GetAddress_FullMethodName            = "/smart_kart.account.http.v3.AccountHTTPService/GetAddress"
-	AccountHTTPService_ListAddresses_FullMethodName         = "/smart_kart.account.http.v3.AccountHTTPService/ListAddresses"
-	AccountHTTPService_UpdateAddress_FullMethodName         = "/smart_kart.account.http.v3.AccountHTTPService/UpdateAddress"
-	AccountHTTPService_DeleteAddress_FullMethodName         = "/smart_kart.account.http.v3.AccountHTTPService/DeleteAddress"
-	AccountHTTPService_SetDefaultAddress_FullMethodName     = "/smart_kart.account.http.v3.AccountHTTPService/SetDefaultAddress"
+	AccountHTTPService_InitiateRegistration_FullMethodName  = "/cozy_hub.account.http.v3.AccountHTTPService/InitiateRegistration"
+	AccountHTTPService_VerifyRegistrationOTP_FullMethodName = "/cozy_hub.account.http.v3.AccountHTTPService/VerifyRegistrationOTP"
+	AccountHTTPService_CompleteRegistration_FullMethodName  = "/cozy_hub.account.http.v3.AccountHTTPService/CompleteRegistration"
+	AccountHTTPService_LoginUser_FullMethodName             = "/cozy_hub.account.http.v3.AccountHTTPService/LoginUser"
+	AccountHTTPService_LoginWithPhone_FullMethodName        = "/cozy_hub.account.http.v3.AccountHTTPService/LoginWithPhone"
+	AccountHTTPService_GoogleAuth_FullMethodName            = "/cozy_hub.account.http.v3.AccountHTTPService/GoogleAuth"
+	AccountHTTPService_LinkGoogleAccount_FullMethodName     = "/cozy_hub.account.http.v3.AccountHTTPService/LinkGoogleAccount"
+	AccountHTTPService_AdminLogin_FullMethodName            = "/cozy_hub.account.http.v3.AccountHTTPService/AdminLogin"
+	AccountHTTPService_ConfigUser_FullMethodName            = "/cozy_hub.account.http.v3.AccountHTTPService/ConfigUser"
+	AccountHTTPService_SendVerificationEmail_FullMethodName = "/cozy_hub.account.http.v3.AccountHTTPService/SendVerificationEmail"
+	AccountHTTPService_VerifyEmail_FullMethodName           = "/cozy_hub.account.http.v3.AccountHTTPService/VerifyEmail"
+	AccountHTTPService_SendVerificationSMS_FullMethodName   = "/cozy_hub.account.http.v3.AccountHTTPService/SendVerificationSMS"
+	AccountHTTPService_VerifyPhone_FullMethodName           = "/cozy_hub.account.http.v3.AccountHTTPService/VerifyPhone"
+	AccountHTTPService_ForgetPassword_FullMethodName        = "/cozy_hub.account.http.v3.AccountHTTPService/ForgetPassword"
+	AccountHTTPService_ResetPassword_FullMethodName         = "/cozy_hub.account.http.v3.AccountHTTPService/ResetPassword"
+	AccountHTTPService_GetUser_FullMethodName               = "/cozy_hub.account.http.v3.AccountHTTPService/GetUser"
+	AccountHTTPService_Logout_FullMethodName                = "/cozy_hub.account.http.v3.AccountHTTPService/Logout"
+	AccountHTTPService_RefreshToken_FullMethodName          = "/cozy_hub.account.http.v3.AccountHTTPService/RefreshToken"
+	AccountHTTPService_RefreshTokenSilent_FullMethodName    = "/cozy_hub.account.http.v3.AccountHTTPService/RefreshTokenSilent"
+	AccountHTTPService_AddAddress_FullMethodName            = "/cozy_hub.account.http.v3.AccountHTTPService/AddAddress"
+	AccountHTTPService_GetAddress_FullMethodName            = "/cozy_hub.account.http.v3.AccountHTTPService/GetAddress"
+	AccountHTTPService_ListAddresses_FullMethodName         = "/cozy_hub.account.http.v3.AccountHTTPService/ListAddresses"
+	AccountHTTPService_UpdateAddress_FullMethodName         = "/cozy_hub.account.http.v3.AccountHTTPService/UpdateAddress"
+	AccountHTTPService_DeleteAddress_FullMethodName         = "/cozy_hub.account.http.v3.AccountHTTPService/DeleteAddress"
+	AccountHTTPService_SetDefaultAddress_FullMethodName     = "/cozy_hub.account.http.v3.AccountHTTPService/SetDefaultAddress"
 )
 
 // AccountHTTPServiceClient is the client API for AccountHTTPService service.
@@ -978,7 +978,7 @@ func _AccountHTTPService_SetDefaultAddress_Handler(srv interface{}, ctx context.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AccountHTTPService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "smart_kart.account.http.v3.AccountHTTPService",
+	ServiceName: "cozy_hub.account.http.v3.AccountHTTPService",
 	HandlerType: (*AccountHTTPServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

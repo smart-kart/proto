@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package payments.http.v3;
 
-option go_package = "github.com/smart-kart/proto/gen/go/payments/http/v3;paymentsv3";
+option go_package = "github.com/cozy-hub-app/proto/gen/go/payments/http/v3;paymentsv3";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";

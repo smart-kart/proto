@@ -220,9 +220,9 @@ const file_error_proto_rawDesc = "" +
 	"\tStrictErr\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x18\n" +
-	"\aremarks\x18\x03 \x01(\tR\aremarksB\x90\x01\n" +
+	"\aremarks\x18\x03 \x01(\tR\aremarksB\x92\x01\n" +
 	"\fcom.proto.v1B\n" +
-	"ErrorProtoP\x01Z3github.com/smart-kart/proto/gen/go/proto/v1;protov1\xa2\x02\x03PXX\xaa\x02\bProto.V1\xca\x02\bProto\\V1\xe2\x02\x14Proto\\V1\\GPBMetadata\xea\x02\tProto::V1b\x06proto3"
+	"ErrorProtoP\x01Z5github.com/cozy-hub-app/proto/gen/go/proto/v1;protov1\xa2\x02\x03PXX\xaa\x02\bProto.V1\xca\x02\bProto\\V1\xe2\x02\x14Proto\\V1\\GPBMetadata\xea\x02\tProto::V1b\x06proto3"
 
 var (
 	file_error_proto_rawDescOnce sync.Once

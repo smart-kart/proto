@@ -8730,7 +8730,7 @@ var File_http_v3_products_proto protoreflect.FileDescriptor
 
 const file_http_v3_products_proto_rawDesc = "" +
 	"\n" +
-	"\x16http/v3/products.proto\x12\x1bsmart_kart.products.http.v3\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"v\n" +
+	"\x16http/v3/products.proto\x12\x19cozy_hub.products.http.v3\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"v\n" +
 	"\n" +
 	"Pagination\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x03R\x05total\x12\x12\n" +
@@ -8765,7 +8765,7 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\n" +
 	"_mime_typeB\b\n" +
 	"\x06_widthB\t\n" +
-	"\a_height\"\xf8\x06\n" +
+	"\a_height\"\xf6\x06\n" +
 	"\aProduct\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
@@ -8788,8 +8788,8 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"created_at\x12:\n" +
 	"\n" +
 	"updated_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"updated_at\x12A\n" +
-	"\x06images\x18\x0e \x03(\v2).smart_kart.products.http.v3.ProductImageR\x06images\x12 \n" +
+	"updated_at\x12?\n" +
+	"\x06images\x18\x0e \x03(\v2'.cozy_hub.products.http.v3.ProductImageR\x06images\x12 \n" +
 	"\vis_in_stock\x18\x0f \x01(\bR\vis_in_stock\x12\x15\n" +
 	"\x03mrp\x18\x10 \x01(\x01H\x06R\x03mrp\x88\x01\x01\x12#\n" +
 	"\n" +
@@ -8840,16 +8840,16 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x04_mrpB\r\n" +
 	"\v_cost_priceB\v\n" +
 	"\t_hsn_codeB\v\n" +
-	"\t_tax_rate\"q\n" +
-	"\x15CreateProductResponse\x12>\n" +
-	"\aproduct\x18\x01 \x01(\v2$.smart_kart.products.http.v3.ProductR\aproduct\x12\x18\n" +
+	"\t_tax_rate\"o\n" +
+	"\x15CreateProductResponse\x12<\n" +
+	"\aproduct\x18\x01 \x01(\v2\".cozy_hub.products.http.v3.ProductR\aproduct\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"3\n" +
 	"\x11GetProductRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
-	"product_id\"n\n" +
-	"\x12GetProductResponse\x12>\n" +
-	"\aproduct\x18\x01 \x01(\v2$.smart_kart.products.http.v3.ProductR\aproduct\x12\x18\n" +
+	"product_id\"l\n" +
+	"\x12GetProductResponse\x12<\n" +
+	"\aproduct\x18\x01 \x01(\v2\".cozy_hub.products.http.v3.ProductR\aproduct\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xcc\x04\n" +
 	"\x14UpdateProductRequest\x12\x1e\n" +
 	"\n" +
@@ -8885,9 +8885,9 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x04_mrpB\r\n" +
 	"\v_cost_priceB\v\n" +
 	"\t_hsn_codeB\v\n" +
-	"\t_tax_rate\"q\n" +
-	"\x15UpdateProductResponse\x12>\n" +
-	"\aproduct\x18\x01 \x01(\v2$.smart_kart.products.http.v3.ProductR\aproduct\x12\x18\n" +
+	"\t_tax_rate\"o\n" +
+	"\x15UpdateProductResponse\x12<\n" +
+	"\aproduct\x18\x01 \x01(\v2\".cozy_hub.products.http.v3.ProductR\aproduct\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"6\n" +
 	"\x14DeleteProductRequest\x12\x1e\n" +
 	"\n" +
@@ -8909,11 +8909,11 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"_price_minB\f\n" +
 	"\n" +
 	"_price_maxB\b\n" +
-	"\x06_query\"\xbb\x01\n" +
-	"\x14ListProductsResponse\x12@\n" +
-	"\bproducts\x18\x01 \x03(\v2$.smart_kart.products.http.v3.ProductR\bproducts\x12G\n" +
+	"\x06_query\"\xb7\x01\n" +
+	"\x14ListProductsResponse\x12>\n" +
+	"\bproducts\x18\x01 \x03(\v2\".cozy_hub.products.http.v3.ProductR\bproducts\x12E\n" +
 	"\n" +
-	"pagination\x18\x02 \x01(\v2'.smart_kart.products.http.v3.PaginationR\n" +
+	"pagination\x18\x02 \x01(\v2%.cozy_hub.products.http.v3.PaginationR\n" +
 	"pagination\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\"\x96\x01\n" +
 	"\x15SearchProductsRequest\x12\x14\n" +
@@ -8921,26 +8921,26 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\vcategory_id\x18\x02 \x01(\tH\x00R\vcategory_id\x88\x01\x01\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1c\n" +
 	"\tpage_size\x18\x04 \x01(\x05R\tpage_sizeB\x0e\n" +
-	"\f_category_id\"\xbc\x01\n" +
-	"\x16SearchProductsResponse\x12@\n" +
-	"\bproducts\x18\x01 \x03(\v2$.smart_kart.products.http.v3.ProductR\bproducts\x12G\n" +
+	"\f_category_id\"\xb8\x01\n" +
+	"\x16SearchProductsResponse\x12>\n" +
+	"\bproducts\x18\x01 \x03(\v2\".cozy_hub.products.http.v3.ProductR\bproducts\x12E\n" +
 	"\n" +
-	"pagination\x18\x02 \x01(\v2'.smart_kart.products.http.v3.PaginationR\n" +
+	"pagination\x18\x02 \x01(\v2%.cozy_hub.products.http.v3.PaginationR\n" +
 	"pagination\x12\x17\n" +
 	"\amessage\x18\x03 \x01(\tR\x06errors\"T\n" +
 	"\x1aUpdateProductStatusRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
 	"product_id\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status\"v\n" +
-	"\x1bUpdateProductStatusResponse\x12>\n" +
-	"\aproduct\x18\x01 \x01(\v2$.smart_kart.products.http.v3.ProductR\aproduct\x12\x17\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\"t\n" +
+	"\x1bUpdateProductStatusResponse\x12<\n" +
+	"\aproduct\x18\x01 \x01(\v2\".cozy_hub.products.http.v3.ProductR\aproduct\x12\x17\n" +
 	"\amessage\x18\x02 \x01(\tR\x06errors\"*\n" +
 	"\x16GetProductBySKURequest\x12\x10\n" +
-	"\x03sku\x18\x01 \x01(\tR\x03sku\"r\n" +
-	"\x17GetProductBySKUResponse\x12>\n" +
-	"\aproduct\x18\x01 \x01(\v2$.smart_kart.products.http.v3.ProductR\aproduct\x12\x17\n" +
-	"\amessage\x18\x02 \x01(\tR\x06errors\"\xd1\x03\n" +
+	"\x03sku\x18\x01 \x01(\tR\x03sku\"p\n" +
+	"\x17GetProductBySKUResponse\x12<\n" +
+	"\aproduct\x18\x01 \x01(\v2\".cozy_hub.products.http.v3.ProductR\aproduct\x12\x17\n" +
+	"\amessage\x18\x02 \x01(\tR\x06errors\"\xcf\x03\n" +
 	"\bCategory\x12 \n" +
 	"\vcategory_id\x18\x01 \x01(\tR\vcategory_id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12%\n" +
@@ -8953,8 +8953,8 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"created_at\x12:\n" +
 	"\n" +
 	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"updated_at\x12K\n" +
-	"\rsubcategories\x18\t \x03(\v2%.smart_kart.products.http.v3.CategoryR\rsubcategoriesB\x0e\n" +
+	"updated_at\x12I\n" +
+	"\rsubcategories\x18\t \x03(\v2#.cozy_hub.products.http.v3.CategoryR\rsubcategoriesB\x0e\n" +
 	"\f_descriptionB\x15\n" +
 	"\x13_parent_category_idB\f\n" +
 	"\n" +
@@ -8967,14 +8967,14 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\f_descriptionB\x15\n" +
 	"\x13_parent_category_idB\f\n" +
 	"\n" +
-	"_image_url\"t\n" +
-	"\x16CreateCategoryResponse\x12A\n" +
-	"\bcategory\x18\x01 \x01(\v2%.smart_kart.products.http.v3.CategoryR\bcategory\x12\x17\n" +
+	"_image_url\"r\n" +
+	"\x16CreateCategoryResponse\x12?\n" +
+	"\bcategory\x18\x01 \x01(\v2#.cozy_hub.products.http.v3.CategoryR\bcategory\x12\x17\n" +
 	"\amessage\x18\x02 \x01(\tR\x06errors\"6\n" +
 	"\x12GetCategoryRequest\x12 \n" +
-	"\vcategory_id\x18\x01 \x01(\tR\vcategory_id\"q\n" +
-	"\x13GetCategoryResponse\x12A\n" +
-	"\bcategory\x18\x01 \x01(\v2%.smart_kart.products.http.v3.CategoryR\bcategory\x12\x17\n" +
+	"\vcategory_id\x18\x01 \x01(\tR\vcategory_id\"o\n" +
+	"\x13GetCategoryResponse\x12?\n" +
+	"\bcategory\x18\x01 \x01(\v2#.cozy_hub.products.http.v3.CategoryR\bcategory\x12\x17\n" +
 	"\amessage\x18\x02 \x01(\tR\x06errors\"\xb7\x02\n" +
 	"\x15UpdateCategoryRequest\x12 \n" +
 	"\vcategory_id\x18\x01 \x01(\tR\vcategory_id\x12\x17\n" +
@@ -8988,9 +8988,9 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x13_parent_category_idB\f\n" +
 	"\n" +
 	"_image_urlB\t\n" +
-	"\a_status\"t\n" +
-	"\x16UpdateCategoryResponse\x12A\n" +
-	"\bcategory\x18\x01 \x01(\v2%.smart_kart.products.http.v3.CategoryR\bcategory\x12\x17\n" +
+	"\a_status\"r\n" +
+	"\x16UpdateCategoryResponse\x12?\n" +
+	"\bcategory\x18\x01 \x01(\v2#.cozy_hub.products.http.v3.CategoryR\bcategory\x12\x17\n" +
 	"\amessage\x18\x02 \x01(\tR\x06errors\"9\n" +
 	"\x15DeleteCategoryRequest\x12 \n" +
 	"\vcategory_id\x18\x01 \x01(\tR\vcategory_id\"2\n" +
@@ -9002,13 +9002,13 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1c\n" +
 	"\tpage_size\x18\x04 \x01(\x05R\tpage_sizeB\x15\n" +
 	"\x13_parent_category_idB\t\n" +
-	"\a_status\"\xc1\x01\n" +
-	"\x16ListCategoriesResponse\x12E\n" +
+	"\a_status\"\xbd\x01\n" +
+	"\x16ListCategoriesResponse\x12C\n" +
 	"\n" +
-	"categories\x18\x01 \x03(\v2%.smart_kart.products.http.v3.CategoryR\n" +
-	"categories\x12G\n" +
+	"categories\x18\x01 \x03(\v2#.cozy_hub.products.http.v3.CategoryR\n" +
+	"categories\x12E\n" +
 	"\n" +
-	"pagination\x18\x02 \x01(\v2'.smart_kart.products.http.v3.PaginationR\n" +
+	"pagination\x18\x02 \x01(\v2%.cozy_hub.products.http.v3.PaginationR\n" +
 	"pagination\x12\x17\n" +
 	"\amessage\x18\x03 \x01(\tR\x06errors\"\xf5\x04\n" +
 	"\tInventory\x12\"\n" +
@@ -9044,55 +9044,55 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x12warehouse_location\x18\x05 \x01(\tH\x02R\x12warehouse_location\x88\x01\x01B\x10\n" +
 	"\x0e_reorder_levelB\x13\n" +
 	"\x11_reorder_quantityB\x15\n" +
-	"\x13_warehouse_location\"x\n" +
-	"\x17UpdateInventoryResponse\x12D\n" +
-	"\tinventory\x18\x01 \x01(\v2&.smart_kart.products.http.v3.InventoryR\tinventory\x12\x17\n" +
+	"\x13_warehouse_location\"v\n" +
+	"\x17UpdateInventoryResponse\x12B\n" +
+	"\tinventory\x18\x01 \x01(\v2$.cozy_hub.products.http.v3.InventoryR\tinventory\x12\x17\n" +
 	"\amessage\x18\x02 \x01(\tR\x06errors\"5\n" +
 	"\x13GetInventoryRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
-	"product_id\"u\n" +
-	"\x14GetInventoryResponse\x12D\n" +
-	"\tinventory\x18\x01 \x01(\v2&.smart_kart.products.http.v3.InventoryR\tinventory\x12\x17\n" +
+	"product_id\"s\n" +
+	"\x14GetInventoryResponse\x12B\n" +
+	"\tinventory\x18\x01 \x01(\v2$.cozy_hub.products.http.v3.InventoryR\tinventory\x12\x17\n" +
 	"\amessage\x18\x02 \x01(\tR\x06errors\"M\n" +
 	"\x0fInventoryUpdate\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
 	"product_id\x12\x1a\n" +
-	"\bquantity\x18\x02 \x01(\x05R\bquantity\"d\n" +
-	"\x1aBulkUpdateInventoryRequest\x12F\n" +
-	"\aupdates\x18\x01 \x03(\v2,.smart_kart.products.http.v3.InventoryUpdateR\aupdates\"\x80\x01\n" +
-	"\x1bBulkUpdateInventoryResponse\x12H\n" +
-	"\vinventories\x18\x01 \x03(\v2&.smart_kart.products.http.v3.InventoryR\vinventories\x12\x17\n" +
+	"\bquantity\x18\x02 \x01(\x05R\bquantity\"b\n" +
+	"\x1aBulkUpdateInventoryRequest\x12D\n" +
+	"\aupdates\x18\x01 \x03(\v2*.cozy_hub.products.http.v3.InventoryUpdateR\aupdates\"~\n" +
+	"\x1bBulkUpdateInventoryResponse\x12F\n" +
+	"\vinventories\x18\x01 \x03(\v2$.cozy_hub.products.http.v3.InventoryR\vinventories\x12\x17\n" +
 	"\amessage\x18\x02 \x01(\tR\x06errors\"H\n" +
 	"\n" +
 	"StockCheck\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
 	"product_id\x12\x1a\n" +
-	"\bquantity\x18\x02 \x01(\x05R\bquantity\"R\n" +
-	"\x11CheckStockRequest\x12=\n" +
-	"\x05items\x18\x01 \x03(\v2'.smart_kart.products.http.v3.StockCheckR\x05items\"\xb1\x01\n" +
+	"\bquantity\x18\x02 \x01(\x05R\bquantity\"P\n" +
+	"\x11CheckStockRequest\x12;\n" +
+	"\x05items\x18\x01 \x03(\v2%.cozy_hub.products.http.v3.StockCheckR\x05items\"\xb1\x01\n" +
 	"\x11StockAvailability\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
 	"product_id\x12\x1c\n" +
 	"\tavailable\x18\x02 \x01(\bR\tavailable\x12.\n" +
 	"\x12requested_quantity\x18\x03 \x01(\x05R\x12requested_quantity\x12.\n" +
-	"\x12available_quantity\x18\x04 \x01(\x05R\x12available_quantity\"\x99\x01\n" +
+	"\x12available_quantity\x18\x04 \x01(\x05R\x12available_quantity\"\x97\x01\n" +
 	"\x12CheckStockResponse\x12$\n" +
-	"\rall_available\x18\x01 \x01(\bR\rall_available\x12D\n" +
-	"\x05items\x18\x02 \x03(\v2..smart_kart.products.http.v3.StockAvailabilityR\x05items\x12\x17\n" +
-	"\amessage\x18\x03 \x01(\tR\x06errors\"|\n" +
-	"\x13ReserveStockRequest\x12=\n" +
-	"\x05items\x18\x01 \x03(\v2'.smart_kart.products.http.v3.StockCheckR\x05items\x12&\n" +
+	"\rall_available\x18\x01 \x01(\bR\rall_available\x12B\n" +
+	"\x05items\x18\x02 \x03(\v2,.cozy_hub.products.http.v3.StockAvailabilityR\x05items\x12\x17\n" +
+	"\amessage\x18\x03 \x01(\tR\x06errors\"z\n" +
+	"\x13ReserveStockRequest\x12;\n" +
+	"\x05items\x18\x01 \x03(\v2%.cozy_hub.products.http.v3.StockCheckR\x05items\x12&\n" +
 	"\x0ereservation_id\x18\x02 \x01(\tR\x0ereservation_id\"q\n" +
 	"\x14ReserveStockResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12&\n" +
 	"\x0ereservation_id\x18\x02 \x01(\tR\x0ereservation_id\x12\x17\n" +
-	"\amessage\x18\x03 \x01(\tR\x06errors\"|\n" +
-	"\x13ReleaseStockRequest\x12=\n" +
-	"\x05items\x18\x01 \x03(\v2'.smart_kart.products.http.v3.StockCheckR\x05items\x12&\n" +
+	"\amessage\x18\x03 \x01(\tR\x06errors\"z\n" +
+	"\x13ReleaseStockRequest\x12;\n" +
+	"\x05items\x18\x01 \x03(\v2%.cozy_hub.products.http.v3.StockCheckR\x05items\x12&\n" +
 	"\x0ereservation_id\x18\x02 \x01(\tR\x0ereservation_id\"I\n" +
 	"\x14ReleaseStockResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x17\n" +
@@ -9112,25 +9112,25 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\n" +
 	"percentage\x18\x04 \x01(\x01R\n" +
 	"percentage\"\x1a\n" +
-	"\x18GetDashboardStatsRequest\"\xb0\x03\n" +
+	"\x18GetDashboardStatsRequest\"\xae\x03\n" +
 	"\x19GetDashboardStatsResponse\x12&\n" +
 	"\x0etotal_products\x18\x01 \x01(\x03R\x0etotal_products\x12(\n" +
 	"\x0flow_stock_count\x18\x02 \x01(\x03R\x0flow_stock_count\x12.\n" +
 	"\x12out_of_stock_count\x18\x03 \x01(\x03R\x12out_of_stock_count\x12(\n" +
 	"\x0finventory_value\x18\x04 \x01(\x01R\x0finventory_value\x12*\n" +
 	"\x10potential_profit\x18\x05 \x01(\x01R\x10potential_profit\x12&\n" +
-	"\x0eaverage_margin\x18\x06 \x01(\x01R\x0eaverage_margin\x12Q\n" +
-	"\x0ecategory_stats\x18\a \x03(\v2).smart_kart.products.http.v3.CategoryStatR\x0ecategory_stats\x12&\n" +
+	"\x0eaverage_margin\x18\x06 \x01(\x01R\x0eaverage_margin\x12O\n" +
+	"\x0ecategory_stats\x18\a \x03(\v2'.cozy_hub.products.http.v3.CategoryStatR\x0ecategory_stats\x12&\n" +
 	"\x0ecurrent_profit\x18\b \x01(\x01R\x0ecurrent_profit\x12\x18\n" +
 	"\amessage\x18\t \x01(\tR\amessage\"<\n" +
 	"\x18GetProductPricingRequest\x12 \n" +
-	"\vproduct_ids\x18\x01 \x03(\tR\vproduct_ids\"\xfd\x01\n" +
-	"\x19GetProductPricingResponse\x12]\n" +
-	"\apricing\x18\x01 \x03(\v2C.smart_kart.products.http.v3.GetProductPricingResponse.PricingEntryR\apricing\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x1ag\n" +
+	"\vproduct_ids\x18\x01 \x03(\tR\vproduct_ids\"\xf9\x01\n" +
+	"\x19GetProductPricingResponse\x12[\n" +
+	"\apricing\x18\x01 \x03(\v2A.cozy_hub.products.http.v3.GetProductPricingResponse.PricingEntryR\apricing\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x1ae\n" +
 	"\fPricingEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12A\n" +
-	"\x05value\x18\x02 \x01(\v2+.smart_kart.products.http.v3.ProductPricingR\x05value:\x028\x01\"\xa4\x01\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
+	"\x05value\x18\x02 \x01(\v2).cozy_hub.products.http.v3.ProductPricingR\x05value:\x028\x01\"\xa4\x01\n" +
 	"\x0eProductPricing\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
@@ -9144,36 +9144,36 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x1aUploadProductImagesRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
-	"product_id\"z\n" +
-	"\x1bUploadProductImagesResponse\x12A\n" +
-	"\x06images\x18\x01 \x03(\v2).smart_kart.products.http.v3.ProductImageR\x06images\x12\x18\n" +
+	"product_id\"x\n" +
+	"\x1bUploadProductImagesResponse\x12?\n" +
+	"\x06images\x18\x01 \x03(\v2'.cozy_hub.products.http.v3.ProductImageR\x06images\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"9\n" +
 	"\x17GetProductImagesRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
-	"product_id\"w\n" +
-	"\x18GetProductImagesResponse\x12A\n" +
-	"\x06images\x18\x01 \x03(\v2).smart_kart.products.http.v3.ProductImageR\x06images\x12\x18\n" +
+	"product_id\"u\n" +
+	"\x18GetProductImagesResponse\x12?\n" +
+	"\x06images\x18\x01 \x03(\v2'.cozy_hub.products.http.v3.ProductImageR\x06images\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"N\n" +
 	"\n" +
 	"ImageOrder\x12\x1a\n" +
 	"\bimage_id\x18\x01 \x01(\tR\bimage_id\x12$\n" +
-	"\rdisplay_order\x18\x02 \x01(\x05R\rdisplay_order\"~\n" +
+	"\rdisplay_order\x18\x02 \x01(\x05R\rdisplay_order\"|\n" +
 	"\x1bReorderProductImagesRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
-	"product_id\x12?\n" +
-	"\x06orders\x18\x02 \x03(\v2'.smart_kart.products.http.v3.ImageOrderR\x06orders\"{\n" +
-	"\x1cReorderProductImagesResponse\x12A\n" +
-	"\x06images\x18\x01 \x03(\v2).smart_kart.products.http.v3.ProductImageR\x06images\x12\x18\n" +
+	"product_id\x12=\n" +
+	"\x06orders\x18\x02 \x03(\v2%.cozy_hub.products.http.v3.ImageOrderR\x06orders\"y\n" +
+	"\x1cReorderProductImagesResponse\x12?\n" +
+	"\x06images\x18\x01 \x03(\v2'.cozy_hub.products.http.v3.ProductImageR\x06images\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"T\n" +
 	"\x16SetPrimaryImageRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
 	"product_id\x12\x1a\n" +
-	"\bimage_id\x18\x02 \x01(\tR\bimage_id\"t\n" +
-	"\x17SetPrimaryImageResponse\x12?\n" +
-	"\x05image\x18\x01 \x01(\v2).smart_kart.products.http.v3.ProductImageR\x05image\x12\x18\n" +
+	"\bimage_id\x18\x02 \x01(\tR\bimage_id\"r\n" +
+	"\x17SetPrimaryImageResponse\x12=\n" +
+	"\x05image\x18\x01 \x01(\v2'.cozy_hub.products.http.v3.ProductImageR\x05image\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"W\n" +
 	"\x19DeleteProductImageRequest\x12\x1e\n" +
 	"\n" +
@@ -9181,7 +9181,7 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"product_id\x12\x1a\n" +
 	"\bimage_id\x18\x02 \x01(\tR\bimage_id\"6\n" +
 	"\x1aDeleteProductImageResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"\xcd\x03\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"\xcb\x03\n" +
 	"\x0fFeaturedProduct\x12 \n" +
 	"\vfeatured_id\x18\x01 \x01(\tR\vfeatured_id\x12\x1e\n" +
 	"\n" +
@@ -9197,9 +9197,9 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"created_at\x12:\n" +
 	"\n" +
 	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"updated_at\x12C\n" +
+	"updated_at\x12A\n" +
 	"\aproduct\x18\n" +
-	" \x01(\v2$.smart_kart.products.http.v3.ProductH\x02R\aproduct\x88\x01\x01B\b\n" +
+	" \x01(\v2\".cozy_hub.products.http.v3.ProductH\x02R\aproduct\x88\x01\x01B\b\n" +
 	"\x06_titleB\v\n" +
 	"\t_subtitleB\n" +
 	"\n" +
@@ -9208,9 +9208,9 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\asection\x18\x01 \x01(\tR\asection\x12!\n" +
 	"\tis_active\x18\x02 \x01(\bH\x00R\tis_active\x88\x01\x01B\f\n" +
 	"\n" +
-	"_is_active\"\x94\x01\n" +
-	"\x1cListFeaturedProductsResponse\x12Z\n" +
-	"\x11featured_products\x18\x01 \x03(\v2,.smart_kart.products.http.v3.FeaturedProductR\x11featured_products\x12\x18\n" +
+	"_is_active\"\x92\x01\n" +
+	"\x1cListFeaturedProductsResponse\x12X\n" +
+	"\x11featured_products\x18\x01 \x03(\v2*.cozy_hub.products.http.v3.FeaturedProductR\x11featured_products\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xe5\x01\n" +
 	"\x19AddFeaturedProductRequest\x12\x1e\n" +
 	"\n" +
@@ -9222,22 +9222,22 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\bsubtitle\x18\x05 \x01(\tH\x02R\bsubtitle\x88\x01\x01B\x10\n" +
 	"\x0e_display_orderB\b\n" +
 	"\x06_titleB\v\n" +
-	"\t_subtitle\"\x90\x01\n" +
-	"\x1aAddFeaturedProductResponse\x12X\n" +
-	"\x10featured_product\x18\x01 \x01(\v2,.smart_kart.products.http.v3.FeaturedProductR\x10featured_product\x12\x18\n" +
+	"\t_subtitle\"\x8e\x01\n" +
+	"\x1aAddFeaturedProductResponse\x12V\n" +
+	"\x10featured_product\x18\x01 \x01(\v2*.cozy_hub.products.http.v3.FeaturedProductR\x10featured_product\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"@\n" +
 	"\x1cRemoveFeaturedProductRequest\x12 \n" +
 	"\vfeatured_id\x18\x01 \x01(\tR\vfeatured_id\"9\n" +
 	"\x1dRemoveFeaturedProductResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"~\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"|\n" +
 	"\x1eReorderFeaturedProductsRequest\x12\x18\n" +
-	"\asection\x18\x01 \x01(\tR\asection\x12B\n" +
-	"\x06orders\x18\x02 \x03(\v2*.smart_kart.products.http.v3.FeaturedOrderR\x06orders\"W\n" +
+	"\asection\x18\x01 \x01(\tR\asection\x12@\n" +
+	"\x06orders\x18\x02 \x03(\v2(.cozy_hub.products.http.v3.FeaturedOrderR\x06orders\"W\n" +
 	"\rFeaturedOrder\x12 \n" +
 	"\vfeatured_id\x18\x01 \x01(\tR\vfeatured_id\x12$\n" +
-	"\rdisplay_order\x18\x02 \x01(\x05R\rdisplay_order\"\x97\x01\n" +
-	"\x1fReorderFeaturedProductsResponse\x12Z\n" +
-	"\x11featured_products\x18\x01 \x03(\v2,.smart_kart.products.http.v3.FeaturedProductR\x11featured_products\x12\x18\n" +
+	"\rdisplay_order\x18\x02 \x01(\x05R\rdisplay_order\"\x95\x01\n" +
+	"\x1fReorderFeaturedProductsResponse\x12X\n" +
+	"\x11featured_products\x18\x01 \x03(\v2*.cozy_hub.products.http.v3.FeaturedProductR\x11featured_products\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xd4\x03\n" +
 	"\rCarouselImage\x12 \n" +
 	"\vcarousel_id\x18\x01 \x01(\tR\vcarousel_id\x12\x1c\n" +
@@ -9261,9 +9261,9 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\t_cta_textB\v\n" +
 	"\t_cta_link\"5\n" +
 	"\x19ListCarouselImagesRequest\x12\x18\n" +
-	"\asection\x18\x01 \x01(\tR\asection\"\x8c\x01\n" +
-	"\x1aListCarouselImagesResponse\x12T\n" +
-	"\x0fcarousel_images\x18\x01 \x03(\v2*.smart_kart.products.http.v3.CarouselImageR\x0fcarousel_images\x12\x18\n" +
+	"\asection\x18\x01 \x01(\tR\asection\"\x8a\x01\n" +
+	"\x1aListCarouselImagesResponse\x12R\n" +
+	"\x0fcarousel_images\x18\x01 \x03(\v2(.cozy_hub.products.http.v3.CarouselImageR\x0fcarousel_images\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xc0\x02\n" +
 	"\x1aCreateCarouselImageRequest\x12\x1c\n" +
 	"\timage_url\x18\x01 \x01(\tR\timage_url\x12\x19\n" +
@@ -9277,9 +9277,9 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\t_subtitleB\v\n" +
 	"\t_cta_textB\v\n" +
 	"\t_cta_linkB\x10\n" +
-	"\x0e_display_order\"\x8b\x01\n" +
-	"\x1bCreateCarouselImageResponse\x12R\n" +
-	"\x0ecarousel_image\x18\x01 \x01(\v2*.smart_kart.products.http.v3.CarouselImageR\x0ecarousel_image\x12\x18\n" +
+	"\x0e_display_order\"\x89\x01\n" +
+	"\x1bCreateCarouselImageResponse\x12P\n" +
+	"\x0ecarousel_image\x18\x01 \x01(\v2(.cozy_hub.products.http.v3.CarouselImageR\x0ecarousel_image\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xcf\x02\n" +
 	"\x1aUpdateCarouselImageRequest\x12 \n" +
 	"\vcarousel_id\x18\x01 \x01(\tR\vcarousel_id\x12\x1c\n" +
@@ -9293,34 +9293,34 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x06_titleB\v\n" +
 	"\t_subtitleB\v\n" +
 	"\t_cta_textB\v\n" +
-	"\t_cta_link\"\x8b\x01\n" +
-	"\x1bUpdateCarouselImageResponse\x12R\n" +
-	"\x0ecarousel_image\x18\x01 \x01(\v2*.smart_kart.products.http.v3.CarouselImageR\x0ecarousel_image\x12\x18\n" +
+	"\t_cta_link\"\x89\x01\n" +
+	"\x1bUpdateCarouselImageResponse\x12P\n" +
+	"\x0ecarousel_image\x18\x01 \x01(\v2(.cozy_hub.products.http.v3.CarouselImageR\x0ecarousel_image\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\">\n" +
 	"\x1aDeleteCarouselImageRequest\x12 \n" +
 	"\vcarousel_id\x18\x01 \x01(\tR\vcarousel_id\"7\n" +
 	"\x1bDeleteCarouselImageResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"|\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"z\n" +
 	"\x1cReorderCarouselImagesRequest\x12\x18\n" +
-	"\asection\x18\x01 \x01(\tR\asection\x12B\n" +
-	"\x06orders\x18\x02 \x03(\v2*.smart_kart.products.http.v3.CarouselOrderR\x06orders\"W\n" +
+	"\asection\x18\x01 \x01(\tR\asection\x12@\n" +
+	"\x06orders\x18\x02 \x03(\v2(.cozy_hub.products.http.v3.CarouselOrderR\x06orders\"W\n" +
 	"\rCarouselOrder\x12 \n" +
 	"\vcarousel_id\x18\x01 \x01(\tR\vcarousel_id\x12$\n" +
-	"\rdisplay_order\x18\x02 \x01(\x05R\rdisplay_order\"\x8f\x01\n" +
-	"\x1dReorderCarouselImagesResponse\x12T\n" +
-	"\x0fcarousel_images\x18\x01 \x03(\v2*.smart_kart.products.http.v3.CarouselImageR\x0fcarousel_images\x12\x18\n" +
+	"\rdisplay_order\x18\x02 \x01(\x05R\rdisplay_order\"\x8d\x01\n" +
+	"\x1dReorderCarouselImagesResponse\x12R\n" +
+	"\x0fcarousel_images\x18\x01 \x03(\v2(.cozy_hub.products.http.v3.CarouselImageR\x0fcarousel_images\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"G\n" +
 	"\x1aUploadCarouselImageRequest\x12\x1d\n" +
 	"\asection\x18\x01 \x01(\tH\x00R\asection\x88\x01\x01B\n" +
 	"\n" +
-	"\b_section\"\x8b\x01\n" +
-	"\x1bUploadCarouselImageResponse\x12R\n" +
-	"\x0ecarousel_image\x18\x01 \x01(\v2*.smart_kart.products.http.v3.CarouselImageR\x0ecarousel_image\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xf4\x01\n" +
+	"\b_section\"\x89\x01\n" +
+	"\x1bUploadCarouselImageResponse\x12P\n" +
+	"\x0ecarousel_image\x18\x01 \x01(\v2(.cozy_hub.products.http.v3.CarouselImageR\x0ecarousel_image\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xf2\x01\n" +
 	"\bWishlist\x12 \n" +
 	"\vwishlist_id\x18\x01 \x01(\tR\vwishlist_id\x12\x1d\n" +
-	"\auser_id\x18\x02 \x01(\tH\x00R\auser_id\x88\x01\x01\x12?\n" +
-	"\x05items\x18\x03 \x03(\v2).smart_kart.products.http.v3.WishlistItemR\x05items\x12\x1e\n" +
+	"\auser_id\x18\x02 \x01(\tH\x00R\auser_id\x88\x01\x01\x12=\n" +
+	"\x05items\x18\x03 \x03(\v2'.cozy_hub.products.http.v3.WishlistItemR\x05items\x12\x1e\n" +
 	"\n" +
 	"item_count\x18\x04 \x01(\x05R\n" +
 	"item_count\x12:\n" +
@@ -9367,9 +9367,9 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"_min_priceB\f\n" +
 	"\n" +
 	"_max_priceB\x0f\n" +
-	"\r_search_query\"r\n" +
-	"\x13GetWishlistResponse\x12A\n" +
-	"\bwishlist\x18\x01 \x01(\v2%.smart_kart.products.http.v3.WishlistR\bwishlist\x12\x18\n" +
+	"\r_search_query\"p\n" +
+	"\x13GetWishlistResponse\x12?\n" +
+	"\bwishlist\x18\x01 \x01(\v2#.cozy_hub.products.http.v3.WishlistR\bwishlist\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"j\n" +
 	"\x14AddToWishlistRequest\x12\x1e\n" +
 	"\n" +
@@ -9378,11 +9378,11 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\n" +
 	"session_id\x18\x02 \x01(\tH\x00R\n" +
 	"session_id\x88\x01\x01B\r\n" +
-	"\v_session_id\"\x8a\x01\n" +
+	"\v_session_id\"\x88\x01\n" +
 	"\x15AddToWishlistResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
-	"\x04item\x18\x03 \x01(\v2).smart_kart.products.http.v3.WishlistItemR\x04item\"G\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\x04item\x18\x03 \x01(\v2'.cozy_hub.products.http.v3.WishlistItemR\x04item\"G\n" +
 	"\x19RemoveFromWishlistRequest\x12*\n" +
 	"\x10wishlist_item_id\x18\x01 \x01(\tR\x10wishlist_item_id\"P\n" +
 	"\x1aRemoveFromWishlistResponse\x12\x18\n" +
@@ -9421,7 +9421,7 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\bquantity\x18\x02 \x01(\x05R\bquantity\"H\n" +
 	"\x12MoveToCartResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xd1\x06\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xcf\x06\n" +
 	"\x06Review\x12\x1c\n" +
 	"\treview_id\x18\x01 \x01(\tR\treview_id\x12\x1e\n" +
 	"\n" +
@@ -9438,8 +9438,8 @@ const file_http_v3_products_proto_rawDesc = "" +
 	" \x01(\x05R\rhelpful_count\x12&\n" +
 	"\x0ereported_count\x18\v \x01(\x05R\x0ereported_count\x12+\n" +
 	"\x0eadmin_response\x18\f \x01(\tH\x03R\x0eadmin_response\x88\x01\x01\x12M\n" +
-	"\x11admin_response_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x11admin_response_at\x88\x01\x01\x12@\n" +
-	"\x06images\x18\x0e \x03(\v2(.smart_kart.products.http.v3.ReviewImageR\x06images\x12\x1c\n" +
+	"\x11admin_response_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x11admin_response_at\x88\x01\x01\x12>\n" +
+	"\x06images\x18\x0e \x03(\v2&.cozy_hub.products.http.v3.ReviewImageR\x06images\x12\x1c\n" +
 	"\tuser_name\x18\x0f \x01(\tR\tuser_name\x126\n" +
 	"\x16marked_helpful_by_user\x18\x10 \x01(\bR\x16marked_helpful_by_user\x12:\n" +
 	"\n" +
@@ -9482,11 +9482,11 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12%\n" +
 	"\vreview_text\x18\x04 \x01(\tH\x01R\vreview_text\x88\x01\x01B\b\n" +
 	"\x06_titleB\x0e\n" +
-	"\f_review_text\"\x87\x01\n" +
+	"\f_review_text\"\x85\x01\n" +
 	"\x14CreateReviewResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
-	"\x06review\x18\x03 \x01(\v2#.smart_kart.products.http.v3.ReviewR\x06review\"\xc3\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x129\n" +
+	"\x06review\x18\x03 \x01(\v2!.cozy_hub.products.http.v3.ReviewR\x06review\"\xc3\x01\n" +
 	"\x18GetProductReviewsRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
@@ -9495,31 +9495,31 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\tpage_size\x18\x03 \x01(\x05R\tpage_size\x12)\n" +
 	"\rrating_filter\x18\x04 \x01(\x05H\x00R\rrating_filter\x88\x01\x01\x12\x18\n" +
 	"\asort_by\x18\x05 \x01(\tR\asort_byB\x10\n" +
-	"\x0e_rating_filter\"\xd7\x01\n" +
+	"\x0e_rating_filter\"\xd3\x01\n" +
 	"\x19GetProductReviewsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
-	"\areviews\x18\x03 \x03(\v2#.smart_kart.products.http.v3.ReviewR\areviews\x12G\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\areviews\x18\x03 \x03(\v2!.cozy_hub.products.http.v3.ReviewR\areviews\x12E\n" +
 	"\n" +
-	"pagination\x18\x04 \x01(\v2'.smart_kart.products.http.v3.PaginationR\n" +
+	"pagination\x18\x04 \x01(\v2%.cozy_hub.products.http.v3.PaginationR\n" +
 	"pagination\"9\n" +
 	"\x17GetProductRatingRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
-	"product_id\"\xa9\x01\n" +
+	"product_id\"\xa7\x01\n" +
 	"\x18GetProductRatingResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12Y\n" +
-	"\x0erating_summary\x18\x03 \x01(\v21.smart_kart.products.http.v3.ProductRatingSummaryR\x0erating_summary\"@\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12W\n" +
+	"\x0erating_summary\x18\x03 \x01(\v2/.cozy_hub.products.http.v3.ProductRatingSummaryR\x0erating_summary\"@\n" +
 	"\x1eGetUserReviewForProductRequest\x12\x1e\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\n" +
-	"product_id\"\xc6\x01\n" +
+	"product_id\"\xc4\x01\n" +
 	"\x1fGetUserReviewForProductResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\"\n" +
-	"\fhas_reviewed\x18\x03 \x01(\bR\fhas_reviewed\x12@\n" +
-	"\x06review\x18\x04 \x01(\v2#.smart_kart.products.http.v3.ReviewH\x00R\x06review\x88\x01\x01B\t\n" +
+	"\fhas_reviewed\x18\x03 \x01(\bR\fhas_reviewed\x12>\n" +
+	"\x06review\x18\x04 \x01(\v2!.cozy_hub.products.http.v3.ReviewH\x00R\x06review\x88\x01\x01B\t\n" +
 	"\a_review\"\xa7\x01\n" +
 	"\x13UpdateReviewRequest\x12\x1c\n" +
 	"\treview_id\x18\x01 \x01(\tR\treview_id\x12\x16\n" +
@@ -9527,11 +9527,11 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12%\n" +
 	"\vreview_text\x18\x04 \x01(\tH\x01R\vreview_text\x88\x01\x01B\b\n" +
 	"\x06_titleB\x0e\n" +
-	"\f_review_text\"\x87\x01\n" +
+	"\f_review_text\"\x85\x01\n" +
 	"\x14UpdateReviewResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
-	"\x06review\x18\x03 \x01(\v2#.smart_kart.products.http.v3.ReviewR\x06review\"3\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x129\n" +
+	"\x06review\x18\x03 \x01(\v2!.cozy_hub.products.http.v3.ReviewR\x06review\"3\n" +
 	"\x13DeleteReviewRequest\x12\x1c\n" +
 	"\treview_id\x18\x01 \x01(\tR\treview_id\"J\n" +
 	"\x14DeleteReviewResponse\x12\x18\n" +
@@ -9544,11 +9544,11 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12$\n" +
 	"\rhelpful_count\x18\x03 \x01(\x05R\rhelpful_count\"9\n" +
 	"\x19UploadReviewImagesRequest\x12\x1c\n" +
-	"\treview_id\x18\x01 \x01(\tR\treview_id\"\x92\x01\n" +
+	"\treview_id\x18\x01 \x01(\tR\treview_id\"\x90\x01\n" +
 	"\x1aUploadReviewImagesResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12@\n" +
-	"\x06images\x18\x03 \x03(\v2(.smart_kart.products.http.v3.ReviewImageR\x06images\"\xc0\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12>\n" +
+	"\x06images\x18\x03 \x03(\v2&.cozy_hub.products.http.v3.ReviewImageR\x06images\"\xc0\x01\n" +
 	"\x16AdminGetReviewsRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1c\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\tpage_size\x12\x1b\n" +
@@ -9558,13 +9558,13 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"product_id\x88\x01\x01\x12\x18\n" +
 	"\asort_by\x18\x05 \x01(\tR\asort_byB\t\n" +
 	"\a_statusB\r\n" +
-	"\v_product_id\"\xd5\x01\n" +
+	"\v_product_id\"\xd1\x01\n" +
 	"\x17AdminGetReviewsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12=\n" +
-	"\areviews\x18\x03 \x03(\v2#.smart_kart.products.http.v3.ReviewR\areviews\x12G\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12;\n" +
+	"\areviews\x18\x03 \x03(\v2!.cozy_hub.products.http.v3.ReviewR\areviews\x12E\n" +
 	"\n" +
-	"pagination\x18\x04 \x01(\v2'.smart_kart.products.http.v3.PaginationR\n" +
+	"pagination\x18\x04 \x01(\v2%.cozy_hub.products.http.v3.PaginationR\n" +
 	"pagination\"9\n" +
 	"\x19AdminApproveReviewRequest\x12\x1c\n" +
 	"\treview_id\x18\x01 \x01(\tR\treview_id\"P\n" +
@@ -9607,7 +9607,7 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\bend_date\x18\x03 \x01(\tH\x02R\bend_date\x88\x01\x01B\r\n" +
 	"\v_product_idB\r\n" +
 	"\v_start_dateB\v\n" +
-	"\t_end_date\"\xe5\x04\n" +
+	"\t_end_date\"\xe3\x04\n" +
 	"\x1fAdminGetReviewAnalyticsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12$\n" +
@@ -9615,78 +9615,78 @@ const file_http_v3_products_proto_rawDesc = "" +
 	"\x0fpending_reviews\x18\x04 \x01(\x05R\x0fpending_reviews\x12*\n" +
 	"\x10approved_reviews\x18\x05 \x01(\x05R\x10approved_reviews\x12*\n" +
 	"\x10rejected_reviews\x18\x06 \x01(\x05R\x10rejected_reviews\x12&\n" +
-	"\x0eaverage_rating\x18\a \x01(\x01R\x0eaverage_rating\x12\x86\x01\n" +
-	"\x13rating_distribution\x18\b \x03(\v2T.smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntryR\x13rating_distribution\x120\n" +
+	"\x0eaverage_rating\x18\a \x01(\x01R\x0eaverage_rating\x12\x84\x01\n" +
+	"\x13rating_distribution\x18\b \x03(\v2R.cozy_hub.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntryR\x13rating_distribution\x120\n" +
 	"\x13reviews_with_images\x18\t \x01(\x05R\x13reviews_with_images\x12<\n" +
 	"\x19verified_purchase_reviews\x18\n" +
 	" \x01(\x05R\x19verified_purchase_reviews\x1aE\n" +
 	"\x17RatingDistributionEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x012\xc0M\n" +
-	"\x13ProductsHTTPService\x12\x8f\x01\n" +
-	"\rCreateProduct\x121.smart_kart.products.http.v3.CreateProductRequest\x1a2.smart_kart.products.http.v3.CreateProductResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v3/products\x12\x90\x01\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x012\xd4K\n" +
+	"\x13ProductsHTTPService\x12\x8b\x01\n" +
+	"\rCreateProduct\x12/.cozy_hub.products.http.v3.CreateProductRequest\x1a0.cozy_hub.products.http.v3.CreateProductResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v3/products\x12\x8c\x01\n" +
 	"\n" +
-	"GetProduct\x12..smart_kart.products.http.v3.GetProductRequest\x1a/.smart_kart.products.http.v3.GetProductResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/v3/products/{product_id}\x12\x9c\x01\n" +
-	"\rUpdateProduct\x121.smart_kart.products.http.v3.UpdateProductRequest\x1a2.smart_kart.products.http.v3.UpdateProductResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\x1a\x19/v3/products/{product_id}\x12\x99\x01\n" +
-	"\rDeleteProduct\x121.smart_kart.products.http.v3.DeleteProductRequest\x1a2.smart_kart.products.http.v3.DeleteProductResponse\"!\x82\xd3\xe4\x93\x02\x1b*\x19/v3/products/{product_id}\x12\x89\x01\n" +
-	"\fListProducts\x120.smart_kart.products.http.v3.ListProductsRequest\x1a1.smart_kart.products.http.v3.ListProductsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v3/products\x12\x96\x01\n" +
-	"\x0eSearchProducts\x122.smart_kart.products.http.v3.SearchProductsRequest\x1a3.smart_kart.products.http.v3.SearchProductsResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v3/products/search\x12\xb5\x01\n" +
-	"\x13UpdateProductStatus\x127.smart_kart.products.http.v3.UpdateProductStatusRequest\x1a8.smart_kart.products.http.v3.UpdateProductStatusResponse\"+\x82\xd3\xe4\x93\x02%:\x01*2 /v3/products/{product_id}/status\x12\x9c\x01\n" +
-	"\x0fGetProductBySKU\x123.smart_kart.products.http.v3.GetProductBySKURequest\x1a4.smart_kart.products.http.v3.GetProductBySKUResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v3/products/sku/{sku}\x12\x94\x01\n" +
-	"\x0eCreateCategory\x122.smart_kart.products.http.v3.CreateCategoryRequest\x1a3.smart_kart.products.http.v3.CreateCategoryResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v3/categories\x12\x96\x01\n" +
-	"\vGetCategory\x12/.smart_kart.products.http.v3.GetCategoryRequest\x1a0.smart_kart.products.http.v3.GetCategoryResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/v3/categories/{category_id}\x12\xa2\x01\n" +
-	"\x0eUpdateCategory\x122.smart_kart.products.http.v3.UpdateCategoryRequest\x1a3.smart_kart.products.http.v3.UpdateCategoryResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v3/categories/{category_id}\x12\x9f\x01\n" +
-	"\x0eDeleteCategory\x122.smart_kart.products.http.v3.DeleteCategoryRequest\x1a3.smart_kart.products.http.v3.DeleteCategoryResponse\"$\x82\xd3\xe4\x93\x02\x1e*\x1c/v3/categories/{category_id}\x12\x91\x01\n" +
-	"\x0eListCategories\x122.smart_kart.products.http.v3.ListCategoriesRequest\x1a3.smart_kart.products.http.v3.ListCategoriesResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v3/categories\x12\xa3\x01\n" +
-	"\x0fUpdateInventory\x123.smart_kart.products.http.v3.UpdateInventoryRequest\x1a4.smart_kart.products.http.v3.UpdateInventoryResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\x1a\x1a/v3/inventory/{product_id}\x12\x97\x01\n" +
-	"\fGetInventory\x120.smart_kart.products.http.v3.GetInventoryRequest\x1a1.smart_kart.products.http.v3.GetInventoryResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v3/inventory/{product_id}\x12\xa7\x01\n" +
-	"\x13BulkUpdateInventory\x127.smart_kart.products.http.v3.BulkUpdateInventoryRequest\x1a8.smart_kart.products.http.v3.BulkUpdateInventoryResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v3/inventory/bulk\x12\x8d\x01\n" +
+	"GetProduct\x12,.cozy_hub.products.http.v3.GetProductRequest\x1a-.cozy_hub.products.http.v3.GetProductResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/v3/products/{product_id}\x12\x98\x01\n" +
+	"\rUpdateProduct\x12/.cozy_hub.products.http.v3.UpdateProductRequest\x1a0.cozy_hub.products.http.v3.UpdateProductResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\x1a\x19/v3/products/{product_id}\x12\x95\x01\n" +
+	"\rDeleteProduct\x12/.cozy_hub.products.http.v3.DeleteProductRequest\x1a0.cozy_hub.products.http.v3.DeleteProductResponse\"!\x82\xd3\xe4\x93\x02\x1b*\x19/v3/products/{product_id}\x12\x85\x01\n" +
+	"\fListProducts\x12..cozy_hub.products.http.v3.ListProductsRequest\x1a/.cozy_hub.products.http.v3.ListProductsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v3/products\x12\x92\x01\n" +
+	"\x0eSearchProducts\x120.cozy_hub.products.http.v3.SearchProductsRequest\x1a1.cozy_hub.products.http.v3.SearchProductsResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v3/products/search\x12\xb1\x01\n" +
+	"\x13UpdateProductStatus\x125.cozy_hub.products.http.v3.UpdateProductStatusRequest\x1a6.cozy_hub.products.http.v3.UpdateProductStatusResponse\"+\x82\xd3\xe4\x93\x02%:\x01*2 /v3/products/{product_id}/status\x12\x98\x01\n" +
+	"\x0fGetProductBySKU\x121.cozy_hub.products.http.v3.GetProductBySKURequest\x1a2.cozy_hub.products.http.v3.GetProductBySKUResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v3/products/sku/{sku}\x12\x90\x01\n" +
+	"\x0eCreateCategory\x120.cozy_hub.products.http.v3.CreateCategoryRequest\x1a1.cozy_hub.products.http.v3.CreateCategoryResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v3/categories\x12\x92\x01\n" +
+	"\vGetCategory\x12-.cozy_hub.products.http.v3.GetCategoryRequest\x1a..cozy_hub.products.http.v3.GetCategoryResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/v3/categories/{category_id}\x12\x9e\x01\n" +
+	"\x0eUpdateCategory\x120.cozy_hub.products.http.v3.UpdateCategoryRequest\x1a1.cozy_hub.products.http.v3.UpdateCategoryResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v3/categories/{category_id}\x12\x9b\x01\n" +
+	"\x0eDeleteCategory\x120.cozy_hub.products.http.v3.DeleteCategoryRequest\x1a1.cozy_hub.products.http.v3.DeleteCategoryResponse\"$\x82\xd3\xe4\x93\x02\x1e*\x1c/v3/categories/{category_id}\x12\x8d\x01\n" +
+	"\x0eListCategories\x120.cozy_hub.products.http.v3.ListCategoriesRequest\x1a1.cozy_hub.products.http.v3.ListCategoriesResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v3/categories\x12\x9f\x01\n" +
+	"\x0fUpdateInventory\x121.cozy_hub.products.http.v3.UpdateInventoryRequest\x1a2.cozy_hub.products.http.v3.UpdateInventoryResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\x1a\x1a/v3/inventory/{product_id}\x12\x93\x01\n" +
+	"\fGetInventory\x12..cozy_hub.products.http.v3.GetInventoryRequest\x1a/.cozy_hub.products.http.v3.GetInventoryResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v3/inventory/{product_id}\x12\xa3\x01\n" +
+	"\x13BulkUpdateInventory\x125.cozy_hub.products.http.v3.BulkUpdateInventoryRequest\x1a6.cozy_hub.products.http.v3.BulkUpdateInventoryResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v3/inventory/bulk\x12\x89\x01\n" +
 	"\n" +
-	"CheckStock\x12..smart_kart.products.http.v3.CheckStockRequest\x1a/.smart_kart.products.http.v3.CheckStockResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v3/inventory/check\x12\x95\x01\n" +
-	"\fReserveStock\x120.smart_kart.products.http.v3.ReserveStockRequest\x1a1.smart_kart.products.http.v3.ReserveStockResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/inventory/reserve\x12\x95\x01\n" +
-	"\fReleaseStock\x120.smart_kart.products.http.v3.ReleaseStockRequest\x1a1.smart_kart.products.http.v3.ReleaseStockResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/inventory/release\x12\xa6\x01\n" +
-	"\x10GetLowStockCount\x124.smart_kart.products.http.v3.GetLowStockCountRequest\x1a5.smart_kart.products.http.v3.GetLowStockCountResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v3/inventory/low-stock-count\x12\x9f\x01\n" +
-	"\x11GetDashboardStats\x125.smart_kart.products.http.v3.GetDashboardStatsRequest\x1a6.smart_kart.products.http.v3.GetDashboardStatsResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v3/dashboard/stats\x12\xa3\x01\n" +
-	"\x11GetProductPricing\x125.smart_kart.products.http.v3.GetProductPricingRequest\x1a6.smart_kart.products.http.v3.GetProductPricingResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v3/products/pricing\x12\xbc\x01\n" +
-	"\x13UploadProductImages\x127.smart_kart.products.http.v3.UploadProductImagesRequest\x1a8.smart_kart.products.http.v3.UploadProductImagesResponse\"2\x82\xd3\xe4\x93\x02,:\x01*\"'/v3/products/{product_id}/images/upload\x12\xa9\x01\n" +
-	"\x10GetProductImages\x124.smart_kart.products.http.v3.GetProductImagesRequest\x1a5.smart_kart.products.http.v3.GetProductImagesResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v3/products/{product_id}/images\x12\xc0\x01\n" +
-	"\x14ReorderProductImages\x128.smart_kart.products.http.v3.ReorderProductImagesRequest\x1a9.smart_kart.products.http.v3.ReorderProductImagesResponse\"3\x82\xd3\xe4\x93\x02-:\x01*\x1a(/v3/products/{product_id}/images/reorder\x12\xbc\x01\n" +
-	"\x0fSetPrimaryImage\x123.smart_kart.products.http.v3.SetPrimaryImageRequest\x1a4.smart_kart.products.http.v3.SetPrimaryImageResponse\">\x82\xd3\xe4\x93\x028:\x01*23/v3/products/{product_id}/images/{image_id}/primary\x12\xba\x01\n" +
-	"\x12DeleteProductImage\x126.smart_kart.products.http.v3.DeleteProductImageRequest\x1a7.smart_kart.products.http.v3.DeleteProductImageResponse\"3\x82\xd3\xe4\x93\x02-*+/v3/products/{product_id}/images/{image_id}\x12\xaa\x01\n" +
-	"\x14ListFeaturedProducts\x128.smart_kart.products.http.v3.ListFeaturedProductsRequest\x1a9.smart_kart.products.http.v3.ListFeaturedProductsResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v3/featured-products\x12\xa7\x01\n" +
-	"\x12AddFeaturedProduct\x126.smart_kart.products.http.v3.AddFeaturedProductRequest\x1a7.smart_kart.products.http.v3.AddFeaturedProductResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/featured-products\x12\xbb\x01\n" +
-	"\x15RemoveFeaturedProduct\x129.smart_kart.products.http.v3.RemoveFeaturedProductRequest\x1a:.smart_kart.products.http.v3.RemoveFeaturedProductResponse\"+\x82\xd3\xe4\x93\x02%*#/v3/featured-products/{featured_id}\x12\xbe\x01\n" +
-	"\x17ReorderFeaturedProducts\x12;.smart_kart.products.http.v3.ReorderFeaturedProductsRequest\x1a<.smart_kart.products.http.v3.ReorderFeaturedProductsResponse\"(\x82\xd3\xe4\x93\x02\":\x01*\x1a\x1d/v3/featured-products/reorder\x12\xa2\x01\n" +
-	"\x12ListCarouselImages\x126.smart_kart.products.http.v3.ListCarouselImagesRequest\x1a7.smart_kart.products.http.v3.ListCarouselImagesResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v3/carousel-images\x12\xa8\x01\n" +
-	"\x13CreateCarouselImage\x127.smart_kart.products.http.v3.CreateCarouselImageRequest\x1a8.smart_kart.products.http.v3.CreateCarouselImageResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v3/carousel-images\x12\xb6\x01\n" +
-	"\x13UpdateCarouselImage\x127.smart_kart.products.http.v3.UpdateCarouselImageRequest\x1a8.smart_kart.products.http.v3.UpdateCarouselImageResponse\",\x82\xd3\xe4\x93\x02&:\x01*\x1a!/v3/carousel-images/{carousel_id}\x12\xb3\x01\n" +
-	"\x13DeleteCarouselImage\x127.smart_kart.products.http.v3.DeleteCarouselImageRequest\x1a8.smart_kart.products.http.v3.DeleteCarouselImageResponse\")\x82\xd3\xe4\x93\x02#*!/v3/carousel-images/{carousel_id}\x12\xb6\x01\n" +
-	"\x15ReorderCarouselImages\x129.smart_kart.products.http.v3.ReorderCarouselImagesRequest\x1a:.smart_kart.products.http.v3.ReorderCarouselImagesResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\x1a\x1b/v3/carousel-images/reorder\x12\xaf\x01\n" +
-	"\x13UploadCarouselImage\x127.smart_kart.products.http.v3.UploadCarouselImageRequest\x1a8.smart_kart.products.http.v3.UploadCarouselImageResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/carousel-images/upload\x12\x86\x01\n" +
-	"\vGetWishlist\x12/.smart_kart.products.http.v3.GetWishlistRequest\x1a0.smart_kart.products.http.v3.GetWishlistResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v3/wishlist\x12\x93\x01\n" +
-	"\rAddToWishlist\x121.smart_kart.products.http.v3.AddToWishlistRequest\x1a2.smart_kart.products.http.v3.AddToWishlistResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v3/wishlist/add\x12\xb4\x01\n" +
-	"\x12RemoveFromWishlist\x126.smart_kart.products.http.v3.RemoveFromWishlistRequest\x1a7.smart_kart.products.http.v3.RemoveFromWishlistResponse\"-\x82\xd3\xe4\x93\x02'*%/v3/wishlist/items/{wishlist_item_id}\x12\x8c\x01\n" +
-	"\rClearWishlist\x121.smart_kart.products.http.v3.ClearWishlistRequest\x1a2.smart_kart.products.http.v3.ClearWishlistResponse\"\x14\x82\xd3\xe4\x93\x02\x0e*\f/v3/wishlist\x12\x9c\x01\n" +
-	"\fIsInWishlist\x120.smart_kart.products.http.v3.IsInWishlistRequest\x1a1.smart_kart.products.http.v3.IsInWishlistResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/v3/wishlist/check/{product_id}\x12\x95\x01\n" +
-	"\rMergeWishlist\x121.smart_kart.products.http.v3.MergeWishlistRequest\x1a2.smart_kart.products.http.v3.MergeWishlistResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v3/wishlist/merge\x12\x93\x01\n" +
+	"CheckStock\x12,.cozy_hub.products.http.v3.CheckStockRequest\x1a-.cozy_hub.products.http.v3.CheckStockResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v3/inventory/check\x12\x91\x01\n" +
+	"\fReserveStock\x12..cozy_hub.products.http.v3.ReserveStockRequest\x1a/.cozy_hub.products.http.v3.ReserveStockResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/inventory/reserve\x12\x91\x01\n" +
+	"\fReleaseStock\x12..cozy_hub.products.http.v3.ReleaseStockRequest\x1a/.cozy_hub.products.http.v3.ReleaseStockResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/inventory/release\x12\xa2\x01\n" +
+	"\x10GetLowStockCount\x122.cozy_hub.products.http.v3.GetLowStockCountRequest\x1a3.cozy_hub.products.http.v3.GetLowStockCountResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v3/inventory/low-stock-count\x12\x9b\x01\n" +
+	"\x11GetDashboardStats\x123.cozy_hub.products.http.v3.GetDashboardStatsRequest\x1a4.cozy_hub.products.http.v3.GetDashboardStatsResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v3/dashboard/stats\x12\x9f\x01\n" +
+	"\x11GetProductPricing\x123.cozy_hub.products.http.v3.GetProductPricingRequest\x1a4.cozy_hub.products.http.v3.GetProductPricingResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v3/products/pricing\x12\xb8\x01\n" +
+	"\x13UploadProductImages\x125.cozy_hub.products.http.v3.UploadProductImagesRequest\x1a6.cozy_hub.products.http.v3.UploadProductImagesResponse\"2\x82\xd3\xe4\x93\x02,:\x01*\"'/v3/products/{product_id}/images/upload\x12\xa5\x01\n" +
+	"\x10GetProductImages\x122.cozy_hub.products.http.v3.GetProductImagesRequest\x1a3.cozy_hub.products.http.v3.GetProductImagesResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v3/products/{product_id}/images\x12\xbc\x01\n" +
+	"\x14ReorderProductImages\x126.cozy_hub.products.http.v3.ReorderProductImagesRequest\x1a7.cozy_hub.products.http.v3.ReorderProductImagesResponse\"3\x82\xd3\xe4\x93\x02-:\x01*\x1a(/v3/products/{product_id}/images/reorder\x12\xb8\x01\n" +
+	"\x0fSetPrimaryImage\x121.cozy_hub.products.http.v3.SetPrimaryImageRequest\x1a2.cozy_hub.products.http.v3.SetPrimaryImageResponse\">\x82\xd3\xe4\x93\x028:\x01*23/v3/products/{product_id}/images/{image_id}/primary\x12\xb6\x01\n" +
+	"\x12DeleteProductImage\x124.cozy_hub.products.http.v3.DeleteProductImageRequest\x1a5.cozy_hub.products.http.v3.DeleteProductImageResponse\"3\x82\xd3\xe4\x93\x02-*+/v3/products/{product_id}/images/{image_id}\x12\xa6\x01\n" +
+	"\x14ListFeaturedProducts\x126.cozy_hub.products.http.v3.ListFeaturedProductsRequest\x1a7.cozy_hub.products.http.v3.ListFeaturedProductsResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v3/featured-products\x12\xa3\x01\n" +
+	"\x12AddFeaturedProduct\x124.cozy_hub.products.http.v3.AddFeaturedProductRequest\x1a5.cozy_hub.products.http.v3.AddFeaturedProductResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v3/featured-products\x12\xb7\x01\n" +
+	"\x15RemoveFeaturedProduct\x127.cozy_hub.products.http.v3.RemoveFeaturedProductRequest\x1a8.cozy_hub.products.http.v3.RemoveFeaturedProductResponse\"+\x82\xd3\xe4\x93\x02%*#/v3/featured-products/{featured_id}\x12\xba\x01\n" +
+	"\x17ReorderFeaturedProducts\x129.cozy_hub.products.http.v3.ReorderFeaturedProductsRequest\x1a:.cozy_hub.products.http.v3.ReorderFeaturedProductsResponse\"(\x82\xd3\xe4\x93\x02\":\x01*\x1a\x1d/v3/featured-products/reorder\x12\x9e\x01\n" +
+	"\x12ListCarouselImages\x124.cozy_hub.products.http.v3.ListCarouselImagesRequest\x1a5.cozy_hub.products.http.v3.ListCarouselImagesResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v3/carousel-images\x12\xa4\x01\n" +
+	"\x13CreateCarouselImage\x125.cozy_hub.products.http.v3.CreateCarouselImageRequest\x1a6.cozy_hub.products.http.v3.CreateCarouselImageResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v3/carousel-images\x12\xb2\x01\n" +
+	"\x13UpdateCarouselImage\x125.cozy_hub.products.http.v3.UpdateCarouselImageRequest\x1a6.cozy_hub.products.http.v3.UpdateCarouselImageResponse\",\x82\xd3\xe4\x93\x02&:\x01*\x1a!/v3/carousel-images/{carousel_id}\x12\xaf\x01\n" +
+	"\x13DeleteCarouselImage\x125.cozy_hub.products.http.v3.DeleteCarouselImageRequest\x1a6.cozy_hub.products.http.v3.DeleteCarouselImageResponse\")\x82\xd3\xe4\x93\x02#*!/v3/carousel-images/{carousel_id}\x12\xb2\x01\n" +
+	"\x15ReorderCarouselImages\x127.cozy_hub.products.http.v3.ReorderCarouselImagesRequest\x1a8.cozy_hub.products.http.v3.ReorderCarouselImagesResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\x1a\x1b/v3/carousel-images/reorder\x12\xab\x01\n" +
+	"\x13UploadCarouselImage\x125.cozy_hub.products.http.v3.UploadCarouselImageRequest\x1a6.cozy_hub.products.http.v3.UploadCarouselImageResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v3/carousel-images/upload\x12\x82\x01\n" +
+	"\vGetWishlist\x12-.cozy_hub.products.http.v3.GetWishlistRequest\x1a..cozy_hub.products.http.v3.GetWishlistResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v3/wishlist\x12\x8f\x01\n" +
+	"\rAddToWishlist\x12/.cozy_hub.products.http.v3.AddToWishlistRequest\x1a0.cozy_hub.products.http.v3.AddToWishlistResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v3/wishlist/add\x12\xb0\x01\n" +
+	"\x12RemoveFromWishlist\x124.cozy_hub.products.http.v3.RemoveFromWishlistRequest\x1a5.cozy_hub.products.http.v3.RemoveFromWishlistResponse\"-\x82\xd3\xe4\x93\x02'*%/v3/wishlist/items/{wishlist_item_id}\x12\x88\x01\n" +
+	"\rClearWishlist\x12/.cozy_hub.products.http.v3.ClearWishlistRequest\x1a0.cozy_hub.products.http.v3.ClearWishlistResponse\"\x14\x82\xd3\xe4\x93\x02\x0e*\f/v3/wishlist\x12\x98\x01\n" +
+	"\fIsInWishlist\x12..cozy_hub.products.http.v3.IsInWishlistRequest\x1a/.cozy_hub.products.http.v3.IsInWishlistResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/v3/wishlist/check/{product_id}\x12\x91\x01\n" +
+	"\rMergeWishlist\x12/.cozy_hub.products.http.v3.MergeWishlistRequest\x1a0.cozy_hub.products.http.v3.MergeWishlistResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v3/wishlist/merge\x12\x8f\x01\n" +
 	"\n" +
-	"MoveToCart\x12..smart_kart.products.http.v3.MoveToCartRequest\x1a/.smart_kart.products.http.v3.MoveToCartResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v3/wishlist/move-to-cart\x12\xa1\x01\n" +
-	"\fCreateReview\x120.smart_kart.products.http.v3.CreateReviewRequest\x1a1.smart_kart.products.http.v3.CreateReviewResponse\",\x82\xd3\xe4\x93\x02&:\x01*\"!/v3/products/{product_id}/reviews\x12\xad\x01\n" +
-	"\x11GetProductReviews\x125.smart_kart.products.http.v3.GetProductReviewsRequest\x1a6.smart_kart.products.http.v3.GetProductReviewsResponse\")\x82\xd3\xe4\x93\x02#\x12!/v3/products/{product_id}/reviews\x12\xa9\x01\n" +
-	"\x10GetProductRating\x124.smart_kart.products.http.v3.GetProductRatingRequest\x1a5.smart_kart.products.http.v3.GetProductRatingResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v3/products/{product_id}/rating\x12\xc1\x01\n" +
-	"\x17GetUserReviewForProduct\x12;.smart_kart.products.http.v3.GetUserReviewForProductRequest\x1a<.smart_kart.products.http.v3.GetUserReviewForProductResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v3/products/{product_id}/my-review\x12\x97\x01\n" +
-	"\fUpdateReview\x120.smart_kart.products.http.v3.UpdateReviewRequest\x1a1.smart_kart.products.http.v3.UpdateReviewResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\x1a\x17/v3/reviews/{review_id}\x12\x94\x01\n" +
-	"\fDeleteReview\x120.smart_kart.products.http.v3.DeleteReviewRequest\x1a1.smart_kart.products.http.v3.DeleteReviewResponse\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/v3/reviews/{review_id}\x12\xae\x01\n" +
-	"\x11MarkReviewHelpful\x125.smart_kart.products.http.v3.MarkReviewHelpfulRequest\x1a6.smart_kart.products.http.v3.MarkReviewHelpfulResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v3/reviews/{review_id}/helpful\x12\xb0\x01\n" +
-	"\x12UploadReviewImages\x126.smart_kart.products.http.v3.UploadReviewImagesRequest\x1a7.smart_kart.products.http.v3.UploadReviewImagesResponse\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/v3/reviews/{review_id}/images\x12\x97\x01\n" +
-	"\x0fAdminGetReviews\x123.smart_kart.products.http.v3.AdminGetReviewsRequest\x1a4.smart_kart.products.http.v3.AdminGetReviewsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v3/admin/reviews\x12\xb7\x01\n" +
-	"\x12AdminApproveReview\x126.smart_kart.products.http.v3.AdminApproveReviewRequest\x1a7.smart_kart.products.http.v3.AdminApproveReviewResponse\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/v3/admin/reviews/{review_id}/approve\x12\xb3\x01\n" +
-	"\x11AdminRejectReview\x125.smart_kart.products.http.v3.AdminRejectReviewRequest\x1a6.smart_kart.products.http.v3.AdminRejectReviewResponse\"/\x82\xd3\xe4\x93\x02):\x01*\"$/v3/admin/reviews/{review_id}/reject\x12\xa9\x01\n" +
-	"\x11AdminDeleteReview\x125.smart_kart.products.http.v3.AdminDeleteReviewRequest\x1a6.smart_kart.products.http.v3.AdminDeleteReviewResponse\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/v3/admin/reviews/{review_id}\x12\xbd\x01\n" +
-	"\x14AdminRespondToReview\x128.smart_kart.products.http.v3.AdminRespondToReviewRequest\x1a9.smart_kart.products.http.v3.AdminRespondToReviewResponse\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/v3/admin/reviews/{review_id}/respond\x12\xbf\x01\n" +
-	"\x17AdminBulkApproveReviews\x12;.smart_kart.products.http.v3.AdminBulkApproveReviewsRequest\x1a<.smart_kart.products.http.v3.AdminBulkApproveReviewsResponse\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/v3/admin/reviews/bulk-approve\x12\xb9\x01\n" +
-	"\x17AdminGetReviewAnalytics\x12;.smart_kart.products.http.v3.AdminGetReviewAnalyticsRequest\x1a<.smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v3/admin/reviews/analyticsB\xfb\x01\n" +
-	"\x1fcom.smart_kart.products.http.v3B\rProductsProtoP\x01Z>github.com/smart-kart/proto/gen/go/products/http/v3;productsv3\xa2\x02\x03SPH\xaa\x02\x1aSmartKart.Products.Http.V3\xca\x02\x1aSmartKart\\Products\\Http\\V3\xe2\x02&SmartKart\\Products\\Http\\V3\\GPBMetadata\xea\x02\x1dSmartKart::Products::Http::V3b\x06proto3"
+	"MoveToCart\x12,.cozy_hub.products.http.v3.MoveToCartRequest\x1a-.cozy_hub.products.http.v3.MoveToCartResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v3/wishlist/move-to-cart\x12\x9d\x01\n" +
+	"\fCreateReview\x12..cozy_hub.products.http.v3.CreateReviewRequest\x1a/.cozy_hub.products.http.v3.CreateReviewResponse\",\x82\xd3\xe4\x93\x02&:\x01*\"!/v3/products/{product_id}/reviews\x12\xa9\x01\n" +
+	"\x11GetProductReviews\x123.cozy_hub.products.http.v3.GetProductReviewsRequest\x1a4.cozy_hub.products.http.v3.GetProductReviewsResponse\")\x82\xd3\xe4\x93\x02#\x12!/v3/products/{product_id}/reviews\x12\xa5\x01\n" +
+	"\x10GetProductRating\x122.cozy_hub.products.http.v3.GetProductRatingRequest\x1a3.cozy_hub.products.http.v3.GetProductRatingResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v3/products/{product_id}/rating\x12\xbd\x01\n" +
+	"\x17GetUserReviewForProduct\x129.cozy_hub.products.http.v3.GetUserReviewForProductRequest\x1a:.cozy_hub.products.http.v3.GetUserReviewForProductResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v3/products/{product_id}/my-review\x12\x93\x01\n" +
+	"\fUpdateReview\x12..cozy_hub.products.http.v3.UpdateReviewRequest\x1a/.cozy_hub.products.http.v3.UpdateReviewResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\x1a\x17/v3/reviews/{review_id}\x12\x90\x01\n" +
+	"\fDeleteReview\x12..cozy_hub.products.http.v3.DeleteReviewRequest\x1a/.cozy_hub.products.http.v3.DeleteReviewResponse\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/v3/reviews/{review_id}\x12\xaa\x01\n" +
+	"\x11MarkReviewHelpful\x123.cozy_hub.products.http.v3.MarkReviewHelpfulRequest\x1a4.cozy_hub.products.http.v3.MarkReviewHelpfulResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v3/reviews/{review_id}/helpful\x12\xac\x01\n" +
+	"\x12UploadReviewImages\x124.cozy_hub.products.http.v3.UploadReviewImagesRequest\x1a5.cozy_hub.products.http.v3.UploadReviewImagesResponse\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/v3/reviews/{review_id}/images\x12\x93\x01\n" +
+	"\x0fAdminGetReviews\x121.cozy_hub.products.http.v3.AdminGetReviewsRequest\x1a2.cozy_hub.products.http.v3.AdminGetReviewsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v3/admin/reviews\x12\xb3\x01\n" +
+	"\x12AdminApproveReview\x124.cozy_hub.products.http.v3.AdminApproveReviewRequest\x1a5.cozy_hub.products.http.v3.AdminApproveReviewResponse\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/v3/admin/reviews/{review_id}/approve\x12\xaf\x01\n" +
+	"\x11AdminRejectReview\x123.cozy_hub.products.http.v3.AdminRejectReviewRequest\x1a4.cozy_hub.products.http.v3.AdminRejectReviewResponse\"/\x82\xd3\xe4\x93\x02):\x01*\"$/v3/admin/reviews/{review_id}/reject\x12\xa5\x01\n" +
+	"\x11AdminDeleteReview\x123.cozy_hub.products.http.v3.AdminDeleteReviewRequest\x1a4.cozy_hub.products.http.v3.AdminDeleteReviewResponse\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/v3/admin/reviews/{review_id}\x12\xb9\x01\n" +
+	"\x14AdminRespondToReview\x126.cozy_hub.products.http.v3.AdminRespondToReviewRequest\x1a7.cozy_hub.products.http.v3.AdminRespondToReviewResponse\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/v3/admin/reviews/{review_id}/respond\x12\xbb\x01\n" +
+	"\x17AdminBulkApproveReviews\x129.cozy_hub.products.http.v3.AdminBulkApproveReviewsRequest\x1a:.cozy_hub.products.http.v3.AdminBulkApproveReviewsResponse\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/v3/admin/reviews/bulk-approve\x12\xb5\x01\n" +
+	"\x17AdminGetReviewAnalytics\x129.cozy_hub.products.http.v3.AdminGetReviewAnalyticsRequest\x1a:.cozy_hub.products.http.v3.AdminGetReviewAnalyticsResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v3/admin/reviews/analyticsB\xf3\x01\n" +
+	"\x1dcom.cozy_hub.products.http.v3B\rProductsProtoP\x01Z@github.com/cozy-hub-app/proto/gen/go/products/http/v3;productsv3\xa2\x02\x03CPH\xaa\x02\x18CozyHub.Products.Http.V3\xca\x02\x18CozyHub\\Products\\Http\\V3\xe2\x02$CozyHub\\Products\\Http\\V3\\GPBMetadata\xea\x02\x1bCozyHub::Products::Http::V3b\x06proto3"
 
 var (
 	file_http_v3_products_proto_rawDescOnce sync.Once
@@ -9702,343 +9702,343 @@ func file_http_v3_products_proto_rawDescGZIP() []byte {
 
 var file_http_v3_products_proto_msgTypes = make([]protoimpl.MessageInfo, 140)
 var file_http_v3_products_proto_goTypes = []any{
-	(*Pagination)(nil),                      // 0: smart_kart.products.http.v3.Pagination
-	(*ProductImage)(nil),                    // 1: smart_kart.products.http.v3.ProductImage
-	(*Product)(nil),                         // 2: smart_kart.products.http.v3.Product
-	(*CreateProductRequest)(nil),            // 3: smart_kart.products.http.v3.CreateProductRequest
-	(*CreateProductResponse)(nil),           // 4: smart_kart.products.http.v3.CreateProductResponse
-	(*GetProductRequest)(nil),               // 5: smart_kart.products.http.v3.GetProductRequest
-	(*GetProductResponse)(nil),              // 6: smart_kart.products.http.v3.GetProductResponse
-	(*UpdateProductRequest)(nil),            // 7: smart_kart.products.http.v3.UpdateProductRequest
-	(*UpdateProductResponse)(nil),           // 8: smart_kart.products.http.v3.UpdateProductResponse
-	(*DeleteProductRequest)(nil),            // 9: smart_kart.products.http.v3.DeleteProductRequest
-	(*DeleteProductResponse)(nil),           // 10: smart_kart.products.http.v3.DeleteProductResponse
-	(*ListProductsRequest)(nil),             // 11: smart_kart.products.http.v3.ListProductsRequest
-	(*ListProductsResponse)(nil),            // 12: smart_kart.products.http.v3.ListProductsResponse
-	(*SearchProductsRequest)(nil),           // 13: smart_kart.products.http.v3.SearchProductsRequest
-	(*SearchProductsResponse)(nil),          // 14: smart_kart.products.http.v3.SearchProductsResponse
-	(*UpdateProductStatusRequest)(nil),      // 15: smart_kart.products.http.v3.UpdateProductStatusRequest
-	(*UpdateProductStatusResponse)(nil),     // 16: smart_kart.products.http.v3.UpdateProductStatusResponse
-	(*GetProductBySKURequest)(nil),          // 17: smart_kart.products.http.v3.GetProductBySKURequest
-	(*GetProductBySKUResponse)(nil),         // 18: smart_kart.products.http.v3.GetProductBySKUResponse
-	(*Category)(nil),                        // 19: smart_kart.products.http.v3.Category
-	(*CreateCategoryRequest)(nil),           // 20: smart_kart.products.http.v3.CreateCategoryRequest
-	(*CreateCategoryResponse)(nil),          // 21: smart_kart.products.http.v3.CreateCategoryResponse
-	(*GetCategoryRequest)(nil),              // 22: smart_kart.products.http.v3.GetCategoryRequest
-	(*GetCategoryResponse)(nil),             // 23: smart_kart.products.http.v3.GetCategoryResponse
-	(*UpdateCategoryRequest)(nil),           // 24: smart_kart.products.http.v3.UpdateCategoryRequest
-	(*UpdateCategoryResponse)(nil),          // 25: smart_kart.products.http.v3.UpdateCategoryResponse
-	(*DeleteCategoryRequest)(nil),           // 26: smart_kart.products.http.v3.DeleteCategoryRequest
-	(*DeleteCategoryResponse)(nil),          // 27: smart_kart.products.http.v3.DeleteCategoryResponse
-	(*ListCategoriesRequest)(nil),           // 28: smart_kart.products.http.v3.ListCategoriesRequest
-	(*ListCategoriesResponse)(nil),          // 29: smart_kart.products.http.v3.ListCategoriesResponse
-	(*Inventory)(nil),                       // 30: smart_kart.products.http.v3.Inventory
-	(*UpdateInventoryRequest)(nil),          // 31: smart_kart.products.http.v3.UpdateInventoryRequest
-	(*UpdateInventoryResponse)(nil),         // 32: smart_kart.products.http.v3.UpdateInventoryResponse
-	(*GetInventoryRequest)(nil),             // 33: smart_kart.products.http.v3.GetInventoryRequest
-	(*GetInventoryResponse)(nil),            // 34: smart_kart.products.http.v3.GetInventoryResponse
-	(*InventoryUpdate)(nil),                 // 35: smart_kart.products.http.v3.InventoryUpdate
-	(*BulkUpdateInventoryRequest)(nil),      // 36: smart_kart.products.http.v3.BulkUpdateInventoryRequest
-	(*BulkUpdateInventoryResponse)(nil),     // 37: smart_kart.products.http.v3.BulkUpdateInventoryResponse
-	(*StockCheck)(nil),                      // 38: smart_kart.products.http.v3.StockCheck
-	(*CheckStockRequest)(nil),               // 39: smart_kart.products.http.v3.CheckStockRequest
-	(*StockAvailability)(nil),               // 40: smart_kart.products.http.v3.StockAvailability
-	(*CheckStockResponse)(nil),              // 41: smart_kart.products.http.v3.CheckStockResponse
-	(*ReserveStockRequest)(nil),             // 42: smart_kart.products.http.v3.ReserveStockRequest
-	(*ReserveStockResponse)(nil),            // 43: smart_kart.products.http.v3.ReserveStockResponse
-	(*ReleaseStockRequest)(nil),             // 44: smart_kart.products.http.v3.ReleaseStockRequest
-	(*ReleaseStockResponse)(nil),            // 45: smart_kart.products.http.v3.ReleaseStockResponse
-	(*GetLowStockCountRequest)(nil),         // 46: smart_kart.products.http.v3.GetLowStockCountRequest
-	(*GetLowStockCountResponse)(nil),        // 47: smart_kart.products.http.v3.GetLowStockCountResponse
-	(*CategoryStat)(nil),                    // 48: smart_kart.products.http.v3.CategoryStat
-	(*GetDashboardStatsRequest)(nil),        // 49: smart_kart.products.http.v3.GetDashboardStatsRequest
-	(*GetDashboardStatsResponse)(nil),       // 50: smart_kart.products.http.v3.GetDashboardStatsResponse
-	(*GetProductPricingRequest)(nil),        // 51: smart_kart.products.http.v3.GetProductPricingRequest
-	(*GetProductPricingResponse)(nil),       // 52: smart_kart.products.http.v3.GetProductPricingResponse
-	(*ProductPricing)(nil),                  // 53: smart_kart.products.http.v3.ProductPricing
-	(*UploadProductImagesRequest)(nil),      // 54: smart_kart.products.http.v3.UploadProductImagesRequest
-	(*UploadProductImagesResponse)(nil),     // 55: smart_kart.products.http.v3.UploadProductImagesResponse
-	(*GetProductImagesRequest)(nil),         // 56: smart_kart.products.http.v3.GetProductImagesRequest
-	(*GetProductImagesResponse)(nil),        // 57: smart_kart.products.http.v3.GetProductImagesResponse
-	(*ImageOrder)(nil),                      // 58: smart_kart.products.http.v3.ImageOrder
-	(*ReorderProductImagesRequest)(nil),     // 59: smart_kart.products.http.v3.ReorderProductImagesRequest
-	(*ReorderProductImagesResponse)(nil),    // 60: smart_kart.products.http.v3.ReorderProductImagesResponse
-	(*SetPrimaryImageRequest)(nil),          // 61: smart_kart.products.http.v3.SetPrimaryImageRequest
-	(*SetPrimaryImageResponse)(nil),         // 62: smart_kart.products.http.v3.SetPrimaryImageResponse
-	(*DeleteProductImageRequest)(nil),       // 63: smart_kart.products.http.v3.DeleteProductImageRequest
-	(*DeleteProductImageResponse)(nil),      // 64: smart_kart.products.http.v3.DeleteProductImageResponse
-	(*FeaturedProduct)(nil),                 // 65: smart_kart.products.http.v3.FeaturedProduct
-	(*ListFeaturedProductsRequest)(nil),     // 66: smart_kart.products.http.v3.ListFeaturedProductsRequest
-	(*ListFeaturedProductsResponse)(nil),    // 67: smart_kart.products.http.v3.ListFeaturedProductsResponse
-	(*AddFeaturedProductRequest)(nil),       // 68: smart_kart.products.http.v3.AddFeaturedProductRequest
-	(*AddFeaturedProductResponse)(nil),      // 69: smart_kart.products.http.v3.AddFeaturedProductResponse
-	(*RemoveFeaturedProductRequest)(nil),    // 70: smart_kart.products.http.v3.RemoveFeaturedProductRequest
-	(*RemoveFeaturedProductResponse)(nil),   // 71: smart_kart.products.http.v3.RemoveFeaturedProductResponse
-	(*ReorderFeaturedProductsRequest)(nil),  // 72: smart_kart.products.http.v3.ReorderFeaturedProductsRequest
-	(*FeaturedOrder)(nil),                   // 73: smart_kart.products.http.v3.FeaturedOrder
-	(*ReorderFeaturedProductsResponse)(nil), // 74: smart_kart.products.http.v3.ReorderFeaturedProductsResponse
-	(*CarouselImage)(nil),                   // 75: smart_kart.products.http.v3.CarouselImage
-	(*ListCarouselImagesRequest)(nil),       // 76: smart_kart.products.http.v3.ListCarouselImagesRequest
-	(*ListCarouselImagesResponse)(nil),      // 77: smart_kart.products.http.v3.ListCarouselImagesResponse
-	(*CreateCarouselImageRequest)(nil),      // 78: smart_kart.products.http.v3.CreateCarouselImageRequest
-	(*CreateCarouselImageResponse)(nil),     // 79: smart_kart.products.http.v3.CreateCarouselImageResponse
-	(*UpdateCarouselImageRequest)(nil),      // 80: smart_kart.products.http.v3.UpdateCarouselImageRequest
-	(*UpdateCarouselImageResponse)(nil),     // 81: smart_kart.products.http.v3.UpdateCarouselImageResponse
-	(*DeleteCarouselImageRequest)(nil),      // 82: smart_kart.products.http.v3.DeleteCarouselImageRequest
-	(*DeleteCarouselImageResponse)(nil),     // 83: smart_kart.products.http.v3.DeleteCarouselImageResponse
-	(*ReorderCarouselImagesRequest)(nil),    // 84: smart_kart.products.http.v3.ReorderCarouselImagesRequest
-	(*CarouselOrder)(nil),                   // 85: smart_kart.products.http.v3.CarouselOrder
-	(*ReorderCarouselImagesResponse)(nil),   // 86: smart_kart.products.http.v3.ReorderCarouselImagesResponse
-	(*UploadCarouselImageRequest)(nil),      // 87: smart_kart.products.http.v3.UploadCarouselImageRequest
-	(*UploadCarouselImageResponse)(nil),     // 88: smart_kart.products.http.v3.UploadCarouselImageResponse
-	(*Wishlist)(nil),                        // 89: smart_kart.products.http.v3.Wishlist
-	(*WishlistItem)(nil),                    // 90: smart_kart.products.http.v3.WishlistItem
-	(*GetWishlistRequest)(nil),              // 91: smart_kart.products.http.v3.GetWishlistRequest
-	(*GetWishlistResponse)(nil),             // 92: smart_kart.products.http.v3.GetWishlistResponse
-	(*AddToWishlistRequest)(nil),            // 93: smart_kart.products.http.v3.AddToWishlistRequest
-	(*AddToWishlistResponse)(nil),           // 94: smart_kart.products.http.v3.AddToWishlistResponse
-	(*RemoveFromWishlistRequest)(nil),       // 95: smart_kart.products.http.v3.RemoveFromWishlistRequest
-	(*RemoveFromWishlistResponse)(nil),      // 96: smart_kart.products.http.v3.RemoveFromWishlistResponse
-	(*ClearWishlistRequest)(nil),            // 97: smart_kart.products.http.v3.ClearWishlistRequest
-	(*ClearWishlistResponse)(nil),           // 98: smart_kart.products.http.v3.ClearWishlistResponse
-	(*IsInWishlistRequest)(nil),             // 99: smart_kart.products.http.v3.IsInWishlistRequest
-	(*IsInWishlistResponse)(nil),            // 100: smart_kart.products.http.v3.IsInWishlistResponse
-	(*MergeWishlistRequest)(nil),            // 101: smart_kart.products.http.v3.MergeWishlistRequest
-	(*MergeWishlistResponse)(nil),           // 102: smart_kart.products.http.v3.MergeWishlistResponse
-	(*MoveToCartRequest)(nil),               // 103: smart_kart.products.http.v3.MoveToCartRequest
-	(*MoveToCartResponse)(nil),              // 104: smart_kart.products.http.v3.MoveToCartResponse
-	(*Review)(nil),                          // 105: smart_kart.products.http.v3.Review
-	(*ReviewImage)(nil),                     // 106: smart_kart.products.http.v3.ReviewImage
-	(*ProductRatingSummary)(nil),            // 107: smart_kart.products.http.v3.ProductRatingSummary
-	(*CreateReviewRequest)(nil),             // 108: smart_kart.products.http.v3.CreateReviewRequest
-	(*CreateReviewResponse)(nil),            // 109: smart_kart.products.http.v3.CreateReviewResponse
-	(*GetProductReviewsRequest)(nil),        // 110: smart_kart.products.http.v3.GetProductReviewsRequest
-	(*GetProductReviewsResponse)(nil),       // 111: smart_kart.products.http.v3.GetProductReviewsResponse
-	(*GetProductRatingRequest)(nil),         // 112: smart_kart.products.http.v3.GetProductRatingRequest
-	(*GetProductRatingResponse)(nil),        // 113: smart_kart.products.http.v3.GetProductRatingResponse
-	(*GetUserReviewForProductRequest)(nil),  // 114: smart_kart.products.http.v3.GetUserReviewForProductRequest
-	(*GetUserReviewForProductResponse)(nil), // 115: smart_kart.products.http.v3.GetUserReviewForProductResponse
-	(*UpdateReviewRequest)(nil),             // 116: smart_kart.products.http.v3.UpdateReviewRequest
-	(*UpdateReviewResponse)(nil),            // 117: smart_kart.products.http.v3.UpdateReviewResponse
-	(*DeleteReviewRequest)(nil),             // 118: smart_kart.products.http.v3.DeleteReviewRequest
-	(*DeleteReviewResponse)(nil),            // 119: smart_kart.products.http.v3.DeleteReviewResponse
-	(*MarkReviewHelpfulRequest)(nil),        // 120: smart_kart.products.http.v3.MarkReviewHelpfulRequest
-	(*MarkReviewHelpfulResponse)(nil),       // 121: smart_kart.products.http.v3.MarkReviewHelpfulResponse
-	(*UploadReviewImagesRequest)(nil),       // 122: smart_kart.products.http.v3.UploadReviewImagesRequest
-	(*UploadReviewImagesResponse)(nil),      // 123: smart_kart.products.http.v3.UploadReviewImagesResponse
-	(*AdminGetReviewsRequest)(nil),          // 124: smart_kart.products.http.v3.AdminGetReviewsRequest
-	(*AdminGetReviewsResponse)(nil),         // 125: smart_kart.products.http.v3.AdminGetReviewsResponse
-	(*AdminApproveReviewRequest)(nil),       // 126: smart_kart.products.http.v3.AdminApproveReviewRequest
-	(*AdminApproveReviewResponse)(nil),      // 127: smart_kart.products.http.v3.AdminApproveReviewResponse
-	(*AdminRejectReviewRequest)(nil),        // 128: smart_kart.products.http.v3.AdminRejectReviewRequest
-	(*AdminRejectReviewResponse)(nil),       // 129: smart_kart.products.http.v3.AdminRejectReviewResponse
-	(*AdminDeleteReviewRequest)(nil),        // 130: smart_kart.products.http.v3.AdminDeleteReviewRequest
-	(*AdminDeleteReviewResponse)(nil),       // 131: smart_kart.products.http.v3.AdminDeleteReviewResponse
-	(*AdminRespondToReviewRequest)(nil),     // 132: smart_kart.products.http.v3.AdminRespondToReviewRequest
-	(*AdminRespondToReviewResponse)(nil),    // 133: smart_kart.products.http.v3.AdminRespondToReviewResponse
-	(*AdminBulkApproveReviewsRequest)(nil),  // 134: smart_kart.products.http.v3.AdminBulkApproveReviewsRequest
-	(*AdminBulkApproveReviewsResponse)(nil), // 135: smart_kart.products.http.v3.AdminBulkApproveReviewsResponse
-	(*AdminGetReviewAnalyticsRequest)(nil),  // 136: smart_kart.products.http.v3.AdminGetReviewAnalyticsRequest
-	(*AdminGetReviewAnalyticsResponse)(nil), // 137: smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse
-	nil,                                     // 138: smart_kart.products.http.v3.GetProductPricingResponse.PricingEntry
-	nil,                                     // 139: smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntry
+	(*Pagination)(nil),                      // 0: cozy_hub.products.http.v3.Pagination
+	(*ProductImage)(nil),                    // 1: cozy_hub.products.http.v3.ProductImage
+	(*Product)(nil),                         // 2: cozy_hub.products.http.v3.Product
+	(*CreateProductRequest)(nil),            // 3: cozy_hub.products.http.v3.CreateProductRequest
+	(*CreateProductResponse)(nil),           // 4: cozy_hub.products.http.v3.CreateProductResponse
+	(*GetProductRequest)(nil),               // 5: cozy_hub.products.http.v3.GetProductRequest
+	(*GetProductResponse)(nil),              // 6: cozy_hub.products.http.v3.GetProductResponse
+	(*UpdateProductRequest)(nil),            // 7: cozy_hub.products.http.v3.UpdateProductRequest
+	(*UpdateProductResponse)(nil),           // 8: cozy_hub.products.http.v3.UpdateProductResponse
+	(*DeleteProductRequest)(nil),            // 9: cozy_hub.products.http.v3.DeleteProductRequest
+	(*DeleteProductResponse)(nil),           // 10: cozy_hub.products.http.v3.DeleteProductResponse
+	(*ListProductsRequest)(nil),             // 11: cozy_hub.products.http.v3.ListProductsRequest
+	(*ListProductsResponse)(nil),            // 12: cozy_hub.products.http.v3.ListProductsResponse
+	(*SearchProductsRequest)(nil),           // 13: cozy_hub.products.http.v3.SearchProductsRequest
+	(*SearchProductsResponse)(nil),          // 14: cozy_hub.products.http.v3.SearchProductsResponse
+	(*UpdateProductStatusRequest)(nil),      // 15: cozy_hub.products.http.v3.UpdateProductStatusRequest
+	(*UpdateProductStatusResponse)(nil),     // 16: cozy_hub.products.http.v3.UpdateProductStatusResponse
+	(*GetProductBySKURequest)(nil),          // 17: cozy_hub.products.http.v3.GetProductBySKURequest
+	(*GetProductBySKUResponse)(nil),         // 18: cozy_hub.products.http.v3.GetProductBySKUResponse
+	(*Category)(nil),                        // 19: cozy_hub.products.http.v3.Category
+	(*CreateCategoryRequest)(nil),           // 20: cozy_hub.products.http.v3.CreateCategoryRequest
+	(*CreateCategoryResponse)(nil),          // 21: cozy_hub.products.http.v3.CreateCategoryResponse
+	(*GetCategoryRequest)(nil),              // 22: cozy_hub.products.http.v3.GetCategoryRequest
+	(*GetCategoryResponse)(nil),             // 23: cozy_hub.products.http.v3.GetCategoryResponse
+	(*UpdateCategoryRequest)(nil),           // 24: cozy_hub.products.http.v3.UpdateCategoryRequest
+	(*UpdateCategoryResponse)(nil),          // 25: cozy_hub.products.http.v3.UpdateCategoryResponse
+	(*DeleteCategoryRequest)(nil),           // 26: cozy_hub.products.http.v3.DeleteCategoryRequest
+	(*DeleteCategoryResponse)(nil),          // 27: cozy_hub.products.http.v3.DeleteCategoryResponse
+	(*ListCategoriesRequest)(nil),           // 28: cozy_hub.products.http.v3.ListCategoriesRequest
+	(*ListCategoriesResponse)(nil),          // 29: cozy_hub.products.http.v3.ListCategoriesResponse
+	(*Inventory)(nil),                       // 30: cozy_hub.products.http.v3.Inventory
+	(*UpdateInventoryRequest)(nil),          // 31: cozy_hub.products.http.v3.UpdateInventoryRequest
+	(*UpdateInventoryResponse)(nil),         // 32: cozy_hub.products.http.v3.UpdateInventoryResponse
+	(*GetInventoryRequest)(nil),             // 33: cozy_hub.products.http.v3.GetInventoryRequest
+	(*GetInventoryResponse)(nil),            // 34: cozy_hub.products.http.v3.GetInventoryResponse
+	(*InventoryUpdate)(nil),                 // 35: cozy_hub.products.http.v3.InventoryUpdate
+	(*BulkUpdateInventoryRequest)(nil),      // 36: cozy_hub.products.http.v3.BulkUpdateInventoryRequest
+	(*BulkUpdateInventoryResponse)(nil),     // 37: cozy_hub.products.http.v3.BulkUpdateInventoryResponse
+	(*StockCheck)(nil),                      // 38: cozy_hub.products.http.v3.StockCheck
+	(*CheckStockRequest)(nil),               // 39: cozy_hub.products.http.v3.CheckStockRequest
+	(*StockAvailability)(nil),               // 40: cozy_hub.products.http.v3.StockAvailability
+	(*CheckStockResponse)(nil),              // 41: cozy_hub.products.http.v3.CheckStockResponse
+	(*ReserveStockRequest)(nil),             // 42: cozy_hub.products.http.v3.ReserveStockRequest
+	(*ReserveStockResponse)(nil),            // 43: cozy_hub.products.http.v3.ReserveStockResponse
+	(*ReleaseStockRequest)(nil),             // 44: cozy_hub.products.http.v3.ReleaseStockRequest
+	(*ReleaseStockResponse)(nil),            // 45: cozy_hub.products.http.v3.ReleaseStockResponse
+	(*GetLowStockCountRequest)(nil),         // 46: cozy_hub.products.http.v3.GetLowStockCountRequest
+	(*GetLowStockCountResponse)(nil),        // 47: cozy_hub.products.http.v3.GetLowStockCountResponse
+	(*CategoryStat)(nil),                    // 48: cozy_hub.products.http.v3.CategoryStat
+	(*GetDashboardStatsRequest)(nil),        // 49: cozy_hub.products.http.v3.GetDashboardStatsRequest
+	(*GetDashboardStatsResponse)(nil),       // 50: cozy_hub.products.http.v3.GetDashboardStatsResponse
+	(*GetProductPricingRequest)(nil),        // 51: cozy_hub.products.http.v3.GetProductPricingRequest
+	(*GetProductPricingResponse)(nil),       // 52: cozy_hub.products.http.v3.GetProductPricingResponse
+	(*ProductPricing)(nil),                  // 53: cozy_hub.products.http.v3.ProductPricing
+	(*UploadProductImagesRequest)(nil),      // 54: cozy_hub.products.http.v3.UploadProductImagesRequest
+	(*UploadProductImagesResponse)(nil),     // 55: cozy_hub.products.http.v3.UploadProductImagesResponse
+	(*GetProductImagesRequest)(nil),         // 56: cozy_hub.products.http.v3.GetProductImagesRequest
+	(*GetProductImagesResponse)(nil),        // 57: cozy_hub.products.http.v3.GetProductImagesResponse
+	(*ImageOrder)(nil),                      // 58: cozy_hub.products.http.v3.ImageOrder
+	(*ReorderProductImagesRequest)(nil),     // 59: cozy_hub.products.http.v3.ReorderProductImagesRequest
+	(*ReorderProductImagesResponse)(nil),    // 60: cozy_hub.products.http.v3.ReorderProductImagesResponse
+	(*SetPrimaryImageRequest)(nil),          // 61: cozy_hub.products.http.v3.SetPrimaryImageRequest
+	(*SetPrimaryImageResponse)(nil),         // 62: cozy_hub.products.http.v3.SetPrimaryImageResponse
+	(*DeleteProductImageRequest)(nil),       // 63: cozy_hub.products.http.v3.DeleteProductImageRequest
+	(*DeleteProductImageResponse)(nil),      // 64: cozy_hub.products.http.v3.DeleteProductImageResponse
+	(*FeaturedProduct)(nil),                 // 65: cozy_hub.products.http.v3.FeaturedProduct
+	(*ListFeaturedProductsRequest)(nil),     // 66: cozy_hub.products.http.v3.ListFeaturedProductsRequest
+	(*ListFeaturedProductsResponse)(nil),    // 67: cozy_hub.products.http.v3.ListFeaturedProductsResponse
+	(*AddFeaturedProductRequest)(nil),       // 68: cozy_hub.products.http.v3.AddFeaturedProductRequest
+	(*AddFeaturedProductResponse)(nil),      // 69: cozy_hub.products.http.v3.AddFeaturedProductResponse
+	(*RemoveFeaturedProductRequest)(nil),    // 70: cozy_hub.products.http.v3.RemoveFeaturedProductRequest
+	(*RemoveFeaturedProductResponse)(nil),   // 71: cozy_hub.products.http.v3.RemoveFeaturedProductResponse
+	(*ReorderFeaturedProductsRequest)(nil),  // 72: cozy_hub.products.http.v3.ReorderFeaturedProductsRequest
+	(*FeaturedOrder)(nil),                   // 73: cozy_hub.products.http.v3.FeaturedOrder
+	(*ReorderFeaturedProductsResponse)(nil), // 74: cozy_hub.products.http.v3.ReorderFeaturedProductsResponse
+	(*CarouselImage)(nil),                   // 75: cozy_hub.products.http.v3.CarouselImage
+	(*ListCarouselImagesRequest)(nil),       // 76: cozy_hub.products.http.v3.ListCarouselImagesRequest
+	(*ListCarouselImagesResponse)(nil),      // 77: cozy_hub.products.http.v3.ListCarouselImagesResponse
+	(*CreateCarouselImageRequest)(nil),      // 78: cozy_hub.products.http.v3.CreateCarouselImageRequest
+	(*CreateCarouselImageResponse)(nil),     // 79: cozy_hub.products.http.v3.CreateCarouselImageResponse
+	(*UpdateCarouselImageRequest)(nil),      // 80: cozy_hub.products.http.v3.UpdateCarouselImageRequest
+	(*UpdateCarouselImageResponse)(nil),     // 81: cozy_hub.products.http.v3.UpdateCarouselImageResponse
+	(*DeleteCarouselImageRequest)(nil),      // 82: cozy_hub.products.http.v3.DeleteCarouselImageRequest
+	(*DeleteCarouselImageResponse)(nil),     // 83: cozy_hub.products.http.v3.DeleteCarouselImageResponse
+	(*ReorderCarouselImagesRequest)(nil),    // 84: cozy_hub.products.http.v3.ReorderCarouselImagesRequest
+	(*CarouselOrder)(nil),                   // 85: cozy_hub.products.http.v3.CarouselOrder
+	(*ReorderCarouselImagesResponse)(nil),   // 86: cozy_hub.products.http.v3.ReorderCarouselImagesResponse
+	(*UploadCarouselImageRequest)(nil),      // 87: cozy_hub.products.http.v3.UploadCarouselImageRequest
+	(*UploadCarouselImageResponse)(nil),     // 88: cozy_hub.products.http.v3.UploadCarouselImageResponse
+	(*Wishlist)(nil),                        // 89: cozy_hub.products.http.v3.Wishlist
+	(*WishlistItem)(nil),                    // 90: cozy_hub.products.http.v3.WishlistItem
+	(*GetWishlistRequest)(nil),              // 91: cozy_hub.products.http.v3.GetWishlistRequest
+	(*GetWishlistResponse)(nil),             // 92: cozy_hub.products.http.v3.GetWishlistResponse
+	(*AddToWishlistRequest)(nil),            // 93: cozy_hub.products.http.v3.AddToWishlistRequest
+	(*AddToWishlistResponse)(nil),           // 94: cozy_hub.products.http.v3.AddToWishlistResponse
+	(*RemoveFromWishlistRequest)(nil),       // 95: cozy_hub.products.http.v3.RemoveFromWishlistRequest
+	(*RemoveFromWishlistResponse)(nil),      // 96: cozy_hub.products.http.v3.RemoveFromWishlistResponse
+	(*ClearWishlistRequest)(nil),            // 97: cozy_hub.products.http.v3.ClearWishlistRequest
+	(*ClearWishlistResponse)(nil),           // 98: cozy_hub.products.http.v3.ClearWishlistResponse
+	(*IsInWishlistRequest)(nil),             // 99: cozy_hub.products.http.v3.IsInWishlistRequest
+	(*IsInWishlistResponse)(nil),            // 100: cozy_hub.products.http.v3.IsInWishlistResponse
+	(*MergeWishlistRequest)(nil),            // 101: cozy_hub.products.http.v3.MergeWishlistRequest
+	(*MergeWishlistResponse)(nil),           // 102: cozy_hub.products.http.v3.MergeWishlistResponse
+	(*MoveToCartRequest)(nil),               // 103: cozy_hub.products.http.v3.MoveToCartRequest
+	(*MoveToCartResponse)(nil),              // 104: cozy_hub.products.http.v3.MoveToCartResponse
+	(*Review)(nil),                          // 105: cozy_hub.products.http.v3.Review
+	(*ReviewImage)(nil),                     // 106: cozy_hub.products.http.v3.ReviewImage
+	(*ProductRatingSummary)(nil),            // 107: cozy_hub.products.http.v3.ProductRatingSummary
+	(*CreateReviewRequest)(nil),             // 108: cozy_hub.products.http.v3.CreateReviewRequest
+	(*CreateReviewResponse)(nil),            // 109: cozy_hub.products.http.v3.CreateReviewResponse
+	(*GetProductReviewsRequest)(nil),        // 110: cozy_hub.products.http.v3.GetProductReviewsRequest
+	(*GetProductReviewsResponse)(nil),       // 111: cozy_hub.products.http.v3.GetProductReviewsResponse
+	(*GetProductRatingRequest)(nil),         // 112: cozy_hub.products.http.v3.GetProductRatingRequest
+	(*GetProductRatingResponse)(nil),        // 113: cozy_hub.products.http.v3.GetProductRatingResponse
+	(*GetUserReviewForProductRequest)(nil),  // 114: cozy_hub.products.http.v3.GetUserReviewForProductRequest
+	(*GetUserReviewForProductResponse)(nil), // 115: cozy_hub.products.http.v3.GetUserReviewForProductResponse
+	(*UpdateReviewRequest)(nil),             // 116: cozy_hub.products.http.v3.UpdateReviewRequest
+	(*UpdateReviewResponse)(nil),            // 117: cozy_hub.products.http.v3.UpdateReviewResponse
+	(*DeleteReviewRequest)(nil),             // 118: cozy_hub.products.http.v3.DeleteReviewRequest
+	(*DeleteReviewResponse)(nil),            // 119: cozy_hub.products.http.v3.DeleteReviewResponse
+	(*MarkReviewHelpfulRequest)(nil),        // 120: cozy_hub.products.http.v3.MarkReviewHelpfulRequest
+	(*MarkReviewHelpfulResponse)(nil),       // 121: cozy_hub.products.http.v3.MarkReviewHelpfulResponse
+	(*UploadReviewImagesRequest)(nil),       // 122: cozy_hub.products.http.v3.UploadReviewImagesRequest
+	(*UploadReviewImagesResponse)(nil),      // 123: cozy_hub.products.http.v3.UploadReviewImagesResponse
+	(*AdminGetReviewsRequest)(nil),          // 124: cozy_hub.products.http.v3.AdminGetReviewsRequest
+	(*AdminGetReviewsResponse)(nil),         // 125: cozy_hub.products.http.v3.AdminGetReviewsResponse
+	(*AdminApproveReviewRequest)(nil),       // 126: cozy_hub.products.http.v3.AdminApproveReviewRequest
+	(*AdminApproveReviewResponse)(nil),      // 127: cozy_hub.products.http.v3.AdminApproveReviewResponse
+	(*AdminRejectReviewRequest)(nil),        // 128: cozy_hub.products.http.v3.AdminRejectReviewRequest
+	(*AdminRejectReviewResponse)(nil),       // 129: cozy_hub.products.http.v3.AdminRejectReviewResponse
+	(*AdminDeleteReviewRequest)(nil),        // 130: cozy_hub.products.http.v3.AdminDeleteReviewRequest
+	(*AdminDeleteReviewResponse)(nil),       // 131: cozy_hub.products.http.v3.AdminDeleteReviewResponse
+	(*AdminRespondToReviewRequest)(nil),     // 132: cozy_hub.products.http.v3.AdminRespondToReviewRequest
+	(*AdminRespondToReviewResponse)(nil),    // 133: cozy_hub.products.http.v3.AdminRespondToReviewResponse
+	(*AdminBulkApproveReviewsRequest)(nil),  // 134: cozy_hub.products.http.v3.AdminBulkApproveReviewsRequest
+	(*AdminBulkApproveReviewsResponse)(nil), // 135: cozy_hub.products.http.v3.AdminBulkApproveReviewsResponse
+	(*AdminGetReviewAnalyticsRequest)(nil),  // 136: cozy_hub.products.http.v3.AdminGetReviewAnalyticsRequest
+	(*AdminGetReviewAnalyticsResponse)(nil), // 137: cozy_hub.products.http.v3.AdminGetReviewAnalyticsResponse
+	nil,                                     // 138: cozy_hub.products.http.v3.GetProductPricingResponse.PricingEntry
+	nil,                                     // 139: cozy_hub.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntry
 	(*timestamppb.Timestamp)(nil),           // 140: google.protobuf.Timestamp
 }
 var file_http_v3_products_proto_depIdxs = []int32{
-	140, // 0: smart_kart.products.http.v3.ProductImage.created_at:type_name -> google.protobuf.Timestamp
-	140, // 1: smart_kart.products.http.v3.ProductImage.updated_at:type_name -> google.protobuf.Timestamp
-	140, // 2: smart_kart.products.http.v3.Product.created_at:type_name -> google.protobuf.Timestamp
-	140, // 3: smart_kart.products.http.v3.Product.updated_at:type_name -> google.protobuf.Timestamp
-	1,   // 4: smart_kart.products.http.v3.Product.images:type_name -> smart_kart.products.http.v3.ProductImage
-	2,   // 5: smart_kart.products.http.v3.CreateProductResponse.product:type_name -> smart_kart.products.http.v3.Product
-	2,   // 6: smart_kart.products.http.v3.GetProductResponse.product:type_name -> smart_kart.products.http.v3.Product
-	2,   // 7: smart_kart.products.http.v3.UpdateProductResponse.product:type_name -> smart_kart.products.http.v3.Product
-	2,   // 8: smart_kart.products.http.v3.ListProductsResponse.products:type_name -> smart_kart.products.http.v3.Product
-	0,   // 9: smart_kart.products.http.v3.ListProductsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
-	2,   // 10: smart_kart.products.http.v3.SearchProductsResponse.products:type_name -> smart_kart.products.http.v3.Product
-	0,   // 11: smart_kart.products.http.v3.SearchProductsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
-	2,   // 12: smart_kart.products.http.v3.UpdateProductStatusResponse.product:type_name -> smart_kart.products.http.v3.Product
-	2,   // 13: smart_kart.products.http.v3.GetProductBySKUResponse.product:type_name -> smart_kart.products.http.v3.Product
-	140, // 14: smart_kart.products.http.v3.Category.created_at:type_name -> google.protobuf.Timestamp
-	140, // 15: smart_kart.products.http.v3.Category.updated_at:type_name -> google.protobuf.Timestamp
-	19,  // 16: smart_kart.products.http.v3.Category.subcategories:type_name -> smart_kart.products.http.v3.Category
-	19,  // 17: smart_kart.products.http.v3.CreateCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
-	19,  // 18: smart_kart.products.http.v3.GetCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
-	19,  // 19: smart_kart.products.http.v3.UpdateCategoryResponse.category:type_name -> smart_kart.products.http.v3.Category
-	19,  // 20: smart_kart.products.http.v3.ListCategoriesResponse.categories:type_name -> smart_kart.products.http.v3.Category
-	0,   // 21: smart_kart.products.http.v3.ListCategoriesResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
-	140, // 22: smart_kart.products.http.v3.Inventory.last_restocked_at:type_name -> google.protobuf.Timestamp
-	140, // 23: smart_kart.products.http.v3.Inventory.created_at:type_name -> google.protobuf.Timestamp
-	140, // 24: smart_kart.products.http.v3.Inventory.updated_at:type_name -> google.protobuf.Timestamp
-	30,  // 25: smart_kart.products.http.v3.UpdateInventoryResponse.inventory:type_name -> smart_kart.products.http.v3.Inventory
-	30,  // 26: smart_kart.products.http.v3.GetInventoryResponse.inventory:type_name -> smart_kart.products.http.v3.Inventory
-	35,  // 27: smart_kart.products.http.v3.BulkUpdateInventoryRequest.updates:type_name -> smart_kart.products.http.v3.InventoryUpdate
-	30,  // 28: smart_kart.products.http.v3.BulkUpdateInventoryResponse.inventories:type_name -> smart_kart.products.http.v3.Inventory
-	38,  // 29: smart_kart.products.http.v3.CheckStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
-	40,  // 30: smart_kart.products.http.v3.CheckStockResponse.items:type_name -> smart_kart.products.http.v3.StockAvailability
-	38,  // 31: smart_kart.products.http.v3.ReserveStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
-	38,  // 32: smart_kart.products.http.v3.ReleaseStockRequest.items:type_name -> smart_kart.products.http.v3.StockCheck
-	48,  // 33: smart_kart.products.http.v3.GetDashboardStatsResponse.category_stats:type_name -> smart_kart.products.http.v3.CategoryStat
-	138, // 34: smart_kart.products.http.v3.GetProductPricingResponse.pricing:type_name -> smart_kart.products.http.v3.GetProductPricingResponse.PricingEntry
-	1,   // 35: smart_kart.products.http.v3.UploadProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
-	1,   // 36: smart_kart.products.http.v3.GetProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
-	58,  // 37: smart_kart.products.http.v3.ReorderProductImagesRequest.orders:type_name -> smart_kart.products.http.v3.ImageOrder
-	1,   // 38: smart_kart.products.http.v3.ReorderProductImagesResponse.images:type_name -> smart_kart.products.http.v3.ProductImage
-	1,   // 39: smart_kart.products.http.v3.SetPrimaryImageResponse.image:type_name -> smart_kart.products.http.v3.ProductImage
-	140, // 40: smart_kart.products.http.v3.FeaturedProduct.created_at:type_name -> google.protobuf.Timestamp
-	140, // 41: smart_kart.products.http.v3.FeaturedProduct.updated_at:type_name -> google.protobuf.Timestamp
-	2,   // 42: smart_kart.products.http.v3.FeaturedProduct.product:type_name -> smart_kart.products.http.v3.Product
-	65,  // 43: smart_kart.products.http.v3.ListFeaturedProductsResponse.featured_products:type_name -> smart_kart.products.http.v3.FeaturedProduct
-	65,  // 44: smart_kart.products.http.v3.AddFeaturedProductResponse.featured_product:type_name -> smart_kart.products.http.v3.FeaturedProduct
-	73,  // 45: smart_kart.products.http.v3.ReorderFeaturedProductsRequest.orders:type_name -> smart_kart.products.http.v3.FeaturedOrder
-	65,  // 46: smart_kart.products.http.v3.ReorderFeaturedProductsResponse.featured_products:type_name -> smart_kart.products.http.v3.FeaturedProduct
-	140, // 47: smart_kart.products.http.v3.CarouselImage.created_at:type_name -> google.protobuf.Timestamp
-	140, // 48: smart_kart.products.http.v3.CarouselImage.updated_at:type_name -> google.protobuf.Timestamp
-	75,  // 49: smart_kart.products.http.v3.ListCarouselImagesResponse.carousel_images:type_name -> smart_kart.products.http.v3.CarouselImage
-	75,  // 50: smart_kart.products.http.v3.CreateCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
-	75,  // 51: smart_kart.products.http.v3.UpdateCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
-	85,  // 52: smart_kart.products.http.v3.ReorderCarouselImagesRequest.orders:type_name -> smart_kart.products.http.v3.CarouselOrder
-	75,  // 53: smart_kart.products.http.v3.ReorderCarouselImagesResponse.carousel_images:type_name -> smart_kart.products.http.v3.CarouselImage
-	75,  // 54: smart_kart.products.http.v3.UploadCarouselImageResponse.carousel_image:type_name -> smart_kart.products.http.v3.CarouselImage
-	90,  // 55: smart_kart.products.http.v3.Wishlist.items:type_name -> smart_kart.products.http.v3.WishlistItem
-	140, // 56: smart_kart.products.http.v3.Wishlist.created_at:type_name -> google.protobuf.Timestamp
-	140, // 57: smart_kart.products.http.v3.WishlistItem.added_at:type_name -> google.protobuf.Timestamp
-	140, // 58: smart_kart.products.http.v3.WishlistItem.last_price_check:type_name -> google.protobuf.Timestamp
-	89,  // 59: smart_kart.products.http.v3.GetWishlistResponse.wishlist:type_name -> smart_kart.products.http.v3.Wishlist
-	90,  // 60: smart_kart.products.http.v3.AddToWishlistResponse.item:type_name -> smart_kart.products.http.v3.WishlistItem
-	140, // 61: smart_kart.products.http.v3.Review.admin_response_at:type_name -> google.protobuf.Timestamp
-	106, // 62: smart_kart.products.http.v3.Review.images:type_name -> smart_kart.products.http.v3.ReviewImage
-	140, // 63: smart_kart.products.http.v3.Review.created_at:type_name -> google.protobuf.Timestamp
-	140, // 64: smart_kart.products.http.v3.Review.updated_at:type_name -> google.protobuf.Timestamp
-	105, // 65: smart_kart.products.http.v3.CreateReviewResponse.review:type_name -> smart_kart.products.http.v3.Review
-	105, // 66: smart_kart.products.http.v3.GetProductReviewsResponse.reviews:type_name -> smart_kart.products.http.v3.Review
-	0,   // 67: smart_kart.products.http.v3.GetProductReviewsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
-	107, // 68: smart_kart.products.http.v3.GetProductRatingResponse.rating_summary:type_name -> smart_kart.products.http.v3.ProductRatingSummary
-	105, // 69: smart_kart.products.http.v3.GetUserReviewForProductResponse.review:type_name -> smart_kart.products.http.v3.Review
-	105, // 70: smart_kart.products.http.v3.UpdateReviewResponse.review:type_name -> smart_kart.products.http.v3.Review
-	106, // 71: smart_kart.products.http.v3.UploadReviewImagesResponse.images:type_name -> smart_kart.products.http.v3.ReviewImage
-	105, // 72: smart_kart.products.http.v3.AdminGetReviewsResponse.reviews:type_name -> smart_kart.products.http.v3.Review
-	0,   // 73: smart_kart.products.http.v3.AdminGetReviewsResponse.pagination:type_name -> smart_kart.products.http.v3.Pagination
-	139, // 74: smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse.rating_distribution:type_name -> smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntry
-	53,  // 75: smart_kart.products.http.v3.GetProductPricingResponse.PricingEntry.value:type_name -> smart_kart.products.http.v3.ProductPricing
-	3,   // 76: smart_kart.products.http.v3.ProductsHTTPService.CreateProduct:input_type -> smart_kart.products.http.v3.CreateProductRequest
-	5,   // 77: smart_kart.products.http.v3.ProductsHTTPService.GetProduct:input_type -> smart_kart.products.http.v3.GetProductRequest
-	7,   // 78: smart_kart.products.http.v3.ProductsHTTPService.UpdateProduct:input_type -> smart_kart.products.http.v3.UpdateProductRequest
-	9,   // 79: smart_kart.products.http.v3.ProductsHTTPService.DeleteProduct:input_type -> smart_kart.products.http.v3.DeleteProductRequest
-	11,  // 80: smart_kart.products.http.v3.ProductsHTTPService.ListProducts:input_type -> smart_kart.products.http.v3.ListProductsRequest
-	13,  // 81: smart_kart.products.http.v3.ProductsHTTPService.SearchProducts:input_type -> smart_kart.products.http.v3.SearchProductsRequest
-	15,  // 82: smart_kart.products.http.v3.ProductsHTTPService.UpdateProductStatus:input_type -> smart_kart.products.http.v3.UpdateProductStatusRequest
-	17,  // 83: smart_kart.products.http.v3.ProductsHTTPService.GetProductBySKU:input_type -> smart_kart.products.http.v3.GetProductBySKURequest
-	20,  // 84: smart_kart.products.http.v3.ProductsHTTPService.CreateCategory:input_type -> smart_kart.products.http.v3.CreateCategoryRequest
-	22,  // 85: smart_kart.products.http.v3.ProductsHTTPService.GetCategory:input_type -> smart_kart.products.http.v3.GetCategoryRequest
-	24,  // 86: smart_kart.products.http.v3.ProductsHTTPService.UpdateCategory:input_type -> smart_kart.products.http.v3.UpdateCategoryRequest
-	26,  // 87: smart_kart.products.http.v3.ProductsHTTPService.DeleteCategory:input_type -> smart_kart.products.http.v3.DeleteCategoryRequest
-	28,  // 88: smart_kart.products.http.v3.ProductsHTTPService.ListCategories:input_type -> smart_kart.products.http.v3.ListCategoriesRequest
-	31,  // 89: smart_kart.products.http.v3.ProductsHTTPService.UpdateInventory:input_type -> smart_kart.products.http.v3.UpdateInventoryRequest
-	33,  // 90: smart_kart.products.http.v3.ProductsHTTPService.GetInventory:input_type -> smart_kart.products.http.v3.GetInventoryRequest
-	36,  // 91: smart_kart.products.http.v3.ProductsHTTPService.BulkUpdateInventory:input_type -> smart_kart.products.http.v3.BulkUpdateInventoryRequest
-	39,  // 92: smart_kart.products.http.v3.ProductsHTTPService.CheckStock:input_type -> smart_kart.products.http.v3.CheckStockRequest
-	42,  // 93: smart_kart.products.http.v3.ProductsHTTPService.ReserveStock:input_type -> smart_kart.products.http.v3.ReserveStockRequest
-	44,  // 94: smart_kart.products.http.v3.ProductsHTTPService.ReleaseStock:input_type -> smart_kart.products.http.v3.ReleaseStockRequest
-	46,  // 95: smart_kart.products.http.v3.ProductsHTTPService.GetLowStockCount:input_type -> smart_kart.products.http.v3.GetLowStockCountRequest
-	49,  // 96: smart_kart.products.http.v3.ProductsHTTPService.GetDashboardStats:input_type -> smart_kart.products.http.v3.GetDashboardStatsRequest
-	51,  // 97: smart_kart.products.http.v3.ProductsHTTPService.GetProductPricing:input_type -> smart_kart.products.http.v3.GetProductPricingRequest
-	54,  // 98: smart_kart.products.http.v3.ProductsHTTPService.UploadProductImages:input_type -> smart_kart.products.http.v3.UploadProductImagesRequest
-	56,  // 99: smart_kart.products.http.v3.ProductsHTTPService.GetProductImages:input_type -> smart_kart.products.http.v3.GetProductImagesRequest
-	59,  // 100: smart_kart.products.http.v3.ProductsHTTPService.ReorderProductImages:input_type -> smart_kart.products.http.v3.ReorderProductImagesRequest
-	61,  // 101: smart_kart.products.http.v3.ProductsHTTPService.SetPrimaryImage:input_type -> smart_kart.products.http.v3.SetPrimaryImageRequest
-	63,  // 102: smart_kart.products.http.v3.ProductsHTTPService.DeleteProductImage:input_type -> smart_kart.products.http.v3.DeleteProductImageRequest
-	66,  // 103: smart_kart.products.http.v3.ProductsHTTPService.ListFeaturedProducts:input_type -> smart_kart.products.http.v3.ListFeaturedProductsRequest
-	68,  // 104: smart_kart.products.http.v3.ProductsHTTPService.AddFeaturedProduct:input_type -> smart_kart.products.http.v3.AddFeaturedProductRequest
-	70,  // 105: smart_kart.products.http.v3.ProductsHTTPService.RemoveFeaturedProduct:input_type -> smart_kart.products.http.v3.RemoveFeaturedProductRequest
-	72,  // 106: smart_kart.products.http.v3.ProductsHTTPService.ReorderFeaturedProducts:input_type -> smart_kart.products.http.v3.ReorderFeaturedProductsRequest
-	76,  // 107: smart_kart.products.http.v3.ProductsHTTPService.ListCarouselImages:input_type -> smart_kart.products.http.v3.ListCarouselImagesRequest
-	78,  // 108: smart_kart.products.http.v3.ProductsHTTPService.CreateCarouselImage:input_type -> smart_kart.products.http.v3.CreateCarouselImageRequest
-	80,  // 109: smart_kart.products.http.v3.ProductsHTTPService.UpdateCarouselImage:input_type -> smart_kart.products.http.v3.UpdateCarouselImageRequest
-	82,  // 110: smart_kart.products.http.v3.ProductsHTTPService.DeleteCarouselImage:input_type -> smart_kart.products.http.v3.DeleteCarouselImageRequest
-	84,  // 111: smart_kart.products.http.v3.ProductsHTTPService.ReorderCarouselImages:input_type -> smart_kart.products.http.v3.ReorderCarouselImagesRequest
-	87,  // 112: smart_kart.products.http.v3.ProductsHTTPService.UploadCarouselImage:input_type -> smart_kart.products.http.v3.UploadCarouselImageRequest
-	91,  // 113: smart_kart.products.http.v3.ProductsHTTPService.GetWishlist:input_type -> smart_kart.products.http.v3.GetWishlistRequest
-	93,  // 114: smart_kart.products.http.v3.ProductsHTTPService.AddToWishlist:input_type -> smart_kart.products.http.v3.AddToWishlistRequest
-	95,  // 115: smart_kart.products.http.v3.ProductsHTTPService.RemoveFromWishlist:input_type -> smart_kart.products.http.v3.RemoveFromWishlistRequest
-	97,  // 116: smart_kart.products.http.v3.ProductsHTTPService.ClearWishlist:input_type -> smart_kart.products.http.v3.ClearWishlistRequest
-	99,  // 117: smart_kart.products.http.v3.ProductsHTTPService.IsInWishlist:input_type -> smart_kart.products.http.v3.IsInWishlistRequest
-	101, // 118: smart_kart.products.http.v3.ProductsHTTPService.MergeWishlist:input_type -> smart_kart.products.http.v3.MergeWishlistRequest
-	103, // 119: smart_kart.products.http.v3.ProductsHTTPService.MoveToCart:input_type -> smart_kart.products.http.v3.MoveToCartRequest
-	108, // 120: smart_kart.products.http.v3.ProductsHTTPService.CreateReview:input_type -> smart_kart.products.http.v3.CreateReviewRequest
-	110, // 121: smart_kart.products.http.v3.ProductsHTTPService.GetProductReviews:input_type -> smart_kart.products.http.v3.GetProductReviewsRequest
-	112, // 122: smart_kart.products.http.v3.ProductsHTTPService.GetProductRating:input_type -> smart_kart.products.http.v3.GetProductRatingRequest
-	114, // 123: smart_kart.products.http.v3.ProductsHTTPService.GetUserReviewForProduct:input_type -> smart_kart.products.http.v3.GetUserReviewForProductRequest
-	116, // 124: smart_kart.products.http.v3.ProductsHTTPService.UpdateReview:input_type -> smart_kart.products.http.v3.UpdateReviewRequest
-	118, // 125: smart_kart.products.http.v3.ProductsHTTPService.DeleteReview:input_type -> smart_kart.products.http.v3.DeleteReviewRequest
-	120, // 126: smart_kart.products.http.v3.ProductsHTTPService.MarkReviewHelpful:input_type -> smart_kart.products.http.v3.MarkReviewHelpfulRequest
-	122, // 127: smart_kart.products.http.v3.ProductsHTTPService.UploadReviewImages:input_type -> smart_kart.products.http.v3.UploadReviewImagesRequest
-	124, // 128: smart_kart.products.http.v3.ProductsHTTPService.AdminGetReviews:input_type -> smart_kart.products.http.v3.AdminGetReviewsRequest
-	126, // 129: smart_kart.products.http.v3.ProductsHTTPService.AdminApproveReview:input_type -> smart_kart.products.http.v3.AdminApproveReviewRequest
-	128, // 130: smart_kart.products.http.v3.ProductsHTTPService.AdminRejectReview:input_type -> smart_kart.products.http.v3.AdminRejectReviewRequest
-	130, // 131: smart_kart.products.http.v3.ProductsHTTPService.AdminDeleteReview:input_type -> smart_kart.products.http.v3.AdminDeleteReviewRequest
-	132, // 132: smart_kart.products.http.v3.ProductsHTTPService.AdminRespondToReview:input_type -> smart_kart.products.http.v3.AdminRespondToReviewRequest
-	134, // 133: smart_kart.products.http.v3.ProductsHTTPService.AdminBulkApproveReviews:input_type -> smart_kart.products.http.v3.AdminBulkApproveReviewsRequest
-	136, // 134: smart_kart.products.http.v3.ProductsHTTPService.AdminGetReviewAnalytics:input_type -> smart_kart.products.http.v3.AdminGetReviewAnalyticsRequest
-	4,   // 135: smart_kart.products.http.v3.ProductsHTTPService.CreateProduct:output_type -> smart_kart.products.http.v3.CreateProductResponse
-	6,   // 136: smart_kart.products.http.v3.ProductsHTTPService.GetProduct:output_type -> smart_kart.products.http.v3.GetProductResponse
-	8,   // 137: smart_kart.products.http.v3.ProductsHTTPService.UpdateProduct:output_type -> smart_kart.products.http.v3.UpdateProductResponse
-	10,  // 138: smart_kart.products.http.v3.ProductsHTTPService.DeleteProduct:output_type -> smart_kart.products.http.v3.DeleteProductResponse
-	12,  // 139: smart_kart.products.http.v3.ProductsHTTPService.ListProducts:output_type -> smart_kart.products.http.v3.ListProductsResponse
-	14,  // 140: smart_kart.products.http.v3.ProductsHTTPService.SearchProducts:output_type -> smart_kart.products.http.v3.SearchProductsResponse
-	16,  // 141: smart_kart.products.http.v3.ProductsHTTPService.UpdateProductStatus:output_type -> smart_kart.products.http.v3.UpdateProductStatusResponse
-	18,  // 142: smart_kart.products.http.v3.ProductsHTTPService.GetProductBySKU:output_type -> smart_kart.products.http.v3.GetProductBySKUResponse
-	21,  // 143: smart_kart.products.http.v3.ProductsHTTPService.CreateCategory:output_type -> smart_kart.products.http.v3.CreateCategoryResponse
-	23,  // 144: smart_kart.products.http.v3.ProductsHTTPService.GetCategory:output_type -> smart_kart.products.http.v3.GetCategoryResponse
-	25,  // 145: smart_kart.products.http.v3.ProductsHTTPService.UpdateCategory:output_type -> smart_kart.products.http.v3.UpdateCategoryResponse
-	27,  // 146: smart_kart.products.http.v3.ProductsHTTPService.DeleteCategory:output_type -> smart_kart.products.http.v3.DeleteCategoryResponse
-	29,  // 147: smart_kart.products.http.v3.ProductsHTTPService.ListCategories:output_type -> smart_kart.products.http.v3.ListCategoriesResponse
-	32,  // 148: smart_kart.products.http.v3.ProductsHTTPService.UpdateInventory:output_type -> smart_kart.products.http.v3.UpdateInventoryResponse
-	34,  // 149: smart_kart.products.http.v3.ProductsHTTPService.GetInventory:output_type -> smart_kart.products.http.v3.GetInventoryResponse
-	37,  // 150: smart_kart.products.http.v3.ProductsHTTPService.BulkUpdateInventory:output_type -> smart_kart.products.http.v3.BulkUpdateInventoryResponse
-	41,  // 151: smart_kart.products.http.v3.ProductsHTTPService.CheckStock:output_type -> smart_kart.products.http.v3.CheckStockResponse
-	43,  // 152: smart_kart.products.http.v3.ProductsHTTPService.ReserveStock:output_type -> smart_kart.products.http.v3.ReserveStockResponse
-	45,  // 153: smart_kart.products.http.v3.ProductsHTTPService.ReleaseStock:output_type -> smart_kart.products.http.v3.ReleaseStockResponse
-	47,  // 154: smart_kart.products.http.v3.ProductsHTTPService.GetLowStockCount:output_type -> smart_kart.products.http.v3.GetLowStockCountResponse
-	50,  // 155: smart_kart.products.http.v3.ProductsHTTPService.GetDashboardStats:output_type -> smart_kart.products.http.v3.GetDashboardStatsResponse
-	52,  // 156: smart_kart.products.http.v3.ProductsHTTPService.GetProductPricing:output_type -> smart_kart.products.http.v3.GetProductPricingResponse
-	55,  // 157: smart_kart.products.http.v3.ProductsHTTPService.UploadProductImages:output_type -> smart_kart.products.http.v3.UploadProductImagesResponse
-	57,  // 158: smart_kart.products.http.v3.ProductsHTTPService.GetProductImages:output_type -> smart_kart.products.http.v3.GetProductImagesResponse
-	60,  // 159: smart_kart.products.http.v3.ProductsHTTPService.ReorderProductImages:output_type -> smart_kart.products.http.v3.ReorderProductImagesResponse
-	62,  // 160: smart_kart.products.http.v3.ProductsHTTPService.SetPrimaryImage:output_type -> smart_kart.products.http.v3.SetPrimaryImageResponse
-	64,  // 161: smart_kart.products.http.v3.ProductsHTTPService.DeleteProductImage:output_type -> smart_kart.products.http.v3.DeleteProductImageResponse
-	67,  // 162: smart_kart.products.http.v3.ProductsHTTPService.ListFeaturedProducts:output_type -> smart_kart.products.http.v3.ListFeaturedProductsResponse
-	69,  // 163: smart_kart.products.http.v3.ProductsHTTPService.AddFeaturedProduct:output_type -> smart_kart.products.http.v3.AddFeaturedProductResponse
-	71,  // 164: smart_kart.products.http.v3.ProductsHTTPService.RemoveFeaturedProduct:output_type -> smart_kart.products.http.v3.RemoveFeaturedProductResponse
-	74,  // 165: smart_kart.products.http.v3.ProductsHTTPService.ReorderFeaturedProducts:output_type -> smart_kart.products.http.v3.ReorderFeaturedProductsResponse
-	77,  // 166: smart_kart.products.http.v3.ProductsHTTPService.ListCarouselImages:output_type -> smart_kart.products.http.v3.ListCarouselImagesResponse
-	79,  // 167: smart_kart.products.http.v3.ProductsHTTPService.CreateCarouselImage:output_type -> smart_kart.products.http.v3.CreateCarouselImageResponse
-	81,  // 168: smart_kart.products.http.v3.ProductsHTTPService.UpdateCarouselImage:output_type -> smart_kart.products.http.v3.UpdateCarouselImageResponse
-	83,  // 169: smart_kart.products.http.v3.ProductsHTTPService.DeleteCarouselImage:output_type -> smart_kart.products.http.v3.DeleteCarouselImageResponse
-	86,  // 170: smart_kart.products.http.v3.ProductsHTTPService.ReorderCarouselImages:output_type -> smart_kart.products.http.v3.ReorderCarouselImagesResponse
-	88,  // 171: smart_kart.products.http.v3.ProductsHTTPService.UploadCarouselImage:output_type -> smart_kart.products.http.v3.UploadCarouselImageResponse
-	92,  // 172: smart_kart.products.http.v3.ProductsHTTPService.GetWishlist:output_type -> smart_kart.products.http.v3.GetWishlistResponse
-	94,  // 173: smart_kart.products.http.v3.ProductsHTTPService.AddToWishlist:output_type -> smart_kart.products.http.v3.AddToWishlistResponse
-	96,  // 174: smart_kart.products.http.v3.ProductsHTTPService.RemoveFromWishlist:output_type -> smart_kart.products.http.v3.RemoveFromWishlistResponse
-	98,  // 175: smart_kart.products.http.v3.ProductsHTTPService.ClearWishlist:output_type -> smart_kart.products.http.v3.ClearWishlistResponse
-	100, // 176: smart_kart.products.http.v3.ProductsHTTPService.IsInWishlist:output_type -> smart_kart.products.http.v3.IsInWishlistResponse
-	102, // 177: smart_kart.products.http.v3.ProductsHTTPService.MergeWishlist:output_type -> smart_kart.products.http.v3.MergeWishlistResponse
-	104, // 178: smart_kart.products.http.v3.ProductsHTTPService.MoveToCart:output_type -> smart_kart.products.http.v3.MoveToCartResponse
-	109, // 179: smart_kart.products.http.v3.ProductsHTTPService.CreateReview:output_type -> smart_kart.products.http.v3.CreateReviewResponse
-	111, // 180: smart_kart.products.http.v3.ProductsHTTPService.GetProductReviews:output_type -> smart_kart.products.http.v3.GetProductReviewsResponse
-	113, // 181: smart_kart.products.http.v3.ProductsHTTPService.GetProductRating:output_type -> smart_kart.products.http.v3.GetProductRatingResponse
-	115, // 182: smart_kart.products.http.v3.ProductsHTTPService.GetUserReviewForProduct:output_type -> smart_kart.products.http.v3.GetUserReviewForProductResponse
-	117, // 183: smart_kart.products.http.v3.ProductsHTTPService.UpdateReview:output_type -> smart_kart.products.http.v3.UpdateReviewResponse
-	119, // 184: smart_kart.products.http.v3.ProductsHTTPService.DeleteReview:output_type -> smart_kart.products.http.v3.DeleteReviewResponse
-	121, // 185: smart_kart.products.http.v3.ProductsHTTPService.MarkReviewHelpful:output_type -> smart_kart.products.http.v3.MarkReviewHelpfulResponse
-	123, // 186: smart_kart.products.http.v3.ProductsHTTPService.UploadReviewImages:output_type -> smart_kart.products.http.v3.UploadReviewImagesResponse
-	125, // 187: smart_kart.products.http.v3.ProductsHTTPService.AdminGetReviews:output_type -> smart_kart.products.http.v3.AdminGetReviewsResponse
-	127, // 188: smart_kart.products.http.v3.ProductsHTTPService.AdminApproveReview:output_type -> smart_kart.products.http.v3.AdminApproveReviewResponse
-	129, // 189: smart_kart.products.http.v3.ProductsHTTPService.AdminRejectReview:output_type -> smart_kart.products.http.v3.AdminRejectReviewResponse
-	131, // 190: smart_kart.products.http.v3.ProductsHTTPService.AdminDeleteReview:output_type -> smart_kart.products.http.v3.AdminDeleteReviewResponse
-	133, // 191: smart_kart.products.http.v3.ProductsHTTPService.AdminRespondToReview:output_type -> smart_kart.products.http.v3.AdminRespondToReviewResponse
-	135, // 192: smart_kart.products.http.v3.ProductsHTTPService.AdminBulkApproveReviews:output_type -> smart_kart.products.http.v3.AdminBulkApproveReviewsResponse
-	137, // 193: smart_kart.products.http.v3.ProductsHTTPService.AdminGetReviewAnalytics:output_type -> smart_kart.products.http.v3.AdminGetReviewAnalyticsResponse
+	140, // 0: cozy_hub.products.http.v3.ProductImage.created_at:type_name -> google.protobuf.Timestamp
+	140, // 1: cozy_hub.products.http.v3.ProductImage.updated_at:type_name -> google.protobuf.Timestamp
+	140, // 2: cozy_hub.products.http.v3.Product.created_at:type_name -> google.protobuf.Timestamp
+	140, // 3: cozy_hub.products.http.v3.Product.updated_at:type_name -> google.protobuf.Timestamp
+	1,   // 4: cozy_hub.products.http.v3.Product.images:type_name -> cozy_hub.products.http.v3.ProductImage
+	2,   // 5: cozy_hub.products.http.v3.CreateProductResponse.product:type_name -> cozy_hub.products.http.v3.Product
+	2,   // 6: cozy_hub.products.http.v3.GetProductResponse.product:type_name -> cozy_hub.products.http.v3.Product
+	2,   // 7: cozy_hub.products.http.v3.UpdateProductResponse.product:type_name -> cozy_hub.products.http.v3.Product
+	2,   // 8: cozy_hub.products.http.v3.ListProductsResponse.products:type_name -> cozy_hub.products.http.v3.Product
+	0,   // 9: cozy_hub.products.http.v3.ListProductsResponse.pagination:type_name -> cozy_hub.products.http.v3.Pagination
+	2,   // 10: cozy_hub.products.http.v3.SearchProductsResponse.products:type_name -> cozy_hub.products.http.v3.Product
+	0,   // 11: cozy_hub.products.http.v3.SearchProductsResponse.pagination:type_name -> cozy_hub.products.http.v3.Pagination
+	2,   // 12: cozy_hub.products.http.v3.UpdateProductStatusResponse.product:type_name -> cozy_hub.products.http.v3.Product
+	2,   // 13: cozy_hub.products.http.v3.GetProductBySKUResponse.product:type_name -> cozy_hub.products.http.v3.Product
+	140, // 14: cozy_hub.products.http.v3.Category.created_at:type_name -> google.protobuf.Timestamp
+	140, // 15: cozy_hub.products.http.v3.Category.updated_at:type_name -> google.protobuf.Timestamp
+	19,  // 16: cozy_hub.products.http.v3.Category.subcategories:type_name -> cozy_hub.products.http.v3.Category
+	19,  // 17: cozy_hub.products.http.v3.CreateCategoryResponse.category:type_name -> cozy_hub.products.http.v3.Category
+	19,  // 18: cozy_hub.products.http.v3.GetCategoryResponse.category:type_name -> cozy_hub.products.http.v3.Category
+	19,  // 19: cozy_hub.products.http.v3.UpdateCategoryResponse.category:type_name -> cozy_hub.products.http.v3.Category
+	19,  // 20: cozy_hub.products.http.v3.ListCategoriesResponse.categories:type_name -> cozy_hub.products.http.v3.Category
+	0,   // 21: cozy_hub.products.http.v3.ListCategoriesResponse.pagination:type_name -> cozy_hub.products.http.v3.Pagination
+	140, // 22: cozy_hub.products.http.v3.Inventory.last_restocked_at:type_name -> google.protobuf.Timestamp
+	140, // 23: cozy_hub.products.http.v3.Inventory.created_at:type_name -> google.protobuf.Timestamp
+	140, // 24: cozy_hub.products.http.v3.Inventory.updated_at:type_name -> google.protobuf.Timestamp
+	30,  // 25: cozy_hub.products.http.v3.UpdateInventoryResponse.inventory:type_name -> cozy_hub.products.http.v3.Inventory
+	30,  // 26: cozy_hub.products.http.v3.GetInventoryResponse.inventory:type_name -> cozy_hub.products.http.v3.Inventory
+	35,  // 27: cozy_hub.products.http.v3.BulkUpdateInventoryRequest.updates:type_name -> cozy_hub.products.http.v3.InventoryUpdate
+	30,  // 28: cozy_hub.products.http.v3.BulkUpdateInventoryResponse.inventories:type_name -> cozy_hub.products.http.v3.Inventory
+	38,  // 29: cozy_hub.products.http.v3.CheckStockRequest.items:type_name -> cozy_hub.products.http.v3.StockCheck
+	40,  // 30: cozy_hub.products.http.v3.CheckStockResponse.items:type_name -> cozy_hub.products.http.v3.StockAvailability
+	38,  // 31: cozy_hub.products.http.v3.ReserveStockRequest.items:type_name -> cozy_hub.products.http.v3.StockCheck
+	38,  // 32: cozy_hub.products.http.v3.ReleaseStockRequest.items:type_name -> cozy_hub.products.http.v3.StockCheck
+	48,  // 33: cozy_hub.products.http.v3.GetDashboardStatsResponse.category_stats:type_name -> cozy_hub.products.http.v3.CategoryStat
+	138, // 34: cozy_hub.products.http.v3.GetProductPricingResponse.pricing:type_name -> cozy_hub.products.http.v3.GetProductPricingResponse.PricingEntry
+	1,   // 35: cozy_hub.products.http.v3.UploadProductImagesResponse.images:type_name -> cozy_hub.products.http.v3.ProductImage
+	1,   // 36: cozy_hub.products.http.v3.GetProductImagesResponse.images:type_name -> cozy_hub.products.http.v3.ProductImage
+	58,  // 37: cozy_hub.products.http.v3.ReorderProductImagesRequest.orders:type_name -> cozy_hub.products.http.v3.ImageOrder
+	1,   // 38: cozy_hub.products.http.v3.ReorderProductImagesResponse.images:type_name -> cozy_hub.products.http.v3.ProductImage
+	1,   // 39: cozy_hub.products.http.v3.SetPrimaryImageResponse.image:type_name -> cozy_hub.products.http.v3.ProductImage
+	140, // 40: cozy_hub.products.http.v3.FeaturedProduct.created_at:type_name -> google.protobuf.Timestamp
+	140, // 41: cozy_hub.products.http.v3.FeaturedProduct.updated_at:type_name -> google.protobuf.Timestamp
+	2,   // 42: cozy_hub.products.http.v3.FeaturedProduct.product:type_name -> cozy_hub.products.http.v3.Product
+	65,  // 43: cozy_hub.products.http.v3.ListFeaturedProductsResponse.featured_products:type_name -> cozy_hub.products.http.v3.FeaturedProduct
+	65,  // 44: cozy_hub.products.http.v3.AddFeaturedProductResponse.featured_product:type_name -> cozy_hub.products.http.v3.FeaturedProduct
+	73,  // 45: cozy_hub.products.http.v3.ReorderFeaturedProductsRequest.orders:type_name -> cozy_hub.products.http.v3.FeaturedOrder
+	65,  // 46: cozy_hub.products.http.v3.ReorderFeaturedProductsResponse.featured_products:type_name -> cozy_hub.products.http.v3.FeaturedProduct
+	140, // 47: cozy_hub.products.http.v3.CarouselImage.created_at:type_name -> google.protobuf.Timestamp
+	140, // 48: cozy_hub.products.http.v3.CarouselImage.updated_at:type_name -> google.protobuf.Timestamp
+	75,  // 49: cozy_hub.products.http.v3.ListCarouselImagesResponse.carousel_images:type_name -> cozy_hub.products.http.v3.CarouselImage
+	75,  // 50: cozy_hub.products.http.v3.CreateCarouselImageResponse.carousel_image:type_name -> cozy_hub.products.http.v3.CarouselImage
+	75,  // 51: cozy_hub.products.http.v3.UpdateCarouselImageResponse.carousel_image:type_name -> cozy_hub.products.http.v3.CarouselImage
+	85,  // 52: cozy_hub.products.http.v3.ReorderCarouselImagesRequest.orders:type_name -> cozy_hub.products.http.v3.CarouselOrder
+	75,  // 53: cozy_hub.products.http.v3.ReorderCarouselImagesResponse.carousel_images:type_name -> cozy_hub.products.http.v3.CarouselImage
+	75,  // 54: cozy_hub.products.http.v3.UploadCarouselImageResponse.carousel_image:type_name -> cozy_hub.products.http.v3.CarouselImage
+	90,  // 55: cozy_hub.products.http.v3.Wishlist.items:type_name -> cozy_hub.products.http.v3.WishlistItem
+	140, // 56: cozy_hub.products.http.v3.Wishlist.created_at:type_name -> google.protobuf.Timestamp
+	140, // 57: cozy_hub.products.http.v3.WishlistItem.added_at:type_name -> google.protobuf.Timestamp
+	140, // 58: cozy_hub.products.http.v3.WishlistItem.last_price_check:type_name -> google.protobuf.Timestamp
+	89,  // 59: cozy_hub.products.http.v3.GetWishlistResponse.wishlist:type_name -> cozy_hub.products.http.v3.Wishlist
+	90,  // 60: cozy_hub.products.http.v3.AddToWishlistResponse.item:type_name -> cozy_hub.products.http.v3.WishlistItem
+	140, // 61: cozy_hub.products.http.v3.Review.admin_response_at:type_name -> google.protobuf.Timestamp
+	106, // 62: cozy_hub.products.http.v3.Review.images:type_name -> cozy_hub.products.http.v3.ReviewImage
+	140, // 63: cozy_hub.products.http.v3.Review.created_at:type_name -> google.protobuf.Timestamp
+	140, // 64: cozy_hub.products.http.v3.Review.updated_at:type_name -> google.protobuf.Timestamp
+	105, // 65: cozy_hub.products.http.v3.CreateReviewResponse.review:type_name -> cozy_hub.products.http.v3.Review
+	105, // 66: cozy_hub.products.http.v3.GetProductReviewsResponse.reviews:type_name -> cozy_hub.products.http.v3.Review
+	0,   // 67: cozy_hub.products.http.v3.GetProductReviewsResponse.pagination:type_name -> cozy_hub.products.http.v3.Pagination
+	107, // 68: cozy_hub.products.http.v3.GetProductRatingResponse.rating_summary:type_name -> cozy_hub.products.http.v3.ProductRatingSummary
+	105, // 69: cozy_hub.products.http.v3.GetUserReviewForProductResponse.review:type_name -> cozy_hub.products.http.v3.Review
+	105, // 70: cozy_hub.products.http.v3.UpdateReviewResponse.review:type_name -> cozy_hub.products.http.v3.Review
+	106, // 71: cozy_hub.products.http.v3.UploadReviewImagesResponse.images:type_name -> cozy_hub.products.http.v3.ReviewImage
+	105, // 72: cozy_hub.products.http.v3.AdminGetReviewsResponse.reviews:type_name -> cozy_hub.products.http.v3.Review
+	0,   // 73: cozy_hub.products.http.v3.AdminGetReviewsResponse.pagination:type_name -> cozy_hub.products.http.v3.Pagination
+	139, // 74: cozy_hub.products.http.v3.AdminGetReviewAnalyticsResponse.rating_distribution:type_name -> cozy_hub.products.http.v3.AdminGetReviewAnalyticsResponse.RatingDistributionEntry
+	53,  // 75: cozy_hub.products.http.v3.GetProductPricingResponse.PricingEntry.value:type_name -> cozy_hub.products.http.v3.ProductPricing
+	3,   // 76: cozy_hub.products.http.v3.ProductsHTTPService.CreateProduct:input_type -> cozy_hub.products.http.v3.CreateProductRequest
+	5,   // 77: cozy_hub.products.http.v3.ProductsHTTPService.GetProduct:input_type -> cozy_hub.products.http.v3.GetProductRequest
+	7,   // 78: cozy_hub.products.http.v3.ProductsHTTPService.UpdateProduct:input_type -> cozy_hub.products.http.v3.UpdateProductRequest
+	9,   // 79: cozy_hub.products.http.v3.ProductsHTTPService.DeleteProduct:input_type -> cozy_hub.products.http.v3.DeleteProductRequest
+	11,  // 80: cozy_hub.products.http.v3.ProductsHTTPService.ListProducts:input_type -> cozy_hub.products.http.v3.ListProductsRequest
+	13,  // 81: cozy_hub.products.http.v3.ProductsHTTPService.SearchProducts:input_type -> cozy_hub.products.http.v3.SearchProductsRequest
+	15,  // 82: cozy_hub.products.http.v3.ProductsHTTPService.UpdateProductStatus:input_type -> cozy_hub.products.http.v3.UpdateProductStatusRequest
+	17,  // 83: cozy_hub.products.http.v3.ProductsHTTPService.GetProductBySKU:input_type -> cozy_hub.products.http.v3.GetProductBySKURequest
+	20,  // 84: cozy_hub.products.http.v3.ProductsHTTPService.CreateCategory:input_type -> cozy_hub.products.http.v3.CreateCategoryRequest
+	22,  // 85: cozy_hub.products.http.v3.ProductsHTTPService.GetCategory:input_type -> cozy_hub.products.http.v3.GetCategoryRequest
+	24,  // 86: cozy_hub.products.http.v3.ProductsHTTPService.UpdateCategory:input_type -> cozy_hub.products.http.v3.UpdateCategoryRequest
+	26,  // 87: cozy_hub.products.http.v3.ProductsHTTPService.DeleteCategory:input_type -> cozy_hub.products.http.v3.DeleteCategoryRequest
+	28,  // 88: cozy_hub.products.http.v3.ProductsHTTPService.ListCategories:input_type -> cozy_hub.products.http.v3.ListCategoriesRequest
+	31,  // 89: cozy_hub.products.http.v3.ProductsHTTPService.UpdateInventory:input_type -> cozy_hub.products.http.v3.UpdateInventoryRequest
+	33,  // 90: cozy_hub.products.http.v3.ProductsHTTPService.GetInventory:input_type -> cozy_hub.products.http.v3.GetInventoryRequest
+	36,  // 91: cozy_hub.products.http.v3.ProductsHTTPService.BulkUpdateInventory:input_type -> cozy_hub.products.http.v3.BulkUpdateInventoryRequest
+	39,  // 92: cozy_hub.products.http.v3.ProductsHTTPService.CheckStock:input_type -> cozy_hub.products.http.v3.CheckStockRequest
+	42,  // 93: cozy_hub.products.http.v3.ProductsHTTPService.ReserveStock:input_type -> cozy_hub.products.http.v3.ReserveStockRequest
+	44,  // 94: cozy_hub.products.http.v3.ProductsHTTPService.ReleaseStock:input_type -> cozy_hub.products.http.v3.ReleaseStockRequest
+	46,  // 95: cozy_hub.products.http.v3.ProductsHTTPService.GetLowStockCount:input_type -> cozy_hub.products.http.v3.GetLowStockCountRequest
+	49,  // 96: cozy_hub.products.http.v3.ProductsHTTPService.GetDashboardStats:input_type -> cozy_hub.products.http.v3.GetDashboardStatsRequest
+	51,  // 97: cozy_hub.products.http.v3.ProductsHTTPService.GetProductPricing:input_type -> cozy_hub.products.http.v3.GetProductPricingRequest
+	54,  // 98: cozy_hub.products.http.v3.ProductsHTTPService.UploadProductImages:input_type -> cozy_hub.products.http.v3.UploadProductImagesRequest
+	56,  // 99: cozy_hub.products.http.v3.ProductsHTTPService.GetProductImages:input_type -> cozy_hub.products.http.v3.GetProductImagesRequest
+	59,  // 100: cozy_hub.products.http.v3.ProductsHTTPService.ReorderProductImages:input_type -> cozy_hub.products.http.v3.ReorderProductImagesRequest
+	61,  // 101: cozy_hub.products.http.v3.ProductsHTTPService.SetPrimaryImage:input_type -> cozy_hub.products.http.v3.SetPrimaryImageRequest
+	63,  // 102: cozy_hub.products.http.v3.ProductsHTTPService.DeleteProductImage:input_type -> cozy_hub.products.http.v3.DeleteProductImageRequest
+	66,  // 103: cozy_hub.products.http.v3.ProductsHTTPService.ListFeaturedProducts:input_type -> cozy_hub.products.http.v3.ListFeaturedProductsRequest
+	68,  // 104: cozy_hub.products.http.v3.ProductsHTTPService.AddFeaturedProduct:input_type -> cozy_hub.products.http.v3.AddFeaturedProductRequest
+	70,  // 105: cozy_hub.products.http.v3.ProductsHTTPService.RemoveFeaturedProduct:input_type -> cozy_hub.products.http.v3.RemoveFeaturedProductRequest
+	72,  // 106: cozy_hub.products.http.v3.ProductsHTTPService.ReorderFeaturedProducts:input_type -> cozy_hub.products.http.v3.ReorderFeaturedProductsRequest
+	76,  // 107: cozy_hub.products.http.v3.ProductsHTTPService.ListCarouselImages:input_type -> cozy_hub.products.http.v3.ListCarouselImagesRequest
+	78,  // 108: cozy_hub.products.http.v3.ProductsHTTPService.CreateCarouselImage:input_type -> cozy_hub.products.http.v3.CreateCarouselImageRequest
+	80,  // 109: cozy_hub.products.http.v3.ProductsHTTPService.UpdateCarouselImage:input_type -> cozy_hub.products.http.v3.UpdateCarouselImageRequest
+	82,  // 110: cozy_hub.products.http.v3.ProductsHTTPService.DeleteCarouselImage:input_type -> cozy_hub.products.http.v3.DeleteCarouselImageRequest
+	84,  // 111: cozy_hub.products.http.v3.ProductsHTTPService.ReorderCarouselImages:input_type -> cozy_hub.products.http.v3.ReorderCarouselImagesRequest
+	87,  // 112: cozy_hub.products.http.v3.ProductsHTTPService.UploadCarouselImage:input_type -> cozy_hub.products.http.v3.UploadCarouselImageRequest
+	91,  // 113: cozy_hub.products.http.v3.ProductsHTTPService.GetWishlist:input_type -> cozy_hub.products.http.v3.GetWishlistRequest
+	93,  // 114: cozy_hub.products.http.v3.ProductsHTTPService.AddToWishlist:input_type -> cozy_hub.products.http.v3.AddToWishlistRequest
+	95,  // 115: cozy_hub.products.http.v3.ProductsHTTPService.RemoveFromWishlist:input_type -> cozy_hub.products.http.v3.RemoveFromWishlistRequest
+	97,  // 116: cozy_hub.products.http.v3.ProductsHTTPService.ClearWishlist:input_type -> cozy_hub.products.http.v3.ClearWishlistRequest
+	99,  // 117: cozy_hub.products.http.v3.ProductsHTTPService.IsInWishlist:input_type -> cozy_hub.products.http.v3.IsInWishlistRequest
+	101, // 118: cozy_hub.products.http.v3.ProductsHTTPService.MergeWishlist:input_type -> cozy_hub.products.http.v3.MergeWishlistRequest
+	103, // 119: cozy_hub.products.http.v3.ProductsHTTPService.MoveToCart:input_type -> cozy_hub.products.http.v3.MoveToCartRequest
+	108, // 120: cozy_hub.products.http.v3.ProductsHTTPService.CreateReview:input_type -> cozy_hub.products.http.v3.CreateReviewRequest
+	110, // 121: cozy_hub.products.http.v3.ProductsHTTPService.GetProductReviews:input_type -> cozy_hub.products.http.v3.GetProductReviewsRequest
+	112, // 122: cozy_hub.products.http.v3.ProductsHTTPService.GetProductRating:input_type -> cozy_hub.products.http.v3.GetProductRatingRequest
+	114, // 123: cozy_hub.products.http.v3.ProductsHTTPService.GetUserReviewForProduct:input_type -> cozy_hub.products.http.v3.GetUserReviewForProductRequest
+	116, // 124: cozy_hub.products.http.v3.ProductsHTTPService.UpdateReview:input_type -> cozy_hub.products.http.v3.UpdateReviewRequest
+	118, // 125: cozy_hub.products.http.v3.ProductsHTTPService.DeleteReview:input_type -> cozy_hub.products.http.v3.DeleteReviewRequest
+	120, // 126: cozy_hub.products.http.v3.ProductsHTTPService.MarkReviewHelpful:input_type -> cozy_hub.products.http.v3.MarkReviewHelpfulRequest
+	122, // 127: cozy_hub.products.http.v3.ProductsHTTPService.UploadReviewImages:input_type -> cozy_hub.products.http.v3.UploadReviewImagesRequest
+	124, // 128: cozy_hub.products.http.v3.ProductsHTTPService.AdminGetReviews:input_type -> cozy_hub.products.http.v3.AdminGetReviewsRequest
+	126, // 129: cozy_hub.products.http.v3.ProductsHTTPService.AdminApproveReview:input_type -> cozy_hub.products.http.v3.AdminApproveReviewRequest
+	128, // 130: cozy_hub.products.http.v3.ProductsHTTPService.AdminRejectReview:input_type -> cozy_hub.products.http.v3.AdminRejectReviewRequest
+	130, // 131: cozy_hub.products.http.v3.ProductsHTTPService.AdminDeleteReview:input_type -> cozy_hub.products.http.v3.AdminDeleteReviewRequest
+	132, // 132: cozy_hub.products.http.v3.ProductsHTTPService.AdminRespondToReview:input_type -> cozy_hub.products.http.v3.AdminRespondToReviewRequest
+	134, // 133: cozy_hub.products.http.v3.ProductsHTTPService.AdminBulkApproveReviews:input_type -> cozy_hub.products.http.v3.AdminBulkApproveReviewsRequest
+	136, // 134: cozy_hub.products.http.v3.ProductsHTTPService.AdminGetReviewAnalytics:input_type -> cozy_hub.products.http.v3.AdminGetReviewAnalyticsRequest
+	4,   // 135: cozy_hub.products.http.v3.ProductsHTTPService.CreateProduct:output_type -> cozy_hub.products.http.v3.CreateProductResponse
+	6,   // 136: cozy_hub.products.http.v3.ProductsHTTPService.GetProduct:output_type -> cozy_hub.products.http.v3.GetProductResponse
+	8,   // 137: cozy_hub.products.http.v3.ProductsHTTPService.UpdateProduct:output_type -> cozy_hub.products.http.v3.UpdateProductResponse
+	10,  // 138: cozy_hub.products.http.v3.ProductsHTTPService.DeleteProduct:output_type -> cozy_hub.products.http.v3.DeleteProductResponse
+	12,  // 139: cozy_hub.products.http.v3.ProductsHTTPService.ListProducts:output_type -> cozy_hub.products.http.v3.ListProductsResponse
+	14,  // 140: cozy_hub.products.http.v3.ProductsHTTPService.SearchProducts:output_type -> cozy_hub.products.http.v3.SearchProductsResponse
+	16,  // 141: cozy_hub.products.http.v3.ProductsHTTPService.UpdateProductStatus:output_type -> cozy_hub.products.http.v3.UpdateProductStatusResponse
+	18,  // 142: cozy_hub.products.http.v3.ProductsHTTPService.GetProductBySKU:output_type -> cozy_hub.products.http.v3.GetProductBySKUResponse
+	21,  // 143: cozy_hub.products.http.v3.ProductsHTTPService.CreateCategory:output_type -> cozy_hub.products.http.v3.CreateCategoryResponse
+	23,  // 144: cozy_hub.products.http.v3.ProductsHTTPService.GetCategory:output_type -> cozy_hub.products.http.v3.GetCategoryResponse
+	25,  // 145: cozy_hub.products.http.v3.ProductsHTTPService.UpdateCategory:output_type -> cozy_hub.products.http.v3.UpdateCategoryResponse
+	27,  // 146: cozy_hub.products.http.v3.ProductsHTTPService.DeleteCategory:output_type -> cozy_hub.products.http.v3.DeleteCategoryResponse
+	29,  // 147: cozy_hub.products.http.v3.ProductsHTTPService.ListCategories:output_type -> cozy_hub.products.http.v3.ListCategoriesResponse
+	32,  // 148: cozy_hub.products.http.v3.ProductsHTTPService.UpdateInventory:output_type -> cozy_hub.products.http.v3.UpdateInventoryResponse
+	34,  // 149: cozy_hub.products.http.v3.ProductsHTTPService.GetInventory:output_type -> cozy_hub.products.http.v3.GetInventoryResponse
+	37,  // 150: cozy_hub.products.http.v3.ProductsHTTPService.BulkUpdateInventory:output_type -> cozy_hub.products.http.v3.BulkUpdateInventoryResponse
+	41,  // 151: cozy_hub.products.http.v3.ProductsHTTPService.CheckStock:output_type -> cozy_hub.products.http.v3.CheckStockResponse
+	43,  // 152: cozy_hub.products.http.v3.ProductsHTTPService.ReserveStock:output_type -> cozy_hub.products.http.v3.ReserveStockResponse
+	45,  // 153: cozy_hub.products.http.v3.ProductsHTTPService.ReleaseStock:output_type -> cozy_hub.products.http.v3.ReleaseStockResponse
+	47,  // 154: cozy_hub.products.http.v3.ProductsHTTPService.GetLowStockCount:output_type -> cozy_hub.products.http.v3.GetLowStockCountResponse
+	50,  // 155: cozy_hub.products.http.v3.ProductsHTTPService.GetDashboardStats:output_type -> cozy_hub.products.http.v3.GetDashboardStatsResponse
+	52,  // 156: cozy_hub.products.http.v3.ProductsHTTPService.GetProductPricing:output_type -> cozy_hub.products.http.v3.GetProductPricingResponse
+	55,  // 157: cozy_hub.products.http.v3.ProductsHTTPService.UploadProductImages:output_type -> cozy_hub.products.http.v3.UploadProductImagesResponse
+	57,  // 158: cozy_hub.products.http.v3.ProductsHTTPService.GetProductImages:output_type -> cozy_hub.products.http.v3.GetProductImagesResponse
+	60,  // 159: cozy_hub.products.http.v3.ProductsHTTPService.ReorderProductImages:output_type -> cozy_hub.products.http.v3.ReorderProductImagesResponse
+	62,  // 160: cozy_hub.products.http.v3.ProductsHTTPService.SetPrimaryImage:output_type -> cozy_hub.products.http.v3.SetPrimaryImageResponse
+	64,  // 161: cozy_hub.products.http.v3.ProductsHTTPService.DeleteProductImage:output_type -> cozy_hub.products.http.v3.DeleteProductImageResponse
+	67,  // 162: cozy_hub.products.http.v3.ProductsHTTPService.ListFeaturedProducts:output_type -> cozy_hub.products.http.v3.ListFeaturedProductsResponse
+	69,  // 163: cozy_hub.products.http.v3.ProductsHTTPService.AddFeaturedProduct:output_type -> cozy_hub.products.http.v3.AddFeaturedProductResponse
+	71,  // 164: cozy_hub.products.http.v3.ProductsHTTPService.RemoveFeaturedProduct:output_type -> cozy_hub.products.http.v3.RemoveFeaturedProductResponse
+	74,  // 165: cozy_hub.products.http.v3.ProductsHTTPService.ReorderFeaturedProducts:output_type -> cozy_hub.products.http.v3.ReorderFeaturedProductsResponse
+	77,  // 166: cozy_hub.products.http.v3.ProductsHTTPService.ListCarouselImages:output_type -> cozy_hub.products.http.v3.ListCarouselImagesResponse
+	79,  // 167: cozy_hub.products.http.v3.ProductsHTTPService.CreateCarouselImage:output_type -> cozy_hub.products.http.v3.CreateCarouselImageResponse
+	81,  // 168: cozy_hub.products.http.v3.ProductsHTTPService.UpdateCarouselImage:output_type -> cozy_hub.products.http.v3.UpdateCarouselImageResponse
+	83,  // 169: cozy_hub.products.http.v3.ProductsHTTPService.DeleteCarouselImage:output_type -> cozy_hub.products.http.v3.DeleteCarouselImageResponse
+	86,  // 170: cozy_hub.products.http.v3.ProductsHTTPService.ReorderCarouselImages:output_type -> cozy_hub.products.http.v3.ReorderCarouselImagesResponse
+	88,  // 171: cozy_hub.products.http.v3.ProductsHTTPService.UploadCarouselImage:output_type -> cozy_hub.products.http.v3.UploadCarouselImageResponse
+	92,  // 172: cozy_hub.products.http.v3.ProductsHTTPService.GetWishlist:output_type -> cozy_hub.products.http.v3.GetWishlistResponse
+	94,  // 173: cozy_hub.products.http.v3.ProductsHTTPService.AddToWishlist:output_type -> cozy_hub.products.http.v3.AddToWishlistResponse
+	96,  // 174: cozy_hub.products.http.v3.ProductsHTTPService.RemoveFromWishlist:output_type -> cozy_hub.products.http.v3.RemoveFromWishlistResponse
+	98,  // 175: cozy_hub.products.http.v3.ProductsHTTPService.ClearWishlist:output_type -> cozy_hub.products.http.v3.ClearWishlistResponse
+	100, // 176: cozy_hub.products.http.v3.ProductsHTTPService.IsInWishlist:output_type -> cozy_hub.products.http.v3.IsInWishlistResponse
+	102, // 177: cozy_hub.products.http.v3.ProductsHTTPService.MergeWishlist:output_type -> cozy_hub.products.http.v3.MergeWishlistResponse
+	104, // 178: cozy_hub.products.http.v3.ProductsHTTPService.MoveToCart:output_type -> cozy_hub.products.http.v3.MoveToCartResponse
+	109, // 179: cozy_hub.products.http.v3.ProductsHTTPService.CreateReview:output_type -> cozy_hub.products.http.v3.CreateReviewResponse
+	111, // 180: cozy_hub.products.http.v3.ProductsHTTPService.GetProductReviews:output_type -> cozy_hub.products.http.v3.GetProductReviewsResponse
+	113, // 181: cozy_hub.products.http.v3.ProductsHTTPService.GetProductRating:output_type -> cozy_hub.products.http.v3.GetProductRatingResponse
+	115, // 182: cozy_hub.products.http.v3.ProductsHTTPService.GetUserReviewForProduct:output_type -> cozy_hub.products.http.v3.GetUserReviewForProductResponse
+	117, // 183: cozy_hub.products.http.v3.ProductsHTTPService.UpdateReview:output_type -> cozy_hub.products.http.v3.UpdateReviewResponse
+	119, // 184: cozy_hub.products.http.v3.ProductsHTTPService.DeleteReview:output_type -> cozy_hub.products.http.v3.DeleteReviewResponse
+	121, // 185: cozy_hub.products.http.v3.ProductsHTTPService.MarkReviewHelpful:output_type -> cozy_hub.products.http.v3.MarkReviewHelpfulResponse
+	123, // 186: cozy_hub.products.http.v3.ProductsHTTPService.UploadReviewImages:output_type -> cozy_hub.products.http.v3.UploadReviewImagesResponse
+	125, // 187: cozy_hub.products.http.v3.ProductsHTTPService.AdminGetReviews:output_type -> cozy_hub.products.http.v3.AdminGetReviewsResponse
+	127, // 188: cozy_hub.products.http.v3.ProductsHTTPService.AdminApproveReview:output_type -> cozy_hub.products.http.v3.AdminApproveReviewResponse
+	129, // 189: cozy_hub.products.http.v3.ProductsHTTPService.AdminRejectReview:output_type -> cozy_hub.products.http.v3.AdminRejectReviewResponse
+	131, // 190: cozy_hub.products.http.v3.ProductsHTTPService.AdminDeleteReview:output_type -> cozy_hub.products.http.v3.AdminDeleteReviewResponse
+	133, // 191: cozy_hub.products.http.v3.ProductsHTTPService.AdminRespondToReview:output_type -> cozy_hub.products.http.v3.AdminRespondToReviewResponse
+	135, // 192: cozy_hub.products.http.v3.ProductsHTTPService.AdminBulkApproveReviews:output_type -> cozy_hub.products.http.v3.AdminBulkApproveReviewsResponse
+	137, // 193: cozy_hub.products.http.v3.ProductsHTTPService.AdminGetReviewAnalytics:output_type -> cozy_hub.products.http.v3.AdminGetReviewAnalyticsResponse
 	135, // [135:194] is the sub-list for method output_type
 	76,  // [76:135] is the sub-list for method input_type
 	76,  // [76:76] is the sub-list for extension type_name

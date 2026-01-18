@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package smart_kart.account.http.v3;
+package cozy_hub.account.http.v3;
 
-option go_package = "github.com/smart-kart/proto/gen/go/account/http/v3;accountv3";
+option go_package = "github.com/cozy-hub-app/proto/gen/go/account/http/v3;accountv3";
 
 import "google/api/annotations.proto";
 
